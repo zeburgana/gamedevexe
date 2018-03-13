@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Range : MonoBehaviour {
 
-    private basicEnemy parent;
+    private BasicEnemy parent;
 
     private void Start()
     {
-        parent = GetComponentInParent<basicEnemy>();
+        parent = GetComponentInParent<BasicEnemy>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

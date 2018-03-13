@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class basicEnemy : MonoBehaviour {
+public class BasicEnemy : MonoBehaviour {
 
     private Animator animator;
     private Rigidbody2D RGB;
