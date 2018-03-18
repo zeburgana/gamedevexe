@@ -78,7 +78,7 @@ public class BasicEnemy : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Wall")
+        if (collision.collider.tag == "Wallmap")
         {
             if (moveX == 1)
             {
