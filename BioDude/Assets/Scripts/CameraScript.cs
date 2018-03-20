@@ -22,18 +22,13 @@ public class CameraScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void LateUpdate ()
+	void FixedUpdate ()
     {
         Vector3 playerPos = Player.transform.position;
         Vector3 cameraPos = transform.position;
         playerPos.z = cameraPos.z;
         transform.position = Vector3.Lerp(cameraPos, playerPos, smooth);
 	}
-
-    void FixedUpdate()
-    {
-        applyForce();
-    }
 
     // add force to camera (for ex.: recoil)
     public void addForce (Vector3 direction, float power)
