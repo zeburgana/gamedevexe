@@ -301,6 +301,10 @@ Prefab:
       propertyPath: pistolFire
       value: 
       objectReference: {fileID: 261642365}
+    - target: {fileID: 1023508624085162, guid: daf86fe2f2bb1e14d97bff61bd885bd0, type: 2}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: daf86fe2f2bb1e14d97bff61bd885bd0, type: 2}
   m_IsPrefabParent: 0
