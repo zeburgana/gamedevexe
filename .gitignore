@@ -34,3 +34,6 @@ sysinfo.txt
 *.apk
 *.unitypackage
 BioDude/Assets/Sprites/Player.meta
+BioDude/.vs/BioDude/v15/Server/sqlite3/storage.ide
+BioDude/Assets/Scenes/initial.unity
+*.meta
