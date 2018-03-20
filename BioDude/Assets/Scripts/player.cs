@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PlayerMovement2 : MonoBehaviour
+public class player : MonoBehaviour
 {
     public float speed = 6f;            // The speed that the player will move at.
 
