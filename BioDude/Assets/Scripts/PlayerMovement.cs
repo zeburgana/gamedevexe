@@ -44,15 +44,26 @@ public class PlayerMovement : MonoBehaviour {
     private void Shooting()
     {
         //sometimes bullet spawns behind the player :D
-        pistolFire.Play();
-        float x = transform.position.x;
-        float y = transform.position.y;
-        float z = transform.position.z;
-        Instantiate(pistolBullet, new Vector3(x, y, z), transform.rotation);
+        if (GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().cooldownEnded)
+        {
+            pistolFire.Play();
+            float x = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").transform.position.x;
+            float y = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").transform.position.y;
+            float z = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").transform.position.z;
+            GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().cooldownEnded = false;
+            StartCoroutine("Cooldown");
+            Instantiate(pistolBullet, new Vector3(x, y, z), transform.rotation);
+        }
     }
 
     private float AngleBetweenToPoints(Vector3 a, Vector3 b)
     {
         return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
+    }
+
+    IEnumerator Cooldown()
+    {
+        yield return new WaitForSeconds(GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().activeWeapon.GetComponent<Weapon>().cooldown);
+        GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().cooldownEnded = true;
     }
 }
