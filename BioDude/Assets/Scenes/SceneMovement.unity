@@ -309,11 +309,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4846898572416408, guid: c6f0393b721e3724f88c75bc6875a4b2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.29
+      value: -1.04
       objectReference: {fileID: 0}
     - target: {fileID: 4846898572416408, guid: c6f0393b721e3724f88c75bc6875a4b2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.08
+      value: 0.87
       objectReference: {fileID: 0}
     - target: {fileID: 4846898572416408, guid: c6f0393b721e3724f88c75bc6875a4b2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -378,6 +378,35 @@ Prefab:
         type: 2}
       propertyPath: direction
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61568832288304692, guid: c6f0393b721e3724f88c75bc6875a4b2,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61568832288304692, guid: c6f0393b721e3724f88c75bc6875a4b2,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: -0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 212773115459073750, guid: c6f0393b721e3724f88c75bc6875a4b2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1688476762627346, guid: c6f0393b721e3724f88c75bc6875a4b2, type: 2}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 58136335394474888, guid: c6f0393b721e3724f88c75bc6875a4b2,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 58136335394474888, guid: c6f0393b721e3724f88c75bc6875a4b2,
+        type: 2}
+      propertyPath: m_UsedByEffector
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c6f0393b721e3724f88c75bc6875a4b2, type: 2}
@@ -1983,7 +2012,7 @@ GameObject:
   - component: {fileID: 1753083373}
   - component: {fileID: 1753083372}
   - component: {fileID: 1753083371}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallMap
   m_TagString: Wallmap
   m_Icon: {fileID: 0}
@@ -2049,7 +2078,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16

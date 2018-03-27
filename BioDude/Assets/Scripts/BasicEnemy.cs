@@ -36,11 +36,17 @@ public class BasicEnemy : MonoBehaviour
 
     private int direction = 0;
 
-    [SerializeField]
-    private bool alerted;
+    private bool alerted = false;
+    private RaycastHit2D rayCastHitPlayer;
+    private int playerMask;
+    private int wallMask;
 
     private void Awake()
     {
+        // Create a layer mask for the floor layer.
+        playerMask = LayerMask.GetMask("Player");
+        wallMask = LayerMask.GetMask("Collider");
+
         animator = GetComponent<Animator>();
         RGB = GetComponent<Rigidbody2D>();
         CircleCol = GetComponent<CircleCollider2D>();
@@ -63,16 +69,16 @@ public class BasicEnemy : MonoBehaviour
     }
 
 
-    
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            alerted = true;
             lastMoveX = moveX;
             lastMoveY = moveY;
         }
-            
+
+
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -82,13 +88,33 @@ public class BasicEnemy : MonoBehaviour
             //moveX = lastMoveX;
             //moveY = lastMoveY;
         }
-            
+
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (alerted && collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
-            followPlayer(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y);
+            rayCastHitPlayer = Physics2D.Raycast(transform.position, collision.gameObject.transform.position - transform.position, 99999f, playerMask | wallMask);
+            if (rayCastHitPlayer)
+            {
+                Debug.DrawLine(transform.position, collision.gameObject.transform.position, Color.green);
+
+                if (rayCastHitPlayer.collider.CompareTag("Player"))
+                {
+                    alerted = true;
+                }
+                else
+                {
+
+                }
+
+            }
+            if (alerted)
+            {
+                Debug.DrawLine(transform.position, collision.gameObject.transform.position, Color.red);
+                followPlayer(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y);
+            }
+
         }
     }
     private void followPlayer(float x, float y)
@@ -122,6 +148,7 @@ public class BasicEnemy : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
         if (!alerted)
         {
             if (direction == 3 || direction == 4)
@@ -228,5 +255,5 @@ public class BasicEnemy : MonoBehaviour
         IsMoving = true;
 
     }
- 
+
 }
