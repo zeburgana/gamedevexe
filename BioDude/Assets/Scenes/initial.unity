@@ -273,35 +273,25 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224241924927785958, guid: f46a9ca293dfb90468a672194345f398,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224241924927785958, guid: f46a9ca293dfb90468a672194345f398,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114213723143465410, guid: f46a9ca293dfb90468a672194345f398,
-        type: 2}
-      propertyPath: playerHealth
-      value: 
-      objectReference: {fileID: 268895109}
-    - target: {fileID: 223627542633337614, guid: f46a9ca293dfb90468a672194345f398,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 223627542633337614, guid: f46a9ca293dfb90468a672194345f398,
         type: 2}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 639300288}
-    - target: {fileID: 223627542633337614, guid: f46a9ca293dfb90468a672194345f398,
+    - target: {fileID: 114213723143465410, guid: f46a9ca293dfb90468a672194345f398,
         type: 2}
-      propertyPath: m_SortingOrder
-      value: 10
+      propertyPath: playerHealth
+      value: 
+      objectReference: {fileID: 268895109}
+    - target: {fileID: 224241924927785958, guid: f46a9ca293dfb90468a672194345f398,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 224241924927785958, guid: f46a9ca293dfb90468a672194345f398,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f46a9ca293dfb90468a672194345f398, type: 2}
@@ -451,7 +441,7 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
