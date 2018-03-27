@@ -35,6 +35,6 @@ sysinfo.txt
 *.unitypackage
 #BioDude/.vs/BioDude/v15/Server/sqlite3/storage.ide
 
-#Git merging products:
+#Git merging products: 
 *.orig
 *.orig.meta
