@@ -152,31 +152,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114343937553801968, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
-        type: 2}
-      propertyPath: pistolFire
-      value: 
-      objectReference: {fileID: 268895108}
-    - target: {fileID: 1023508624085162, guid: daf86fe2f2bb1e14d97bff61bd885bd0, type: 2}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 114343937553801968, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
-        type: 2}
-      propertyPath: speed
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: daf86fe2f2bb1e14d97bff61bd885bd0, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &268895107 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1023508624085162, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
-    type: 2}
-  m_PrefabInternal: {fileID: 268895106}
---- !u!82 &268895108 stripped
-AudioSource:
-  m_PrefabParentObject: {fileID: 82165514026457094, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
     type: 2}
   m_PrefabInternal: {fileID: 268895106}
 --- !u!114 &268895109 stripped

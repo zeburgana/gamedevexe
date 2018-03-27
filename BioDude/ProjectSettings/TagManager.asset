@@ -9,6 +9,7 @@ TagManager:
   - HP
   - Wallmap
   - Bullet
+  - PlayerWeaponSlot
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Background
   - Particle
   - Player
-  - 
+  - Weapon
   - 
   - 
   - 
