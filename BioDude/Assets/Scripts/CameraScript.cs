@@ -9,17 +9,23 @@ public class CameraScript : MonoBehaviour {
     [SerializeField]
     float FollowingSpeed = 0.09f;
     [SerializeField]
-    float TestingForce = 10;
+    float RecoilSpeed = 0.09f;
     [SerializeField]
-    byte CameraMode = 0; // 0 - following player; 1 - following Pl with recoil; 2 - going to given position 
+    bool DoCameraRecoil = true;
     [SerializeField]
     float MaxOffset = 10;
+
+    //for TESTING
+    [SerializeField]
+    float TestingForce = 10;
+    /////////
 
     Rigidbody2D rb2D;
 
     private Vector2 FollowingPos;
     private Vector2 Offset; 
     private float FollowSpeed;
+    private bool isFollowingPoint = false;
 
     
 
@@ -32,30 +38,42 @@ public class CameraScript : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate ()
     {
+        //fot TESTING:
+        Imitate_firing();
+        /////////////
+
         UpdateTargetPosition();
         //following 
         Vector2 cameraPos = transform.position;
-        Debug.DrawLine(cameraPos, FollowingPos, Color.green, 2);
-        Vector2 LerpPos = Vector2.Lerp(cameraPos, FollowingPos, FollowSpeed);
+        Vector2 LerpPos = Vector2.Lerp(cameraPos, FollowingPos, RecoilSpeed);
         transform.position = new Vector3(LerpPos.x, LerpPos.y, -10);
-	}
 
+        Debug.DrawLine(cameraPos, FollowingPos, Color.green, 2); // what camera is fllowing
+        Debug.DrawLine(Player.transform.position, FollowingPos, Color.blue); // offset from player
+    }
+
+    private void Imitate_firing()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            AddOffset(TestingForce);
+        }
+    }
 
     // Update position of player or other object
     private void UpdateTargetPosition()
     {
-        switch (CameraMode)
+        if (!isFollowingPoint)
         {
-            case 0: // following player
+            if (DoCameraRecoil)
+            {
+                Vector2 PlayerPos = Player.transform.position;
+                FollowingPos = (Vector3) (PlayerPos + Offset);
+                Offset = Vector2.Lerp(Offset, PlayerPos, FollowingSpeed);
+            }
+            else
                 FollowingPos = Player.transform.position;
-                break;
-            case 1: // following Pl with recoil
-                FollowingPos = Player.transform.position + (Vector3) Offset;
-                break;
-            case 2: // following given position
-                break;
         }
-        //if following player
     }
 
     //Add camera recoil effect
@@ -63,12 +81,12 @@ public class CameraScript : MonoBehaviour {
     //direction - to what direction (if not defined - oposite to what player is facing) 
     public void AddOffset(float magnitude, Vector2 direction = default(Vector2))
     {
-        if (CameraMode == 1) // only if following camera with recoil
+        if (!isFollowingPoint && DoCameraRecoil) // only if following camera with recoil
         {
             if (direction == Vector2.zero)
             {
-                float dirAngle = Player.GetComponent<PlayerMovement>().GetDirectionAngle();
-                direction = new Vector2(-Mathf.Sin(dirAngle), -Mathf.Cos(dirAngle));
+                float dirAngle = Player.GetComponent<PlayerMovement>().GetDirectionAngle(); ////////////bug
+                direction = new Vector2(Mathf.Sin(dirAngle), Mathf.Cos(dirAngle));
             }
             Offset = transform.position - Player.transform.position;
             Offset += direction * magnitude * Offset.magnitude / MaxOffset; // further from player camera is - less powerfull recoil
@@ -78,12 +96,12 @@ public class CameraScript : MonoBehaviour {
 
     public void GoToPosition(Vector3 position)
     {
-        CameraMode = 2;
+        isFollowingPoint = true;
         FollowingPos = position;
     }
 
     public void FollowPlayer()
     {
-        CameraMode = 1;
+        isFollowingPoint = false;
     }
 }
