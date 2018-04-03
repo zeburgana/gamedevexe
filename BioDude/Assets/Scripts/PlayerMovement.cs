@@ -6,14 +6,16 @@ public class PlayerMovement : MonoBehaviour {
 
     [SerializeField]
     float speed;
-    private Rigidbody2D rb2D;
     [SerializeField]
     GameObject pistolBullet;
     [SerializeField]
     AudioSource pistolFire;
 
-	// Use this for initialization
-	void Start () {
+    private Rigidbody2D rb2D;
+    private float directionAngle; 
+
+    // Use this for initialization
+    void Start () {
         rb2D = GetComponent<Rigidbody2D>();
 	}
 	
@@ -35,10 +37,15 @@ public class PlayerMovement : MonoBehaviour {
     {
         Vector2 playerPos = Camera.main.WorldToViewportPoint(transform.position);
         Vector2 mousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-        float angle = AngleBetweenToPoints(playerPos, mousePos);
-        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle+90));
+        directionAngle = AngleBetweenToPoints(playerPos, mousePos) + 90;
+        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, directionAngle));
         if (Input.GetMouseButtonDown(0))
             Shooting();
+    }
+
+    public float GetDirectionAngle()
+    {
+        return directionAngle;
     }
 
     private void Shooting()

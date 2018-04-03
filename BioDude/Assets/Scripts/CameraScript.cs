@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraScript : MonoBehaviour {
-
-    [SerializeField]
-    float maxMovForce = 10f;
+    
     [SerializeField]
     GameObject Player;
     [SerializeField]
-    float smooth = 0.01f;
+    float smooth = 0.09f;
     [SerializeField]
     float TestingForce;
 
@@ -26,6 +24,7 @@ public class CameraScript : MonoBehaviour {
     {
         Vector3 playerPos = Player.transform.position;
         Vector3 cameraPos = transform.position;
+        Debug.DrawLine(playerPos, Player.GetComponent<PlayerMovement>()., Color.green, 2);
         playerPos.z = cameraPos.z;
         transform.position = Vector3.Lerp(cameraPos, playerPos, smooth);
 	}
