@@ -37,14 +37,15 @@ public class PlayerMovement : MonoBehaviour {
     {
         Vector2 playerPos = Camera.main.WorldToViewportPoint(transform.position);
         Vector2 mousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-        directionAngle = AngleBetweenToPoints(playerPos, mousePos) + 90;
-        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, directionAngle));
+        directionAngle = AngleBetweenToPoints(playerPos, mousePos);
+        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, directionAngle * Mathf.Rad2Deg + 90));
         if (Input.GetMouseButtonDown(0))
             Shooting();
     }
 
     public float GetDirectionAngle()
     {
+        //return AngleBetweenToPoints(transform.position, Input.mousePosition) + 90;
         return directionAngle;
     }
 
@@ -65,7 +66,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private float AngleBetweenToPoints(Vector3 a, Vector3 b)
     {
-        return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
+        return Mathf.Atan2(a.y - b.y, a.x - b.x);
     }
 
     IEnumerator Cooldown()

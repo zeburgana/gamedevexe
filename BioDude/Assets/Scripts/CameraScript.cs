@@ -47,7 +47,6 @@ public class CameraScript : MonoBehaviour {
         Vector2 cameraPos = transform.position;
         Vector2 LerpPos = Vector2.Lerp(cameraPos, FollowingPos, RecoilSpeed);
         transform.position = new Vector3(LerpPos.x, LerpPos.y, -10);
-
         Debug.DrawLine(cameraPos, FollowingPos, Color.green, 2); // what camera is fllowing
         Debug.DrawLine(Player.transform.position, FollowingPos, Color.blue); // offset from player
     }
@@ -68,8 +67,8 @@ public class CameraScript : MonoBehaviour {
             if (DoCameraRecoil)
             {
                 Vector2 PlayerPos = Player.transform.position;
+                Offset = Vector2.Lerp(Offset, Vector2.zero, FollowingSpeed);
                 FollowingPos = (Vector3) (PlayerPos + Offset);
-                Offset = Vector2.Lerp(Offset, PlayerPos, FollowingSpeed);
             }
             else
                 FollowingPos = Player.transform.position;
@@ -86,11 +85,17 @@ public class CameraScript : MonoBehaviour {
             if (direction == Vector2.zero)
             {
                 float dirAngle = Player.GetComponent<PlayerMovement>().GetDirectionAngle(); ////////////bug
-                direction = new Vector2(Mathf.Sin(dirAngle), Mathf.Cos(dirAngle));
+                //direction = (Player.transform.position - Input.mousePosition).normalized;
+                direction = new Vector2(-Mathf.Cos(dirAngle), -Mathf.Sin(dirAngle));
+                Debug.Log(direction);
             }
             Offset = transform.position - Player.transform.position;
-            Offset += direction * magnitude * Offset.magnitude / MaxOffset; // further from player camera is - less powerfull recoil
+            Offset += (direction * magnitude * (1 -  Vector2.Dot(Offset, direction) / MaxOffset)); // further from player camera is - less powerfull recoil
+            Vector2 sug = Offset;
             Offset = Vector2.Min(Offset.normalized * MaxOffset, Offset);
+
+            Debug.Log("M: " + (Offset.normalized * MaxOffset).magnitude + " Sug: " + sug.magnitude + " Des: " + Offset.magnitude);
+            //Debug.Log("Max: " + (Offset.normalized * MaxOffset).magnitude + " " + (Offset.normalized * MaxOffset) + "\nSug: " + sug.magnitude + " " + sug + "\nDes: " + Offset.magnitude + " " + Offset);
         }
     }
 
