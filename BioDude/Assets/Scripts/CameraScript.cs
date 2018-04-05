@@ -7,9 +7,9 @@ public class CameraScript : MonoBehaviour {
     [SerializeField]
     GameObject Player;
     [SerializeField]
-    float FollowingSpeed = 0.09f;
+    float StabilisationSpeed = 0.09f;
     [SerializeField]
-    float RecoilSpeed = 0.09f;
+    float MovmentSpeed = 0.09f;
     [SerializeField]
     bool DoCameraRecoil = true;
     [SerializeField]
@@ -32,7 +32,7 @@ public class CameraScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rb2D = GetComponent<Rigidbody2D>();
-        FollowSpeed = FollowingSpeed;
+        FollowSpeed = StabilisationSpeed;
 	}
 	
 	// Update is called once per frame
@@ -45,10 +45,10 @@ public class CameraScript : MonoBehaviour {
         UpdateTargetPosition();
         //following 
         Vector2 cameraPos = transform.position;
-        Vector2 LerpPos = Vector2.Lerp(cameraPos, FollowingPos, RecoilSpeed);
+        Vector2 LerpPos = Vector2.Lerp(cameraPos, FollowingPos, MovmentSpeed);
         transform.position = new Vector3(LerpPos.x, LerpPos.y, -10);
-        //Debug.DrawLine(cameraPos, FollowingPos, Color.green, 2); // what camera is fllowing
-        //Debug.DrawLine(Player.transform.position, FollowingPos, Color.blue); // offset from player
+        Debug.DrawLine(cameraPos, FollowingPos, Color.green, 2); // what camera is fllowing
+        Debug.DrawLine(Player.transform.position, FollowingPos, Color.blue); // offset from player
     }
 
     private void Imitate_firing()
@@ -75,7 +75,7 @@ public class CameraScript : MonoBehaviour {
             if (DoCameraRecoil)
             {
                 Vector2 PlayerPos = Player.transform.position;
-                Offset = Vector2.Lerp(Offset, Vector2.zero, FollowingSpeed);
+                Offset = Vector2.Lerp(Offset, Vector2.zero, StabilisationSpeed);
                 FollowingPos = (Vector3) (PlayerPos + Offset);
             }
             else
