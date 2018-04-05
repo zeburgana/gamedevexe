@@ -59,7 +59,7 @@ public class CameraScript : MonoBehaviour {
         }
         else if (Input.GetKeyDown(KeyCode.G))
         {
-            GoToPosition(Camera.main.ScreenToViewportPoint(Input.mousePosition));
+            GoToPosition(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
         else if (Input.GetKeyDown(KeyCode.R))
         {
