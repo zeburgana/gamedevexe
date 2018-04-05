@@ -57,6 +57,14 @@ public class CameraScript : MonoBehaviour {
         {
             AddOffset(TestingForce);
         }
+        else if (Input.GetKeyDown(KeyCode.G))
+        {
+            GoToPosition(Camera.main.ScreenToViewportPoint(Input.mousePosition));
+        }
+        else if (Input.GetKeyDown(KeyCode.R))
+        {
+            FollowPlayer();
+        }
     }
 
     // Update position of player or other object
