@@ -9,7 +9,9 @@ public class CameraScript : MonoBehaviour {
     [SerializeField]
     float StabilisationSpeed = 0.09f;
     [SerializeField]
-    float MovmentSpeed = 0.09f;
+    float InMovmentSpeed = 0.09f;
+    [SerializeField]
+    float OutMovmentSpeed = 0.15f;
     [SerializeField]
     bool DoCameraRecoil = true;
     [SerializeField]
@@ -39,19 +41,25 @@ public class CameraScript : MonoBehaviour {
 	void FixedUpdate ()
     {
         //fot TESTING:
-        Imitate_firing();
+        Imitate_actions();
         /////////////
 
         UpdateTargetPosition();
         //following 
         Vector2 cameraPos = transform.position;
-        Vector2 LerpPos = Vector2.Lerp(cameraPos, FollowingPos, MovmentSpeed);
+
+        Vector2 LerpPos;
+        if ((cameraPos - (Vector2) Player.transform.position).magnitude > Offset.magnitude)
+           LerpPos = Vector2.Lerp(cameraPos, FollowingPos, InMovmentSpeed);
+        else
+            LerpPos = Vector2.Lerp(cameraPos, FollowingPos, OutMovmentSpeed);
+
         transform.position = new Vector3(LerpPos.x, LerpPos.y, -10);
         Debug.DrawLine(cameraPos, FollowingPos, Color.green, 2); // what camera is fllowing
         Debug.DrawLine(Player.transform.position, FollowingPos, Color.blue); // offset from player
     }
 
-    private void Imitate_firing()
+    private void Imitate_actions()
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -93,7 +101,7 @@ public class CameraScript : MonoBehaviour {
             if (direction == Vector2.zero)
             {
                 float dirAngle = Player.GetComponent<PlayerMovement>().GetDirectionAngle();
-                direction = new Vector2(-Mathf.Cos(dirAngle), -Mathf.Sin(dirAngle));
+                direction = new Vector2(Mathf.Cos(dirAngle), Mathf.Sin(dirAngle));
             }
             Offset = transform.position - Player.transform.position;
             Offset += (direction * magnitude * (1 -  Vector2.Dot(Offset, direction) / MaxOffset)); // further from player camera is - less powerfull recoil
