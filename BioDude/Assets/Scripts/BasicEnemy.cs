@@ -29,19 +29,29 @@ public class BasicEnemy : MonoBehaviour
     private bool IsMoving;
     [SerializeField]
     private int moveX;
+    private int lastMoveX;
     [SerializeField]
     private int moveY;
+    private int lastMoveY;
 
     private int direction = 0;
 
-
+    private bool alerted = false;
+    private RaycastHit2D rayCastHitPlayer;
+    private int playerMask;
+    private int wallMask;
 
     private void Awake()
     {
+        // Create a layer mask for the floor layer.
+        playerMask = LayerMask.GetMask("Player");
+        wallMask = LayerMask.GetMask("Collider");
+
         animator = GetComponent<Animator>();
         RGB = GetComponent<Rigidbody2D>();
         CircleCol = GetComponent<CircleCollider2D>();
     }
+
     // Use this for initialization
     private void Start()
     {
@@ -52,57 +62,123 @@ public class BasicEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*RaycastHit2D collisionX = Physics2D.Raycast(transform.position, new Vector2(moveX, 0), 0.15f);
+        RaycastHit2D collisionY = Physics2D.Raycast(transform.position, new Vector2(0, moveY), 0.16f);
+        */
         Move(moveX, moveY);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (direction == 3 || direction == 4)
-            if (collision.collider.tag == "Wallmap")
+        if (collision.gameObject.tag == "Player")
+        {
+            lastMoveX = moveX;
+            lastMoveY = moveY;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            alerted = false;
+            //moveX = lastMoveX;
+            //moveY = lastMoveY;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            rayCastHitPlayer = Physics2D.Raycast(transform.position, collision.gameObject.transform.position - transform.position, 99999f, playerMask | wallMask);
+            if (rayCastHitPlayer)
             {
-                if (moveX == 1)
+                Debug.DrawLine(transform.position, collision.gameObject.transform.position, Color.green);
+                if (rayCastHitPlayer.collider.CompareTag("Player"))
                 {
-                    moveX = -1;
+                    alerted = true;
                 }
                 else
                 {
-                    moveX = 1;
+
                 }
+            }
+            if (alerted)
+            {
+                Debug.DrawLine(transform.position, collision.gameObject.transform.position, Color.red);
+                followPlayer(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y);
+            }
+
+        }
+    }
+    private void followPlayer(float x, float y)
+    {
+        if (Mathf.Abs(transform.position.x - x) > Mathf.Abs(transform.position.y - y))
+        {
+            if (transform.position.x > x)
+            {
+                moveX = -1;
+                moveY = 0;
             }
         if (direction == 1 || direction == 2)
-            if (collision.collider.tag == "Wallmap")
+            //if (collision.collider.tag == "Wallmap")
             {
-                if (moveY == 1)
-                {
-                    moveY = -1;
-                }
-                else
-                {
-                    moveY = 1;
-                }
+                moveX = 1;
+                moveY = 0;
             }
+        }
+        else
+        {
+            if (transform.position.y > y)
+            {
+                moveY = -1;
+                moveX = 0;
+            }
+            else
+            {
+                moveY = 1;
+                moveX = 0;
+            }
+        }
     }
-
-    //Put item id's inside, if id == 0, there is no gear
-    public void Equip(int head, int body, int leg, int foot, int back, int left, int right)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        HeadGear = head;
-        BodyGear = body;
-        LegGear = leg;
-        FootGear = foot;
-        BackGear = back;
-        LeftHand = left;
-        RightHand = right;
+        if (!alerted)
+        {
+            if (direction == 3 || direction == 4)
+                if (collision.collider.tag == "Wallmap")
+                {
+                    if (moveX == 1)
+                    {
+                        moveX = -1;
+                    }
+                    else
+                    {
+                        moveX = 1;
+                    }
+                }
+            if (direction == 1 || direction == 2)
+                if (collision.collider.tag == "Wallmap")
+                {
+                    if (moveY == 1)
+                    {
+                        moveY = -1;
+                    }
+                    else
+                    {
+                        moveY = 1;
+                    }
+                }
+        }
     }
-
+    
     void SendAnimInfo(int vert, int horiz)
     {
         animator.SetFloat("XSpeed", horiz);
         animator.SetFloat("YSpeed", vert);
         animator.SetBool("IsMoving", IsMoving);
     }
-
-
 
     private void walkUp()
     {
@@ -159,4 +235,17 @@ public class BasicEnemy : MonoBehaviour
         IsMoving = true;
 
     }
+
+    //Put item id's inside, if id == 0, there is no gear
+    public void Equip(int head, int body, int leg, int foot, int back, int left, int right)
+    {
+        HeadGear = head;
+        BodyGear = body;
+        LegGear = leg;
+        FootGear = foot;
+        BackGear = back;
+        LeftHand = left;
+        RightHand = right;
+    }
+
 }
