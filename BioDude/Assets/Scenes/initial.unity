@@ -437,9 +437,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 268895107}
-  StabilisationSpeed: 0.09
-  InMovmentSpeed: 0.09
-  OutMovmentSpeed: 0.25
+  StabilisationSpeed: 0.15
+  InMovmentSpeed: 0.15
+  OutMovmentSpeed: 0.5
   DoCameraRecoil: 1
   MaxOffset: 10
   TestingForce: 2
