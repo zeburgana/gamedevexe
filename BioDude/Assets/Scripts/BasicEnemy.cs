@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicEnemy : MonoBehaviour {
+public class BasicEnemy : MonoBehaviour
+{
 
     private Animator animator;
     private Rigidbody2D RGB;
@@ -31,6 +32,8 @@ public class BasicEnemy : MonoBehaviour {
     [SerializeField]
     private int moveY;
 
+    private int direction = 0;
+
 
 
     private void Awake()
@@ -40,66 +43,44 @@ public class BasicEnemy : MonoBehaviour {
         CircleCol = GetComponent<CircleCollider2D>();
     }
     // Use this for initialization
-    private void Start () {
+    private void Start()
+    {
         //Equip(0, 0, 0, 0, 0, 0, 0);
         IsMoving = false;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
 
-        /*RaycastHit2D collisionX = Physics2D.Raycast(transform.position, new Vector2(moveX, 0), 0.15f);
-        RaycastHit2D collisionY = Physics2D.Raycast(transform.position, new Vector2(0, moveY), 0.16f);
-        
-        if(collisionX.collider.tag == "Wall")
-        {
-            if (moveX == 1)
-            {
-                moveX = -1;
-            }
-            else
-            {
-                moveX = 1;
-            }
-        }
-        if (collisionY.collider.tag == "Wall")
-        {
-            if (moveY == 1)
-            {
-                moveY = -1;
-            }
-            else
-            {
-                moveY = 1;
-            }
-        }*/
+    // Update is called once per frame
+    void Update()
+    {
         Move(moveX, moveY);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Wallmap")
-        {
-            if (moveX == 1)
+        if (direction == 3 || direction == 4)
+            if (collision.collider.tag == "Wallmap")
             {
-                moveX = -1;
+                if (moveX == 1)
+                {
+                    moveX = -1;
+                }
+                else
+                {
+                    moveX = 1;
+                }
             }
-            else
+        if (direction == 1 || direction == 2)
+            if (collision.collider.tag == "Wallmap")
             {
-                moveX = 1;
+                if (moveY == 1)
+                {
+                    moveY = -1;
+                }
+                else
+                {
+                    moveY = 1;
+                }
             }
-        }
-        /*if (collision.collider.tag == "Wall")
-        {
-            if (moveY == 1)
-            {
-                moveY = -1;
-            }
-            else
-            {
-                moveY = 1;
-            }
-        }*/
     }
 
     //Put item id's inside, if id == 0, there is no gear
@@ -127,21 +108,25 @@ public class BasicEnemy : MonoBehaviour {
     {
         transform.Translate(Vector2.up * speed * Time.deltaTime);
         SendAnimInfo(1, 0);
+        direction = 1;
     }
     private void walkDown()
     {
         transform.Translate(Vector2.down * speed * Time.deltaTime);
         SendAnimInfo(-1, 0);
+        direction = 2;
     }
     private void walkLeft()
     {
         transform.Translate(Vector2.left * speed * Time.deltaTime);
         SendAnimInfo(0, -1);
+        direction = 3;
     }
     private void walkRight()
     {
         transform.Translate(Vector2.right * speed * Time.deltaTime);
         SendAnimInfo(0, 1);
+        direction = 4;
     }
 
 
@@ -172,6 +157,6 @@ public class BasicEnemy : MonoBehaviour {
                 break;
         }
         IsMoving = true;
-        
+
     }
 }
