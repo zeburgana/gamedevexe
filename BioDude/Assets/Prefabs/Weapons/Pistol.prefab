@@ -35,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1893248767818946}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.928, y: -0.413, z: 0}
+  m_LocalPosition: {x: 2.6005135, y: 0.11066532, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -49,13 +49,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1893248767818946}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a1aa5918a1aed24e88f9c4873b5bc04, type: 3}
+  m_Script: {fileID: 11500000, guid: 36934454bfff2b8458629eff9286a934, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 6b1fd2f17f083e24e8b04ee411cbbda9, type: 3}
   projectile: {fileID: 1661742638681246, guid: 6d05574080e4b714a937d5098ba9eb02, type: 2}
-  projectileSpeed: 1000
-  cooldown: 0
+  projectileSpeed: 100
+  cooldown: 1
   tip: {x: 0, y: 0, z: 0}
   projectileType: 1
 --- !u!212 &212335989696721050

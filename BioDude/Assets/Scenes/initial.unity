@@ -394,9 +394,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42def9b5c4fbf9947a12aa5ef3e908d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxMovForce: 10
   Player: {fileID: 268895107}
-  smooth: 0.09
+  StabilisationSpeed: 0.09
+  InMovmentSpeed: 0.09
+  OutMovmentSpeed: 0.15
+  DoCameraRecoil: 1
+  MaxOffset: 10
   TestingForce: 0
 --- !u!1 &1033645964
 GameObject:
