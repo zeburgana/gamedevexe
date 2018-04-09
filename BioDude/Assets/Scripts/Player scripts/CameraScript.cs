@@ -55,8 +55,8 @@ public class CameraScript : MonoBehaviour {
             LerpPos = Vector2.Lerp(cameraPos, FollowingPos, OutMovmentSpeed);
 
         transform.position = new Vector3(LerpPos.x, LerpPos.y, -10);
-        Debug.DrawLine(cameraPos, FollowingPos, Color.green, 2); // what camera is fllowing
-        Debug.DrawLine(Player.transform.position, FollowingPos, Color.blue); // offset from player
+        //Debug.DrawLine(cameraPos, FollowingPos, Color.green, 2); // what camera is fllowing
+        //Debug.DrawLine(Player.transform.position, FollowingPos, Color.blue); // offset from player
     }
 
     private void Imitate_actions()

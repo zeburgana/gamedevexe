@@ -400,7 +400,7 @@ MonoBehaviour:
   OutMovmentSpeed: 0.15
   DoCameraRecoil: 1
   MaxOffset: 10
-  TestingForce: 0
+  TestingForce: 5
 --- !u!1 &1033645964
 GameObject:
   m_ObjectHideFlags: 0
