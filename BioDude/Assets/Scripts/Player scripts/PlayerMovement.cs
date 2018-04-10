@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour {
     AudioSource pistolFire;
 
     private Rigidbody2D rb2D;
-    private float directionAngle; 
+    private float directionAngle;
 
     // Use this for initialization
     void Start () {
@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour {
     private void Shooting()
     {
         //sometimes bullet spawns behind the player :D
-        if (GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().cooldownEnded)
+        if (GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().cooldownEnded && GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().activeWeapon != null)
         {
             pistolFire.Play();
             float x = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").transform.position.x;
