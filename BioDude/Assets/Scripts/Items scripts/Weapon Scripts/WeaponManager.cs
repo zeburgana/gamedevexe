@@ -5,7 +5,7 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour {
 
     public GameObject activeWeapon;
-    Weapon weapon;
+    public Weapon weapon;
     public bool cooldownEnded = true;
 
 	// Use this for initialization
