@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour {
     private void Shooting()
     {
         //sometimes bullet spawns behind the player :D
-        if (GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().cooldownEnded)
+        if (GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().cooldownEnded && GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().activeWeapon != null)
         {
             pistolFire.Play();
             float x = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").transform.position.x;
