@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour {
-
+public class Item : MonoBehaviour
+{
 	public Sprite sprite;
 	
 	public void Equip () {}

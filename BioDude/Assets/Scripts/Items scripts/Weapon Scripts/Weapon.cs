@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : Item {
-
+public class Weapon : Item
+{
     public enum WeaponType
-    {Melee, Pistol}
+    {
+        Melee,
+        Pistol
+    }
 
     public GameObject projectile;
     public float projectileSpeed;
@@ -15,6 +18,7 @@ public class Weapon : Item {
     public WeaponType projectileType;
     
     // Use this for initialization
-	void Start () {
+	void Start ()
+    {
 	}
 }

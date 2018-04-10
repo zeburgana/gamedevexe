@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : Item {
-
+public class Bullet : Item
+{
     Weapon weapon;
     
-    void Start () {
+    void Start ()
+    {
         weapon = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().activeWeapon.GetComponent<Weapon>();
         Destroy(gameObject, weapon.timeUntilSelfDestrucion);
     }
@@ -24,6 +25,7 @@ public class Bullet : Item {
         	Destroy(gameObject);
             DestroyObject(collision);
         }
+
         if (collision.collider.tag == "Wallmap")
         {
         	Destroy(gameObject);
