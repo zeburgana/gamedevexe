@@ -45,10 +45,11 @@ public class DialogueManager : MonoBehaviour {
     }
     public void DisplayNextSentence()
     {
-        Debug.Log("dialogue");
+        //Debug.Log("dialogue");
         if(sentences.Count == 0)
         {
             EndDialogue();
+            return;
         }
         NameText.text = names.Dequeue();
         StopAllCoroutines();
@@ -68,6 +69,6 @@ public class DialogueManager : MonoBehaviour {
         animator.SetBool("IsOpen", false);
         animator.SetBool("WasOpen", true);
         Time.timeScale = time;
-        Debug.Log("End of conversation");
+        //Debug.Log("End of conversation");
     }
 }

@@ -296,6 +296,11 @@ Prefab:
       propertyPath: cooldownEnded
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 82165514026457094, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
+        type: 2}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: daf86fe2f2bb1e14d97bff61bd885bd0, type: 2}
   m_IsPrefabParent: 0
@@ -536,7 +541,7 @@ Prefab:
     - target: {fileID: 224645748733894650, guid: f46a9ca293dfb90468a672194345f398,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 87.66
+      value: 87.660034
       objectReference: {fileID: 0}
     - target: {fileID: 224645748733894650, guid: f46a9ca293dfb90468a672194345f398,
         type: 2}
@@ -546,7 +551,7 @@ Prefab:
     - target: {fileID: 224645748733894650, guid: f46a9ca293dfb90468a672194345f398,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -26.6
+      value: -26.599976
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f46a9ca293dfb90468a672194345f398, type: 2}

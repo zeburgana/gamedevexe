@@ -9,7 +9,7 @@ public class DialogueColliderTrigger : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("enter");
+        //Debug.Log("enter");
         if(collision.gameObject.tag=="Player")
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
     }
