@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class PistolBullet : MonoBehaviour {
 
+    [SerializeField]
+    double speed;
 
 	// Use this for initialization
 	void Start () {
         Destroy(gameObject, 2f);
+        GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(0, GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().activeWeapon.GetComponent<Weapon>().projectileSpeed)); //transform.forward.z * speed - 10, transform.forward.z * speed + 60
     }
 	
 	// Update is called once per frame
 	void Update () {
         //maybe just need to use velocity, not addRelaticeForce
-        GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(0, GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().activeWeapon.GetComponent<Weapon>().projectileSpeed)); //transform.forward.z * speed - 10, transform.forward.z * speed + 60
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

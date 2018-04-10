@@ -10,6 +10,7 @@ TagManager:
   - Wallmap
   - Bullet
   - PlayerWeaponSlot
+  - WeaponPickup
   layers:
   - Default
   - TransparentFX
@@ -23,9 +24,9 @@ TagManager:
   - Background
   - Particle
   - Player
+  - enemyLayer
   - Weapon
-  - 
-  - 
+  - WeaponPickup
   - 
   - 
   - 
