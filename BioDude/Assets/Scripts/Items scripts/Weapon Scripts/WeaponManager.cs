@@ -13,10 +13,10 @@ public class WeaponManager : MonoBehaviour {
         weapon = activeWeapon.GetComponent<Weapon>();
         GetComponent<SpriteRenderer>().sortingOrder = 1;
         GetComponent<SpriteRenderer>().sprite = weapon.sprite;
+        weapon.tip = transform.GetChild(0).localPosition;
     }
-	
-	// Update is called once per frame
-	void Update () {
 
-	}
+    void Equip () {
+        
+    }
 }
