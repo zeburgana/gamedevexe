@@ -143,6 +143,8 @@ MonoBehaviour:
   speed: 2
   moveX: 1
   moveY: 0
+  attackInterval: 1
+  damageToPlayer: 2
 --- !u!212 &212773115459073750
 SpriteRenderer:
   m_ObjectHideFlags: 1
