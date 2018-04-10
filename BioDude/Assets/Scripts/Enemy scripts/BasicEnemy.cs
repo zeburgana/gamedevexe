@@ -34,6 +34,14 @@ public class BasicEnemy : MonoBehaviour
     private int moveY;
     private int lastMoveY;
 
+    [SerializeField]
+    float attackInterval = 5;
+    float attackTimer;
+    [SerializeField]
+    int damageToPlayer = 5;
+
+    PlayerHealthManager playerHealth;
+
     private int direction = 0;
 
     private bool alerted = false;
@@ -57,6 +65,7 @@ public class BasicEnemy : MonoBehaviour
     {
         //Equip(0, 0, 0, 0, 0, 0, 0);
         IsMoving = false;
+        playerHealth = GameObject.Find("player").GetComponent<PlayerHealthManager>();
     }
 
     // Update is called once per frame
@@ -112,6 +121,22 @@ public class BasicEnemy : MonoBehaviour
 
         }
     }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            if (attackTimer <= 0)
+            {
+                attackTimer = attackInterval;
+                playerHealth.HurtPlayer(damageToPlayer);
+            }
+            else
+            {
+                attackTimer -= Time.deltaTime;
+            }
+        }
+    }
+
     private void followPlayer(float x, float y)
     {
         if (Mathf.Abs(transform.position.x - x) > Mathf.Abs(transform.position.y - y))
@@ -144,6 +169,10 @@ public class BasicEnemy : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.tag == "Player")
+        {
+            attackTimer = 0;
+        }
         if (!alerted)
         {
             if (direction == 3 || direction == 4)
