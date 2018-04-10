@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour {
     AudioSource pistolFire;
 
     private Rigidbody2D rb2D;
-    private float directionAngle; 
+    private float directionAngle;
 
     // Use this for initialization
     void Start () {
