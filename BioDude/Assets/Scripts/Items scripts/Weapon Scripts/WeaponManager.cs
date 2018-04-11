@@ -12,13 +12,6 @@ public class WeaponManager : MonoBehaviour
 	void Start ()
     {
         weapon = activeWeapon.GetComponent<Weapon>();
-        GetComponent<SpriteRenderer>().sortingOrder = 1;
-        GetComponent<SpriteRenderer>().sprite = weapon.sprite;
-        weapon.tip = transform.GetChild(0).localPosition;
-    }
-
-    void Equip ()
-    {
-        
+    	weapon.Equip();
     }
 }

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public abstract class Item : MonoBehaviour
 {
 	public Sprite sprite;
 	
-	public void Equip () {}
-	public void Unequip () {}
+	public abstract void Equip ();
+	public abstract void Unequip ();
 }
