@@ -178,6 +178,11 @@ Prefab:
       value: 
       objectReference: {fileID: 114445160326009966, guid: 20e1103fdde227d4fa389e993d13d0b4,
         type: 2}
+    - target: {fileID: 114610028058103794, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
+        type: 2}
+      propertyPath: cooldownEnded
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: daf86fe2f2bb1e14d97bff61bd885bd0, type: 2}
   m_IsPrefabParent: 0
