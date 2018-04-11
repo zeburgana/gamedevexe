@@ -17,8 +17,5 @@ public class Weapon : Item
     public Vector3 tip;
     public WeaponType projectileType;
     
-    // Use this for initialization
-	void Start ()
-    {
-	}
+    public virtual void Fire() {}
 }
