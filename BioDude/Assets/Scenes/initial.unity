@@ -329,10 +329,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    sentences:
-    - "Objectives:\n - Destroy all enemies\n - Don't die"
-    names:
-    - System
+  - sentence: "Objectives:\n - Destroy all enemies\n - Don't die"
+    name: System
+    avatar: {fileID: 21300000, guid: 69799b07683048046b2cb46334ac292a, type: 3}
+  - sentence: Let's do this!
+    name: BioDude
+    avatar: {fileID: 21300000, guid: ff16fc614cab59443ae8b86dad183c65, type: 3}
 --- !u!4 &339051762
 Transform:
   m_ObjectHideFlags: 0
@@ -701,7 +703,7 @@ GameObject:
   - component: {fileID: 747282353}
   - component: {fileID: 747282352}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Avatar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -808,8 +810,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    sentences: []
-    names: []
+  - sentence: 
+    name: 
+    avatar: {fileID: 0}
+  - sentence: 
+    name: 
+    avatar: {fileID: 0}
 --- !u!114 &831720154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2550,6 +2556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogueText: {fileID: 1731207956}
   NameText: {fileID: 1022899000}
+  Avatar: {fileID: 747282352}
   animator: {fileID: 1509101501}
 --- !u!4 &1488549976
 Transform:
