@@ -10,6 +10,7 @@ public class DialogueManager : MonoBehaviour {
     private Queue<string> sentences;
     private Queue<string> names;
     private Queue<Sprite> avatars;
+    private bool DialogueOpen = false;
 
     public Animator animator;
 
@@ -27,6 +28,7 @@ public class DialogueManager : MonoBehaviour {
 
     public void StartDialogue(Dialogue[] DialogueData)
     {
+        Debug.Log("start");
         if (!animator.GetBool("WasOpen"))
         {
             time = Time.timeScale;
@@ -34,6 +36,7 @@ public class DialogueManager : MonoBehaviour {
 
 
             animator.SetBool("IsOpen", true);
+            DialogueOpen = true;
             sentences.Clear();
 
             foreach (Dialogue DialogueUnit in DialogueData)
@@ -73,5 +76,14 @@ public class DialogueManager : MonoBehaviour {
         animator.SetBool("IsOpen", false);
         animator.SetBool("WasOpen", true);
         Time.timeScale = time;
+        DialogueOpen = false;
+    }
+    public void SetDialogueState(bool state)
+    {
+        DialogueOpen = state;
+    }
+    public bool IsDialogueOpen()
+    {
+        return DialogueOpen;
     }
 }
