@@ -28,7 +28,6 @@ public class DialogueManager : MonoBehaviour {
 
     public void StartDialogue(Dialogue[] DialogueData)
     {
-        Debug.Log("start");
         if (!animator.GetBool("WasOpen"))
         {
             time = Time.timeScale;
