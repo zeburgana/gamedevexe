@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class Legs : MonoBehaviour {
 
-    [SerializeField]
-    float rotationSpeed = 10;
-
+    public float targetAngle;
+    public float rotationSpeed = 0.5f;
+    public bool canRotate = true;
     Transform tank;
     Grid test;
 
 	// Use this for initialization
 	void Start () {
-        tank = GetComponentInParent<Transform>();
-        //test = ;
+        tank = transform.parent;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        if(canRotate)
+            tank.rotation = Quaternion.RotateTowards(tank.rotation, Quaternion.Euler(0, 0, targetAngle), rotationSpeed);
+    }
 
     // position - set position your tank should go to.
     public void GoTo(Vector2 positiion)
