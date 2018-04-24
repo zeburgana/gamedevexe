@@ -10,6 +10,7 @@ TagManager:
   - Wallmap
   - Bullet
   - PlayerWeaponSlot
+  - AchievementList
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,6 @@ TagManager:
   - Player
   - enemyLayer
   - Weapon
-  - 
   - 
   - 
   - 
