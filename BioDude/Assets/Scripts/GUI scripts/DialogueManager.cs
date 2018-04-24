@@ -6,8 +6,11 @@ using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour {
     public Text DialogueText;
     public Text NameText;
+    public Image Avatar;
     private Queue<string> sentences;
     private Queue<string> names;
+    private Queue<Sprite> avatars;
+    private bool DialogueOpen = false;
 
     public Animator animator;
 
@@ -18,40 +21,43 @@ public class DialogueManager : MonoBehaviour {
     void Start () {
         sentences = new Queue<string>();
         names = new Queue<string>();
+        avatars = new Queue<Sprite>();
         time = Time.timeScale;
         animator.SetBool("IsOpen", false);
     }
 
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue(Dialogue[] DialogueData)
     {
         if (!animator.GetBool("WasOpen"))
         {
+            time = Time.timeScale;
             Time.timeScale = 0;
 
 
             animator.SetBool("IsOpen", true);
+            DialogueOpen = true;
             sentences.Clear();
 
-            foreach (string sentence in dialogue.sentences)
+            foreach (Dialogue DialogueUnit in DialogueData)
             {
-                sentences.Enqueue(sentence);
+                sentences.Enqueue(DialogueUnit.sentence);
+                names.Enqueue(DialogueUnit.name);
+                avatars.Enqueue(DialogueUnit.avatar);
             }
-            foreach (string name in dialogue.names)
-            {
-                names.Enqueue(name);
-            }
+
             DisplayNextSentence();
         }
     }
     public void DisplayNextSentence()
     {
-        //Debug.Log("dialogue");
         if(sentences.Count == 0)
         {
             EndDialogue();
             return;
         }
         NameText.text = names.Dequeue();
+        Avatar.sprite = avatars.Dequeue();
+
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentences.Dequeue()));
     }
@@ -69,6 +75,14 @@ public class DialogueManager : MonoBehaviour {
         animator.SetBool("IsOpen", false);
         animator.SetBool("WasOpen", true);
         Time.timeScale = time;
-        //Debug.Log("End of conversation");
+        DialogueOpen = false;
+    }
+    public void SetDialogueState(bool state)
+    {
+        DialogueOpen = state;
+    }
+    public bool IsDialogueOpen()
+    {
+        return DialogueOpen;
     }
 }

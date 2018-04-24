@@ -137,7 +137,8 @@ AudioSource:
   m_GameObject: {fileID: 127674934}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 021bf81329da8c14699e68d8d46ec146,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: fc3c1c487607db147b94157472ed0ce1, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -329,10 +330,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    sentences:
-    - "Objectives:\n - Destroy all enemies\n - Don't die"
-    names:
-    - System
+  - sentence: "Objectives:\n - Destroy all enemies\n - Don't die"
+    name: System
+    avatar: {fileID: 21300000, guid: 69799b07683048046b2cb46334ac292a, type: 3}
+  - sentence: Let's do this!
+    name: BioDude
+    avatar: {fileID: 21300000, guid: ff16fc614cab59443ae8b86dad183c65, type: 3}
 --- !u!4 &339051762
 Transform:
   m_ObjectHideFlags: 0
@@ -701,7 +704,7 @@ GameObject:
   - component: {fileID: 747282353}
   - component: {fileID: 747282352}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Avatar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -808,8 +811,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    sentences: []
-    names: []
+  - sentence: 
+    name: 
+    avatar: {fileID: 0}
+  - sentence: 
+    name: 
+    avatar: {fileID: 0}
 --- !u!114 &831720154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2550,6 +2557,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogueText: {fileID: 1731207956}
   NameText: {fileID: 1022899000}
+  Avatar: {fileID: 747282352}
   animator: {fileID: 1509101501}
 --- !u!4 &1488549976
 Transform:
@@ -2599,10 +2607,10 @@ RectTransform:
   m_Father: {fileID: 1551036538}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000013351, y: -363.73798}
-  m_SizeDelta: {x: -96.2, y: -820.4}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 175.26202}
+  m_SizeDelta: {x: 1823.8, y: 257.59998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1509101501
 Animator:
@@ -2667,7 +2675,7 @@ GameObject:
   - component: {fileID: 1551036535}
   - component: {fileID: 1551036534}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Dialogue Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

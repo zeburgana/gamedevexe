@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DialogueColliderTrigger : MonoBehaviour {
 
-    public Dialogue dialogue;
+    public Dialogue[] dialogue;
 
 
     void OnTriggerEnter2D(Collider2D collision)
