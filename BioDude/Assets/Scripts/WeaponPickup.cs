@@ -15,7 +15,7 @@ public class WeaponPickup : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(pickedUp)
+		if(pickedUp) // destroy should be called in OnTriggerEnter method
             Destroy(this.gameObject);
 	}
 

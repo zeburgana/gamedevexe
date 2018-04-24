@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4470608951065064}
   - component: {fileID: 212335989696721050}
-  - component: {fileID: 114984713377670452}
+  - component: {fileID: 114445160326009966}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -41,7 +41,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114984713377670452
+--- !u!114 &114445160326009966
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -49,14 +49,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1893248767818946}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36934454bfff2b8458629eff9286a934, type: 3}
+  m_Script: {fileID: 11500000, guid: 53950d1b97ef7da47ba658bbe4cd0501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 6b1fd2f17f083e24e8b04ee411cbbda9, type: 3}
   projectile: {fileID: 1661742638681246, guid: 6d05574080e4b714a937d5098ba9eb02, type: 2}
-  projectileSpeed: 1500
+  projectileSpeed: 100
+  timeUntilSelfDestrucion: 2
   cooldown: 0.02
-  tip: {x: 0, y: 0, z: 0}
+  tip: {x: 2.6005135, y: 0.11066532, z: 0}
   projectileType: 1
 --- !u!212 &212335989696721050
 SpriteRenderer:
@@ -91,7 +92,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 6b1fd2f17f083e24e8b04ee411cbbda9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

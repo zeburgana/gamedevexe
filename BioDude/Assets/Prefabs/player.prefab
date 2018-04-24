@@ -132,7 +132,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4ad6cd90a764008468d613af633c9ee9, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -211,7 +211,7 @@ Animator:
   m_GameObject: {fileID: 1023508624085162}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 61f4061e4f38f3b47afe6937b40dd3bf, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -245,8 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b54cf509ff4b043a9555299024d5d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeWeapon: {fileID: 1893248767818946, guid: 20e1103fdde227d4fa389e993d13d0b4,
-    type: 2}
+  activeWeapon: {fileID: 0}
   cooldownEnded: 1
 --- !u!114 &114691648200261836
 MonoBehaviour:
@@ -339,7 +338,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 6b1fd2f17f083e24e8b04ee411cbbda9, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -347,5 +346,5 @@ SpriteRenderer:
   m_Size: {x: 0.51, y: 0.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
