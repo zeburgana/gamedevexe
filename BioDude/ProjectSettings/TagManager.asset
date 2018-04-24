@@ -10,6 +10,7 @@ TagManager:
   - Wallmap
   - Bullet
   - PlayerWeaponSlot
+  - AchievementList
   - WeaponPickup
   layers:
   - Default
@@ -27,7 +28,6 @@ TagManager:
   - enemyLayer
   - Weapon
   - WeaponPickup
-  - 
   - 
   - 
   - 
