@@ -22,19 +22,19 @@ public class CameraScript : MonoBehaviour {
     float TestingForce = 10;
     /////////
 
-    Rigidbody2D rb2D;
+//unused     Rigidbody2D rb2D;
 
     private Vector2 FollowingPos;
     private Vector2 Offset; 
-    private float FollowSpeed;
+//unused     private float FollowSpeed;
     private bool isFollowingPoint = false;
 
     
 
 	// Use this for initialization
 	void Start () {
-        rb2D = GetComponent<Rigidbody2D>();
-        FollowSpeed = StabilisationSpeed;
+//unused         rb2D = GetComponent<Rigidbody2D>();
+//unused         FollowSpeed = StabilisationSpeed;
 	}
 	
 	// Update is called once per frame
