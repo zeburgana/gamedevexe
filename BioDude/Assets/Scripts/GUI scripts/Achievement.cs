@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Achievement : MonoBehaviour
 {
 
-    private string name;
+    new private string name;
 
     private string description;
 
