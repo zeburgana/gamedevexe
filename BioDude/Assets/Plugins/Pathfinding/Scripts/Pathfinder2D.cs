@@ -90,14 +90,80 @@ public class Pathfinder2D : MonoBehaviour
             overalltimer += sw.ElapsedMilliseconds;
             iterations++;
         }
-
         DrawMapLines();
     }
 
     #region map
     //-------------------------------------------------INSTANIATE MAP-----------------------------------------------//
 
+
+        /*
+         int _numcount = 100;
+                        for (int ii = 0; ii < _numcount; ii++)
+                        {
+                            float _angle = ii * 360 / _numcount;
+                            Vector3 start = new Vector3(x, y, 0);
+                            Vector3 end = new Vector3(Mathf.Cos(_angle), Mathf.Sin(_angle), 0);
+                            end *= (Tilesize / 2);
+                            end += start;
+                            print(start.ToString() + end.ToString());
+                            UnityEngine.Debug.DrawLine(start, end, Color.blue, 100);
+                        }
+            */
+
     private void Create2DMap()
+    {
+        //Find positions for start and end of map
+        int startX = (int)MapStartPosition.x;
+        int startY = (int)MapStartPosition.y;
+        int endX = (int)MapEndPosition.x;
+        int endY = (int)MapEndPosition.y;
+
+        //Find tile width and height
+        int width = (int)((endX - startX) / Tilesize);
+        int height = (int)((endY - startY) / Tilesize);
+
+        //Set map up
+        Map = new Node[width, height];
+        int size = width * height;
+        SetListsSize(size);
+
+        //Fill up Map
+        for (int i = 0; i < height; i++)
+        {
+            for (int j = 0; j < width; j++)
+            {
+                float x = startX + (j * Tilesize) + (Tilesize / 2); //Position from where we raycast - X
+                float y = startY + (i * Tilesize) + (Tilesize / 2); //Position from where we raycast - Y
+                int ID = (i * width) + j; //ID we give to our Node!
+
+                float dist = 0;
+                
+                RaycastHit2D[] hit = Physics2D.CircleCastAll(new Vector2(x, y), Tilesize / 2, Vector2.up, dist);
+                bool free = true;
+
+                foreach (RaycastHit2D h in hit)
+                {
+                    if (DisallowedTags.Contains(h.transform.tag))
+                    {
+                        free = false;
+                    }
+                }
+                
+                if (free == true)
+                {
+                    Map[j, i] = new Node(j, i, y, ID, x, 0, true); //walkable tile!
+                }
+                else
+                {
+                    Map[j, i] = new Node(j, i, y, ID, x, 0, false);//Non walkable tile! 
+                }
+            }
+        }
+    }
+
+    /*
+     private void Create2DMap()
     {
         //Find positions for start and end of map
         int startX = (int)MapStartPosition.x;
@@ -125,11 +191,12 @@ public class Pathfinder2D : MonoBehaviour
 
                 float dist = 20;
 
-                RaycastHit[] hit = Physics.SphereCastAll(new Vector3(x, y, zStart), Tilesize / 4, Vector3.forward, dist);
+                //RaycastHit[] hit = Physics.SphereCastAll(new Vector3(x, y, zStart), Tilesize / 4, Vector3.forward, dist);
+                RaycastHit2D[] hit = Physics2D.CircleCastAll(new Vector3(x, y, zStart), Tilesize / 4, Vector3.forward, dist);
                 bool free = true;
                 float maxZ = Mathf.Infinity;
 
-                foreach (RaycastHit h in hit)
+                foreach (RaycastHit2D h in hit)
                 {
                     if (DisallowedTags.Contains(h.transform.tag))
                     {
@@ -143,6 +210,7 @@ public class Pathfinder2D : MonoBehaviour
                     }
                     else if (IgnoreTags.Contains(h.transform.tag))
                     {
+                        print("derrr");
                         //Do nothing we ignore these tags
                     }
                     else
@@ -163,7 +231,8 @@ public class Pathfinder2D : MonoBehaviour
                 }
             }
         }
-    }
+    } 
+    */
 
     #endregion //End map
 
@@ -734,17 +803,17 @@ public class Pathfinder2D : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        //if (DrawMapInEditor == true && Map != null)
+        //if (drawmapineditor == true && map != null)
         //{
-        //    for (int i = 0; i < Map.GetLength(1); i++)
+        //    for (int i = 0; i < map.getlength(1); i++)
         //    {
-        //        for (int j = 0; j < Map.GetLength(0); j++)
+        //        for (int j = 0; j < map.getlength(0); j++)
         //        {
-        //            if (Map[j, i] == null)
+        //            if (map[j, i] == null)
         //                continue;
 
-        //            Gizmos.color = (Map[j, i].walkable) ? new Color(0, 0.8F, 0, 0.5F) : new Color(0.8F, 0, 0, 0.5F);
-        //            Gizmos.DrawCube(new Vector3(Map[j, i].xCoord, Map[j, i].yCoord, Map[j, i].zCoord + 0.1F), new Vector3(Tilesize, Tilesize, 0.5F));
+        //            gizmos.color = (map[j, i].walkable) ? new color(0, 0.8f, 0, 0.5f) : new color(0.8f, 0, 0, 0.5f);
+        //            gizmos.drawcube(new vector3(map[j, i].xcoord, map[j, i].ycoord, map[j, i].zcoord + 0.1f), new vector3(tilesize, tilesize, 0.5f));
         //        }
         //    }
         //}
@@ -764,14 +833,14 @@ public class Pathfinder2D : MonoBehaviour
                         {
                             if (y < 0 || x < 0 || y >= Map.GetLength(1) || x >= Map.GetLength(0))
                                 continue;
-
-                            if (!Map[x, y].walkable)
-                                continue;
-
+                            
                             Vector3 start = new Vector3(Map[j, i].xCoord, Map[j, i].yCoord, Map[j, i].zCoord - 0.1f);
                             Vector3 end = new Vector3(Map[x, y].xCoord, Map[x, y].yCoord, Map[x, y].zCoord - 0.1f);
 
-                            UnityEngine.Debug.DrawLine(start, end, Color.green);
+                            if (Map[x, y].walkable)
+                                UnityEngine.Debug.DrawLine(start, end, Color.green);
+                            //else
+                            //    UnityEngine.Debug.DrawLine(start, end, Color.red);
                         }
                     }
                 }
