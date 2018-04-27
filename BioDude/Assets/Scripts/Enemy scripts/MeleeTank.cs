@@ -4,12 +4,11 @@ using UnityEngine;
 
 // NOTE: Children order is important fro this script to work
 
-public class MeleeTank : Pathfinding2D
+public class MeleeTank : MonoBehaviour
 {
 
     Transform legs;
     Transform head;
-    Pathfinding2D pathfind;
 
     public GameObject player;
 
@@ -23,17 +22,6 @@ public class MeleeTank : Pathfinding2D
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Debug.Log("Find path");
-            FindPath(transform.position, player.transform.position);
-        }
-        if (Path.Count > 0)
-        {
-            Move();
-            //transform.position = Vector3.MoveTowards(transform.position, pathfind.Path[0], Time.deltaTime * 30F);
-            //if (Vector3.Distance(transform.position, pathfind.Path[0]) < 0.1F)
-            //{ pathfind.Path.RemoveAt(0); }
-        }
+       
     }
 }
