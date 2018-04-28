@@ -6,9 +6,10 @@ public class BasicEnemy : MonoBehaviour
 {
 
     private Animator animator;
-    private Rigidbody2D RGB;
-    private CircleCollider2D CircleCol;
+//unused     private Rigidbody2D RGB;
+//unused     private CircleCollider2D CircleCol;
 
+/*  unused
     [SerializeField]
     private int HeadGear;
     [SerializeField]
@@ -23,16 +24,17 @@ public class BasicEnemy : MonoBehaviour
     private int LeftHand;
     [SerializeField]
     private int RightHand;
+    */
 
     [SerializeField]
     private float speed;
     private bool IsMoving;
     [SerializeField]
     private int moveX;
-    private int lastMoveX;
+//unused     private int lastMoveX;
     [SerializeField]
     private int moveY;
-    private int lastMoveY;
+//unused     private int lastMoveY;
 
     [SerializeField]
     float attackInterval = 5;
@@ -56,8 +58,8 @@ public class BasicEnemy : MonoBehaviour
         wallMask = LayerMask.GetMask("Collider");
 
         animator = GetComponent<Animator>();
-        RGB = GetComponent<Rigidbody2D>();
-        CircleCol = GetComponent<CircleCollider2D>();
+//unused         RGB = GetComponent<Rigidbody2D>();
+//unused         CircleCol = GetComponent<CircleCollider2D>();
     }
 
     // Use this for initialization
@@ -81,8 +83,8 @@ public class BasicEnemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            lastMoveX = moveX;
-            lastMoveY = moveY;
+//unused             lastMoveX = moveX;
+//unused             lastMoveY = moveY;
         }
     }
 
@@ -91,8 +93,8 @@ public class BasicEnemy : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             alerted = false;
-            //moveX = lastMoveX;
-            //moveY = lastMoveY;
+//unused             moveX = lastMoveX;
+//unused             moveY = lastMoveY;
         }
     }
 
@@ -268,6 +270,7 @@ public class BasicEnemy : MonoBehaviour
     //Put item id's inside, if id == 0, there is no gear
     public void Equip(int head, int body, int leg, int foot, int back, int left, int right)
     {
+        /* unused
         HeadGear = head;
         BodyGear = body;
         LegGear = leg;
@@ -275,6 +278,7 @@ public class BasicEnemy : MonoBehaviour
         BackGear = back;
         LeftHand = left;
         RightHand = right;
+        */
     }
 
 }

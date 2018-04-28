@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,18 +12,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     AudioSource pistolFire;
 
-    private Rigidbody2D rb2D;
+//unused     private Rigidbody2D rb2D;
     private float directionAngle;
 
     // Use this for initialization
-    void Start()
-    {
-        rb2D = GetComponent<Rigidbody2D>();
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
+    void Start () {
+//unused         rb2D = GetComponent<Rigidbody2D>();
+	}
+	
+	// Update is called once per frame
+	void FixedUpdate () {
         Movement();
         Looking();
     }
