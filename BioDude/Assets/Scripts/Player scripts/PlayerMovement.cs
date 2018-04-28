@@ -4,13 +4,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
-    [SerializeField]
-    float speed;
-    [SerializeField]
-    GameObject pistolBullet;
-    [SerializeField]
-    AudioSource pistolFire;
+    public float speed;
+    public GameObject pistolBullet;
+    public AudioSource pistolFire;
 
 //unused     private Rigidbody2D rb2D;
     private float directionAngle;
