@@ -21,11 +21,11 @@ GameObject:
   - component: {fileID: 4082924806394334}
   - component: {fileID: 212418783077590152}
   - component: {fileID: 95370782647171980}
-  - component: {fileID: 61731792819436870}
   - component: {fileID: 50820240094380452}
   - component: {fileID: 114343937553801968}
   - component: {fileID: 114691648200261836}
   - component: {fileID: 82165514026457094}
+  - component: {fileID: 58890726105175612}
   m_Layer: 11
   m_Name: player
   m_TagString: Player
@@ -97,8 +97,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61731792819436870
-BoxCollider2D:
+--- !u!58 &58890726105175612
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -109,19 +109,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.16, y: 1.54}
-    newSize: {x: 2.16, y: 1.54}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: -0.22}
   serializedVersion: 2
-  m_Size: {x: 2.16, y: 1.54}
-  m_EdgeRadius: 0
+  m_Radius: 0.78
 --- !u!82 &82165514026457094
 AudioSource:
   m_ObjectHideFlags: 1
