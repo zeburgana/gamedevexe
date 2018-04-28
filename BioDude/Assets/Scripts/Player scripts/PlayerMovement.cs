@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour
+{
 
     [SerializeField]
     float speed;
@@ -15,15 +16,17 @@ public class PlayerMovement : MonoBehaviour {
     private float directionAngle;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         rb2D = GetComponent<Rigidbody2D>();
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
         Movement();
         Looking();
-	}
+    }
 
     private void Movement()
     {
@@ -37,8 +40,9 @@ public class PlayerMovement : MonoBehaviour {
     {
         Vector2 playerPos = Camera.main.WorldToViewportPoint(transform.position);
         Vector2 mousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-        directionAngle = AngleBetweenToPoints(playerPos, mousePos);
-        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, directionAngle * Mathf.Rad2Deg + 90));
+        directionAngle = Mathf.Atan2(mousePos.y - playerPos.y, mousePos.x - playerPos.x);
+        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, directionAngle * Mathf.Rad2Deg - 90));
+        Debug.DrawLine(transform.position, transform.position + 10 * new Vector3(Mathf.Cos(directionAngle) , Mathf.Sin(directionAngle), 0), Color.blue);
         if (Input.GetMouseButtonDown(0))
             Shooting();
     }
@@ -62,11 +66,6 @@ public class PlayerMovement : MonoBehaviour {
             StartCoroutine("Cooldown");
             Instantiate(pistolBullet, new Vector3(x, y, z), transform.rotation);
         }
-    }
-
-    private float AngleBetweenToPoints(Vector3 a, Vector3 b)
-    {
-        return Mathf.Atan2(a.y - b.y, a.x - b.x);
     }
 
     IEnumerator Cooldown()
