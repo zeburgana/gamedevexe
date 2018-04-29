@@ -8,7 +8,8 @@ public class Pistol : Weapon
 	// Use this for initialization
 	void Start ()
 	{
-		timeUntilSelfDestrucion = 2f;
+        
+        timeUntilSelfDestrucion = 2f;
 	}
 
 	public override void Fire()
@@ -20,11 +21,15 @@ public class Pistol : Weapon
         SpriteRenderer spriteRend = placeHolder.GetComponent<SpriteRenderer>();
         spriteRend.sortingOrder = 2;
         spriteRend.sprite = sprite;
-        tip = transform.localPosition;
-	}
+        maxAmmo = 60;
+        clipSize = 12;
+        currentClipAmmo = 12;
+        currentAmmo = maxAmmo - currentClipAmmo;
+    }
 
 	public override void Unequip()
 	{
 
 	}
+
 }

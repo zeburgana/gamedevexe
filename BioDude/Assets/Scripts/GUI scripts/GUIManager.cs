@@ -9,6 +9,8 @@ public class GUIManager : MonoBehaviour
     public Slider healthBar;
     public Text HPText;
     public PlayerHealthManager playerHealth;
+    public PlayerAmmoManager playerAmmo;
+    public Text AmmoText;
 
     // Use this for initialization
     void Start()
@@ -22,5 +24,6 @@ public class GUIManager : MonoBehaviour
         healthBar.maxValue = playerHealth.playerMaxHealth;
         healthBar.value = playerHealth.playerCurrentHealth;
         HPText.text = "HP: " + playerHealth.playerCurrentHealth + "/" + playerHealth.playerMaxHealth;
+        AmmoText.text = playerAmmo.currentClipAmmo + "/" + playerAmmo.currentAmmo;
     }
 }

@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapons:
-  - {fileID: 1893248767818946, guid: 20e1103fdde227d4fa389e993d13d0b4, type: 2}
+  - {fileID: 1164725371737510, guid: 20e1103fdde227d4fa389e993d13d0b4, type: 2}
   currentSpawnedWeapon: {fileID: 0}
 --- !u!212 &212374287808397090
 SpriteRenderer:
