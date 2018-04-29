@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4349027143037016}
   - component: {fileID: 212330421322112496}
   - component: {fileID: 50001045859625392}
-  - component: {fileID: 114539848487328322}
   - component: {fileID: 61381879939487952}
+  - component: {fileID: 114999564766435556}
   m_Layer: 15
   m_Name: grenade
   m_TagString: Untagged
@@ -55,7 +55,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 10
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -88,7 +88,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.74, y: 2.48}
   m_EdgeRadius: 0
---- !u!114 &114539848487328322
+--- !u!114 &114999564766435556
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -96,14 +96,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1099810171760856}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 661d172f24cd3344db3f0698be3484dc, type: 3}
+  m_Script: {fileID: 11500000, guid: df8114a8a4325e94dbb61d3610f0a85b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 2
   explosionEffect: {fileID: 1175786858352720, guid: df7cbf2ffde1d3848ab52efe0d38fdfe,
     type: 2}
-  radius: 5
-  force: 5000
+  radius: 3
+  force: 500
 --- !u!212 &212330421322112496
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -137,8 +137,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4cea260d97f2150408b750dce9e401ec, type: 3}
+  m_SortingOrder: 3
+  m_Sprite: {fileID: 21300000, guid: f6b61866f441eb943b5f0e5a73b96a1d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

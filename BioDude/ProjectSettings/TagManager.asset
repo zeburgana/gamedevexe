@@ -25,10 +25,10 @@ TagManager:
   - Background
   - Particle
   - Player
-  - enemyLayer
+  - Enemy
   - Weapon
-  - WeaponPickup
-  - 
+  - Pickup
+  - Grenade
   - 
   - 
   - 

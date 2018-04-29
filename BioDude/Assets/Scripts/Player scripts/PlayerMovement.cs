@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour {
             Vector2 playerPos = Camera.main.WorldToViewportPoint(transform.position);
             Vector2 mousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
             Vector2 finalThrowForce = new Vector2(0, throwForce);
-            selectedGrenade.GetComponent<Rigidbody2D>().AddRelativeForce(finalThrowForce);
+            selectedGrenade.GetComponent<Rigidbody2D>().AddForce(finalThrowForce);
         }
     }
     
@@ -62,6 +62,9 @@ public class PlayerMovement : MonoBehaviour {
         transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, directionAngle * Mathf.Rad2Deg + 90));
         if (Input.GetMouseButtonDown(0))
             Shooting();
+        if (Input.GetKeyDown(KeyCode.E))
+            Throw();
+
     }
 
     public float GetDirectionAngle()
