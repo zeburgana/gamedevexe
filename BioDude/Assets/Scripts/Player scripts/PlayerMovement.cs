@@ -11,20 +11,41 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField]
     AudioSource pistolFire;
 
+    public List<Explosive> GrenadeList;
+    Explosive selectedGrenade;
+    public float throwForce = 5000f;
+
     private Rigidbody2D rb2D;
     private float directionAngle;
 
     // Use this for initialization
     void Start () {
         rb2D = GetComponent<Rigidbody2D>();
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+        if (GrenadeList.Count > 0)
+            selectedGrenade = GrenadeList[0];
+    }
+
+    // Update is called once per frame
+    void FixedUpdate () {
         Movement();
         Looking();
 	}
-
+    private void Throw()
+    {
+        float x = transform.position.x;
+        float y = transform.position.y;
+        float z = transform.position.z;
+        Debug.Log("throw");
+        if (selectedGrenade != null)
+        {
+            Instantiate(selectedGrenade, new Vector3(x, y, z), transform.rotation);
+            Vector2 playerPos = Camera.main.WorldToViewportPoint(transform.position);
+            Vector2 mousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+            Vector2 finalThrowForce = new Vector2(0, throwForce);
+            selectedGrenade.GetComponent<Rigidbody2D>().AddRelativeForce(finalThrowForce);
+        }
+    }
+    
     private void Movement()
     {
         float moveX = Input.GetAxis("Horizontal");
