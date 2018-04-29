@@ -39,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
         Debug.DrawLine(transform.position, transform.position + 10 * new Vector3(Mathf.Cos(directionAngle) , Mathf.Sin(directionAngle), 0), Color.blue);
         if (Input.GetMouseButtonDown(0))
             Shooting();
+        if (Input.GetKeyDown(KeyCode.R) && GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().currentAmmo > 0 && GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().isReloading == false && GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().currentClipAmmo != GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().clipSize)
+            StartCoroutine(GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().Reload());
     }
 
     public float GetDirectionAngle()
@@ -50,15 +52,21 @@ public class PlayerMovement : MonoBehaviour
     private void Shooting()
     {
         //sometimes bullet spawns behind the player :D
-        if (GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().cooldownEnded && GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().activeWeapon != null)
+        if (GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().cooldownEnded && GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().activeWeapon != null && GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().isReloading == false)
         {
-            pistolFire.Play();
-            float x = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").transform.position.x;
-            float y = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").transform.position.y;
-            float z = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").transform.position.z;
-            GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().cooldownEnded = false;
-            StartCoroutine("Cooldown");
-            Instantiate(pistolBullet, new Vector3(x, y, z), transform.rotation);
+            if (GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().currentClipAmmo > 0)
+            {
+                pistolFire.Play();
+                float x = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").transform.position.x;
+                float y = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").transform.position.y;
+                float z = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").transform.position.z;
+                GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().cooldownEnded = false;
+                GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().currentClipAmmo--;
+                StartCoroutine("Cooldown");
+                Instantiate(pistolBullet, new Vector3(x, y, z), transform.rotation);
+                if (GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().currentClipAmmo == 0 && GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().currentAmmo > 0)
+                    StartCoroutine(GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().Reload());
+            }
         }
     }
 

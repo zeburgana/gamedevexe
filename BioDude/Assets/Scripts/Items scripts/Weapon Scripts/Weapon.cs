@@ -11,11 +11,18 @@ public abstract class Weapon : Item
     }
 
     public GameObject projectile;
+    public GameObject tip;
     public float projectileSpeed;
     public float timeUntilSelfDestrucion;
     public float cooldown;
-    public Vector3 tip;
     public WeaponType projectileType;
+    public int maxAmmo;
+    public int currentAmmo;
+    public int clipSize;
+    public int currentClipAmmo;
+    public float reloadTime;
     
-    public virtual void Fire() {}
+    public virtual void Fire() {
+    }
+
 }
