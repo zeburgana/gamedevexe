@@ -13,12 +13,14 @@ public class FragGrenade : Explosive
     bool exploded = false;
     public float radius = 3f;
     public float force = 500f;
+    private Rigidbody2D rb;
 
     // Use this for initialization
     void Start()
     {
         countdown = delay;
-        //GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(0, 500f)); //transform.forward.z * speed - 10, transform.forward.z * speed + 60
+        rb = GetComponent<Rigidbody2D>();
+        started = true;
     }
 
 
@@ -44,12 +46,10 @@ public class FragGrenade : Explosive
             Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                Debug.Log("rigidbody found");
                 AddExplosionForce(rb, force, transform.position, radius);
             }
         }
 
         Destroy(gameObject);
     }
-
 }

@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour {
         Movement();
         Looking();
 	}
-    private void Throw()
+    private void UseGrenade()
     {
         float x = transform.position.x;
         float y = transform.position.y;
@@ -38,11 +38,8 @@ public class PlayerMovement : MonoBehaviour {
         Debug.Log("throw");
         if (selectedGrenade != null)
         {
-            Instantiate(selectedGrenade, new Vector3(x, y, z), transform.rotation);
-            Vector2 playerPos = Camera.main.WorldToViewportPoint(transform.position);
-            Vector2 mousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-            Vector2 finalThrowForce = new Vector2(0, throwForce);
-            selectedGrenade.GetComponent<Rigidbody2D>().AddForce(finalThrowForce);
+            Explosive nade = Instantiate(selectedGrenade, new Vector3(x, y, z), transform.rotation);
+            nade.Throw(throwForce);
         }
     }
     
@@ -63,8 +60,7 @@ public class PlayerMovement : MonoBehaviour {
         if (Input.GetMouseButtonDown(0))
             Shooting();
         if (Input.GetKeyDown(KeyCode.E))
-            Throw();
-
+            UseGrenade();
     }
 
     public float GetDirectionAngle()

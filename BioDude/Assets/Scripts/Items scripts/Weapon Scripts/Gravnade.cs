@@ -13,11 +13,13 @@ public class Gravnade : Explosive
     bool exploded = false;
     public float radius = 3f;
     public float force = 500f;
+    private Rigidbody2D rb;
 
     // Use this for initialization
     void Start()
     {
         countdown = delay;
+        rb = GetComponent<Rigidbody2D>();
     }
 
 
@@ -34,10 +36,13 @@ public class Gravnade : Explosive
 
     public override void Explode()
     {
-        Debug.Log("boom");
         //gravnade effect
         Instantiate(blackHoleEffect, transform.position, transform.rotation);
         Destroy(gameObject);
+    }
+    public override void Throw(float force)
+    {
+        rb.AddForce(transform.up * force);
     }
 
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Explosive : MonoBehaviour {
-
+    public bool started = false;
     public virtual void Explode()
     {
     }
@@ -18,6 +18,14 @@ public class Explosive : MonoBehaviour {
         }
 
         body.AddForce(dir.normalized * expForce * calc);
+    }
+    public virtual void Throw(float force)
+    {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb != null) {
+            Debug.Log("base grenade");
+            rb.AddForce(transform.up * force);
+        }
     }
 
 }
