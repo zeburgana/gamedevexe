@@ -396,6 +396,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16384
   lastPositionTargetSeen: {fileID: 0}
+  localSearchRadius: 5
+  localSearchTryLocation: 3
   targetInVision: 0
   distanceToPlayer: 0
 --- !u!114 &114769018228361748

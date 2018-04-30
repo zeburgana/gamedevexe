@@ -20,6 +20,7 @@ public class MeleeTank : MonoBehaviour
     public Transform lastPositionTargetSeen;
     public float localSearchRadius = 5; // distance - how far to search for player from last known position
     public int localSearchTryLocation = 3; // how many locations to try after target lost
+
     IAstarAI ai;
 
     //private:
@@ -29,6 +30,10 @@ public class MeleeTank : MonoBehaviour
     private AIDestinationSetter aiDestinationSetter;
     private Patrol aiPatrol;
     private bool prevTargetInVision = false;
+    public int localSearchLocationsTried = 0;
+    private bool isTargetDestinationPlayer = false;
+    public Vector2 searchAreaCenter;
+    private Allerting playerAllerting;
 
     Animator animator;
 
@@ -40,6 +45,7 @@ public class MeleeTank : MonoBehaviour
         aiDestinationSetter = GetComponent<AIDestinationSetter>();
         aiPatrol = GetComponent<Patrol>();
         ai = GetComponent<IAstarAI>();
+        playerAllerting = player.GetComponent<Allerting>();
 	}
 	
 	// Update is called once per frame
@@ -64,15 +70,26 @@ public class MeleeTank : MonoBehaviour
                 }
             }
         }
-        if (prevTargetInVision != targetInAttackRange)
+        if (prevTargetInVision != targetInVision)
             VisionStatusChange();
         prevTargetInVision = targetInVision;
-        if(isAlerted && !targetInVision) // pursuing to last known location
+
+        if(isAlerted && !targetInVision) // pursuing to last known location or player if someone can see him
         {
+            if (isTargetDestinationPlayer && playerAllerting.howManySeeMe == 0) // if someone saw player till now and this enemy was pursuing player
+            {
+                aiDestinationSetter.target = lastPositionTargetSeen;
+                isTargetDestinationPlayer = false;
+            }
+            else if(!isTargetDestinationPlayer && playerAllerting.howManySeeMe > 0) // if someone can see player from now on this enemy should purue him
+            {
+                aiDestinationSetter.target = player.transform;
+                isTargetDestinationPlayer = true;
+            }
+
             if(ai.reachedEndOfPath) // went to last known location and player not seen
             {
                 PerformLocalSearch();
-                ReturnToPatrol();
             }
         }
     }
@@ -81,17 +98,45 @@ public class MeleeTank : MonoBehaviour
     /// <summary>
     /// reikia susikurti kintamaji kuriame bus saugoma vieta apie kuria vykdys paieska
     /// reikia update metode ideti kad jei isAllerted ir is searching ir jei kas nors mato player tai destination player..
-    /// 
+    /// gal sukurti ant player allerting script kuriame sumuosiu kas mato kas ne ten bus galima daryti koda for allerting others
     /// </summary>
     private void PerformLocalSearch()
     {
-        Vector2 RandomLocation = new Vector2();
+        if(localSearchLocationsTried == 0) // just went to last player known location begining local search
+        {
+            searchAreaCenter = transform.position;
+            aiDestinationSetter.enabled = false;
+        }
+        else if(localSearchLocationsTried == localSearchTryLocation) // tried all loations return to patroling
+        {
+            Debug.Log("finished search");
+            localSearchLocationsTried = 0;
+            ReturnToPatrol();
+            return;
+        }
+        Debug.Log("location trying now " + localSearchLocationsTried);
+        Debug.Log("Center: " + searchAreaCenter.ToString());
+        // continue searching
+        Vector2 randomLocation = new Vector2(
+            Random.Range(localSearchRadius / 2 * (Random.Range(0, 2) < 1 ? 1 : -1), 
+            localSearchRadius * (Random.Range(-1, 1) > 0 ? 1 : -1)), 
+            Random.Range(localSearchRadius / 2 * (Random.Range(0, 2) < 1 ? 1 : -1), 
+            localSearchRadius * (Random.Range(-1, 1) > 0 ? 1 : -1)));
+        Debug.Log("Offset random: " + randomLocation);
+        randomLocation += searchAreaCenter;
+        Debug.Log("Point calc: " + randomLocation);
+        localSearchLocationsTried++;
+        ai.destination = randomLocation;
+        ai.SearchPath();
+        Debug.Log("remaining dist: " + ai.remainingDistance);
+        Debug.Log("reached end" + ai.reachedEndOfPath.ToString());
+        //if(ai.remainingDistance > 2 * localSearchRadius) // maybe make this into do while loop
+        //search for new point beacause this map point is too far for local search
     }
 
     //Stop pursuing player
     public void ReturnToPatrol()
     {
-        PerformLocalSearch();
         aiDestinationSetter.enabled = false;
         aiPatrol.enabled = true;
         isAlerted = false;
@@ -103,7 +148,16 @@ public class MeleeTank : MonoBehaviour
         isAlerted = true;
         aiPatrol.enabled = false;
         aiDestinationSetter.enabled = true;
-        aiDestinationSetter.target = lastPositionTargetSeen;
+        if (playerAllerting.howManySeeMe > 0) // if someone can see player right now
+        {
+            isTargetDestinationPlayer = true;
+            aiDestinationSetter.target = player.transform;
+        }
+        else
+        {
+            isTargetDestinationPlayer = false;
+            aiDestinationSetter.target = lastPositionTargetSeen;
+        }
     }
 
     private void VisionStatusChange()
@@ -112,22 +166,29 @@ public class MeleeTank : MonoBehaviour
         {
             if (targetInVision) // can see on its own now
             {
+                playerAllerting.howManySeeMe++;
                 aiDestinationSetter.target = player.transform;
+                isTargetDestinationPlayer = true;
             }
             else // can't see anymore
             {
-                aiDestinationSetter.target = lastPositionTargetSeen;
-                //check if last known pos reached? then go to patrol
-
+                playerAllerting.howManySeeMe--;
+                if(playerAllerting.howManySeeMe == 0) // if noone can see player
+                {
+                    isTargetDestinationPlayer = false;
+                    aiDestinationSetter.target = lastPositionTargetSeen;
+                }
             }
         }
         else
         {
             if (targetInVision)
             {
+                playerAllerting.howManySeeMe++;
                 PursuePlayer();
-                aiDestinationSetter.target = player.transform;
             }
+            else //if someone will force to not allerted then enemy can see player
+                playerAllerting.howManySeeMe--;
         }
         
     }
