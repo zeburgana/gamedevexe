@@ -59,7 +59,7 @@ public class AchievementManager : MonoBehaviour
     {
 
         //REMEMBER to Delete or Comment after game release
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
 
 
         activeButon = GameObject.Find("GeneralButton").GetComponent<AchievementButton>();
