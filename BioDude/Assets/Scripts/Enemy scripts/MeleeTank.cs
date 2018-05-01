@@ -14,7 +14,7 @@ public class MeleeTank : MonoBehaviour
     MeleeHead headScript;
     public GameObject player;
     public bool isAlerted = false;
-    public float visionAngle = 30; // vision angle
+    public float visionAngle = 30; // vision angle (half of it)
     public float visionRange = 10;
     public LayerMask obstacleMask;
     public Transform lastPositionTargetSeen;
@@ -118,10 +118,8 @@ public class MeleeTank : MonoBehaviour
         Debug.Log("Center: " + searchAreaCenter.ToString());
         // continue searching
         Vector2 randomLocation = new Vector2(
-            Random.Range(localSearchRadius / 2 * (Random.Range(0, 2) < 1 ? 1 : -1), 
-            localSearchRadius * (Random.Range(-1, 1) > 0 ? 1 : -1)), 
-            Random.Range(localSearchRadius / 2 * (Random.Range(0, 2) < 1 ? 1 : -1), 
-            localSearchRadius * (Random.Range(-1, 1) > 0 ? 1 : -1)));
+            Random.Range(localSearchRadius / 2, localSearchRadius) * (Random.Range(0, 2) < 1 ? 1 : -1), 
+            Random.Range(localSearchRadius / 2, localSearchRadius) * (Random.Range(0, 2) < 1 ? 1 : -1));
         Debug.Log("Offset random: " + randomLocation);
         randomLocation += searchAreaCenter;
         Debug.Log("Point calc: " + randomLocation);
