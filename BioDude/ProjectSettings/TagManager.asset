@@ -27,6 +27,7 @@ TagManager:
   - Player
   - enemyLayer
   - Weapon
+  - Nonwalkable
   - WeaponPickup
   - 
   - 
