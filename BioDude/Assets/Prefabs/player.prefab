@@ -109,7 +109,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.22}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.78
 --- !u!82 &82165514026457094
@@ -224,6 +224,9 @@ MonoBehaviour:
   pistolBullet: {fileID: 1661742638681246, guid: 6d05574080e4b714a937d5098ba9eb02,
     type: 2}
   pistolFire: {fileID: 82165514026457094}
+  GrenadeList:
+  - {fileID: 114999564766435556, guid: b6e7af60750b7e04db1beb99cdebf8f0, type: 2}
+  throwForce: 500
 --- !u!114 &114610028058103794
 MonoBehaviour:
   m_ObjectHideFlags: 1

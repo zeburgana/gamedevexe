@@ -25,10 +25,12 @@ TagManager:
   - Background
   - Particle
   - Player
-  - enemyLayer
+  - Enemy
   - Weapon
-  - Nonwalkable
   - WeaponPickup
+  - Pickup
+  - Grenade
+  - Nonwalkable
   - 
   - 
   - 

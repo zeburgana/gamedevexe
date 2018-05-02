@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class GuidedMisile : MonoBehaviour {
+public class GuidedMisile : Explosive {
 
     public float speed = 5f;
     public float rotSpeed = 200f;
+
+    public GameObject explosionEffect;
+
+    bool exploded = false;
+    public float radius = 3f;
+    public float force = 500f;
 
     private Rigidbody2D body;
 	// Use this for initialization
@@ -30,15 +36,25 @@ public class GuidedMisile : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Enemy" ||
-            collision.collider.tag == "Player")
-        {
-            Destroy(gameObject);
-            Destroy(collision.gameObject);
-        }
-        if (collision.collider.tag == "Wallmap")
-        {
-            Destroy(gameObject);
-        }
+        Explode();
     }
+    public override void Explode()
+    {
+        Instantiate(explosionEffect, transform.position, transform.rotation);
+
+        Collider2D[] nearbyObjects = Physics2D.OverlapCircleAll(transform.position, radius);
+
+        foreach (Collider2D obj in nearbyObjects)
+        {
+            Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                Debug.Log("rigidbody found");
+                AddExplosionForce(rb, force, transform.position, radius);
+            }
+        }
+
+        Destroy(gameObject);
+    }
+
 }

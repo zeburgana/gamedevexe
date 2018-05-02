@@ -1188,34 +1188,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 4394794294277236, guid: daf86fe2f2bb1e14d97bff61bd885bd0, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.898
-      objectReference: {fileID: 0}
-    - target: {fileID: 4394794294277236, guid: daf86fe2f2bb1e14d97bff61bd885bd0, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.714
-      objectReference: {fileID: 0}
-    - target: {fileID: 114610028058103794, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
-        type: 2}
-      propertyPath: activeWeapon
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114610028058103794, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
-        type: 2}
-      propertyPath: activeWeaponTip
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 212837392751056028, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 212837392751056028, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
-        type: 2}
-      propertyPath: m_WasSpriteAssigned
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: daf86fe2f2bb1e14d97bff61bd885bd0, type: 2}
   m_IsPrefabParent: 0
@@ -1246,7 +1218,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &339051760
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6637,7 +6609,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
