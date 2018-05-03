@@ -1090,7 +1090,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000015258789}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &493356114
@@ -1695,7 +1695,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.12541202, y: 0.000010077978}
+  m_AnchoredPosition: {x: -0.12541202, y: -0.00001755951}
   m_SizeDelta: {x: 0.25, y: 0}
   m_Pivot: {x: 0.00000010430813, y: 1}
 --- !u!114 &678707798
@@ -2139,7 +2139,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.10004421, y: -0.0000017776059}
+  m_AnchoredPosition: {x: 0.10004421, y: -0.0000017776038}
   m_SizeDelta: {x: -4.399994, y: 0}
   m_Pivot: {x: 0.000000044703484, y: 0.99999964}
 --- !u!114 &742021865
@@ -2601,6 +2601,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 021bf81329da8c14699e68d8d46ec146, type: 2}
+  pausemenu: {fileID: 0}
   resDropdown: {fileID: 708998744}
 --- !u!114 &862019484
 MonoBehaviour:
@@ -3487,7 +3488,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.19800001, y: 0.6378888}
   m_AnchorMax: {x: 0.7956667, y: 0.7767778}
-  m_AnchoredPosition: {x: 0.9003906, y: -0.0000076293945}
+  m_AnchoredPosition: {x: 0.9003906, y: 0}
   m_SizeDelta: {x: -1.5999756, y: 0.19999695}
   m_Pivot: {x: -0.000000011175871, y: 0.99999976}
 --- !u!114 &1078341544
@@ -5246,7 +5247,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.19800001, y: 0.44633338}
   m_AnchorMax: {x: 0.7956667, y: 0.587889}
-  m_AnchoredPosition: {x: 0.9003906, y: -0.10003281}
+  m_AnchoredPosition: {x: 0.9003906, y: -0.10003662}
   m_SizeDelta: {x: -1.6000061, y: 0.20000076}
   m_Pivot: {x: -0.000000023624494, y: 0.99999976}
 --- !u!114 &1413924061
@@ -5841,7 +5842,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 999835463}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999999
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

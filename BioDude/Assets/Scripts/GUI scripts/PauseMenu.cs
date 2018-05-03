@@ -14,7 +14,11 @@ public class PauseMenu : MonoBehaviour {
     private float time;
     void Start()
     {
-        PauseMenuUI.SetActive(false);
+        PauseMenuUI.SetActive(false);  //disabling pausemenu canvas because it should only be active when pausemenu is summoned
+        ResetPanels();
+    }
+    public void ResetPanels()
+    {
         PauseMenuPanel.SetActive(true);
         OptionsMenuPanel.SetActive(false);
         GameOverMenu.SetActive(false);
@@ -30,10 +34,7 @@ public class PauseMenu : MonoBehaviour {
                 Pause();
         }
 	}
-    void OnDisable()
-    {
 
-    }
     public void Resume()
     {
         PauseMenuUI.SetActive(false);
@@ -46,6 +47,7 @@ public class PauseMenu : MonoBehaviour {
         PauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         PausemenuOpen = true;
+        ResetPanels();
     }
     public void LoadMainMenu()
     {
