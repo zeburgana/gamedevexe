@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicEnemy : MonoBehaviour
+public class BasicEnemy : Character
 {
 
     private Animator animator;
@@ -42,7 +42,7 @@ public class BasicEnemy : MonoBehaviour
     [SerializeField]
     int damageToPlayer = 5;
 
-    PlayerHealthManager playerHealth;
+    player playerCharacter;
 
     private int direction = 0;
 
@@ -67,7 +67,7 @@ public class BasicEnemy : MonoBehaviour
     {
         //Equip(0, 0, 0, 0, 0, 0, 0);
         IsMoving = false;
-        playerHealth = GameObject.Find("player").GetComponent<PlayerHealthManager>();
+        playerCharacter = GameObject.Find("player").GetComponent<player>();
     }
 
     // Update is called once per frame
@@ -79,7 +79,7 @@ public class BasicEnemy : MonoBehaviour
         Move(moveX, moveY);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
@@ -88,7 +88,7 @@ public class BasicEnemy : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
@@ -130,7 +130,7 @@ public class BasicEnemy : MonoBehaviour
             if (attackTimer <= 0)
             {
                 attackTimer = attackInterval;
-                playerHealth.HurtPlayer(damageToPlayer);
+                playerCharacter.DealDamage(damageToPlayer);
             }
             else
             {
