@@ -5,16 +5,14 @@ using UnityEngine;
 public class Pistol : Weapon
 {
 
-	// Use this for initialization
-	void Start ()
+
+    // Use this for initialization
+    void Start ()
 	{
         
         timeUntilSelfDestrucion = 2f;
 	}
 
-	public override void Fire()
-	{
-	}
 
 	public override void Equip(GameObject placeHolder) //shouldn't this be implemented in weaponor even in Item class?
 	{

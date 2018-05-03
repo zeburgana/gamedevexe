@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
+    public enum WeaponSlotType
+    {
+        Player,
+        Enemy
+    }
+    public WeaponSlotType weaponSlotType;
     public GameObject[] weaponArray;
     public GameObject activeWeapon;
     public GameObject activeWeaponTip;
@@ -14,6 +20,8 @@ public class WeaponManager : MonoBehaviour
     public int maxAmmo;
     public int clipSize;
     public int currentClipAmmo;
+
+
 
     // Use this for initialization
     void Start ()
@@ -47,8 +55,8 @@ public class WeaponManager : MonoBehaviour
     public IEnumerator Reload()
     {
         isReloading = true;
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("reloadTime", 1/activeWeapon.GetComponent<Weapon>().reloadTime);
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetTrigger("playerReload");
+        GameObject.FindGameObjectWithTag(weaponSlotType.ToString()).GetComponent<Animator>().SetFloat("reloadTime", 1/activeWeapon.GetComponent<Weapon>().reloadTime);
+        GameObject.FindGameObjectWithTag(weaponSlotType.ToString()).GetComponent<Animator>().SetTrigger("playerReload");
         yield return new WaitForSeconds(activeWeapon.GetComponent<Weapon>().reloadTime);
         if(currentAmmo + currentClipAmmo >= clipSize)
         {
@@ -62,6 +70,33 @@ public class WeaponManager : MonoBehaviour
             currentAmmo = 0;
         }
         isReloading = false;
+    }
+
+    public void Shoot()
+    {
+        //sometimes bullet spawns behind the player :D
+        if (GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().cooldownEnded && GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().activeWeapon != null && GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().isReloading == false)
+        {
+            if (GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().currentClipAmmo > 0)
+            {
+
+                float x = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").transform.position.x;
+                float y = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").transform.position.y;
+                float z = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").transform.position.z;
+                GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().cooldownEnded = false;
+                GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().currentClipAmmo--;
+                StartCoroutine("Cooldown");
+                Instantiate(GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().activeWeapon.GetComponent<Weapon>().projectile, new Vector3(x, y, z), transform.rotation);
+                if (GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().currentClipAmmo == 0 && GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().currentAmmo > 0)
+                    StartCoroutine(GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().Reload());
+            }
+        }
+    }
+
+    IEnumerator Cooldown()
+    {
+        yield return new WaitForSeconds(GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().activeWeapon.GetComponent<Weapon>().cooldown);
+        GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().cooldownEnded = true;
     }
 
 }
