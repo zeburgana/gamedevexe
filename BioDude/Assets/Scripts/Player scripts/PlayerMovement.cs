@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public List<Explosive> GrenadeList;
     Explosive selectedGrenade;
     public float throwForce = 5000f;
-
+    GameObject weaponSlot;
     private Rigidbody2D rb2D;
     private float directionAngle;
 
@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
 //unused         rb2D = GetComponent<Rigidbody2D>();
         if (GrenadeList.Count > 0)
             selectedGrenade = GrenadeList[0];
+       weaponSlot = GameObject.FindGameObjectWithTag("PlayerWeaponSlot");
     }
 
     // Update is called once per frame
@@ -56,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, directionAngle * Mathf.Rad2Deg - 90));
         Debug.DrawLine(transform.position, transform.position + 10 * new Vector3(Mathf.Cos(directionAngle) , Mathf.Sin(directionAngle), 0), Color.blue);
         if (Input.GetMouseButtonDown(0))
-            GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().Shoot();
+            weaponSlot.GetComponent<WeaponManager>().Shoot();
         if (Input.GetKeyDown(KeyCode.E))
             UseGrenade();
         if (Input.GetKeyDown(KeyCode.R) && GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().currentAmmo > 0 && GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().isReloading == false && GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().currentClipAmmo != GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().clipSize)

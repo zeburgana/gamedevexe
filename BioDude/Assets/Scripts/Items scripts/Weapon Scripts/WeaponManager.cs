@@ -79,14 +79,11 @@ public class WeaponManager : MonoBehaviour
         {
             if (GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().currentClipAmmo > 0)
             {
-
-                float x = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").transform.position.x;
-                float y = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").transform.position.y;
-                float z = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").transform.position.z;
+                Vector3 projectileVector = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").transform.position;
                 GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().cooldownEnded = false;
                 GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().currentClipAmmo--;
                 StartCoroutine("Cooldown");
-                Instantiate(GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().activeWeapon.GetComponent<Weapon>().projectile, new Vector3(x, y, z), transform.rotation);
+                Instantiate(GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().activeWeapon.GetComponent<Weapon>().projectile, projectileVector, transform.rotation);
                 if (GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().currentClipAmmo == 0 && GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().currentAmmo > 0)
                     StartCoroutine(GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().Reload());
             }
