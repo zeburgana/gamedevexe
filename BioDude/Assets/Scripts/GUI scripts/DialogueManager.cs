@@ -12,6 +12,7 @@ public class DialogueManager : MonoBehaviour {
     private Queue<Sprite> avatars;
     private bool DialogueOpen = false;
 
+
     public Animator animator;
 
     float time;
