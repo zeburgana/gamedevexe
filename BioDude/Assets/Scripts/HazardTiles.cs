@@ -8,13 +8,13 @@ public class HazardTiles : MonoBehaviour
 
 
     public int damage = 1;              //this is main strenght measure of damage/slows/force
-    public int damageMultiplyer = 1;    //this is damage multiplyer, intended to be used on higher level traps, so same damage value could be kept.
+    public int damageMultiplier = 1;    //this is damage multiplyer, intended to be used on higher level traps, so same damage value could be kept.
     public int damageDuration = 3;      //this is duration for post-tile-leave effects
     public int hazardId = 1;            //this is id of hazard tiles
     public int direction = 1;           //Directions: 1=up, 2=down, 3=left, 4=right
 
     public GameObject player;
-    private PlayerHealthManager playerHealth;
+    public player playerCharacter;
     private PlayerMovement playerMovement;
 
     public int interval = 1;            //do something every x seconds
@@ -29,7 +29,7 @@ public class HazardTiles : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        playerHealth = player.GetComponent<PlayerHealthManager>();
+        playerCharacter = player.GetComponent<player>();
         playerMovement = player.GetComponent<PlayerMovement>();
         InvokeRepeating("AddSecond", 1f, 1f);  //1s delay, repeat every 1s
         switch (hazardId)
@@ -161,11 +161,12 @@ public class HazardTiles : MonoBehaviour
 
     private void Damage()
     {
-        playerHealth.HurtPlayer(damage * damageMultiplyer);
+        playerCharacter.Damage(damage * damageMultiplier);
     }
+    
     private void Slow()
     {
-        var speedSub = damage * damageMultiplyer;
+        var speedSub = damage * damageMultiplier;
         if (speedSub < defaultSpeed)
             playerMovement.speed = defaultSpeed - speedSub;
         else
@@ -214,16 +215,16 @@ public class HazardTiles : MonoBehaviour
         switch (direction)
         {
             case 1:
-                collision.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(0,1 * damage * damageMultiplyer));
+                collision.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(0,1 * damage * damageMultiplier));
                 break;
             case 2:
-                collision.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(0, -1 * damage * damageMultiplyer));
+                collision.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(0, -1 * damage * damageMultiplier));
                 break;
             case 3:
-                collision.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(-1 * damage * damageMultiplyer, 0));
+                collision.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(-1 * damage * damageMultiplier, 0));
                 break;
             case 4:
-                collision.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(1 * damage * damageMultiplyer, 0));
+                collision.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(1 * damage * damageMultiplier, 0));
                 break;
             default:
                 break;

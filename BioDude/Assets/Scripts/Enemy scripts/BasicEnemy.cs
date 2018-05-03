@@ -130,7 +130,7 @@ public class BasicEnemy : Character
             if (attackTimer <= 0)
             {
                 attackTimer = attackInterval;
-                playerCharacter.DealDamage(damageToPlayer);
+                playerCharacter.Damage(damageToPlayer);
             }
             else
             {

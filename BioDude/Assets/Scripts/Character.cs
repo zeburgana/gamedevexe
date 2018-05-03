@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-	const float healthMax = 100;
-	float healthCurrent;
+	public const float healthMax = 100;
+	public float healthCurrent;
 
 
 	// Use this for initialization
@@ -23,12 +23,12 @@ public class Character : MonoBehaviour
         }
 	}
 
-	public void DealDamage(int amount)
+	public void Damage(float amount)
 	{
 		healthCurrent -= amount;
 	}
 
-	public void Heal(int amount)
+	public void Heal(float amount)
 	{
 		healthCurrent += amount;
 	}

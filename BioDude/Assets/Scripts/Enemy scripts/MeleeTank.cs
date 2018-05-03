@@ -5,9 +5,8 @@ using Pathfinding;
 
 // NOTE: Children order is important fro this script to work
 
-public class MeleeTank : MonoBehaviour
+public class MeleeTank : Character
 {
-    //this should inherit base class with damage and other variables and maybe script for damaging player
     public int damage = 1;
     
     public Transform head;
@@ -223,7 +222,7 @@ public class MeleeTank : MonoBehaviour
     {
         if (targetInAttackRange)
         {
-            player.GetComponent<PlayerHealthManager>().HurtPlayer(damage);
+            player.GetComponent<player>().Damage(damage);
         }
     }
 }

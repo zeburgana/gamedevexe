@@ -8,7 +8,7 @@ public class GUIManager : MonoBehaviour
 
     public Slider healthBar;
     public Text HPText;
-    public PlayerHealthManager playerHealth;
+    public player playerCharacter;
     public PlayerAmmoManager playerAmmo;
     public Text AmmoText;
 
@@ -21,9 +21,9 @@ public class GUIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthBar.maxValue = playerHealth.playerMaxHealth;
-        healthBar.value = playerHealth.playerCurrentHealth;
-        HPText.text = "HP: " + playerHealth.playerCurrentHealth + "/" + playerHealth.playerMaxHealth;
+        healthBar.maxValue = Character.healthMax;
+        healthBar.value = playerCharacter.healthCurrent;
+        HPText.text = "HP: " + playerCharacter.healthCurrent + "/" + Character.healthMax;
         AmmoText.text = playerAmmo.currentClipAmmo + "/" + playerAmmo.currentAmmo;
     }
 }
