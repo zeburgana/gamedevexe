@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour {
     public GameObject PauseMenuUI;
     public GameObject PauseMenuPanel;
     public GameObject OptionsMenuPanel;
+    public GameObject GameOverMenu;
     public DialogueManager DialManager;
     private float time;
     void Start()
@@ -16,6 +17,7 @@ public class PauseMenu : MonoBehaviour {
         PauseMenuUI.SetActive(false);
         PauseMenuPanel.SetActive(true);
         OptionsMenuPanel.SetActive(false);
+        GameOverMenu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -28,10 +30,13 @@ public class PauseMenu : MonoBehaviour {
                 Pause();
         }
 	}
+    void OnDisable()
+    {
+
+    }
     public void Resume()
     {
         PauseMenuUI.SetActive(false);
-        //Time.timeScale = time;
         Time.timeScale = 1f;
         PausemenuOpen = false;
     }
@@ -39,14 +44,18 @@ public class PauseMenu : MonoBehaviour {
     {
         DialManager.SetDialogueState(false);
         PauseMenuUI.SetActive(true);
-        //time = Time.timeScale;
         Time.timeScale = 0f;
         PausemenuOpen = true;
     }
     public void LoadMainMenu()
     {
         SceneManager.LoadScene(0);
-        //Time.timeScale = 1f;
+        Resume();
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Resume();
     }
 

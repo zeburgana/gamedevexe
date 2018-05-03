@@ -7,6 +7,7 @@ public class PlayerHealthManager : MonoBehaviour
 
     public int playerMaxHealth;
     public int playerCurrentHealth;
+    public GameObject PauseMenu;
 
     // Use this for initialization
     void Start()
@@ -20,6 +21,7 @@ public class PlayerHealthManager : MonoBehaviour
         if (playerCurrentHealth <= 0)
         {
             gameObject.SetActive(false);
+            playerCurrentHealth = 0;
         }
     }
 
@@ -31,5 +33,11 @@ public class PlayerHealthManager : MonoBehaviour
     public void setMaxHealth()
     {
         playerCurrentHealth = playerMaxHealth;
+    }
+
+    IEnumerator Cooldown()
+    {
+        yield return new WaitForSeconds(2);
+        GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().cooldownEnded = true;
     }
 }
