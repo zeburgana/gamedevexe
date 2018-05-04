@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    public enum WeaponSlotType
+    public enum WeaponWielderType
     {
         Player,
         Enemy
     }
-    public WeaponSlotType weaponSlotType;
+    public WeaponWielderType weaponWielderType;
+    private GameObject weaponSlotType;
+    private GameObject reloadObject;
     public GameObject[] weaponArray;
     public GameObject activeWeapon;
     public GameObject activeWeaponTip;
@@ -35,6 +37,8 @@ public class WeaponManager : MonoBehaviour
             clipSize = weapon.clipSize;
             currentClipAmmo = weapon.currentClipAmmo;
             weapon.Equip(gameObject);
+            weaponSlotType = GameObject.FindGameObjectWithTag(weaponWielderType.ToString() + "WeaponSlot");
+            reloadObject = GameObject.FindGameObjectWithTag(weaponWielderType.ToString());
         }
     }
 
@@ -50,13 +54,15 @@ public class WeaponManager : MonoBehaviour
         activeWeaponTip = activeWeapon.GetComponent<Weapon>().tip;
         //weapon.sprite;
         weapon.Equip(gameObject);
+        weaponSlotType = GameObject.FindGameObjectWithTag(weaponWielderType.ToString() + "WeaponSlot");
+        reloadObject = GameObject.FindGameObjectWithTag(weaponWielderType.ToString());
     }
 
     public IEnumerator Reload()
     {
         isReloading = true;
-        GameObject.FindGameObjectWithTag(weaponSlotType.ToString()).GetComponent<Animator>().SetFloat("reloadTime", 1/activeWeapon.GetComponent<Weapon>().reloadTime);
-        GameObject.FindGameObjectWithTag(weaponSlotType.ToString()).GetComponent<Animator>().SetTrigger("playerReload");
+        reloadObject.GetComponent<Animator>().SetFloat("reloadTime", 1/activeWeapon.GetComponent<Weapon>().reloadTime);
+        reloadObject.GetComponent<Animator>().SetTrigger("playerReload");
         yield return new WaitForSeconds(activeWeapon.GetComponent<Weapon>().reloadTime);
         if(currentAmmo + currentClipAmmo >= clipSize)
         {
@@ -75,25 +81,25 @@ public class WeaponManager : MonoBehaviour
     public void Shoot()
     {
         //sometimes bullet spawns behind the player :D
-        if (GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().cooldownEnded && GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().activeWeapon != null && GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().isReloading == false)
+        if (weaponSlotType.GetComponent<WeaponManager>().cooldownEnded && weaponSlotType.GetComponent<WeaponManager>().activeWeapon != null && weaponSlotType.GetComponent<WeaponManager>().isReloading == false)
         {
-            if (GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().currentClipAmmo > 0)
+            if (weaponSlotType.GetComponent<WeaponManager>().currentClipAmmo > 0)
             {
-                Vector3 projectileVector = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").transform.position;
-                GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().cooldownEnded = false;
-                GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().currentClipAmmo--;
+                Vector3 projectileVector = weaponSlotType.transform.position;
+                weaponSlotType.GetComponent<WeaponManager>().cooldownEnded = false;
+                weaponSlotType.GetComponent<WeaponManager>().currentClipAmmo--;
                 StartCoroutine("Cooldown");
-                Instantiate(GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().activeWeapon.GetComponent<Weapon>().projectile, projectileVector, transform.rotation);
-                if (GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().currentClipAmmo == 0 && GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().currentAmmo > 0)
-                    StartCoroutine(GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().Reload());
+                Instantiate(weaponSlotType.GetComponent<WeaponManager>().activeWeapon.GetComponent<Weapon>().projectile, projectileVector, transform.rotation);
+                if (weaponSlotType.GetComponent<WeaponManager>().currentClipAmmo == 0 && weaponSlotType.GetComponent<WeaponManager>().currentAmmo > 0)
+                    StartCoroutine(weaponSlotType.GetComponent<WeaponManager>().Reload());
             }
         }
     }
 
     IEnumerator Cooldown()
     {
-        yield return new WaitForSeconds(GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().activeWeapon.GetComponent<Weapon>().cooldown);
-        GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().cooldownEnded = true;
+        yield return new WaitForSeconds(weaponSlotType.GetComponent<WeaponManager>().activeWeapon.GetComponent<Weapon>().cooldown);
+        weaponSlotType.GetComponent<WeaponManager>().cooldownEnded = true;
     }
 
 }
