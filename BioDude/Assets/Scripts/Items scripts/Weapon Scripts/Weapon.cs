@@ -10,6 +10,7 @@ public abstract class Weapon : Item
         Pistol
     }
 
+    public AudioClip weaponSound;
     public GameObject projectile;
     public GameObject tip;
     public float projectileSpeed;
@@ -22,7 +23,6 @@ public abstract class Weapon : Item
     public int currentClipAmmo;
     public float reloadTime;
     
-    public virtual void Fire() {
-    }
+
 
 }
