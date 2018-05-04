@@ -31,7 +31,7 @@ public class LoadSceneOnClick : MonoBehaviour
             menu.SetActive(true);
         }
         SceneManager.LoadScene(sceneIndex);
-        Time.timeScale = 1;
+        Time.timeScale = 1f;
     }
 
     // Use this for initialization

@@ -23,6 +23,8 @@ public class GUIManager : MonoBehaviour
     {
         healthBar.maxValue = playerHealth.playerMaxHealth;
         healthBar.value = playerHealth.playerCurrentHealth;
+        if (playerHealth.playerCurrentHealth < 0)
+            playerHealth.playerCurrentHealth = 0;
         HPText.text = "HP: " + playerHealth.playerCurrentHealth + "/" + playerHealth.playerMaxHealth;
         AmmoText.text = playerAmmo.currentClipAmmo + "/" + playerAmmo.currentAmmo;
     }
