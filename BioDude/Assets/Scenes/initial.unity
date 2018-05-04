@@ -2581,7 +2581,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 021bf81329da8c14699e68d8d46ec146, type: 2}
-  pausemenu: {fileID: 0}
   resDropdown: {fileID: 572096903}
 --- !u!1 &697960160
 GameObject:
@@ -5755,7 +5754,7 @@ Prefab:
     - target: {fileID: 114172006740165340, guid: 287b280f0da1f524eb8bedd31092ac92,
         type: 2}
       propertyPath: damageToPlayer
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 287b280f0da1f524eb8bedd31092ac92, type: 2}

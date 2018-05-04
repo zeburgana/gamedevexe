@@ -8,7 +8,6 @@ public class SettingsMenu : MonoBehaviour {
 
     public AudioMixer audioMixer;
 
-    public PauseMenu pausemenu;
     public Dropdown resDropdown;
     private Resolution[] resolutions;
 
