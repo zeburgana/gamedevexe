@@ -5,7 +5,7 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
 	public const float healthMax = 100;
-	public float healthCurrent;
+	public float healthCurrent;  // set to private 
 
 
 	// Use this for initialization
@@ -17,20 +17,20 @@ public class Character : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (healthCurrent <= 0)
-        {
-            gameObject.SetActive(false);
-        }
 	}
 
 	public void Damage(float amount)
 	{
 		healthCurrent -= amount;
-	}
+        if (healthCurrent <= 0)
+        {
+            gameObject.SetActive(false);
+        }
+    }
 
 	public void Heal(float amount)
 	{
-		healthCurrent += amount;
+		healthCurrent += Mathf.Min(amount, healthMax);
 	}
 
 	public void SetMaxHealth()

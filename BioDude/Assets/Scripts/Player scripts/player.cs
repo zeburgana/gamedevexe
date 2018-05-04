@@ -6,7 +6,7 @@ public class player : Character
 
     Vector3 movement;                   // The vector to store the direction of the player's movement.
     Animator anim;                      // Reference to the animator component.
-    Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
+    Rigidbody2D playerRigidbody;          // Reference to the player's rigidbody.
     int floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
     float camRayLength = 100f;          // The length of the ray from the camera into the scene.
 
@@ -17,7 +17,7 @@ public class player : Character
 
         // Set up references.
         anim = GetComponent<Animator>();
-        playerRigidbody = GetComponent<Rigidbody>();
+        playerRigidbody = GetComponent<Rigidbody2D>();
     }
 
 
