@@ -7,21 +7,22 @@ public class PlayerHealthManager : MonoBehaviour
 
     public int playerMaxHealth;
     public int playerCurrentHealth;
-    public GameObject PausemenuUI;
-    public GameObject DeathSplashImage;
-    public GameObject GameoverMenu;
+    public PauseMenu PausemenuCanvas;
+    private bool IsPlayerAlive;
 
     // Use this for initialization
     void Start()
     {
         playerCurrentHealth = playerMaxHealth;
+        IsPlayerAlive = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playerCurrentHealth <= 0)
+        if (playerCurrentHealth <= 0 && IsPlayerAlive == true)
         {
+            IsPlayerAlive = false;
             KillPlayer();
         }
     }
@@ -33,11 +34,9 @@ public class PlayerHealthManager : MonoBehaviour
         //^^^ pakeist i player death animation
         Debug.Log("death");
         playerCurrentHealth = 0;
-        PausemenuUI.SetActive(true);
-        //Pausemenu.GetComponent<Animator>().Play("DeathImageSplash");
-        DeathSplashImage.SetActive(true);
-        DeathSplashImage.GetComponent<Animator>().Play("DeathImageSplash");
-        StartCoroutine(DeathWait());
+        
+        //PausemenuCanvas.killtest();
+        StartCoroutine(PausemenuCanvas.PlayerDeath());
     }
 
     public void HurtPlayer(int damageToGive)
@@ -50,13 +49,7 @@ public class PlayerHealthManager : MonoBehaviour
         playerCurrentHealth = playerMaxHealth;
     }
 
-    IEnumerator DeathWait()
-    {
-        yield return new WaitForSeconds(3);
-        GameoverMenu.SetActive(true);
-        gameObject.SetActive(false);
 
-    }
     IEnumerator Cooldown()
     {
         yield return new WaitForSeconds(2);

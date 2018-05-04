@@ -10,7 +10,6 @@ public class GuidedMisile : Explosive {
 
     public GameObject explosionEffect;
 
-    bool exploded = false;
     public float radius = 3f;
     public float force = 500f;
 
@@ -53,7 +52,6 @@ public class GuidedMisile : Explosive {
                 AddExplosionForce(rb, force, transform.position, radius);
             }
         }
-
         Destroy(gameObject);
     }
 

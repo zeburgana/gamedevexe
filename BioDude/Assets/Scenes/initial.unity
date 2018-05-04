@@ -1335,6 +1335,11 @@ Prefab:
       propertyPath: PausemenuUI
       value: 
       objectReference: {fileID: 1964287146}
+    - target: {fileID: 114691648200261836, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
+        type: 2}
+      propertyPath: PausemenuCanvas
+      value: 
+      objectReference: {fileID: 1755524269}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: daf86fe2f2bb1e14d97bff61bd885bd0, type: 2}
   m_IsPrefabParent: 0
@@ -1365,7 +1370,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &339051760
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2138,7 +2143,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &577313132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3147,13 +3152,14 @@ GameObject:
   - component: {fileID: 826400323}
   - component: {fileID: 826400322}
   - component: {fileID: 826400324}
+  - component: {fileID: 826400325}
   m_Layer: 5
   m_Name: DeathSplashImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &826400321
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3184,7 +3190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.647}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.67058825}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3212,7 +3218,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 826400320}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: e5ab5f1e08ecbb5419d7e2ba677e0bdc, type: 2}
   m_CullingMode: 0
@@ -3222,6 +3228,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!225 &826400325
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 826400320}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &831720151
 GameObject:
   m_ObjectHideFlags: 0
@@ -5735,6 +5752,11 @@ Prefab:
       propertyPath: m_Size.y
       value: 0.38092273
       objectReference: {fileID: 0}
+    - target: {fileID: 114172006740165340, guid: 287b280f0da1f524eb8bedd31092ac92,
+        type: 2}
+      propertyPath: damageToPlayer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 287b280f0da1f524eb8bedd31092ac92, type: 2}
   m_IsPrefabParent: 0
@@ -7814,6 +7836,7 @@ MonoBehaviour:
   OptionsMenuPanel: {fileID: 671104480}
   GameOverMenu: {fileID: 577313131}
   DialManager: {fileID: 1488549975}
+  DeathSplashImage: {fileID: 826400320}
 --- !u!114 &1755524270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8199,7 +8222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1964287147
 RectTransform:
   m_ObjectHideFlags: 0
