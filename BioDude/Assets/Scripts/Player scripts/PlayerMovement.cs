@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -21,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
         if (GrenadeList.Count > 0)
             selectedGrenade = GrenadeList[0];
        weaponSlot = GameObject.FindGameObjectWithTag("PlayerWeaponSlot");
+        SetSceneCheckpoint();
     }
 
     // Update is called once per frame
@@ -68,6 +71,24 @@ public class PlayerMovement : MonoBehaviour
     {
         //return AngleBetweenToPoints(transform.position, Input.mousePosition) + 90;
         return directionAngle;
+    }
+
+    public void SetSceneCheckpoint()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        //Scene currentScene = SceneManager.GetActiveScene();
+        //for (int i = 0; i < SceneManager.sceneCount; i++)
+        //{
+        //    Scene otherScene = SceneManager.GetSceneAt(i);
+        //    if(currentScene == otherScene)
+        //    {
+                Debug.Log("loaded scene index: " + currentSceneIndex);
+        //    }
+        //}
+        PlayerPrefs.SetInt("LevelCheckpoint", currentSceneIndex);
+    }
+    public void SavePlayerStats()
+    {
     }
 
 
