@@ -15,14 +15,13 @@ public class GUIManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        healthBar.value = playerCharacter.healthCurrent;
     }
 
     // Update is called once per frame
     void Update()
     {
         healthBar.maxValue = Character.healthMax;
-        healthBar.value = playerCharacter.healthCurrent;
         HPText.text = "HP: " + playerCharacter.healthCurrent + "/" + Character.healthMax;
         AmmoText.text = playerAmmo.currentClipAmmo + "/" + playerAmmo.currentAmmo;
     }
