@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class player : Character
 {
@@ -17,14 +17,14 @@ public class player : Character
     Explosive selectedGrenade;
     public float throwForce = 5000f;
 
-    protected override void Start()
+    void Start()
     {
-        base.Start();
-        Instantiate();
+        Initiate();
     }
 
     void Awake()  //BULLSHIT kuo skiriasi nuo start?
     {
+        Initiate();
         // Set up references.
         anim = GetComponent<Animator>();
         playerRigidbody = GetComponent<Rigidbody2D>();
@@ -34,9 +34,11 @@ public class player : Character
         speed = 210;
     }
 
-    private void Instantiate()
+    override protected void Initiate()
     {
-
+        Debug.Log("Full launched");
+        base.Initiate();
+        healthMax = 100;
     }
 
     void FixedUpdate()
@@ -46,7 +48,7 @@ public class player : Character
         Move(h, v);
         Controls();
         Turning(); // Turn the player to face the mouse cursor.
-        Animating(h, v); // Animate the player.
+        //Animating(h, v); // Animate the player. //BULLSHIT kam nurodyti h ir v jei jau bus issaugota i omvement vectoriu tik atsargiai kad nepakelti auksciau nes tada nebus
     }
 
     void Controls() //BULLSHIT reikia susitvarkyti ir apgalvoti ar viskas bus ok jei vienu framu pasileistu visos komandos nes nenaudojami else if - galbut reikia debouncing arba kintamuju delayinti veiksma kitam framui  
@@ -63,7 +65,7 @@ public class player : Character
     {
         //playerRigidbody.velocity = new Vector2(h * speed, v * speed);  //option1
         Debug.Log("moving");
-        Vector3 movement = new Vector3(h, v, 0);         //option2
+        movement = new Vector2(h, v);         //option2
         playerRigidbody.AddForce(movement * speed);
     }
 
@@ -117,7 +119,6 @@ public class player : Character
     {
         if ( weapon.currentAmmo > 0 && !weapon.isReloading && weapon.currentClipAmmo != weapon.clipSize)
             StartCoroutine(weapon.Reload());
-
     }
 
     IEnumerator Cooldown()

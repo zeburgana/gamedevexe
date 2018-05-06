@@ -37,6 +37,7 @@ public class WeaponManager : MonoBehaviour
             clipSize = weapon.clipSize;
             currentClipAmmo = weapon.currentClipAmmo;
             weapon.Equip(gameObject);
+            Debug.Log(weaponWielderType.ToString() + "WeaponSlot");
             weaponSlotType = GameObject.FindGameObjectWithTag(weaponWielderType.ToString() + "WeaponSlot");
             reloadObject = GameObject.FindGameObjectWithTag(weaponWielderType.ToString());
         }
@@ -78,7 +79,7 @@ public class WeaponManager : MonoBehaviour
         isReloading = false;
     }
 
-    public void Shoot()
+    public void Shoot() // BULLSHIT kam tiek daug kartu reikia getcomponent
     {
         //sometimes bullet spawns behind the player :D
         if (weaponSlotType.GetComponent<WeaponManager>().cooldownEnded && weaponSlotType.GetComponent<WeaponManager>().activeWeapon != null && weaponSlotType.GetComponent<WeaponManager>().isReloading == false)
@@ -96,7 +97,7 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-    IEnumerator Cooldown()
+    IEnumerator Cooldown() // BULLSHIT kam tiek daug kartu reikia getcomponent
     {
         yield return new WaitForSeconds(weaponSlotType.GetComponent<WeaponManager>().activeWeapon.GetComponent<Weapon>().cooldown);
         weaponSlotType.GetComponent<WeaponManager>().cooldownEnded = true;

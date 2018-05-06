@@ -5,20 +5,15 @@ using UnityEngine;
 abstract public class Character : MonoBehaviour
 {
     public float healthMax { get; protected set; }
-	public float healthCurrent { get; protected set; } 
+    [SerializeField]
+    public float healthCurrent { get; protected set; } 
 
     protected abstract void Die(); // override
 
     // Use this for initialization
-    protected virtual void Start ()
+    protected virtual void Initiate ()
 	{
 		SetMaxHealth(); //check if this even work if nested
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-		
 	}
 
 	public void Damage(float amount)
@@ -38,6 +33,7 @@ abstract public class Character : MonoBehaviour
 
 	public void SetMaxHealth()
 	{
+        Debug.Log("health set to full");
 		healthCurrent = healthMax;
 	}
 }
