@@ -17,11 +17,6 @@ public class player : Character
     Explosive selectedGrenade;
     public float throwForce = 5000f;
 
-    void Start()
-    {
-        Initiate();
-    }
-
     void Awake()  //BULLSHIT kuo skiriasi nuo start?
     {
         Initiate();
@@ -36,9 +31,8 @@ public class player : Character
 
     override protected void Initiate()
     {
-        Debug.Log("Full launched");
-        base.Initiate();
         healthMax = 100;
+        base.Initiate();
     }
 
     void FixedUpdate()
@@ -64,7 +58,7 @@ public class player : Character
     void Move(float h, float v)
     {
         //playerRigidbody.velocity = new Vector2(h * speed, v * speed);  //option1
-        Debug.Log("moving");
+        //Debug.Log("moving");
         movement = new Vector2(h, v);         //option2
         playerRigidbody.AddForce(movement * speed);
     }

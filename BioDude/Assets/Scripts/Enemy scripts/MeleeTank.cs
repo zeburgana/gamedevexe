@@ -38,6 +38,7 @@ public class MeleeTank : Character
 
 	// Use this for initialization
 	void Start () {
+        Initiate();
         //head = transform.GetChild(1);
         headScript = head.GetComponent<MeleeHead>();
         animator = GetComponent<Animator>();
@@ -46,9 +47,16 @@ public class MeleeTank : Character
         ai = GetComponent<IAstarAI>();
         playerAllerting = player.GetComponent<Allerting>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    protected override void Initiate()
+    {
+
+        healthMax = 100;
+        base.Initiate();
+    }
+
+    // Update is called once per frame
+    void Update () {
         Vector2 direction = (player.transform.position - transform.position).normalized;
         //Set head target direction:
         if (targetInVision)
