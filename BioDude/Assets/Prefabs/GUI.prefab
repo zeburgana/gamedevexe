@@ -174,7 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 114753633976956838}
   HPText: {fileID: 114660092598759412}
-  playerHealth: {fileID: 0}
+  playerCharacter: {fileID: 0}
   playerAmmo: {fileID: 114910458142133492}
   AmmoText: {fileID: 114272252740941752}
 --- !u!114 &114272252740941752
@@ -438,7 +438,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -75.44, y: 21.6}
+  m_AnchoredPosition: {x: -75.44, y: 21.599976}
   m_SizeDelta: {x: 133.54, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224135781005818168
@@ -535,7 +535,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 87.660034, y: -26.599976}
+  m_AnchoredPosition: {x: 87.66016, y: -26.599976}
   m_SizeDelta: {x: 120, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224727904163447242

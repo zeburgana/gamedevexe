@@ -43,7 +43,7 @@ public class WeaponManager : MonoBehaviour
     }
 
 
-    public void UpdateWeapon(GameObject newWeapon)
+    public void UpdateWeapon(GameObject newWeapon)  // BULLSHIT kam tiek daug kartu reikia getcomponent
     {
         activeWeapon = newWeapon;
         currentAmmo = activeWeapon.GetComponent<Weapon>().currentAmmo;
@@ -58,7 +58,7 @@ public class WeaponManager : MonoBehaviour
         reloadObject = GameObject.FindGameObjectWithTag(weaponWielderType.ToString());
     }
 
-    public IEnumerator Reload()
+    public IEnumerator Reload() // BULLSHIT kam tiek daug kartu reikia getcomponent
     {
         isReloading = true;
         reloadObject.GetComponent<Animator>().SetFloat("reloadTime", 1/activeWeapon.GetComponent<Weapon>().reloadTime);

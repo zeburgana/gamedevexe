@@ -5,9 +5,8 @@ using Pathfinding;
 
 // NOTE: Children order is important fro this script to work
 
-public class MeleeTank : MonoBehaviour
+public class MeleeTank : Character
 {
-    //this should inherit base class with damage and other variables and maybe script for damaging player
     public int damage = 1;
     
     public Transform head;
@@ -24,15 +23,15 @@ public class MeleeTank : MonoBehaviour
     IAstarAI ai;
 
     //private:
-    public bool targetInVision = false;
-    public float distanceToPlayer;
+    private bool targetInVision = false;
+    private float distanceToPlayer;
     private bool targetInAttackRange = false;
     private AIDestinationSetter aiDestinationSetter;
     private Patrol aiPatrol;
     private bool prevTargetInVision = false;
-    public int localSearchLocationsTried = 0;
+    private int localSearchLocationsTried = 0;
     private bool isTargetDestinationPlayer = false;
-    public Vector2 searchAreaCenter;
+    private Vector2 searchAreaCenter;
     private Allerting playerAllerting;
 
     Animator animator;
@@ -94,12 +93,6 @@ public class MeleeTank : MonoBehaviour
         }
     }
     
-
-    /// <summary>
-    /// reikia susikurti kintamaji kuriame bus saugoma vieta apie kuria vykdys paieska
-    /// reikia update metode ideti kad jei isAllerted ir is searching ir jei kas nors mato player tai destination player..
-    /// gal sukurti ant player allerting script kuriame sumuosiu kas mato kas ne ten bus galima daryti koda for allerting others
-    /// </summary>
     private void PerformLocalSearch()
     {
         if(localSearchLocationsTried == 0) // just went to last player known location begining local search
@@ -196,10 +189,6 @@ public class MeleeTank : MonoBehaviour
     {
         return Mathf.Atan2(vect.y, vect.x) * Mathf.Rad2Deg - 90;
     }
-    private Vector2 AngleToVector(float angle)
-    {
-        return new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -223,7 +212,13 @@ public class MeleeTank : MonoBehaviour
     {
         if (targetInAttackRange)
         {
-            player.GetComponent<PlayerHealthManager>().HurtPlayer(damage);
+            player.GetComponent<player>().Damage(damage);
         }
+    }
+
+    protected override void Die()
+    {
+        // enemy death: smokes and stoped movement
+        Destroy(this);
     }
 }
