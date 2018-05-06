@@ -69,11 +69,19 @@ public class player : Character
 
     void Turning()
     {
-        Vector2 playerPos = Camera.main.WorldToViewportPoint(transform.position);
-        Vector2 mousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-        directionAngle = Mathf.Atan2(mousePos.y - playerPos.y, mousePos.x - playerPos.x);
-        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, directionAngle * Mathf.Rad2Deg - 90));
-        Debug.DrawLine(transform.position, transform.position + 10 * new Vector3(Mathf.Cos(directionAngle), Mathf.Sin(directionAngle), 0), Color.blue);
+        //Vector2 playerPos = Camera.main.WorldToViewportPoint(transform.position);   //old rotation method
+        //Vector2 mousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+        //directionAngle = Mathf.Atan2(mousePos.y - playerPos.y, mousePos.x - playerPos.x);
+        //transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, directionAngle * Mathf.Rad2Deg - 90));
+        Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        diff.Normalize();
+
+        Vector2 playerPos = Camera.main.ScreenToWorldPoint(transform.position);
+
+        float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+
+        Debug.DrawLine(transform.position, transform.position + 10 * transform.up);
     }
 
     void Animating(float h, float v)  // THIS WILL BE USED kai turesim playeri !!!!!!
