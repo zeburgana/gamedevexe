@@ -31,6 +31,7 @@ public class player : Character
         if (GrenadeList.Count > 0)
             selectedGrenade = GrenadeList[0];
         weapon = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>(); // BULLHIT  negalima naudot tag tokiam dalykui turbut, o kas kai bus daugiauweponslotu playerio?
+        speed = 210;
     }
 
     private void Instantiate()
@@ -60,7 +61,10 @@ public class player : Character
 
     void Move(float h, float v)
     {
-        playerRigidbody.velocity = new Vector2(h * speed, v * speed);
+        //playerRigidbody.velocity = new Vector2(h * speed, v * speed);  //option1
+        Debug.Log("moving");
+        Vector3 movement = new Vector3(h, v, 0);         //option2
+        playerRigidbody.AddForce(movement * speed);
     }
 
     void Turning()
