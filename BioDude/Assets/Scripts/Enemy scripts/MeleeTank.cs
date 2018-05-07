@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using UnityEngine.UI;
+
 
 // NOTE: Children order is important fro this script to work
 
@@ -33,11 +35,13 @@ public class MeleeTank : Character
     private bool isTargetDestinationPlayer = false;
     private Vector2 searchAreaCenter;
     private Allerting playerAllerting;
+    private EnemyHPBar HpBar;
 
     Animator animator;
 
 	// Use this for initialization
 	void Start () {
+        HpBar = gameObject.GetComponentInChildren<EnemyHPBar>();
         Initiate();
         //head = transform.GetChild(1);
         headScript = head.GetComponent<MeleeHead>();
@@ -46,13 +50,15 @@ public class MeleeTank : Character
         aiPatrol = GetComponent<Patrol>();
         ai = GetComponent<IAstarAI>();
         playerAllerting = player.GetComponent<Allerting>();
-	}
+    }
 
     protected override void Initiate()
     {
 
         healthMax = 100;
         base.Initiate();
+        HpBar.Initiate();
+
     }
 
     // Update is called once per frame
@@ -228,5 +234,10 @@ public class MeleeTank : Character
     {
         // enemy death: smokes and stoped movement
         Destroy(this);
+    }
+    public override void Damage(float amount)
+    {
+        base.Damage(amount);
+        HpBar.SetHealth(healthCurrent);
     }
 }
