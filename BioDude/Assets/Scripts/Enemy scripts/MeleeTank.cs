@@ -233,7 +233,7 @@ public class MeleeTank : Character
     protected override void Die()
     {
         // enemy death: smokes and stoped movement
-        Destroy(this);
+        Destroy(gameObject);    //changed to gameobject because "this" destroys only MeleeTank script and the tank still chases player
     }
     public override void Damage(float amount)
     {

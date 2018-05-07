@@ -16,7 +16,6 @@ public class EnemyHPBar : MonoBehaviour {
     {
         height = gameObject.transform.position.y - EnemyObject.transform.position.y;
         rotation = transform.rotation;
-
     }
     public void Initiate()
     {
@@ -24,6 +23,7 @@ public class EnemyHPBar : MonoBehaviour {
         EnemyCharacter = EnemyObject.GetComponent<Character>();
         HpSlider.maxValue = EnemyCharacter.healthMax;
         HpSlider.value = EnemyCharacter.healthCurrent;
+        HpSlider.gameObject.SetActive(false);
     }
     void LateUpdate()
     {
@@ -33,6 +33,10 @@ public class EnemyHPBar : MonoBehaviour {
     public void SetHealth(float value)
     {
         Debug.Log("setting hp");
+        if (!HpSlider.gameObject.activeInHierarchy && HpSlider.maxValue > value)
+        {
+            HpSlider.gameObject.SetActive(true);
+        }
         HpSlider.value = value;
     }
 }
