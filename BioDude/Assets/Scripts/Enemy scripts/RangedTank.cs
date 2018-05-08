@@ -5,7 +5,7 @@ using Pathfinding;
 
 // NOTE: Children order is important fro this script to work
 
-public class RangedTank : Character
+public class MeleeTank : Character
 {
     public int damage = 1;
     

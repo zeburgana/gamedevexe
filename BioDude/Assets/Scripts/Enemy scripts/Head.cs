@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeHead : MonoBehaviour {
+public class Head : MonoBehaviour {
 
     public float targetAngle;
     public float rotationSpeed = 1f;
