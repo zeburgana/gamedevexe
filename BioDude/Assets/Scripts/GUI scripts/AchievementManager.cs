@@ -115,6 +115,10 @@ public class AchievementManager : MonoBehaviour
         {
             EarnAchievement("Press L");
         }
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            PlayerPrefs.DeleteAll();
+        }
     }
 
     public void EarnAchievement(string title)
