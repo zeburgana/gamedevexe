@@ -8,9 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: f9b27f24d8469f641bfda446af77ab17
+  - enabled: 1
+    path: Assets/Scenes/initial.unity
+    guid: 3f0d1514af724f146836220a753314fd
   - enabled: 0
     path: Assets/Scenes/mapM01.unity
     guid: eda5e657e5d260849987a1ab520b3b43
-  - enabled: 1
-    path: Assets/Scenes/initial.unity
+  - enabled: 0
+    path: Assets/Scenes/Hazard Tiles.unity
     guid: f660de68546502f4dba5917d77cd1446
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000

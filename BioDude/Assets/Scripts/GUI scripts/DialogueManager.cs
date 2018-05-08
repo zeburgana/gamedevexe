@@ -7,10 +7,12 @@ public class DialogueManager : MonoBehaviour {
     public Text DialogueText;
     public Text NameText;
     public Image Avatar;
+    public GameObject DialogueCanvas;
     private Queue<string> sentences;
     private Queue<string> names;
     private Queue<Sprite> avatars;
     private bool DialogueOpen = false;
+
 
     public Animator animator;
 
@@ -24,6 +26,7 @@ public class DialogueManager : MonoBehaviour {
         avatars = new Queue<Sprite>();
         time = Time.timeScale;
         animator.SetBool("IsOpen", false);
+        DialogueCanvas.SetActive(true);
     }
 
     public void StartDialogue(Dialogue[] DialogueData)

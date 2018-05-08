@@ -9,18 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1893248767818946}
+  m_RootGameObject: {fileID: 1164725371737510}
   m_IsPrefabParent: 1
---- !u!1 &1893248767818946
+--- !u!1 &1164725371737510
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4470608951065064}
-  - component: {fileID: 212335989696721050}
-  - component: {fileID: 114445160326009966}
+  - component: {fileID: 4709314669139362}
+  - component: {fileID: 212249835247098000}
+  - component: {fileID: 114749290517680290}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -28,43 +28,78 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4470608951065064
+--- !u!1 &1461646437702750
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4722116955272546}
+  m_Layer: 0
+  m_Name: PistolTip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4709314669139362
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1893248767818946}
+  m_GameObject: {fileID: 1164725371737510}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.6005135, y: 0.11066532, z: 0}
+  m_LocalPosition: {x: 3.0556304, y: -1.8506302, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4722116955272546}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114445160326009966
+--- !u!4 &4722116955272546
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1461646437702750}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.019, y: 0.178, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4709314669139362}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114749290517680290
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1893248767818946}
+  m_GameObject: {fileID: 1164725371737510}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53950d1b97ef7da47ba658bbe4cd0501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 6b1fd2f17f083e24e8b04ee411cbbda9, type: 3}
+  weaponSound: {fileID: 8300000, guid: 4ad6cd90a764008468d613af633c9ee9, type: 3}
   projectile: {fileID: 1661742638681246, guid: 6d05574080e4b714a937d5098ba9eb02, type: 2}
-  projectileSpeed: 100
+  tip: {fileID: 1461646437702750}
+  projectileSpeed: 1500
   timeUntilSelfDestrucion: 2
   cooldown: 0.02
-  tip: {x: 2.6005135, y: 0.11066532, z: 0}
   projectileType: 1
---- !u!212 &212335989696721050
+  maxAmmo: 60
+  currentAmmo: 48
+  clipSize: 12
+  currentClipAmmo: 12
+  reloadTime: 2
+--- !u!212 &212249835247098000
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1893248767818946}
+  m_GameObject: {fileID: 1164725371737510}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0

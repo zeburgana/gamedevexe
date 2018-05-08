@@ -59,7 +59,7 @@ public class AchievementManager : MonoBehaviour
     {
 
         //REMEMBER to Delete or Comment after game release
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
 
 
         activeButon = GameObject.Find("GeneralButton").GetComponent<AchievementButton>();
@@ -114,6 +114,10 @@ public class AchievementManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             EarnAchievement("Press L");
+        }
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            PlayerPrefs.DeleteAll();
         }
     }
 

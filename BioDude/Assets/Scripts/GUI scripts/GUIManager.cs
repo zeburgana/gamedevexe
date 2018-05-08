@@ -8,19 +8,21 @@ public class GUIManager : MonoBehaviour
 
     public Slider healthBar;
     public Text HPText;
-    public PlayerHealthManager playerHealth;
+    public player playerCharacter;
+    public PlayerAmmoManager playerAmmo;
+    public Text AmmoText;
 
     // Use this for initialization
     void Start()
     {
-
+        healthBar.maxValue = playerCharacter.healthMax;
     }
 
     // Update is called once per frame
     void Update()
     {
-        healthBar.maxValue = playerHealth.playerMaxHealth;
-        healthBar.value = playerHealth.playerCurrentHealth;
-        HPText.text = "HP: " + playerHealth.playerCurrentHealth + "/" + playerHealth.playerMaxHealth;
+        healthBar.value = playerCharacter.GetHealth();
+        HPText.text = "HP: " + playerCharacter.GetHealth() + "/" + playerCharacter.healthMax;
+        AmmoText.text = playerAmmo.currentClipAmmo + "/" + playerAmmo.currentAmmo;
     }
 }

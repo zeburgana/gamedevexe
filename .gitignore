@@ -38,3 +38,5 @@ sysinfo.txt
 #Git merging products:
 *.orig
 *.orig.meta
+BioDude/Assets/Plugins/Editor.meta
+BioDude/Assets/Plugins/Editor/JetBrains.meta

@@ -21,11 +21,10 @@ GameObject:
   - component: {fileID: 4082924806394334}
   - component: {fileID: 212418783077590152}
   - component: {fileID: 95370782647171980}
-  - component: {fileID: 61731792819436870}
   - component: {fileID: 50820240094380452}
-  - component: {fileID: 114343937553801968}
-  - component: {fileID: 114691648200261836}
-  - component: {fileID: 82165514026457094}
+  - component: {fileID: 114292164419847014}
+  - component: {fileID: 58890726105175612}
+  - component: {fileID: 114248001651090366}
   m_Layer: 11
   m_Name: player
   m_TagString: Player
@@ -71,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1866434440080992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.906, y: 0.723, z: 0}
+  m_LocalPosition: {x: 0.898, y: 0.714, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4082924806394334}
@@ -88,17 +87,17 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 3
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_Mass: 4
+  m_LinearDrag: 6
+  m_AngularDrag: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61731792819436870
-BoxCollider2D:
+--- !u!58 &58890726105175612
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -110,98 +109,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.16, y: 1.54}
-    newSize: {x: 2.16, y: 1.54}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.16, y: 1.54}
-  m_EdgeRadius: 0
---- !u!82 &82165514026457094
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1023508624085162}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4ad6cd90a764008468d613af633c9ee9, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
+  m_Radius: 0.78
 --- !u!95 &95370782647171980
 Animator:
   serializedVersion: 3
@@ -219,7 +128,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114343937553801968
+--- !u!114 &114248001651090366
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -227,13 +136,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1023508624085162}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcdfc9c81028e5c42af837a50814068d, type: 3}
+  m_Script: {fileID: 11500000, guid: 3da4be2e75d16694eb93ed2b0c19c318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
-  pistolBullet: {fileID: 1661742638681246, guid: 6d05574080e4b714a937d5098ba9eb02,
-    type: 2}
-  pistolFire: {fileID: 82165514026457094}
+  howManySeeMe: 0
+--- !u!114 &114292164419847014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1023508624085162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fc7c6e2e89b194e91fb5687113e02d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PausemenuCanvas: {fileID: 0}
+  GrenadeList:
+  - {fileID: 114999564766435556, guid: b6e7af60750b7e04db1beb99cdebf8f0, type: 2}
+  throwForce: 500
 --- !u!114 &114610028058103794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -245,21 +166,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b54cf509ff4b043a9555299024d5d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponWielderType: 0
+  weaponArray: []
   activeWeapon: {fileID: 0}
+  activeWeaponTip: {fileID: 0}
   cooldownEnded: 1
---- !u!114 &114691648200261836
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1023508624085162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dfef56394629ac4f90e7922b236c12f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMaxHealth: 50
-  playerCurrentHealth: 50
+  isReloading: 0
+  currentAmmo: 0
+  maxAmmo: 0
+  clipSize: 0
+  currentClipAmmo: 0
 --- !u!212 &212418783077590152
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -343,7 +259,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.51, y: 0.2}
+  m_Size: {x: 0.2, y: 0.51}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
