@@ -106,7 +106,7 @@ public class MeleeTank : Character
         isLooking = true;
         if (headScript.isRotated) // if finished rotating to the angle
         {
-            if (localSearchLookedAround == localSearchLookAroundTimes) // finished looking
+            if (localSearchLookedAround == localSearchLookAroundTimes + 1) // finished looking
             {
                 localSearchLookedAround = 0;
                 isLooking = false;
@@ -114,7 +114,11 @@ public class MeleeTank : Character
                 return;
             }
             float randomRotation = Random.Range(fromAngleToTurnHead, toAngleToTurnHead);
-            randomRotation += (localSearchLookedAround % 2 == 0 ? 1 : -1) * VectorToAngle(transform.up);
+            randomRotation = (localSearchLookedAround % 2 == 0 ? 1 : -1) * randomRotation + VectorToAngle(transform.up);
+            if (localSearchLookedAround == localSearchLookAroundTimes)
+            {
+                randomRotation = VectorToAngle(transform.up);
+            }
             headScript.targetAngle = randomRotation;
             localSearchLookedAround++;
         }
