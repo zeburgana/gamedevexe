@@ -21,8 +21,8 @@ public class GUIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthBar.value = playerCharacter.healthCurrent;
-        HPText.text = "HP: " + playerCharacter.healthCurrent + "/" + playerCharacter.healthMax;
+        healthBar.value = playerCharacter.GetHealth();
+        HPText.text = "HP: " + playerCharacter.GetHealth() + "/" + playerCharacter.healthMax;
         AmmoText.text = playerAmmo.currentClipAmmo + "/" + playerAmmo.currentAmmo;
     }
 }

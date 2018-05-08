@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using UnityEngine.UI;
+
 
 // NOTE: Children order is important fro this script to work
 
@@ -33,11 +35,13 @@ public class MeleeTank : Character
     private bool isTargetDestinationPlayer = false;
     private Vector2 searchAreaCenter;
     private Allerting playerAllerting;
+    private EnemyHPBar HpBar;
 
     Animator animator;
 
 	// Use this for initialization
 	void Start () {
+        HpBar = gameObject.GetComponentInChildren<EnemyHPBar>();
         Initiate();
         //head = transform.GetChild(1);
         headScript = head.GetComponent<MeleeHead>();
@@ -46,13 +50,13 @@ public class MeleeTank : Character
         aiPatrol = GetComponent<Patrol>();
         ai = GetComponent<IAstarAI>();
         playerAllerting = player.GetComponent<Allerting>();
-	}
+    }
 
     protected override void Initiate()
     {
-
         healthMax = 100;
         base.Initiate();
+        HpBar.Initiate();
     }
 
     // Update is called once per frame
@@ -70,8 +74,9 @@ public class MeleeTank : Character
         {
             if (Vector3.Angle(head.transform.up, direction) < visionAngle) // if in vision angle
             {
-                if(!Physics2D.Raycast(transform.position, direction, distanceToPlayer, obstacleMask)) //if no obstacles in between
+                if (!Physics2D.Raycast(transform.position, direction, distanceToPlayer, obstacleMask)) //if no obstacles in between
                 {
+                    Debug.Log("iseee");
                     targetInVision = true;
                     lastPositionTargetSeen.position = player.transform.position; // Needs to be updated because other tanks might not see player and would attempt to go to last known location
                 }
@@ -227,6 +232,11 @@ public class MeleeTank : Character
     protected override void Die()
     {
         // enemy death: smokes and stoped movement
-        Destroy(this);
+        Destroy(gameObject);    //changed to gameobject because "this" destroys only MeleeTank script and the tank still chases player
+    }
+    public override void Damage(float amount)
+    {
+        base.Damage(amount);
+        HpBar.SetHealth(GetHealth());
     }
 }

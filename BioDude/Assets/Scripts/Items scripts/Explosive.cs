@@ -8,7 +8,7 @@ public class Explosive : MonoBehaviour {
     {
     }
 
-    public static void AddExplosionForce(Rigidbody2D body, float expForce, Vector3 expPosition, float expRadius)
+    public static void AddExplosionForce(Rigidbody2D body, float expForce, Vector3 expPosition, float expRadius, float damage)
     {
         var dir = (body.transform.position - expPosition);
         float calc = 1 - (dir.magnitude / expRadius);
@@ -18,6 +18,12 @@ public class Explosive : MonoBehaviour {
         }
 
         body.AddForce(dir.normalized * expForce * calc);
+        Character charObj = body.gameObject.GetComponent<Character>();
+        if (charObj != null)
+        {
+            Debug.Log("damaged");
+            body.gameObject.GetComponent<Character>().Damage(damage * calc);
+        }
     }
     public virtual void Throw(float force)
     {

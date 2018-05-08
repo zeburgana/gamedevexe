@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public float damage = 3;
     Weapon weapon;
     
     void Start ()
@@ -22,18 +23,10 @@ public class Bullet : MonoBehaviour
     {
         if (collision.collider.tag == "Enemy")
         {
-        	Destroy(gameObject);
-            DestroyObject(collision);
+            collision.gameObject.GetComponent<Character>().Damage(damage);
+            Destroy(gameObject);
         }
-
-        if (collision.collider.tag == "Wallmap")
-        {
+        else
         	Destroy(gameObject);
-        }
-    }
-
-    private void DestroyObject(Collision2D collision)
-    {
-        Destroy(collision.gameObject);
     }
 }

@@ -105,6 +105,7 @@ MonoBehaviour:
     type: 2}
   radius: 3
   force: 2500
+  damage: 40
 --- !u!212 &212330421322112496
 SpriteRenderer:
   m_ObjectHideFlags: 1
