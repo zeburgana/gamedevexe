@@ -6,17 +6,25 @@ public class PlayerAmmoManager : MonoBehaviour {
 
     public int currentClipAmmo;
     public int currentAmmo;
+    private Weapon weapon;
 
 	// Use this for initialization
 	void Start () {
-        currentClipAmmo = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().currentClipAmmo;
-        currentAmmo = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().currentAmmo;
-
+        if (GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().activeWeapon != null)
+        {
+            weapon = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().activeWeapon.GetComponent<Weapon>();
+            currentClipAmmo = weapon.currentClipAmmo;
+            currentAmmo = weapon.currentAmmo;
+        }
     }
 	
 	// Update is called once per frame
 	void Update () {
-        currentClipAmmo = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().currentClipAmmo;
-        currentAmmo = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().currentAmmo;
+        if (GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().activeWeapon != null)
+        {
+            weapon = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().activeWeapon.GetComponent<Weapon>();
+            currentClipAmmo = weapon.currentClipAmmo;
+            currentAmmo = weapon.currentAmmo;
+        }
     }
 }
