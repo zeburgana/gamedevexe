@@ -99,11 +99,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a5974c503522f40b677d50352c5e86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  started: 0
   speed: 5
   rotSpeed: 200
   explosionEffect: {fileID: 1175786858352720, guid: df7cbf2ffde1d3848ab52efe0d38fdfe,
     type: 2}
-  radius: 5
+  radius: 3
+  damage: 40
   force: 500
 --- !u!212 &212624534317966730
 SpriteRenderer:

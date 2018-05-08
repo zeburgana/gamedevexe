@@ -11,6 +11,7 @@ public class GuidedMisile : Explosive {
     public GameObject explosionEffect;
 
     public float radius = 3f;
+    public float damage = 1f;
     public float force = 500f;
 
     private Rigidbody2D body;
@@ -49,7 +50,7 @@ public class GuidedMisile : Explosive {
             if (rb != null)
             {
                 Debug.Log("rigidbody found");
-                AddExplosionForce(rb, force, transform.position, radius);
+                AddExplosionForce(rb, force, transform.position, radius, damage);
             }
         }
         Destroy(gameObject);

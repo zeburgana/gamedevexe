@@ -4,6 +4,7 @@ using UnityEngine;
 
 abstract public class Character : MonoBehaviour
 {
+    [SerializeField]
     public float healthMax { get; protected set; }
     [SerializeField]
     public float healthCurrent { get; protected set; } 
@@ -16,7 +17,7 @@ abstract public class Character : MonoBehaviour
 		SetMaxHealth(); //check if this even work if nested
 	}
 
-	public void Damage(float amount)
+	public virtual void Damage(float amount)
 	{
 		healthCurrent -= amount;
         if (healthCurrent <= 0)

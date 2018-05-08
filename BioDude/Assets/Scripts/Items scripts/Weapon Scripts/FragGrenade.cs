@@ -13,6 +13,7 @@ public class FragGrenade : Explosive
     bool exploded = false;
     public float radius = 3f;
     public float force = 500f;
+    public float damage = 1f;
     private Rigidbody2D rb;
 
     // Use this for initialization
@@ -46,7 +47,7 @@ public class FragGrenade : Explosive
             Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                AddExplosionForce(rb, force, transform.position, radius);
+                AddExplosionForce(rb, force, transform.position, radius, damage);
             }
         }
 
