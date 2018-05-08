@@ -37,6 +37,7 @@ public class MeleeTank : Character
     private Vector2 searchAreaCenter;
     private Allerting playerAllerting;
     private Head headScript;
+    private bool isLooking = false;
 
     Animator animator;
 
@@ -57,10 +58,13 @@ public class MeleeTank : Character
     {
         Vector2 direction = (player.transform.position - transform.position).normalized;
         //Set head target direction:
-        if (targetInVision)
-            headScript.targetAngle = VectorToAngle(direction);
-        else
-            headScript.targetAngle = VectorToAngle(transform.up); // this should always set head rotation to zero. better solution required
+        if (!isLooking)
+        {
+            if (targetInVision)
+                headScript.targetAngle = VectorToAngle(direction);
+            else
+                headScript.targetAngle = VectorToAngle(transform.up); // this should always set head rotation to zero. better solution required
+        }
 
         distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
         targetInVision = false;
@@ -99,11 +103,13 @@ public class MeleeTank : Character
 
     private void LookAround() // look arround then reached destination and after finished looking find next destination
     {
+        isLooking = true;
         if (headScript.isRotated) // if finished rotating to the angle
         {
             if (localSearchLookedAround == localSearchLookAroundTimes) // finished looking
             {
                 localSearchLookedAround = 0;
+                isLooking = false;
                 PerformLocalSearch();
                 return;
             }
@@ -149,6 +155,7 @@ public class MeleeTank : Character
     //Stop pursuing player
     public void ReturnToPatrol()
     {
+        isLooking = false;
         aiDestinationSetter.enabled = false;
         aiPatrol.enabled = true;
         isAlerted = false;
@@ -162,6 +169,7 @@ public class MeleeTank : Character
         localSearchLookedAround = 0;
         aiPatrol.enabled = false;
         aiDestinationSetter.enabled = true;
+        isLooking = false;
         if (playerAllerting.howManySeeMe > 0) // if someone can see player right now
         {
             isTargetDestinationPlayer = true;

@@ -37,6 +37,7 @@ public class RangedTank : Character
     private Allerting playerAllerting;
     private Head headScript;
     private Firearm firearm;
+    private bool isLooking = false;
 
     Animator animator;
 
@@ -72,11 +73,13 @@ public class RangedTank : Character
         }
 
         //Set head target direction:
-        if (targetInVision)
-            headScript.targetAngle = VectorToAngle(direction);
-        else
-            headScript.targetAngle = VectorToAngle(transform.up); // this should always set head rotation to zero. better solution required
-
+        if(!isLooking)
+        {
+            if (targetInVision)
+                headScript.targetAngle = VectorToAngle(direction);
+            else
+                headScript.targetAngle = VectorToAngle(transform.up); // this should always set head rotation to zero. better solution required
+        }
 
         if (prevTargetInVision != targetInVision)
             VisionStatusChange();
@@ -176,6 +179,7 @@ public class RangedTank : Character
         aiPatrol.enabled = true;
         isAlerted = false;
         ai.canMove = true;
+        isLooking = false;
     }
 
     //call this method to make enemy go to last known player position
@@ -186,6 +190,7 @@ public class RangedTank : Character
         localSearchLookedAround = 0;
         aiPatrol.enabled = false;
         aiDestinationSetter.enabled = true;
+        isLooking = false;
         if (playerAllerting.howManySeeMe > 0) // if someone can see player right now
         {
             isTargetDestinationPlayer = true;
