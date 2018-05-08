@@ -10,27 +10,36 @@ public class WeaponManager : MonoBehaviour
         Enemy
     }
     public WeaponWielderType weaponWielderType;
+    private WeaponManager weaponManager;
     private GameObject weaponSlotType;
     private GameObject reloadObject;
+    [HideInInspector]
     public GameObject[] weaponArray;
     public GameObject activeWeapon;
     public GameObject activeWeaponTip;
     public bool cooldownEnded = true;
     public bool isReloading = false;
     private Weapon weapon;
-    public int currentAmmo;
-    public int maxAmmo;
-    public int clipSize;
-    public int currentClipAmmo;
+    private int currentAmmo;
+    private int maxAmmo;
+    private int clipSize;
+    private int currentClipAmmo;
+    private SpriteRenderer spriteRenderer;
 
 
 
     // Use this for initialization
     void Start ()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        weaponArray = new GameObject[2];
+        weaponSlotType = GameObject.FindGameObjectWithTag(weaponWielderType.ToString() + "WeaponSlot");
+        weaponManager = weaponSlotType.GetComponent<WeaponManager>();
+        reloadObject = GameObject.FindGameObjectWithTag(weaponWielderType.ToString());
         if (activeWeapon != null)
         {
             weapon = activeWeapon.GetComponent<Weapon>();
+            weaponArray[0] = activeWeapon;
             weapon.currentAmmo = weapon.currentAmmo - weapon.currentClipAmmo;
             currentAmmo = weapon.currentAmmo;
             maxAmmo = weapon.maxAmmo;
@@ -38,69 +47,98 @@ public class WeaponManager : MonoBehaviour
             currentClipAmmo = weapon.currentClipAmmo;
             weapon.Equip(gameObject);
             Debug.Log(weaponWielderType.ToString() + "WeaponSlot");
-            weaponSlotType = GameObject.FindGameObjectWithTag(weaponWielderType.ToString() + "WeaponSlot");
-            reloadObject = GameObject.FindGameObjectWithTag(weaponWielderType.ToString());
         }
     }
 
 
-    public void UpdateWeapon(GameObject newWeapon)  // BULLSHIT kam tiek daug kartu reikia getcomponent
+    public void SwitchWeapon()
+    {
+        if (!isReloading)
+        {
+            if (activeWeapon == weaponArray[0] && weaponArray[1] != null)
+            {
+                activeWeapon = weaponArray[1];
+                weapon = activeWeapon.GetComponent<Weapon>();
+                currentAmmo = weapon.currentAmmo;
+                maxAmmo = weapon.maxAmmo;
+                clipSize = weapon.clipSize;
+                currentClipAmmo = weapon.currentClipAmmo;
+                activeWeaponTip = weapon.tip;
+                spriteRenderer.sprite = weaponArray[1].GetComponent<SpriteRenderer>().sprite;
+
+
+            }
+            else if (activeWeapon == weaponArray[1] && weaponArray[0] != null)
+            {
+                activeWeapon = weaponArray[0];
+                weapon = activeWeapon.GetComponent<Weapon>();
+                currentAmmo = weapon.currentAmmo;
+                maxAmmo = weapon.maxAmmo;
+                clipSize = weapon.clipSize;
+                currentClipAmmo = weapon.currentClipAmmo;
+                activeWeaponTip = weapon.tip;
+                spriteRenderer.sprite = weaponArray[0].GetComponent<SpriteRenderer>().sprite;
+            }
+
+            if (weapon.currentClipAmmo <= 0)
+                Reload();
+        }
+    }
+
+    public void UpdateWeapon(GameObject newWeapon)
     {
         activeWeapon = newWeapon;
-        currentAmmo = activeWeapon.GetComponent<Weapon>().currentAmmo;
-        maxAmmo = activeWeapon.GetComponent<Weapon>().maxAmmo;
         weapon = activeWeapon.GetComponent<Weapon>();
-        clipSize = activeWeapon.GetComponent<Weapon>().clipSize;
-        currentClipAmmo = activeWeapon.GetComponent<Weapon>().currentClipAmmo;
-        activeWeaponTip = activeWeapon.GetComponent<Weapon>().tip;
-        //weapon.sprite;
+        currentAmmo = weapon.currentAmmo;
+        maxAmmo = weapon.maxAmmo;
+        clipSize = weapon.clipSize;
+        currentClipAmmo = weapon.currentClipAmmo;
+        activeWeaponTip = weapon.tip;
         weapon.Equip(gameObject);
-        weaponSlotType = GameObject.FindGameObjectWithTag(weaponWielderType.ToString() + "WeaponSlot");
-        reloadObject = GameObject.FindGameObjectWithTag(weaponWielderType.ToString());
     }
 
-    public IEnumerator Reload() // BULLSHIT kam tiek daug kartu reikia getcomponent
+    public IEnumerator Reload()
     {
+        Animator animator = reloadObject.GetComponent<Animator>();
         isReloading = true;
-        reloadObject.GetComponent<Animator>().SetFloat("reloadTime", 1/activeWeapon.GetComponent<Weapon>().reloadTime);
-        reloadObject.GetComponent<Animator>().SetTrigger("playerReload");
-        yield return new WaitForSeconds(activeWeapon.GetComponent<Weapon>().reloadTime);
-        if(currentAmmo + currentClipAmmo >= clipSize)
+        animator.SetFloat("reloadTime", 1/weapon.reloadTime);
+        animator.SetTrigger("playerReload");
+        yield return new WaitForSeconds(weapon.reloadTime);
+        if(weapon.currentAmmo + weapon.currentClipAmmo >= weapon.clipSize)
         {
-            currentAmmo = currentAmmo - (clipSize - currentClipAmmo);
-            currentClipAmmo = clipSize;
+            weapon.currentAmmo = weapon.currentAmmo - (weapon.clipSize - weapon.currentClipAmmo);
+            weapon.currentClipAmmo = weapon.clipSize;
         }
 
-        else if(currentAmmo + currentClipAmmo < clipSize)
+        else if(weapon.currentAmmo + weapon.currentClipAmmo < weapon.clipSize)
         {
-            currentClipAmmo = currentAmmo + currentClipAmmo;
-            currentAmmo = 0;
+            weapon.currentClipAmmo = weapon.currentAmmo + weapon.currentClipAmmo;
+            weapon.currentAmmo = 0;
         }
         isReloading = false;
     }
 
-    public void Shoot() // BULLSHIT kam tiek daug kartu reikia getcomponent
+    public void Shoot()
     {
-        //sometimes bullet spawns behind the player :D
-        if (weaponSlotType.GetComponent<WeaponManager>().cooldownEnded && weaponSlotType.GetComponent<WeaponManager>().activeWeapon != null && weaponSlotType.GetComponent<WeaponManager>().isReloading == false)
+        if (weaponManager.cooldownEnded && weaponManager.activeWeapon != null && weaponManager.isReloading == false)
         {
-            if (weaponSlotType.GetComponent<WeaponManager>().currentClipAmmo > 0)
+            if (weapon.currentClipAmmo > 0)
             {
                 Vector3 projectileVector = weaponSlotType.transform.position;
-                weaponSlotType.GetComponent<WeaponManager>().cooldownEnded = false;
-                weaponSlotType.GetComponent<WeaponManager>().currentClipAmmo--;
+                weaponManager.cooldownEnded = false;
+                weapon.currentClipAmmo--;
                 StartCoroutine("Cooldown");
-                Instantiate(weaponSlotType.GetComponent<WeaponManager>().activeWeapon.GetComponent<Weapon>().projectile, projectileVector, transform.rotation);
-                if (weaponSlotType.GetComponent<WeaponManager>().currentClipAmmo == 0 && weaponSlotType.GetComponent<WeaponManager>().currentAmmo > 0)
-                    StartCoroutine(weaponSlotType.GetComponent<WeaponManager>().Reload());
+                Instantiate(weapon.projectile, projectileVector, transform.rotation);
+                if (weapon.currentClipAmmo == 0 && weapon.currentAmmo > 0)
+                    StartCoroutine(weaponManager.Reload());
             }
         }
     }
 
-    IEnumerator Cooldown() // BULLSHIT kam tiek daug kartu reikia getcomponent
+    IEnumerator Cooldown()
     {
-        yield return new WaitForSeconds(weaponSlotType.GetComponent<WeaponManager>().activeWeapon.GetComponent<Weapon>().cooldown);
-        weaponSlotType.GetComponent<WeaponManager>().cooldownEnded = true;
+        yield return new WaitForSeconds(weapon.cooldown);
+        weaponManager.cooldownEnded = true;
     }
 
 }

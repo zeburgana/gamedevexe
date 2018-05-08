@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class WeaponPickup : MonoBehaviour {
 
-    public GameObject[] weapons;
-    public GameObject currentSpawnedWeapon;
+    public GameObject weapon;
+    private GameObject spawnedWeapon;
+    private WeaponManager weaponManager;
     bool pickedUp;
 
 	// Use this for initialization
 	void Start () {
-        currentSpawnedWeapon = weapons[Random.Range(0, weapons.Length)];
-	}
+       spawnedWeapon = weapon;
+        weaponManager = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>();     
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -23,8 +25,18 @@ public class WeaponPickup : MonoBehaviour {
     {
         if(other.tag == "Player")
         {
-            other.transform.Find("WeaponSlot").GetComponent<WeaponManager>().UpdateWeapon(currentSpawnedWeapon);
-            pickedUp = true;
+            if (weaponManager.weaponArray[0] == null)
+            {
+                other.transform.Find("WeaponSlot").GetComponent<WeaponManager>().UpdateWeapon(spawnedWeapon);
+                weaponManager.weaponArray[0] = spawnedWeapon;
+                pickedUp = true;
+            }
+            else if (weaponManager.weaponArray[0] != null && weaponManager.weaponArray[1] == null)
+            {
+                other.transform.Find("WeaponSlot").GetComponent<WeaponManager>().UpdateWeapon(spawnedWeapon);
+                weaponManager.weaponArray[1] = spawnedWeapon;
+                pickedUp = true;
+            }
         }
     }
 }

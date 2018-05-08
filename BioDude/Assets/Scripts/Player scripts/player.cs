@@ -12,7 +12,7 @@ public class player : Character
 
     public PauseMenu PausemenuCanvas;
     private float directionAngle;
-    private WeaponManager weapon; 
+    private WeaponManager weaponManager; 
     public List<Explosive> GrenadeList; // BULLSHIT  reikia karkur kitur deti
     Explosive selectedGrenade;
     public float throwForce = 5000f;
@@ -25,7 +25,7 @@ public class player : Character
         playerRigidbody = GetComponent<Rigidbody2D>();
         if (GrenadeList.Count > 0)
             selectedGrenade = GrenadeList[0];
-        weapon = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>(); // BULLHIT  negalima naudot tag tokiam dalykui turbut, o kas kai bus daugiauweponslotu playerio?
+        weaponManager = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>(); // BULLHIT  negalima naudot tag tokiam dalykui turbut, o kas kai bus daugiauweponslotu playerio?
         speed = 210;
     }
 
@@ -48,11 +48,13 @@ public class player : Character
     void Controls() //BULLSHIT reikia susitvarkyti ir apgalvoti ar viskas bus ok jei vienu framu pasileistu visos komandos nes nenaudojami else if - galbut reikia debouncing arba kintamuju delayinti veiksma kitam framui  
     {
         if (Input.GetButtonDown("Fire"))
-            weapon.Shoot();
+            weaponManager.Shoot();
         if (Input.GetButtonDown("ThrowGranade"))
             UseGrenade();
         if (Input.GetButtonDown("Reload"))
             Reload();
+        if (Input.GetButtonDown("SwitchWeapons"))
+            weaponManager.SwitchWeapon();
     }
 
     void Move(float h, float v)
@@ -111,14 +113,15 @@ public class player : Character
 
     private void Reload()
     {
-        if ( weapon.currentAmmo > 0 && !weapon.isReloading && weapon.currentClipAmmo != weapon.clipSize)
-            StartCoroutine(weapon.Reload());
+        Weapon weapon = weaponManager.activeWeapon.GetComponent<Weapon>();
+        if (weapon.currentAmmo > 0 && !weaponManager.isReloading && weapon.currentClipAmmo != weapon.clipSize)
+            StartCoroutine(weaponManager.Reload());
     }
 
     IEnumerator Cooldown()
     {
         yield return new WaitForSeconds(2);
-        GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().cooldownEnded = true;
+        weaponManager.cooldownEnded = true;
     }
 
     private void UseGrenade()
