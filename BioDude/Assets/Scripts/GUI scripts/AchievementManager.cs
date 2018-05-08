@@ -123,7 +123,7 @@ public class AchievementManager : MonoBehaviour
         {
             GameObject achievement = (GameObject)Instantiate(visualAchievement);
             SetAchievementInfo("EarnAchievementCanvas", achievement, title);
-            textPoints.text = "Points: " + PlayerPrefs.GetInt("Points");
+            textPoints.text = "Points: " + PlayerPrefs.GetInt("Points").ToString();
             StartCoroutine(FadeAchievement(achievement));
         }
     }

@@ -155,11 +155,12 @@ public class Achievement : MonoBehaviour
     {
         unlocked = value;
 
-        int tmpPoints = PlayerPrefs.GetInt("Points");
 
-        PlayerPrefs.SetInt("Points", tmpPoints += points);
         if (value == true)
         {
+            int tmpPoints = PlayerPrefs.GetInt("Points");
+
+            PlayerPrefs.SetInt("Points", tmpPoints += points);
             PlayerPrefs.SetInt(name, 1);
         }
         else
@@ -183,7 +184,7 @@ public class Achievement : MonoBehaviour
 
         if (unlocked)
         {
-            AchievementManager.Instance.textPoints.text = "Points: " + PlayerPrefs.GetInt("Points");
+            AchievementManager.Instance.textPoints.text = "Points: " + PlayerPrefs.GetInt("Points").ToString();
             currentProgression = PlayerPrefs.GetInt("Progression" + Name);
             achievementRef.GetComponent<Image>().sprite = AchievementManager.Instance.unlockedSprite;
         }
