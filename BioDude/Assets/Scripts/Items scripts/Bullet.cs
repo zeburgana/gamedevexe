@@ -28,7 +28,7 @@ public class Bullet : MonoBehaviour
 
         if (collision.collider.tag == "Wallmap")
         {
-        	Destroy(gameObject);
+        	//Destroy(gameObject);
         }
     }
 

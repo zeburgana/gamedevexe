@@ -6542,6 +6542,8 @@ GameObject:
   - component: {fileID: 1753083373}
   - component: {fileID: 1753083372}
   - component: {fileID: 1753083371}
+  - component: {fileID: 1753083374}
+  - component: {fileID: 1753083375}
   m_Layer: 8
   m_Name: WallMap
   m_TagString: Wallmap
@@ -6860,6 +6862,37 @@ Tilemap:
     m_DirtyIndex: 0
   - serializedVersion: 1
     m_DirtyIndex: 0
+--- !u!114 &1753083374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1753083369}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0d8271b9b617c143bd412eb350e0b1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &1753083375
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1753083369}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 1
+  m_Mass: 30.071299
+  m_LinearDrag: 0
+  m_AngularDrag: 1
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &1755524264
 GameObject:
   m_ObjectHideFlags: 0
