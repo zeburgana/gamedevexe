@@ -19,6 +19,7 @@ public class GuidedMisile : Explosive {
 	// Use this for initialization
 	void Start () {
         body = GetComponent<Rigidbody2D>();
+        Invoke("Explode", 4f);
 	}
 	
 	// Update is called once per frame
@@ -37,17 +38,17 @@ public class GuidedMisile : Explosive {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-        if (collision.collider.tag == "Enemy")
-        {
-            Explode();
-            Destroy(collision.gameObject);
-        }
+        Explode();
+        //if (collision.collider.tag == "Enemy")
+        //{
+        //    Explode();
+        //    Destroy(collision.gameObject);
+        //}
 
-        if (collision.collider.tag == "Wallmap")
-        {
-            Explode();
-        }
+        //if (collision.collider.tag == "Wallmap")
+        //{
+        //    Explode();
+        //}
     }
     public override void Explode()
     {
@@ -86,5 +87,4 @@ public class GuidedMisile : Explosive {
     {
         force = value;
     }
-
 }
