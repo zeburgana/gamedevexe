@@ -598,7 +598,7 @@ MonoBehaviour:
   visionRange: 10
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 16384
+    m_Bits: 131072
   lastPositionTargetSeen: {fileID: 0}
   localSearchRadius: 5
   localSearchTryLocation: 3

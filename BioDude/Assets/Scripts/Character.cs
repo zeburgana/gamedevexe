@@ -17,6 +17,11 @@ abstract public class Character : MonoBehaviour
 		SetMaxHealth(); //check if this even work if nested
 	}
 
+    public int GetHealth()
+    {
+        return Mathf.RoundToInt(healthCurrent);
+    }
+
 	public virtual void Damage(float amount)
 	{
 		healthCurrent -= amount;

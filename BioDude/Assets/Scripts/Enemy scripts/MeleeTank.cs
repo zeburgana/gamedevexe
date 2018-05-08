@@ -54,11 +54,9 @@ public class MeleeTank : Character
 
     protected override void Initiate()
     {
-
         healthMax = 100;
         base.Initiate();
         HpBar.Initiate();
-
     }
 
     // Update is called once per frame
@@ -76,8 +74,9 @@ public class MeleeTank : Character
         {
             if (Vector3.Angle(head.transform.up, direction) < visionAngle) // if in vision angle
             {
-                if(!Physics2D.Raycast(transform.position, direction, distanceToPlayer, obstacleMask)) //if no obstacles in between
+                if (!Physics2D.Raycast(transform.position, direction, distanceToPlayer, obstacleMask)) //if no obstacles in between
                 {
+                    Debug.Log("iseee");
                     targetInVision = true;
                     lastPositionTargetSeen.position = player.transform.position; // Needs to be updated because other tanks might not see player and would attempt to go to last known location
                 }
@@ -238,6 +237,6 @@ public class MeleeTank : Character
     public override void Damage(float amount)
     {
         base.Damage(amount);
-        HpBar.SetHealth(healthCurrent);
+        HpBar.SetHealth(GetHealth());
     }
 }
