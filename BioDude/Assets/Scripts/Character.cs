@@ -33,7 +33,6 @@ abstract public class Character : MonoBehaviour
 
 	public void SetMaxHealth()
 	{
-        Debug.Log("health set to full");
 		healthCurrent = healthMax;
 	}
 }

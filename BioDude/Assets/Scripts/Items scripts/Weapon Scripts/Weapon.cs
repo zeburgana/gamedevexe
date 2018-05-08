@@ -22,7 +22,5 @@ public abstract class Weapon : Item
     public int clipSize;
     public int currentClipAmmo;
     public float reloadTime;
-    
-
-
+    public float damage;
 }

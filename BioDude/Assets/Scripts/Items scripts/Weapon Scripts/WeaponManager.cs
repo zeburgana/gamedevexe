@@ -90,7 +90,8 @@ public class WeaponManager : MonoBehaviour
                 weaponSlotType.GetComponent<WeaponManager>().cooldownEnded = false;
                 weaponSlotType.GetComponent<WeaponManager>().currentClipAmmo--;
                 StartCoroutine("Cooldown");
-                Instantiate(weaponSlotType.GetComponent<WeaponManager>().activeWeapon.GetComponent<Weapon>().projectile, projectileVector, transform.rotation);
+                GameObject newBullet = Instantiate(weaponSlotType.GetComponent<WeaponManager>().activeWeapon.GetComponent<Weapon>().projectile, projectileVector, transform.rotation);
+                newBullet.GetComponent<Bullet>().Initiate(weapon.timeUntilSelfDestrucion, weapon.projectileSpeed, weapon.damage);
                 if (weaponSlotType.GetComponent<WeaponManager>().currentClipAmmo == 0 && weaponSlotType.GetComponent<WeaponManager>().currentAmmo > 0)
                     StartCoroutine(weaponSlotType.GetComponent<WeaponManager>().Reload());
             }

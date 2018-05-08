@@ -5,12 +5,9 @@ using Pathfinding;
 
 // NOTE: Children order is important fro this script to work
 
-public class MeleeTank : Character
+public class RangedTank : Character
 {
-    public int damage = 1;
-    
     public Transform head;
-    Head headScript;
     public GameObject player;
     public bool isAlerted = false;
     public float visionAngle = 30; // vision angle (half of it)
@@ -19,6 +16,10 @@ public class MeleeTank : Character
     public Transform lastPositionTargetSeen;
     public float localSearchRadius = 5; // distance - how far to search for player from last known position
     public int localSearchTryLocation = 3; // how many locations to try after target lost
+    public int fromAngleToTurnHead = 15;
+    public int toAngleToTurnHead = 90; // max value should be 90 for realistic reaction
+    public int localSearchLookAroundTimes = 2;
+    public float widthOfFirePathChecker = 0.1f;
 
     IAstarAI ai;
 
@@ -30,9 +31,12 @@ public class MeleeTank : Character
     private Patrol aiPatrol;
     private bool prevTargetInVision = false;
     private int localSearchLocationsTried = 0;
+    private int localSearchLookedAround = 0;
     private bool isTargetDestinationPlayer = false;
     private Vector2 searchAreaCenter;
     private Allerting playerAllerting;
+    private Head headScript;
+    private Firearm firearm;
 
     Animator animator;
 
@@ -45,17 +49,14 @@ public class MeleeTank : Character
         aiPatrol = GetComponent<Patrol>();
         ai = GetComponent<IAstarAI>();
         playerAllerting = player.GetComponent<Allerting>();
-	}
+        firearm = transform.GetComponentInChildren<Firearm>();
+    }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         Vector2 direction = (player.transform.position - transform.position).normalized;
-        //Set head target direction:
-        if (targetInVision)
-            headScript.targetAngle = VectorToAngle(direction);
-        else
-            headScript.targetAngle = VectorToAngle(transform.up); // this should always set head rotation to zero. better solution required
-
+       
         distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
         targetInVision = false;
         if (distanceToPlayer < visionRange) // if in range
@@ -65,34 +66,77 @@ public class MeleeTank : Character
                 if(!Physics2D.Raycast(transform.position, direction, distanceToPlayer, obstacleMask)) //if no obstacles in between
                 {
                     targetInVision = true;
-                    lastPositionTargetSeen.position = player.transform.position; // Needs to be updated because other tanks might not see player and would attempt to go to last known location
+                    //lastPositionTargetSeen.position = player.transform.position; // Needs to be updated because other tanks might not see player and would attempt to go to last known location
                 }
             }
         }
+
+        //Set head target direction:
+        if (targetInVision)
+            headScript.targetAngle = VectorToAngle(direction);
+        else
+            headScript.targetAngle = VectorToAngle(transform.up); // this should always set head rotation to zero. better solution required
+
+
         if (prevTargetInVision != targetInVision)
             VisionStatusChange();
         prevTargetInVision = targetInVision;
 
-        if(isAlerted && !targetInVision) // pursuing to last known location or player if someone can see him
+        if(targetInVision) // if enemy can see target
+        {
+            if(headScript.isRotated)
+            {
+                //check if target can be fired by bullet and only then here disallow moving
+                Debug.DrawLine(transform.position + head.transform.right * widthOfFirePathChecker, (Vector2) transform.position + (Vector2)head.transform.right * widthOfFirePathChecker + direction * distanceToPlayer, Color.blue);
+                Debug.DrawLine(transform.position - head.transform.right * widthOfFirePathChecker, (Vector2)transform.position - (Vector2)head.transform.right * widthOfFirePathChecker + direction * distanceToPlayer, Color.blue);
+                if (!Physics2D.Raycast(transform.position + head.transform.right * widthOfFirePathChecker, direction, distanceToPlayer, obstacleMask) &&
+                   !Physics2D.Raycast(transform.position - head.transform.right * widthOfFirePathChecker, direction, distanceToPlayer, obstacleMask))
+                {
+                    ai.canMove = false;
+                    firearm.Shoot();
+                }
+                else
+                {
+                    ai.canMove = true;
+                }
+                
+            }
+        }
+        else if(isAlerted && !targetInVision) // pursuing to last known location(local search) or player if someone can see him
         {
             if (isTargetDestinationPlayer && playerAllerting.howManySeeMe == 0) // if someone saw player till now and this enemy was pursuing player
             {
-                aiDestinationSetter.target = lastPositionTargetSeen;
-                isTargetDestinationPlayer = false;
+                PursuePlayer();
             }
             else if(!isTargetDestinationPlayer && playerAllerting.howManySeeMe > 0) // if someone can see player from now on this enemy should purue him
             {
-                aiDestinationSetter.target = player.transform;
-                isTargetDestinationPlayer = true;
+                PursuePlayer();
             }
 
             if(ai.reachedEndOfPath) // went to last known location and player not seen
             {
-                PerformLocalSearch();
+                LookAround();
             }
         }
     }
     
+    private void LookAround() // look arround then reached destination and after finished looking find next destination
+    {
+        if(headScript.isRotated) // if finished rotating to the angle
+        {
+            if (localSearchLookedAround == localSearchLookAroundTimes) // finished looking
+            {
+                localSearchLookedAround = 0;
+                PerformLocalSearch();
+                return;
+            }
+            float randomRotation = Random.Range(fromAngleToTurnHead, toAngleToTurnHead);
+            randomRotation += (localSearchLookedAround % 2 == 0? 1 : -1) * VectorToAngle(transform.up);
+            headScript.targetAngle = randomRotation;
+            localSearchLookedAround++;
+        }
+    }
+
     private void PerformLocalSearch()
     {
         if(localSearchLocationsTried == 0) // just went to last player known location begining local search
@@ -102,25 +146,25 @@ public class MeleeTank : Character
         }
         else if(localSearchLocationsTried == localSearchTryLocation) // tried all loations return to patroling
         {
-            Debug.Log("finished search");
+              //Debug.Log("finished search");
             localSearchLocationsTried = 0;
             ReturnToPatrol();
             return;
         }
-        Debug.Log("location trying now " + localSearchLocationsTried);
-        Debug.Log("Center: " + searchAreaCenter.ToString());
+          //Debug.Log("location trying now " + localSearchLocationsTried);
+          //Debug.Log("Center: " + searchAreaCenter.ToString());
         // continue searching
         Vector2 randomLocation = new Vector2(
             Random.Range(localSearchRadius / 2, localSearchRadius) * (Random.Range(0, 2) < 1 ? 1 : -1), 
             Random.Range(localSearchRadius / 2, localSearchRadius) * (Random.Range(0, 2) < 1 ? 1 : -1));
-        Debug.Log("Offset random: " + randomLocation);
+          //Debug.Log("Offset random: " + randomLocation);
         randomLocation += searchAreaCenter;
-        Debug.Log("Point calc: " + randomLocation);
+           //Debug.Log("Point calc: " + randomLocation);
         localSearchLocationsTried++;
         ai.destination = randomLocation;
         ai.SearchPath();
-        Debug.Log("remaining dist: " + ai.remainingDistance);
-        Debug.Log("reached end" + ai.reachedEndOfPath.ToString());
+          // Debug.Log("remaining dist: " + ai.remainingDistance);
+           //Debug.Log("reached end" + ai.reachedEndOfPath.ToString());
         //if(ai.remainingDistance > 2 * localSearchRadius) // maybe make this into do while loop
         //search for new point beacause this map point is too far for local search
     }
@@ -131,23 +175,29 @@ public class MeleeTank : Character
         aiDestinationSetter.enabled = false;
         aiPatrol.enabled = true;
         isAlerted = false;
+        ai.canMove = true;
     }
 
     //call this method to make enemy go to last known player position
     public void PursuePlayer()
     {
         isAlerted = true;
+        localSearchLocationsTried = 0;
+        localSearchLookedAround = 0;
         aiPatrol.enabled = false;
         aiDestinationSetter.enabled = true;
         if (playerAllerting.howManySeeMe > 0) // if someone can see player right now
         {
             isTargetDestinationPlayer = true;
             aiDestinationSetter.target = player.transform;
+            ai.canSearch = true;
         }
-        else
+        else 
         {
             isTargetDestinationPlayer = false;
             aiDestinationSetter.target = lastPositionTargetSeen;
+            ai.canSearch = false;
+            ai.SearchPath();
         }
     }
 
@@ -158,17 +208,14 @@ public class MeleeTank : Character
             if (targetInVision) // can see on its own now
             {
                 playerAllerting.howManySeeMe++;
-                aiDestinationSetter.target = player.transform;
-                isTargetDestinationPlayer = true;
+                PursuePlayer();
             }
             else // can't see anymore
             {
+                ai.canMove = true;
+                lastPositionTargetSeen.position = player.transform.position;
                 playerAllerting.howManySeeMe--;
-                if(playerAllerting.howManySeeMe == 0) // if noone can see player
-                {
-                    isTargetDestinationPlayer = false;
-                    aiDestinationSetter.target = lastPositionTargetSeen;
-                }
+                PursuePlayer();
             }
         }
         else
@@ -179,7 +226,10 @@ public class MeleeTank : Character
                 PursuePlayer();
             }
             else //if someone will force to not allerted then enemy can see player
+            {
                 playerAllerting.howManySeeMe--;
+                ai.canMove = false;
+            }
         }
         
     }
@@ -205,14 +255,6 @@ public class MeleeTank : Character
         {
             targetInAttackRange = false;
             animator.SetBool("TargetInRange", false);
-        }
-    }
-
-    private void PerformAttack() // a smarter way of inflicting damage is required - this is nether secure nor efficient 
-    {
-        if (targetInAttackRange)
-        {
-            player.GetComponent<player>().Damage(damage);
         }
     }
 

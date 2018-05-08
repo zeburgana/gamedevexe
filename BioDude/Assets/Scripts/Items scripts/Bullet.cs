@@ -4,36 +4,27 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    Weapon weapon;
-    
-    void Start ()
+    private float damage;
+
+    /// <summary>
+    /// give bullet speed and time after which it should destroy itself
+    /// </summary>
+    /// <param name="destroyAfter">time in second after how long destroy this bullet</param>
+    /// <param name="speed">speed to give to bullet</param>
+    public void Initiate(float destroyAfter, float speed, float damage)
     {
-        weapon = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>().activeWeapon.GetComponent<Weapon>();
-        Destroy(gameObject, weapon.timeUntilSelfDestrucion);
-        //maybe just need to use velocity, not addRelativeForce
-        GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(0, weapon.projectileSpeed)); //transform.forward.z * speed - 10, transform.forward.z * speed + 60
-
+        Destroy(gameObject, destroyAfter);
+        GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(0, speed));
+        this.damage = damage;
     }
-
-    void Update ()
-	{}
 
 	private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Enemy")
+        Character charHealth = collision.gameObject.GetComponent<Character>();
+        if (charHealth != null)
         {
-        	Destroy(gameObject);
-            DestroyObject(collision);
+            charHealth.Damage(damage);
         }
-
-        if (collision.collider.tag == "Wallmap")
-        {
-        	Destroy(gameObject);
-        }
-    }
-
-    private void DestroyObject(Collision2D collision)
-    {
-        Destroy(collision.gameObject);
+        Destroy(gameObject);
     }
 }
