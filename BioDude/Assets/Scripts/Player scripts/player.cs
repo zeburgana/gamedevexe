@@ -11,7 +11,7 @@ public class player : Character
     Rigidbody2D playerRigidbody;          // Reference to the player's rigidbody.
 
     public PauseMenu PausemenuCanvas;
-    private float directionAngle;
+    private float rot_z;
     private WeaponManager weaponManager; 
     public List<Explosive> GrenadeList; // BULLSHIT  reikia karkur kitur deti
     Explosive selectedGrenade;
@@ -76,7 +76,7 @@ public class player : Character
 
         Vector2 playerPos = Camera.main.ScreenToWorldPoint(transform.position);
 
-        float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
 
         Debug.DrawLine(transform.position, transform.position + 10 * transform.up);
@@ -108,7 +108,7 @@ public class player : Character
 
     public float GetDirectionAngle()
     {
-        return directionAngle;
+        return rot_z;
     }
 
     private void Reload()

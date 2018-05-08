@@ -14,9 +14,7 @@ public class GuidedMisile : Explosive {
     public float force;
 
     public GameObject explosionEffect;
-    public float radius = 3f;
-    public float damage = 1f;
-    public float force = 500f;
+    public float damage = 40f;
 
     private Rigidbody2D body;
 	// Use this for initialization
