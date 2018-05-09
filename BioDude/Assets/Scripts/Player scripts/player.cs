@@ -12,10 +12,15 @@ public class player : Character
 
     public PauseMenu PausemenuCanvas;
     private float rot_z;
-    private WeaponManager weaponManager; 
+    private WeaponManager weaponManager;
     public List<Explosive> GrenadeList; // BULLSHIT  reikia karkur kitur deti
-    Explosive selectedGrenade;
+    Object selectedGrenade;
     public float throwForce = 5000f;
+
+    public void TestSetSelectedGrenadeTo(Object grenade)
+    {
+        selectedGrenade = grenade;
+    }
 
     void Awake()  //BULLSHIT kuo skiriasi nuo start?
     {
@@ -23,9 +28,13 @@ public class player : Character
         // Set up references.
         anim = GetComponent<Animator>();
         playerRigidbody = GetComponent<Rigidbody2D>();
+        if (GrenadeList == null)
+        GrenadeList = new List<Explosive>();
         if (GrenadeList.Count > 0)
             selectedGrenade = GrenadeList[0];
-        weaponManager = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>(); // BULLHIT  negalima naudot tag tokiam dalykui turbut, o kas kai bus daugiauweponslotu playerio?
+        if(GameObject.FindGameObjectWithTag("PlayerWeaponSlot") != null)
+        if(GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>() != null)
+            weaponManager = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>(); // BULLHIT  negalima naudot tag tokiam dalykui turbut, o kas kai bus daugiauweponslotu playerio?
         speed = 210;
     }
 
@@ -39,9 +48,11 @@ public class player : Character
     {
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
+        if(playerRigidbody!=null)
         Move(h, v);
         Controls();
-        Turning(); // Turn the player to face the mouse cursor.
+        if (Camera.current != null)
+            Turning(); // Turn the player to face the mouse cursor.
         //Animating(h, v); // Animate the player. //BULLSHIT kam nurodyti h ir v jei jau bus issaugota i omvement vectoriu tik atsargiai kad nepakelti auksciau nes tada nebus
     }
 
@@ -124,14 +135,15 @@ public class player : Character
         weaponManager.cooldownEnded = true;
     }
 
-    private void UseGrenade()
+    public void UseGrenade()
     {
         Vector3 instantiatePos = transform.position;
-        Debug.Log("throw");
         if (selectedGrenade != null)
         {
-            Explosive nade = Instantiate(selectedGrenade, instantiatePos, transform.rotation);
-            nade.Throw(throwForce);
+            Debug.Log("throw");
+
+            Object nade = Instantiate(selectedGrenade, instantiatePos, transform.rotation);
+            //nade.Throw();
         }
     }
 }
