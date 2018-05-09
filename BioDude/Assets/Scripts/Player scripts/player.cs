@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class player : Character
 {
@@ -142,7 +143,8 @@ public class player : Character
         {
             Debug.Log("throw");
 
-            Object nade = Instantiate(selectedGrenade, instantiatePos, transform.rotation);
+            var nade = PrefabUtility.InstantiatePrefab(selectedGrenade) as GameObject;
+            //Object nade = Instantiate(selectedGrenade, instantiatePos, transform.rotation);
             //nade.Throw();
         }
     }

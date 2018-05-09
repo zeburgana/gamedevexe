@@ -22,7 +22,7 @@ public class WeaponEquipTests {
         objectlauncher.TestSetSelectedGrenadeTo(ToBeThrownObject);
         objectlauncher.GetComponent<player>().UseGrenade();
         //yield return new WaitForSeconds(1);
-        var spawnedObject = GameObject.FindGameObjectWithTag("Explosive");
+        var spawnedObject = GameObject.FindWithTag("Explosive");
         Debug.Log(spawnedObject);
         var ThrownObject = PrefabUtility.GetPrefabParent(spawnedObject);
         Debug.Log(ThrownObject);
