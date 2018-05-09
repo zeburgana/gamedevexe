@@ -4,21 +4,41 @@ using UnityEngine;
 
 public class Head : MonoBehaviour {
 
-    public float targetAngle;
     public float rotationSpeed = 1f;
     public bool canRotate = true;
-    public bool isRotated; // is head finished rotating to its target angle
+    public bool isRotated = false; // is head finished rotating to its target angle
+    public float angle;
+    //public bool isRotating = false;
 
-	// Use this for initialization
-	void Start () {
+    public float targetAngle;
+    //private float prevRotation;
+    //public float currentrotation;
+
+
+    // Use this for initialization
+    void Start () {
+        //currentrotation = transform.rotation.z;
+        //prevRotation = currentrotation;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        isRotated = (Quaternion.Angle(transform.rotation, Quaternion.Euler(0, 0, targetAngle)) == 0);
+	void Update ()
+    {
+        //currentrotation = transform.rotation.z;
+        //isRotating = (prevRotation != currentrotation);
+        //prevRotation = currentrotation;
+
+        angle = Quaternion.Angle(transform.rotation, Quaternion.Euler(0, 0, targetAngle)); 
         if (canRotate && !isRotated)
         {
+            isRotated = (Quaternion.Angle(transform.rotation, Quaternion.Euler(0, 0, targetAngle)) == 0);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, targetAngle), rotationSpeed);
         }
+    }
+
+    public void SetTargetAngle(float angle)
+    {
+        targetAngle = angle;
+        isRotated = (Quaternion.Angle(transform.rotation, Quaternion.Euler(0, 0, targetAngle)) == 0);
     }
 }

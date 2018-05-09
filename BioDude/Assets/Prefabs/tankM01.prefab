@@ -140,7 +140,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1666649340742718}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -42.747883, y: -45.574303, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 4435466633070676}
@@ -320,10 +320,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab7739e20b9ee654a99df62698893c82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetAngle: 0
   rotationSpeed: 1
   canRotate: 1
   isRotated: 0
+  angle: 0
+  targetAngle: 0
 --- !u!114 &114290566472367708
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -350,9 +351,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   targets:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   delay: 1
 --- !u!114 &114472378151854514
@@ -388,21 +386,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthMax: 0
-  damage: 1
-  head: {fileID: 4088987559588222}
-  player: {fileID: 0}
-  isAlerted: 0
   visionAngle: 90
   visionRange: 10
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 16384
-  lastPositionTargetSeen: {fileID: 0}
   localSearchRadius: 5
   localSearchTryLocation: 3
+  localSearchLookAroundTimes: 2
   fromAngleToTurnHead: 15
   toAngleToTurnHead: 90
-  localSearchLookAroundTimes: 2
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 131072
+  widthOfFirePathChecker: 0.1
+  isAlerted: 0
+  Meleedamage: 1
 --- !u!114 &114769018228361748
 MonoBehaviour:
   m_ObjectHideFlags: 1
