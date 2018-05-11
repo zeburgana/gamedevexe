@@ -213,6 +213,7 @@ public abstract class Tank : Character
             }
             else // can't see anymore
             {
+                playerAllerting.howManySeeMe--;
                 CantSeePlayerAnyMore();
             }
         }
@@ -226,7 +227,7 @@ public abstract class Tank : Character
             else //if someone will force to not allerted then enemy can see player
             {
                 playerAllerting.howManySeeMe--;
-                ai.canMove = false;
+                //ai.canMove = false;
             }
         }
 
@@ -235,7 +236,6 @@ public abstract class Tank : Character
     protected virtual void CantSeePlayerAnyMore()
     {
         lastPositionTargetSeen.position = player.transform.position;
-        playerAllerting.howManySeeMe--;
         PursuePlayer();
     }
 

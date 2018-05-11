@@ -52,6 +52,6 @@ public class MeleeTank : Tank
     protected override void Die()
     {
         // enemy death: smokes and stoped movement
-        Destroy(this);
+        Destroy(gameObject);
     }
 }
