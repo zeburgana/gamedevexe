@@ -20,11 +20,7 @@ public class MeleeTank : Tank
         HpBar.Initiate();
     }
 
-    // Update is called once per frame
-    void Update () {
-    {
-        Instantiate();
-    }
+
 
     // Update is called once per frame
     void Update()
