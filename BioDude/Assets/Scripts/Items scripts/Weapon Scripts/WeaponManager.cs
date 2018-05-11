@@ -128,6 +128,8 @@ public class WeaponManager : MonoBehaviour
                 weaponManager.cooldownEnded = false;
                 weapon.currentClipAmmo--;
                 StartCoroutine("Cooldown");
+                GameObject newBullet = Instantiate(weapon.projectile, projectileVector, transform.rotation);
+                newBullet.GetComponent<Bullet>().Initiate(weapon.timeUntilSelfDestrucion, weapon.projectileSpeed, weapon.damage);
                 Instantiate(weapon.projectile, projectileVector, transform.rotation);
                 if (weapon.currentClipAmmo == 0 && weapon.currentAmmo > 0)
                     StartCoroutine(weaponManager.Reload());
