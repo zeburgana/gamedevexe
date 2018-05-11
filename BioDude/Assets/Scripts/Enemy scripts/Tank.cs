@@ -38,6 +38,7 @@ public abstract class Tank : Character
     protected bool isLooking = false;
     protected Vector2 directionToPlayer;
     protected Transform lastPositionTargetSeen;
+    protected EnemyHPBar HpBar;
 
     protected Animator animator;
 

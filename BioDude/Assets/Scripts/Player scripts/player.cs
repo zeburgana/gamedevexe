@@ -35,13 +35,17 @@ public class player : Character
         base.Initiate();
     }
 
+    private void Update()
+    {
+        Controls();
+        Turning(); // Turn the player to face the mouse cursor.
+    }
+
     void FixedUpdate()
     {
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
         Move(h, v);
-        Controls();
-        Turning(); // Turn the player to face the mouse cursor.
         //Animating(h, v); // Animate the player. //BULLSHIT kam nurodyti h ir v jei jau bus issaugota i omvement vectoriu tik atsargiai kad nepakelti auksciau nes tada nebus
     }
 
