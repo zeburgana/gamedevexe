@@ -85,15 +85,17 @@ MonoBehaviour:
   weaponSound: {fileID: 8300000, guid: 4ad6cd90a764008468d613af633c9ee9, type: 3}
   projectile: {fileID: 1661742638681246, guid: 6d05574080e4b714a937d5098ba9eb02, type: 2}
   tip: {fileID: 1461646437702750}
-  projectileSpeed: 1500
+  projectileSpeed: 1000
   timeUntilSelfDestrucion: 2
-  cooldown: 0.02
-  projectileType: 1
+  cooldown: 0.2
+  weaponType: 0
   maxAmmo: 60
-  currentAmmo: 48
+  currentAmmo: 36
   clipSize: 12
-  currentClipAmmo: 12
+  currentClipAmmo: 4
   reloadTime: 2
+  accuracy: 50
+  projectileOffset: 0
 --- !u!212 &212249835247098000
 SpriteRenderer:
   m_ObjectHideFlags: 1

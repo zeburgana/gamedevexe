@@ -11,16 +11,10 @@ public class WeaponPickup : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-       spawnedWeapon = weapon;
+        spawnedWeapon = weapon;
         weaponManager = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>();     
     }
 	
-	// Update is called once per frame
-	void Update () {
-		if(pickedUp) // destroy should be called in OnTriggerEnter method
-            Destroy(this.gameObject);
-	}
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "Player")
@@ -37,6 +31,9 @@ public class WeaponPickup : MonoBehaviour {
                 weaponManager.weaponArray[1] = spawnedWeapon;
                 pickedUp = true;
             }
+            Destroy(gameObject);
+
         }
+
     }
 }
