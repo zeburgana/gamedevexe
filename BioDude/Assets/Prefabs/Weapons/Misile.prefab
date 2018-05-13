@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114752037745624992}
   - component: {fileID: 50830407983835972}
   - component: {fileID: 61548115687115258}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Misile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.72, y: 9.25}
+    oldSize: {x: 2.86, y: 4.63}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -99,11 +99,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a5974c503522f40b677d50352c5e86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  started: 0
   speed: 5
   rotSpeed: 200
+  radius: 3
+  force: 500
   explosionEffect: {fileID: 1175786858352720, guid: df7cbf2ffde1d3848ab52efe0d38fdfe,
     type: 2}
-  radius: 5
+  radius: 3
+  damage: 40
   force: 500
 --- !u!212 &212624534317966730
 SpriteRenderer:

@@ -100,7 +100,7 @@ public class CameraScript : MonoBehaviour {
         {
             if (direction == Vector2.zero)
             {
-                float dirAngle = Player.GetComponent<PlayerMovement>().GetDirectionAngle();
+                float dirAngle = Player.GetComponent<player>().GetDirectionAngle() * Mathf.Deg2Rad;
                 direction = new Vector2(Mathf.Cos(dirAngle), Mathf.Sin(dirAngle));
             }
             Offset = transform.position - Player.transform.position;

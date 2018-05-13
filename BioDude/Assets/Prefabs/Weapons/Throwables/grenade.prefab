@@ -99,11 +99,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df8114a8a4325e94dbb61d3610f0a85b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  started: 0
   delay: 2
   explosionEffect: {fileID: 1175786858352720, guid: df7cbf2ffde1d3848ab52efe0d38fdfe,
     type: 2}
   radius: 3
-  force: 500
+  force: 2500
+  damage: 40
 --- !u!212 &212330421322112496
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -155,11 +155,12 @@ public class Achievement : MonoBehaviour
     {
         unlocked = value;
 
-        int tmpPoints = PlayerPrefs.GetInt("Points");
 
-        PlayerPrefs.SetInt("Points", tmpPoints += points);
         if (value == true)
         {
+            int tmpPoints = PlayerPrefs.GetInt("Points");
+
+            PlayerPrefs.SetInt("Points", tmpPoints += points);
             PlayerPrefs.SetInt(name, 1);
         }
         else

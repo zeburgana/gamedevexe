@@ -31,11 +31,7 @@ TagManager:
   - Pickup
   - Grenade
   - Nonwalkable
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Rocket
   - 
   - 
   - 
@@ -50,4 +46,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: FloatingHP
+    uniqueID: 2754501711
     locked: 0

@@ -4,19 +4,23 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class GuidedMisile : Explosive {
-
-    public float speed = 5f;
-    public float rotSpeed = 200f;
+    [HideInInspector]
+    public float speed;
+    [HideInInspector]
+    public float rotSpeed;
+    [HideInInspector]
+    public float radius;
+    [HideInInspector]
+    public float force;
 
     public GameObject explosionEffect;
-
-    public float radius = 3f;
-    public float force = 500f;
+    public float damage = 40f;
 
     private Rigidbody2D body;
 	// Use this for initialization
 	void Start () {
         body = GetComponent<Rigidbody2D>();
+        Invoke("Explode", 4f);
 	}
 	
 	// Update is called once per frame
@@ -36,6 +40,16 @@ public class GuidedMisile : Explosive {
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Explode();
+        //if (collision.collider.tag == "Enemy")
+        //{
+        //    Explode();
+        //    Destroy(collision.gameObject);
+        //}
+
+        //if (collision.collider.tag == "Wallmap")
+        //{
+        //    Explode();
+        //}
     }
     public override void Explode()
     {
@@ -49,10 +63,29 @@ public class GuidedMisile : Explosive {
             if (rb != null)
             {
                 Debug.Log("rigidbody found");
-                AddExplosionForce(rb, force, transform.position, radius);
+                AddExplosionForce(rb, force, transform.position, radius, damage);
             }
         }
         Destroy(gameObject);
     }
 
+    public void setSpeed(float value)
+    {
+        speed = value;
+    }
+
+    public void setRotationSpeed(float value)
+    {
+        rotSpeed = value;
+    }
+
+    public void setRadius(float value)
+    {
+        radius = value;
+    }
+
+    public void setForce(float value)
+    {
+        force = value;
+    }
 }

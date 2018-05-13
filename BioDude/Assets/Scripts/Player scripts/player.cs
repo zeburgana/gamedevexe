@@ -1,85 +1,140 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class player : MonoBehaviour
+public class player : Character
 {
-    public float speed = 6f;            // The speed that the player will move at.
+    public float speed { get; set; }            // The speed that the player will move at.
 
-    Vector3 movement;                   // The vector to store the direction of the player's movement.
+    Vector2 movement;                   // The vector to store the direction of the player's movement.
     Animator anim;                      // Reference to the animator component.
-    Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
-    int floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
-    float camRayLength = 100f;          // The length of the ray from the camera into the scene.
+    Rigidbody2D playerRigidbody;          // Reference to the player's rigidbody.
 
-    void Awake()
+    public PauseMenu PausemenuCanvas;
+    private float rot_z;
+    private WeaponManager weaponManager; 
+    public List<Explosive> GrenadeList; // BULLSHIT  reikia karkur kitur deti
+    Explosive selectedGrenade;
+    public float throwForce = 5000f;
+
+    void Awake()  //BULLSHIT kuo skiriasi nuo start?
     {
-        // Create a layer mask for the floor layer.
-        floorMask = LayerMask.GetMask("Floor");
-
+        Initiate();
         // Set up references.
         anim = GetComponent<Animator>();
-        playerRigidbody = GetComponent<Rigidbody>();
+        playerRigidbody = GetComponent<Rigidbody2D>();
+        if (GrenadeList.Count > 0)
+            selectedGrenade = GrenadeList[0];
+        weaponManager = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>(); // BULLHIT  negalima naudot tag tokiam dalykui turbut, o kas kai bus daugiauweponslotu playerio?
+        speed = 210;
     }
 
+    override protected void Initiate()
+    {
+        healthMax = 100;
+        base.Initiate();
+    }
+
+    private void Update()
+    {
+        Controls();
+        Turning(); // Turn the player to face the mouse cursor.
+    }
 
     void FixedUpdate()
     {
-        // Store the input axes.
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
-
-        // Move the player around the scene.
         Move(h, v);
+        //Animating(h, v); // Animate the player. //BULLSHIT kam nurodyti h ir v jei jau bus issaugota i omvement vectoriu tik atsargiai kad nepakelti auksciau nes tada nebus
+    }
 
-        // Turn the player to face the mouse cursor.
-        Turning();
-
-        // Animate the player.
-        Animating(h, v);
+    void Controls() //BULLSHIT reikia susitvarkyti ir apgalvoti ar viskas bus ok jei vienu framu pasileistu visos komandos nes nenaudojami else if - galbut reikia debouncing arba kintamuju delayinti veiksma kitam framui  
+    {
+        if (Input.GetButtonDown("Fire"))
+            weaponManager.Shoot();
+        if (Input.GetButtonDown("ThrowGranade"))
+            UseGrenade();
+        if (Input.GetButtonDown("Reload"))
+            Reload();
+        if (Input.GetButtonDown("SwitchWeapons"))
+            weaponManager.SwitchWeapon();
     }
 
     void Move(float h, float v)
     {
-        // Set the movement vector based on the axis input.
-        movement.Set(h, 0f, v);
-
-        // Normalise the movement vector and make it proportional to the speed per second.
-        movement = movement.normalized * speed * Time.deltaTime;
-
-        // Move the player to it's current position plus the movement.
-        playerRigidbody.MovePosition(transform.position + movement);
+        //playerRigidbody.velocity = new Vector2(h * speed, v * speed);  //option1
+        movement = new Vector2(h, v);         //option2
+        playerRigidbody.AddForce(movement * speed);
     }
 
     void Turning()
     {
-        // Create a ray from the mouse cursor on screen in the direction of the camera.
-        Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //Vector2 playerPos = Camera.main.WorldToViewportPoint(transform.position);   //old rotation method
+        //Vector2 mousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+        //directionAngle = Mathf.Atan2(mousePos.y - playerPos.y, mousePos.x - playerPos.x);
+        //transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, directionAngle * Mathf.Rad2Deg - 90));
+        Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        diff.Normalize();
 
-        // Create a RaycastHit variable to store information about what was hit by the ray.
-        RaycastHit floorHit;
+        Vector2 playerPos = Camera.main.ScreenToWorldPoint(transform.position);
 
-        // Perform the raycast and if it hits something on the floor layer...
-        if (Physics.Raycast(camRay, out floorHit, camRayLength, floorMask))
-        {
-            // Create a vector from the player to the point on the floor the raycast from the mouse hit.
-            Vector3 playerToMouse = floorHit.point - transform.position;
+        rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
 
-            // Ensure the vector is entirely along the floor plane.
-            playerToMouse.y = 0f;
-
-            // Create a quaternion (rotation) based on looking down the vector from the player to the mouse.
-            Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
-
-            // Set the player's rotation to this new rotation.
-            playerRigidbody.MoveRotation(newRotation);
-        }
+        Debug.DrawLine(transform.position, transform.position + 10 * transform.up);
     }
 
-    void Animating(float h, float v)
+    void Animating(float h, float v)  // THIS WILL BE USED kai turesim playeri !!!!!!
     {
         // Create a boolean that is true if either of the input axes is non-zero.
         bool walking = h != 0f || v != 0f;
 
         // Tell the animator whether or not the player is walking.
         anim.SetBool("IsWalking", walking);
+    }
+
+    // OVERRIDEN METHODS:
+
+    protected override void Die()
+    {
+        Destroy(gameObject.GetComponent<Rigidbody2D>());
+        Destroy(gameObject.GetComponent<CircleCollider2D>());
+        //^^^ pakeist i player death animation
+        Debug.Log("death");
+
+        //PausemenuCanvas.killtest();
+        StartCoroutine(PausemenuCanvas.PlayerDeath());
+    }
+
+    // OTHER METHODS:
+
+    public float GetDirectionAngle()
+    {
+        return rot_z;
+    }
+
+    private void Reload()
+    {
+        Weapon weapon = weaponManager.activeWeapon.GetComponent<Weapon>();
+        if (weapon.currentAmmo > 0 && !weaponManager.isReloading && weapon.currentClipAmmo != weapon.clipSize)
+            StartCoroutine(weaponManager.Reload());
+    }
+
+    IEnumerator Cooldown()
+    {
+        yield return new WaitForSeconds(2);
+        weaponManager.cooldownEnded = true;
+    }
+
+    private void UseGrenade()
+    {
+        Vector3 instantiatePos = transform.position;
+        Debug.Log("throw");
+        if (selectedGrenade != null)
+        {
+            Explosive nade = Instantiate(selectedGrenade, instantiatePos, transform.rotation);
+            nade.Throw(throwForce);
+        }
     }
 }

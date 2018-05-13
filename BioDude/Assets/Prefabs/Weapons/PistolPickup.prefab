@@ -78,9 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e883e16b4da5d4cb4d6a5be3361f3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapons:
-  - {fileID: 1164725371737510, guid: 20e1103fdde227d4fa389e993d13d0b4, type: 2}
-  currentSpawnedWeapon: {fileID: 0}
+  weapon: {fileID: 1164725371737510, guid: 20e1103fdde227d4fa389e993d13d0b4, type: 2}
 --- !u!212 &212374287808397090
 SpriteRenderer:
   m_ObjectHideFlags: 1
