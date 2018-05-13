@@ -88,15 +88,15 @@ MonoBehaviour:
   projectileSpeed: 1000
   timeUntilSelfDestrucion: 2
   cooldown: 0.2
-  weaponType: 0
-  maxAmmo: 60
-  currentAmmo: 36
   clipSize: 12
   currentClipAmmo: 4
   reloadTime: 2
   accuracy: 50
-  projectileOffset: 0
   damage: 2
+  allertingRadius: 5
+  cameraRecoil: 2
+  ammoType: 0
+  isDiscovered: 0
 --- !u!212 &212249835247098000
 SpriteRenderer:
   m_ObjectHideFlags: 1

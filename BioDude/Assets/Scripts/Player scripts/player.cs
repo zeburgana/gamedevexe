@@ -57,8 +57,10 @@ public class player : Character
             UseGrenade();
         if (Input.GetButtonDown("Reload"))
             Reload();
-        if (Input.GetButtonDown("SwitchWeapons"))
-            weaponManager.SwitchWeapon();
+        if (Input.GetButtonDown("SwitchWeaponRight"))
+            weaponManager.SwitchWeaponRight();
+        if (Input.GetButtonDown("SwitchWeaponLeft"))
+            weaponManager.SwitchWeaponLeft();
     }
 
     void Move(float h, float v)
@@ -116,9 +118,7 @@ public class player : Character
 
     private void Reload()
     {
-        Weapon weapon = weaponManager.activeWeapon.GetComponent<Weapon>();
-        if (weapon.currentAmmo > 0 && !weaponManager.isReloading && weapon.currentClipAmmo != weapon.clipSize)
-            StartCoroutine(weaponManager.Reload());
+        weaponManager.Reload();
     }
 
     IEnumerator Cooldown()

@@ -41,7 +41,7 @@ public class Firearm : MonoBehaviour {
                 animator.SetTrigger("Fire");
             timeTillNextShoot = shootingRate;
             GameObject newBullet = Instantiate(bulletPrefab, shootingFrom.position, transform.rotation, projectileParent);
-            newBullet.GetComponent<Bullet>().Initiate(bulletDestroyAfter, bulletSpeed, damage);
+            newBullet.GetComponent<Bullet>().Instantiate(bulletDestroyAfter, bulletSpeed, damage);
         }
     }
 

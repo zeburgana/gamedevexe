@@ -862,6 +862,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114610028058103794, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
+        type: 2}
+      propertyPath: weaponArray.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114610028058103794, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
+        type: 2}
+      propertyPath: explosiveArray.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4082924806394334, guid: daf86fe2f2bb1e14d97bff61bd885bd0, type: 2}
       propertyPath: m_LocalPosition.x
       value: -0.24571745
@@ -899,6 +909,29 @@ Prefab:
       propertyPath: PausemenuCanvas
       value: 
       objectReference: {fileID: 1755524269}
+    - target: {fileID: 114610028058103794, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
+        type: 2}
+      propertyPath: isReloading
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114610028058103794, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
+        type: 2}
+      propertyPath: weaponArray.Array.data[0]
+      value: 
+      objectReference: {fileID: 1164725371737510, guid: 20e1103fdde227d4fa389e993d13d0b4,
+        type: 2}
+    - target: {fileID: 114610028058103794, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
+        type: 2}
+      propertyPath: weaponArray.Array.data[1]
+      value: 
+      objectReference: {fileID: 1974288062265692, guid: 2f4e0959a2df30144832cb4c0c744432,
+        type: 2}
+    - target: {fileID: 114610028058103794, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
+        type: 2}
+      propertyPath: explosiveArray.Array.data[0]
+      value: 
+      objectReference: {fileID: 1099810171760856, guid: b6e7af60750b7e04db1beb99cdebf8f0,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: daf86fe2f2bb1e14d97bff61bd885bd0, type: 2}
   m_IsPrefabParent: 0
@@ -5498,7 +5531,7 @@ MonoBehaviour:
   manualDebugFloorRoof: 0
   showSearchTree: 0
   unwalkableNodeDebugSize: 0.3
-  logPathResults: 1
+  logPathResults: 0
   maxNearestNodeDistance: 100
   scanOnStartup: 1
   fullGetNearestSearch: 0
@@ -6448,6 +6481,11 @@ Prefab:
       value: 
       objectReference: {fileID: 1164725371737510, guid: 20e1103fdde227d4fa389e993d13d0b4,
         type: 2}
+    - target: {fileID: 114792722992018188, guid: 9efe888438709d840b3ca947be5fa8eb,
+        type: 2}
+      propertyPath: ammoAmount
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9efe888438709d840b3ca947be5fa8eb, type: 2}
   m_IsPrefabParent: 0
@@ -8609,6 +8647,16 @@ Prefab:
     - target: {fileID: 4100130882891524, guid: 1f4f9d462386746408ccd8dbba068fe5, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114379509639975668, guid: 1f4f9d462386746408ccd8dbba068fe5,
+        type: 2}
+      propertyPath: weaponID
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114379509639975668, guid: 1f4f9d462386746408ccd8dbba068fe5,
+        type: 2}
+      propertyPath: ammoAmount
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1f4f9d462386746408ccd8dbba068fe5, type: 2}
