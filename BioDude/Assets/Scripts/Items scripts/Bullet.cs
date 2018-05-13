@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private float damage;
+    //bool bulletFired = false;  //////////////////////////////
 
     /// <summary>
     /// give bullet speed and time after which it should destroy itself
@@ -27,4 +28,11 @@ public class Bullet : MonoBehaviour
         }
         Destroy(gameObject);
     }
+/*
+    IEnumerator Fire()
+    {
+        yield return new WaitForFixedUpdate();
+
+        GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(0, weapon.projectileSpeed));
+    }*/
 }

@@ -18,8 +18,6 @@ public class MeleeTank : Tank
         Instantiate();
     }
 
-
-
     // Update is called once per frame
     void Update()
     {

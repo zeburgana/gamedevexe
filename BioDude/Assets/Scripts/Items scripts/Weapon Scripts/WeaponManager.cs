@@ -9,11 +9,24 @@ public class WeaponManager : MonoBehaviour
         Player,
         Enemy
     }
+    public class itemStruct
+    {
+        public GameObject item;
+        public int itemCount;
+        public itemStruct(GameObject obj, int count = 0)
+        {
+            item = obj;
+            itemCount = count;
+        }
+
+    }
     public WeaponWielderType weaponWielderType;
     private WeaponManager weaponManager;
     private GameObject weaponSlotType;
     private GameObject reloadObject;
     [HideInInspector]
+    public itemStruct[] GrenadeArray;
+    public itemStruct activeGrenade;
     public GameObject[] weaponArray;
     public GameObject activeWeapon;
     public GameObject activeWeaponTip;
@@ -63,7 +76,7 @@ public class WeaponManager : MonoBehaviour
                 maxAmmo = weapon.maxAmmo;
                 clipSize = weapon.clipSize;
                 currentClipAmmo = weapon.currentClipAmmo;
-                activeWeaponTip = weapon.tip;
+                activeWeaponTip.transform.localPosition = weapon.tip.transform.localPosition;
                 spriteRenderer.sprite = weaponArray[1].GetComponent<SpriteRenderer>().sprite;
 
 
@@ -76,7 +89,7 @@ public class WeaponManager : MonoBehaviour
                 maxAmmo = weapon.maxAmmo;
                 clipSize = weapon.clipSize;
                 currentClipAmmo = weapon.currentClipAmmo;
-                activeWeaponTip = weapon.tip;
+                activeWeaponTip.transform.localPosition = weapon.tip.transform.localPosition;
                 spriteRenderer.sprite = weaponArray[0].GetComponent<SpriteRenderer>().sprite;
             }
 
@@ -93,7 +106,7 @@ public class WeaponManager : MonoBehaviour
         maxAmmo = weapon.maxAmmo;
         clipSize = weapon.clipSize;
         currentClipAmmo = weapon.currentClipAmmo;
-        activeWeaponTip = weapon.tip;
+        activeWeaponTip.transform.localPosition = weapon.tip.transform.localPosition;
         weapon.Equip(gameObject);
     }
 
@@ -128,12 +141,55 @@ public class WeaponManager : MonoBehaviour
                 weaponManager.cooldownEnded = false;
                 weapon.currentClipAmmo--;
                 StartCoroutine("Cooldown");
-                GameObject newBullet = Instantiate(weapon.projectile, projectileVector, transform.rotation);
-                newBullet.GetComponent<Bullet>().Initiate(weapon.timeUntilSelfDestrucion, weapon.projectileSpeed, weapon.damage);
                 Instantiate(weapon.projectile, projectileVector, transform.rotation);
+                //Instantiate(weapon.projectile, projectileVector, transform.rotation);
+                GameObject newBullet = Instantiate(weapon.projectile, activeWeaponTip.transform.position, transform.rotation);
+                newBullet.GetComponent<Bullet>().Initiate(weapon.timeUntilSelfDestrucion, weapon.projectileSpeed, weapon.damage);
                 if (weapon.currentClipAmmo == 0 && weapon.currentAmmo > 0)
                     StartCoroutine(weaponManager.Reload());
             }
+        }
+    }
+    public void AddGrenade(GameObject grenade, int count)
+    {
+        int currentGrenade = -1;
+
+        for (int i = 0; i < GrenadeArray.Length; i++)
+        {
+            if (activeGrenade == GrenadeArray[i])
+            {
+                currentGrenade = i;
+                break;
+            }
+        }
+        if (currentGrenade > -1 && currentGrenade <= GrenadeArray.Length)
+        {
+            if (currentGrenade == GrenadeArray.Length)
+                currentGrenade = -1;
+            GrenadeArray[currentGrenade + 1].itemCount += count;
+        }
+        else
+        {
+            //GrenadeArray[] find index to put grenade
+        }
+    }
+    public void SwitchGrenade()
+    {
+        int currentGrenade = -1;
+
+        for (int i = 0; i < GrenadeArray.Length; i++)
+        {
+            if (activeGrenade == GrenadeArray[i])
+            {
+                currentGrenade = i;
+                break;
+            }
+        }
+        if (currentGrenade > -1 && currentGrenade <= GrenadeArray.Length)
+        {
+            if (currentGrenade == GrenadeArray.Length)
+                currentGrenade = -1;
+            activeGrenade = GrenadeArray[currentGrenade + 1];
         }
     }
 
