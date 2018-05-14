@@ -362,7 +362,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1629226856703174}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.781, y: -1.47, z: 0}
+  m_LocalPosition: {x: 1.1523991, y: -1.1305933, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4012096554539230}
@@ -483,7 +483,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: d531c094aa566494aaf0e39e66260ee8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -513,7 +513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41fc7c6e2e89b194e91fb5687113e02d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthMax: 0
+  healthMax: 100
   PausemenuCanvas: {fileID: 0}
   GrenadeList:
   - {fileID: 114999564766435556, guid: b6e7af60750b7e04db1beb99cdebf8f0, type: 2}
