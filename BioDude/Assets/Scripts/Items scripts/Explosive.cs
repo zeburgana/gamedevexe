@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Explosive : MonoBehaviour {
     public bool started = false;
-    public int AmmoType;
     public virtual void Explode()
     {
     }
