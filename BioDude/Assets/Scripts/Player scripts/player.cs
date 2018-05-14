@@ -46,7 +46,7 @@ public class player : Character
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
         Move(h, v);
-        Animating(h, v); // Animate the player. //BULLSHIT kam nurodyti h ir v jei jau bus issaugota i omvement vectoriu tik atsargiai kad nepakelti auksciau nes tada nebus
+        Animating(h, v); // Animate the player. //BULLSHIT kam nurodyti h ir v jei jau bus issaugota i movement vectoriu tik atsargiai kad nepakelti auksciau nes tada nebus
     }
 
     void Controls() //BULLSHIT reikia susitvarkyti ir apgalvoti ar viskas bus ok jei vienu framu pasileistu visos komandos nes nenaudojami else if - galbut reikia debouncing arba kintamuju delayinti veiksma kitam framui  
@@ -82,9 +82,10 @@ public class player : Character
         Vector2 playerPos = Camera.main.ScreenToWorldPoint(transform.position);
 
         rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+        transform.rotation = Quaternion.Euler(0f, 0f, rot_z + 90);
 
-        Debug.DrawLine(transform.position, transform.position + 10 * transform.up);
+        Debug.Log(Quaternion.Euler(0f, 0f, rot_z + 90).z);
+        //Debug.DrawLine(transform.position, transform.position + 10 * transform.up);
     }
 
     void Animating(float h, float v)
