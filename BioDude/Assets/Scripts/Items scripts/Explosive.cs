@@ -22,7 +22,6 @@ public class Explosive : MonoBehaviour {
         Character charObj = body.gameObject.GetComponent<Character>();
         if (charObj != null)
         {
-            Debug.Log("damaged");
             body.gameObject.GetComponent<Character>().Damage(damage * calc);
         }
     }

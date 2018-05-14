@@ -70,7 +70,6 @@ public class GuidedMisile : Explosive {
             Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                Debug.Log("rigidbody found");
                 AddExplosionForce(rb, force, transform.position, radius, damage);
             }
         }

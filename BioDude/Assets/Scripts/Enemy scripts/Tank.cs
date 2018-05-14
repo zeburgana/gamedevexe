@@ -55,6 +55,7 @@ public abstract class Tank : Character
         playerAllerting = player.GetComponent<Allerting>();
         HpBar = transform.Find("EnemyCanvas").GetComponent<EnemyHPBar>();
         HpBar.Initiate();
+        healthCurrent = healthMax;
     }
 
     //PUBLIC METHODS:
@@ -253,6 +254,7 @@ public abstract class Tank : Character
     // OVERRIDES:
     public override void Damage(float amount)
     {
+        PursuePlayer();
         base.Damage(amount);
         HpBar.SetHealth(GetHealth());
     }

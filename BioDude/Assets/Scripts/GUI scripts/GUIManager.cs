@@ -16,7 +16,7 @@ public class GUIManager : MonoBehaviour
     void Start()
     {
         healthBar.maxValue = playerCharacter.healthMax;
-
+        AmmoText = transform.Find("PlayerAmmoText").GetComponent<Text>();
     }
 
     // Update is called once per frame
