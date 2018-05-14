@@ -1,28 +1,28 @@
 fileFormatVersion: 2
-guid: 98e1ba581091d17499d005007756a42e
-timeCreated: 1526250237
+guid: 54aad39e8c1906949ae14d8c01c584ca
+timeCreated: 1526288068
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: all parts_0
-    21300002: all parts_1
-    21300004: all parts_2
-    21300006: all parts_3
-    21300008: all parts_4
-    21300010: all parts_5
-    21300012: all parts_6
-    21300014: all parts_7
-    21300016: all parts_8
-    21300018: all parts_9
-    21300020: all parts_10
-    21300022: all parts_11
-    21300024: all parts_12
-    21300026: all parts_13
-    21300028: all parts_14
-    21300030: all parts_15
-    21300032: all parts_16
-    21300034: all parts_17
-    21300036: all parts_18
+    21300000: all parts rotated_0
+    21300002: all parts rotated_1
+    21300004: all parts rotated_2
+    21300006: all parts rotated_3
+    21300008: all parts rotated_4
+    21300010: all parts rotated_5
+    21300012: all parts rotated_6
+    21300014: all parts rotated_7
+    21300016: all parts rotated_8
+    21300018: all parts rotated_9
+    21300020: all parts rotated_10
+    21300022: all parts rotated_11
+    21300024: all parts rotated_12
+    21300026: all parts rotated_13
+    21300028: all parts rotated_14
+    21300030: all parts rotated_15
+    21300032: all parts rotated_16
+    21300034: all parts rotated_17
+    21300036: all parts rotated_18
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -65,7 +65,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 200
+  spritePixelsToUnits: 220
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -99,111 +99,111 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: all parts_0
+      name: all parts rotated_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 222
-        width: 116
-        height: 220
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: all parts_1
-      rect:
-        serializedVersion: 2
-        x: 148
-        y: 380
-        width: 176
-        height: 159
+        x: 142
+        y: 504
+        width: 50
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0.43, y: 0.17751871}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: all parts_2
+      name: all parts rotated_1
       rect:
         serializedVersion: 2
-        x: 344
-        y: 372
-        width: 97
-        height: 61
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: all parts_3
-      rect:
-        serializedVersion: 2
-        x: 504
-        y: 408
-        width: 60
-        height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: all parts_4
-      rect:
-        serializedVersion: 2
-        x: 504
-        y: 356
-        width: 62
-        height: 49
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: all parts_5
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 287
-        width: 60
-        height: 41
+        x: 195
+        y: 504
+        width: 49
+        height: 62
       alignment: 9
-      pivot: {x: 0.27726415, y: 0.5}
+      pivot: {x: 0.57, y: 0.1775187}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: all parts_6
+      name: all parts rotated_2
       rect:
         serializedVersion: 2
-        x: 340
-        y: 287
-        width: 100
-        height: 61
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: all parts_7
-      rect:
-        serializedVersion: 2
-        x: 506
-        y: 283
+        x: 263
+        y: 506
         width: 54
         height: 54
+      alignment: 9
+      pivot: {x: 0.20491876, y: 0.1838424}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: all parts rotated_3
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 500
+        width: 45
+        height: 64
+      alignment: 9
+      pivot: {x: 0.46206123, y: 0.15321398}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: all parts rotated_4
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 504
+        width: 49
+        height: 60
+      alignment: 9
+      pivot: {x: 0.4303159, y: 0.158549}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: all parts rotated_5
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 504
+        width: 57
+        height: 60
+      alignment: 9
+      pivot: {x: 0.49001592, y: 0.17751871}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: all parts rotated_6
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 495
+        width: 44
+        height: 78
+      alignment: 9
+      pivot: {x: 0.5129339, y: 0.10601846}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: all parts rotated_7
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 344
+        width: 61
+        height: 97
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -211,27 +211,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: all parts_8
+      name: all parts rotated_8
       rect:
         serializedVersion: 2
-        x: 355
-        y: 227
-        width: 98
-        height: 53
-      alignment: 9
-      pivot: {x: 0.2993298, y: 0.4814479}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: all parts_9
-      rect:
-        serializedVersion: 2
-        x: 500
-        y: 227
-        width: 64
-        height: 45
+        x: 252
+        y: 340
+        width: 61
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -239,125 +225,139 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: all parts_10
+      name: all parts rotated_9
       rect:
         serializedVersion: 2
-        x: 116
-        y: 140
-        width: 100
-        height: 65
+        x: 320
+        y: 355
+        width: 53
+        height: 98
       alignment: 9
-      pivot: {x: 0.29211333, y: 0.4543112}
+      pivot: {x: 0.5, y: 0.29}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: all parts_11
+      name: all parts rotated_10
       rect:
         serializedVersion: 2
-        x: 236
-        y: 152
-        width: 82
-        height: 53
+        x: 391
+        y: 355
+        width: 53
+        height: 98
       alignment: 9
-      pivot: {x: 0.20120835, y: 0.55603516}
+      pivot: {x: 0.5, y: 0.29}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: all parts_12
+      name: all parts rotated_11
       rect:
         serializedVersion: 2
-        x: 355
-        y: 156
-        width: 98
-        height: 53
+        x: 488
+        y: 340
+        width: 84
+        height: 125
       alignment: 9
-      pivot: {x: 0.2993298, y: 0.4814479}
+      pivot: {x: 0.5, y: 0.37}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: all parts_13
+      name: all parts rotated_12
       rect:
         serializedVersion: 2
-        x: 504
-        y: 156
-        width: 60
-        height: 49
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: all parts_14
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 48
-        width: 100
-        height: 65
+        x: 61
+        y: 148
+        width: 159
+        height: 176
       alignment: 9
-      pivot: {x: 0.2921133, y: 0.5456888}
+      pivot: {x: 0.5, y: 0.64}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: all parts_15
+      name: all parts rotated_13
       rect:
         serializedVersion: 2
-        x: 236
-        y: 48
-        width: 82
-        height: 56
+        x: 395
+        y: 236
+        width: 53
+        height: 82
       alignment: 9
-      pivot: {x: 0.2012084, y: 0.4439648}
+      pivot: {x: 0.44631267, y: 0.22239777}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: all parts_16
+      name: all parts rotated_14
       rect:
         serializedVersion: 2
-        x: 340
-        y: 28
-        width: 125
+        x: 496
+        y: 236
+        width: 56
         height: 84
       alignment: 9
-      pivot: {x: 0.44, y: 0.5}
+      pivot: {x: 0.5536873, y: 0.2223978}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: all parts_17
+      name: all parts rotated_15
       rect:
         serializedVersion: 2
-        x: 504
-        y: 79
-        width: 60
-        height: 57
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 272
+        y: 128
+        width: 41
+        height: 60
+      alignment: 9
+      pivot: {x: 0.53, y: 0.24}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: all parts_18
+      name: all parts rotated_16
       rect:
         serializedVersion: 2
-        x: 495
-        y: 28
-        width: 78
-        height: 44
+        x: 395
+        y: 116
+        width: 65
+        height: 100
+      alignment: 9
+      pivot: {x: 0.5411241, y: 0.2721002}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: all parts rotated_17
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 116
+        width: 65
+        height: 100
+      alignment: 9
+      pivot: {x: 0.4588759, y: 0.2721002}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: all parts rotated_18
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 0
+        width: 222
+        height: 116
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
