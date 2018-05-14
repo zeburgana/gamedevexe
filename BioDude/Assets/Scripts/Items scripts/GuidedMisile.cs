@@ -5,13 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class GuidedMisile : Explosive {
     [HideInInspector]
-    public float speed = 0;
+    public float speed;
     [HideInInspector]
-    public float rotSpeed = 0;
+    public float rotSpeed;
     [HideInInspector]
-    public float radius = 0;
+    public float radius;
     [HideInInspector]
-    public float force = 0;
+    public float force;
 
     public GameObject explosionEffect;
     public float damage = 40f;
@@ -22,14 +22,6 @@ public class GuidedMisile : Explosive {
         body = GetComponent<Rigidbody2D>();
         Invoke("Explode", 4f);
 	}
-   
-    public void Instantiate(float speed, float rotationSpeed, float radius, float force)
-    {
-        this.speed = speed;
-        this.rotSpeed = rotationSpeed;
-        this.radius = radius;
-        this.force = force;
-    }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -70,9 +62,30 @@ public class GuidedMisile : Explosive {
             Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
+                Debug.Log("rigidbody found");
                 AddExplosionForce(rb, force, transform.position, radius, damage);
             }
         }
         Destroy(gameObject);
+    }
+
+    public void setSpeed(float value)
+    {
+        speed = value;
+    }
+
+    public void setRotationSpeed(float value)
+    {
+        rotSpeed = value;
+    }
+
+    public void setRadius(float value)
+    {
+        radius = value;
+    }
+
+    public void setForce(float value)
+    {
+        force = value;
     }
 }

@@ -35,17 +35,13 @@ public class player : Character
         base.Initiate();
     }
 
-    private void Update()
-    {
-        Controls();
-        Turning(); // Turn the player to face the mouse cursor.
-    }
-
     void FixedUpdate()
     {
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
         Move(h, v);
+        Controls();
+        Turning(); // Turn the player to face the mouse cursor.
         //Animating(h, v); // Animate the player. //BULLSHIT kam nurodyti h ir v jei jau bus issaugota i omvement vectoriu tik atsargiai kad nepakelti auksciau nes tada nebus
     }
 
@@ -57,10 +53,8 @@ public class player : Character
             UseGrenade();
         if (Input.GetButtonDown("Reload"))
             Reload();
-        if (Input.GetButtonDown("SwitchWeaponRight"))
-            weaponManager.SwitchWeaponRight();
-        if (Input.GetButtonDown("SwitchWeaponLeft"))
-            weaponManager.SwitchWeaponLeft();
+        if (Input.GetButtonDown("SwitchWeapons"))
+            weaponManager.SwitchWeapon();
     }
 
     void Move(float h, float v)
@@ -118,7 +112,9 @@ public class player : Character
 
     private void Reload()
     {
-        weaponManager.Reload();
+        Weapon weapon = weaponManager.activeWeapon.GetComponent<Weapon>();
+        if (weapon.currentAmmo > 0 && !weaponManager.isReloading && weapon.currentClipAmmo != weapon.clipSize)
+            StartCoroutine(weaponManager.Reload());
     }
 
     IEnumerator Cooldown()

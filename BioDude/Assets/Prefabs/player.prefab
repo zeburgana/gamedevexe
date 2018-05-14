@@ -49,21 +49,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1883471874904520
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4896022044139364}
-  m_Layer: 11
-  m_Name: WeaponTip
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!4 &4082924806394334
 Transform:
   m_ObjectHideFlags: 1
@@ -87,22 +72,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.898, y: 0.714, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4896022044139364}
-  m_Father: {fileID: 4082924806394334}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4896022044139364
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1883471874904520}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.73, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4394794294277236}
+  m_Father: {fileID: 4082924806394334}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50820240094380452
@@ -198,9 +169,13 @@ MonoBehaviour:
   weaponWielderType: 0
   weaponArray: []
   activeWeapon: {fileID: 0}
-  activeWeaponTip: {fileID: 1883471874904520}
+  activeWeaponTip: {fileID: 0}
   cooldownEnded: 1
   isReloading: 0
+  currentAmmo: 0
+  maxAmmo: 0
+  clipSize: 0
+  currentClipAmmo: 0
 --- !u!212 &212418783077590152
 SpriteRenderer:
   m_ObjectHideFlags: 1

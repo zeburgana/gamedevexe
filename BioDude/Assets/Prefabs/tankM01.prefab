@@ -176,7 +176,6 @@ GameObject:
   - component: {fileID: 224067068919010074}
   m_Layer: 5
   m_Name: Fill Area
-  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -589,7 +588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffba95c526e8b9e499755961d58ea867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthMax: 100
+  healthMax: 0
   visionAngle: 90
   visionRange: 10
   localSearchRadius: 5

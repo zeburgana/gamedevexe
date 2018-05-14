@@ -9,14 +9,13 @@ public class GUIManager : MonoBehaviour
     public Slider healthBar;
     public Text HPText;
     public player playerCharacter;
+    public PlayerAmmoManager playerAmmo;
     public Text AmmoText;
-    public WeaponManager weaponManager;
 
     // Use this for initialization
     void Start()
     {
         healthBar.maxValue = playerCharacter.healthMax;
-        AmmoText = transform.Find("PlayerAmmoText").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -24,10 +23,6 @@ public class GUIManager : MonoBehaviour
     {
         healthBar.value = playerCharacter.GetHealth();
         HPText.text = "HP: " + playerCharacter.GetHealth() + "/" + playerCharacter.healthMax;
-    }
-
-    public void SetBulletGUI(int currentClipAmmo, int currentAmmo)
-    {
-        AmmoText.text = currentClipAmmo + "/" + currentAmmo;
+        AmmoText.text = playerAmmo.currentClipAmmo + "/" + playerAmmo.currentAmmo;
     }
 }

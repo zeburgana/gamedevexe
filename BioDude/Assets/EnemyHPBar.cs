@@ -5,21 +5,21 @@ using UnityEngine.UI;
 
 public class EnemyHPBar : MonoBehaviour {
 
+    public GameObject EnemyObject;
     public Slider HpSlider;
     float height;
     Character EnemyCharacter;
-    GameObject EnemyObject;
 
     Vector3 EnemyWorldPos;
     Quaternion rotation;
     void Start()
     {
-        EnemyObject = transform.parent.gameObject;
         height = gameObject.transform.position.y - EnemyObject.transform.position.y;
         rotation = transform.rotation;
     }
     public void Initiate()
     {
+        Debug.Log("initiate method");
         EnemyCharacter = EnemyObject.GetComponent<Character>();
         HpSlider.maxValue = EnemyCharacter.healthMax;
         HpSlider.value = EnemyCharacter.healthCurrent;
@@ -32,6 +32,7 @@ public class EnemyHPBar : MonoBehaviour {
     }
     public void SetHealth(float value)
     {
+        Debug.Log("setting hp");
         if (!HpSlider.gameObject.activeInHierarchy && HpSlider.maxValue > value)
         {
             HpSlider.gameObject.SetActive(true);

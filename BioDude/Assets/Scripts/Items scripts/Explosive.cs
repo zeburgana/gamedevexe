@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Explosive : MonoBehaviour {
     public bool started = false;
-    public int AmmoType;
     public virtual void Explode()
     {
     }
@@ -22,6 +21,7 @@ public class Explosive : MonoBehaviour {
         Character charObj = body.gameObject.GetComponent<Character>();
         if (charObj != null)
         {
+            Debug.Log("damaged");
             body.gameObject.GetComponent<Character>().Damage(damage * calc);
         }
     }
