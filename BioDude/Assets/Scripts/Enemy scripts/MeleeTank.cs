@@ -57,4 +57,8 @@ public class MeleeTank : Tank
         Destroy(gameObject);    //changed to gameobject because "this" destroys only MeleeTank script and the tank still chases player
     }
     
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> dev
