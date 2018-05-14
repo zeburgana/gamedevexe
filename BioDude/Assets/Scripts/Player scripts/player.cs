@@ -46,7 +46,7 @@ public class player : Character
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
         Move(h, v);
-        //Animating(h, v); // Animate the player. //BULLSHIT kam nurodyti h ir v jei jau bus issaugota i omvement vectoriu tik atsargiai kad nepakelti auksciau nes tada nebus
+        Animating(h, v); // Animate the player. //BULLSHIT kam nurodyti h ir v jei jau bus issaugota i omvement vectoriu tik atsargiai kad nepakelti auksciau nes tada nebus
     }
 
     void Controls() //BULLSHIT reikia susitvarkyti ir apgalvoti ar viskas bus ok jei vienu framu pasileistu visos komandos nes nenaudojami else if - galbut reikia debouncing arba kintamuju delayinti veiksma kitam framui  
@@ -87,13 +87,13 @@ public class player : Character
         Debug.DrawLine(transform.position, transform.position + 10 * transform.up);
     }
 
-    void Animating(float h, float v)  // THIS WILL BE USED kai turesim playeri !!!!!!
+    void Animating(float h, float v)
     {
         // Create a boolean that is true if either of the input axes is non-zero.
         bool walking = h != 0f || v != 0f;
 
         // Tell the animator whether or not the player is walking.
-        anim.SetBool("IsWalking", walking);
+        anim.SetBool("IsMoving", walking);
     }
 
     // OVERRIDEN METHODS:

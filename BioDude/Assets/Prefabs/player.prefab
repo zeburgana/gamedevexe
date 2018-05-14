@@ -480,7 +480,7 @@ Animator:
   m_GameObject: {fileID: 1629226856703174}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 97c63704a992efb4aadf3123e772197c, type: 2}
+  m_Controller: {fileID: 9100000, guid: d531c094aa566494aaf0e39e66260ee8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -541,9 +541,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b54cf509ff4b043a9555299024d5d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponWielderType: 0
+  explosiveArray: []
+  activeGrenade: {fileID: 0}
   weaponArray: []
-  activeWeapon: {fileID: 0}
   activeWeaponTip: {fileID: 0}
   cooldownEnded: 1
   isReloading: 0
