@@ -64,7 +64,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1222882976599726}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.17, y: 2.04, z: 0}
+  m_LocalPosition: {x: -0.035, y: 1.406, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4399542992245506}
@@ -88,12 +88,15 @@ MonoBehaviour:
   projectileSpeed: 5
   timeUntilSelfDestrucion: 2
   cooldown: 1
-  weaponType: 2
-  maxAmmo: 10
-  currentAmmo: 8
   clipSize: 1
   currentClipAmmo: 1
   reloadTime: 3
+  accuracy: 0
+  damage: 2
+  allertingRadius: 10
+  cameraRecoil: 1
+  ammoType: 1
+  isDiscovered: 0
   rotationSpeed: 200
   radius: 3
   force: 500
