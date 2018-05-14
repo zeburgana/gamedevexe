@@ -38,6 +38,7 @@ public abstract class Tank : Character
     protected bool isLooking = false;
     protected Vector2 directionToPlayer;
     protected Transform lastPositionTargetSeen;
+    protected EnemyHPBar HpBar;
 
     protected Animator animator;
 
@@ -52,6 +53,8 @@ public abstract class Tank : Character
         aiPatrol = GetComponent<Patrol>();
         ai = GetComponent<IAstarAI>();
         playerAllerting = player.GetComponent<Allerting>();
+        HpBar = transform.Find("EnemyCanvas").GetComponent<EnemyHPBar>();
+        HpBar.Initiate();
     }
 
     //PUBLIC METHODS:
@@ -239,11 +242,18 @@ public abstract class Tank : Character
         PursuePlayer();
     }
 
-    //FOR CALCULATIONS:
+    // FOR CALCULATIONS:
 
     // these might be placed in more general location
     protected float VectorToAngle(Vector2 vect)
     {
         return Mathf.Atan2(vect.y, vect.x) * Mathf.Rad2Deg - 90;
+    }
+
+    // OVERRIDES:
+    public override void Damage(float amount)
+    {
+        base.Damage(amount);
+        HpBar.SetHealth(GetHealth());
     }
 }
