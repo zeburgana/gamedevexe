@@ -11,7 +11,8 @@ public class WeaponPickup : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-       spawnedWeapon = weapon;
+        spawnedWeapon = weapon;
+        Debug.Log(spawnedWeapon.ToString());
         weaponManager = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>();     
     }
 	
@@ -27,13 +28,13 @@ public class WeaponPickup : MonoBehaviour {
         {
             if (weaponManager.weaponArray[0] == null)
             {
-                other.transform.Find("WeaponSlot").GetComponent<WeaponManager>().UpdateWeapon(spawnedWeapon);
+                other.transform.Find("hand_R_WeaponSlot").GetComponent<WeaponManager>().UpdateWeapon(spawnedWeapon);
                 weaponManager.weaponArray[0] = spawnedWeapon;
                 pickedUp = true;
             }
             else if (weaponManager.weaponArray[0] != null && weaponManager.weaponArray[1] == null)
             {
-                other.transform.Find("WeaponSlot").GetComponent<WeaponManager>().UpdateWeapon(spawnedWeapon);
+                other.transform.Find("hand_R_WeaponSlot").GetComponent<WeaponManager>().UpdateWeapon(spawnedWeapon);
                 weaponManager.weaponArray[1] = spawnedWeapon;
                 pickedUp = true;
             }
