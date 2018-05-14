@@ -83,6 +83,7 @@ public class WeaponManager : MonoBehaviour
 
     private GUIManager guiManager;
     private CameraScript mainCameraScript;
+    private AudioSource audioSource;
 
 
     // Use this for initialization
@@ -97,10 +98,18 @@ public class WeaponManager : MonoBehaviour
         ///
 
         playerAnimator = transform.parent.GetComponent<Animator>();
-        playerAlerting = GetComponent<Allerting>();
+        playerAlerting = transform.parent.GetComponent<Allerting>();
+        audioSource = transform.parent.GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         SwitchWeaponRight();
         SwitchExplosiveRight();
+        
+        // fill weapons with bullets on start
+        foreach (GameObject w in weaponArray)
+        {
+            Weapon wcs = w.GetComponent<Weapon>();
+            wcs.currentClipAmmo = wcs.clipSize;
+        }
     }
 
     public void UpdateWeaponGUI() // update gui
@@ -188,6 +197,7 @@ public class WeaponManager : MonoBehaviour
             activeWeaponTip.transform.localPosition = aWeaponScript.tip.transform.localPosition;
             aWeaponScript.Equip(gameObject);
             awAmmoType = aWeaponScript.ammoType;
+            audioSource.clip = aWeaponScript.weaponSound;
         }
         UpdateBulletGUI();
     }
@@ -246,6 +256,8 @@ public class WeaponManager : MonoBehaviour
                     UpdateBulletGUI();
                     StartCoroutine("Cooldown");
                     mainCameraScript.AddOffset(aWeaponScript.cameraRecoil);
+                    playerAlerting.AllertSurroundings(aWeaponScript.allertingRadius);
+                    audioSource.Play();
 
                     switch (selectedFireArm) ////////////requires optimisation - maybe code firing in weapon prefabs, or leave like this
                     {
@@ -263,6 +275,10 @@ public class WeaponManager : MonoBehaviour
                         if (fireArmAmmo[awAmmoType].amount == 0)
                             UpdateWeaponGUI();
                     }
+                }
+                else
+                {
+                    Reload();
                 }
             }
         }

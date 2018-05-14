@@ -32,7 +32,6 @@ public class EnemyHPBar : MonoBehaviour {
     }
     public void SetHealth(float value)
     {
-        Debug.Log("setting hp");
         if (!HpSlider.gameObject.activeInHierarchy && HpSlider.maxValue > value)
         {
             HpSlider.gameObject.SetActive(true);

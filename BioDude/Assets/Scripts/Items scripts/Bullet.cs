@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private float damage;
+    private float damage = 0;
     //bool bulletFired = false;  //////////////////////////////
 
     /// <summary>
