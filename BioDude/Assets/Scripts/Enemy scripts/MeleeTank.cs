@@ -15,14 +15,6 @@ public class MeleeTank : Tank
     // Use this for initialization
     void Start()
     {
-        healthMax = 100;
-        Instantiate();
-        HpBar.Initiate();
-    }
-
-    // Update is called once per frame
-    void Update () {
-    {
         Instantiate();
     }
 
@@ -64,9 +56,5 @@ public class MeleeTank : Tank
         // enemy death: smokes and stoped movement
         Destroy(gameObject);    //changed to gameobject because "this" destroys only MeleeTank script and the tank still chases player
     }
-    public override void Damage(float amount)
-    {
-        base.Damage(amount);
-        HpBar.SetHealth(GetHealth());
-    }
+    
 }
