@@ -21,7 +21,7 @@ public class player : Character
     {
         Initiate();
         // Set up references.
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         playerRigidbody = GetComponent<Rigidbody2D>();
         if (GrenadeList.Count > 0)
             selectedGrenade = GrenadeList[0];
@@ -82,9 +82,8 @@ public class player : Character
         Vector2 playerPos = Camera.main.ScreenToWorldPoint(transform.position);
 
         rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rot_z + 90);
-
-        Debug.Log(Quaternion.Euler(0f, 0f, rot_z + 90).z);
+        transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+        
         //Debug.DrawLine(transform.position, transform.position + 10 * transform.up);
     }
 
