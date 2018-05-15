@@ -17,7 +17,7 @@ public class player : Character
     Explosive selectedGrenade;
     public float throwForce = 5000f;
 
-    void Awake()  //BULLSHIT kuo skiriasi nuo start?
+    void Awake()
     {
         Initiate();
         // Set up references.
@@ -45,8 +45,6 @@ public class player : Character
     {
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
-
-        Debug.Log("h " + h.ToString() + " v " + v.ToString());
 
         Move(h, v);
         Animating(h, v); // Animate the player. //BULLSHIT kam nurodyti h ir v jei jau bus issaugota i movement vectoriu tik atsargiai kad nepakelti auksciau nes tada nebus
@@ -97,6 +95,11 @@ public class player : Character
 
         // Tell the animator whether or not the player is walking.
         anim.SetBool("IsMoving", walking);
+        Vector2 rot = transform.up;
+        //Vector2 rot = transform.rotation;
+        Debug.Log(rot.ToString());
+        anim.SetFloat("XSpeed", rot.x);
+        anim.SetFloat("YSpeed", rot.x);
     }
 
     // OVERRIDEN METHODS:
