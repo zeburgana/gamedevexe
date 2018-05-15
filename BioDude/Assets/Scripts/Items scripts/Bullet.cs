@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private float damage;
+    private float damage = 0;
     //bool bulletFired = false;  //////////////////////////////
 
     /// <summary>
@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
     /// </summary>
     /// <param name="destroyAfter">time in second after how long destroy this bullet</param>
     /// <param name="speed">speed to give to bullet</param>
-    public void Initiate(float destroyAfter, float speed, float damage)
+    public void Instantiate(float destroyAfter, float speed, float damage)
     {
         Destroy(gameObject, destroyAfter);
         GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(0, speed));

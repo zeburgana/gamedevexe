@@ -7,19 +7,12 @@ public class Achievement : MonoBehaviour
 {
 
     private string name;
-
     private string description;
-
     private bool unlocked;
-
     private int points;
-
     private int spriteIndex;
-
     private GameObject achievementRef;
-
     private List<Achievement> dependencies = new List<Achievement>();
-
     private string child;
 
     private int currentProgression;

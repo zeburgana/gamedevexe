@@ -88,13 +88,15 @@ MonoBehaviour:
   projectileSpeed: 5
   timeUntilSelfDestrucion: 2
   cooldown: 1
-  weaponType: 2
-  maxAmmo: 10
-  currentAmmo: 9
   clipSize: 1
   currentClipAmmo: 1
   reloadTime: 3
   accuracy: 0
+  damage: 2
+  allertingRadius: 10
+  cameraRecoil: 1
+  ammoType: 1
+  isDiscovered: 0
   rotationSpeed: 200
   radius: 3
   force: 500

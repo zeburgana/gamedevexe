@@ -5,9 +5,9 @@ using UnityEngine;
 public class Head : MonoBehaviour {
 
     public float rotationSpeed = 1f;
-    public bool canRotate = true;
+    private bool canRotate = true;
     public bool isRotated = false; // is head finished rotating to its target angle
-    public float angle;
+    private float angle;
     //public bool isRotating = false;
 
     public float targetAngle;
