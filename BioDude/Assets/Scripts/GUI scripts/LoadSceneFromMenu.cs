@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class LoadSceneOnClick : MonoBehaviour
+public class LoadSceneFromMenu : MonoBehaviour
 {
 
     public GameObject[] ObjectToMove;
@@ -16,10 +16,21 @@ public class LoadSceneOnClick : MonoBehaviour
         foreach (var item in ObjectToMove)
         {
             DontDestroyOnLoad(item);
-        }Time.timeScale = 1;
+        }
+        Time.timeScale = 1;
+    }
+    public void NewGame()
+    {
+        DeletePlayerProgress();
+        LoadByIndex(1);
+    }
+    public void ContinueGame()
+    {
+        int indexToLoad = PlayerPrefs.GetInt("LastLevelCheckpoint");
+        LoadByIndex(indexToLoad);
     }
 
-    public void LoadByIndex(int sceneIndex)
+    void LoadByIndex(int sceneIndex)
     {
         ObjectToMove[0].transform.GetChild(0).GetComponent<Text>().text = "";
         if (SceneManager.GetActiveScene().buildIndex == 0)
@@ -33,16 +44,13 @@ public class LoadSceneOnClick : MonoBehaviour
         SceneManager.LoadScene(sceneIndex);
         Time.timeScale = 1f;
     }
-
-    // Use this for initialization
-    void Start()
+    public void DeletePlayerProgress()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        PlayerPrefs.DeleteKey("LastLevelCheckpoint");
+        PlayerPrefs.DeleteKey("PlayerHP");
+        PlayerPrefs.DeleteKey("PlayerPistol");
+        PlayerPrefs.DeleteKey("PlayerShotgun");
+        PlayerPrefs.DeleteKey("PlayerRifle");
+        PlayerPrefs.DeleteKey("PlayerRocketLauncher");
     }
 }

@@ -3,22 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 public class LevelManager : MonoBehaviour {
 
+    string LastLevelKeyName = "LastLevelCheckpoint";
 	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-    public void OnTriggerEnter2D()
+    void Start()
+    {
+        if (SceneManager.GetActiveScene().buildIndex > 0 &&
+            SceneManager.GetActiveScene().name != "Menu")
+            SaveCurrentLevelIndex();
+    }
+
+    public void LoadNextLevel()
+    {
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex +1;
+        PlayerPrefs.SetInt(LastLevelKeyName, nextSceneIndex);
+        SceneManager.LoadScene(nextSceneIndex);
+    }
+    public int GetLastLevelIndex()
+    {
+        if (PlayerPrefs.HasKey(LastLevelKeyName))
+            return PlayerPrefs.GetInt(LastLevelKeyName);
+        else
+            return -1;
+    }
+    public void SaveCurrentLevelIndex()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentSceneIndex+1);
+        PlayerPrefs.SetInt(LastLevelKeyName, currentSceneIndex);
+        PlayerPrefs.Save();
+    }
 
+    public bool DoesPlayerProgressExist()
+    {
+        return PlayerPrefs.HasKey(LastLevelKeyName);
     }
 }
