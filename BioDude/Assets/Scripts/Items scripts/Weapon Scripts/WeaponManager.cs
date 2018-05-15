@@ -62,7 +62,10 @@ public class WeaponManager : MonoBehaviour
 
     public Ammo[] fireArmAmmo;
     public Ammo[] explosiveAmmo;
-    
+
+    public GameObject rightHandSlot;
+    public GameObject leftHandSlot;
+
     public GameObject[] explosiveArray; // add all types of grenades to array in inspector
     public GameObject activeGrenade;
 
@@ -75,7 +78,7 @@ public class WeaponManager : MonoBehaviour
     public GameObject activeWeaponTip;
     public bool cooldownEnded = true;
     public bool isReloading = false;
-    private SpriteRenderer spriteRenderer;
+    //private SpriteRenderer spriteRenderer;
     private Allerting playerAlerting;
     private Animator playerAnimator;
     private int selectedFireArm = -1;
@@ -89,6 +92,9 @@ public class WeaponManager : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        rightHandSlot = GameObject.FindGameObjectWithTag("PlayerWeaponSlot");
+        activeWeaponTip = rightHandSlot.transform.GetChild(0).gameObject;
+
         mainCameraScript = GameObject.Find("Main Camera").GetComponent<CameraScript>();
         guiManager = GameObject.Find("GUI").GetComponent<GUIManager>();
         // static information about ofence weapons 
@@ -96,11 +102,11 @@ public class WeaponManager : MonoBehaviour
         explosiveAmmo = new Ammo[1];
         GetAmmoFromMemory();
         ///
-
-        playerAnimator = transform.parent.GetComponent<Animator>();
-        playerAlerting = transform.parent.GetComponent<Allerting>();
-        audioSource = transform.parent.GetComponent<AudioSource>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        
+        playerAnimator = GetComponentInChildren<Animator>();
+        playerAlerting = GetComponent<Allerting>();
+        audioSource = GetComponent<AudioSource>();
+        //spriteRenderer = GetComponent<SpriteRenderer>();
         SwitchWeaponRight();
         SwitchExplosiveRight();
         
@@ -187,7 +193,7 @@ public class WeaponManager : MonoBehaviour
 
     private void UpdateWeapon()
     {
-        if(selectedFireArm == -1)
+        if (selectedFireArm == -1)
         {
             //selected knife
         }
@@ -195,7 +201,7 @@ public class WeaponManager : MonoBehaviour
         {
             aWeaponScript = weaponArray[selectedFireArm].GetComponent<Weapon>();
             activeWeaponTip.transform.localPosition = aWeaponScript.tip.transform.localPosition;
-            aWeaponScript.Equip(gameObject);
+            aWeaponScript.Equip(rightHandSlot);
             awAmmoType = aWeaponScript.ammoType;
             audioSource.clip = aWeaponScript.weaponSound;
         }
@@ -286,13 +292,13 @@ public class WeaponManager : MonoBehaviour
 
     private void ShootPistol()
     {
-        GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponTip.transform.position, transform.rotation);
+        GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponTip.transform.position, rightHandSlot.transform.rotation);
         newBullet.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
     }
 
     private void ShootRocket()
     {
-        GameObject newRocket = Instantiate(aWeaponScript.projectile, activeWeaponTip.transform.position, transform.rotation);
+        GameObject newRocket = Instantiate(aWeaponScript.projectile, activeWeaponTip.transform.position, rightHandSlot.transform.rotation);
         RocketLauncher rocketLauncher = weaponArray[selectedFireArm].GetComponent<RocketLauncher>();
         newRocket.GetComponent<GuidedMisile>().Instantiate(rocketLauncher.projectileSpeed, rocketLauncher.rotationSpeed, rocketLauncher.radius, rocketLauncher.force);
     }

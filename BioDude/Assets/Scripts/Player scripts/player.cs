@@ -25,7 +25,7 @@ public class player : Character
         playerRigidbody = GetComponent<Rigidbody2D>();
         if (GrenadeList.Count > 0)
             selectedGrenade = GrenadeList[0];
-        weaponManager = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>(); // BULLHIT  negalima naudot tag tokiam dalykui turbut, o kas kai bus daugiauweponslotu playerio?
+        weaponManager = GameObject.FindGameObjectWithTag("Player").GetComponent<WeaponManager>(); // BULLHIT  negalima naudot tag tokiam dalykui turbut, o kas kai bus daugiauweponslotu playerio?
         speed = 210;
     }
 
@@ -45,6 +45,9 @@ public class player : Character
     {
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
+
+        Debug.Log("h " + h.ToString() + " v " + v.ToString());
+
         Move(h, v);
         Animating(h, v); // Animate the player. //BULLSHIT kam nurodyti h ir v jei jau bus issaugota i movement vectoriu tik atsargiai kad nepakelti auksciau nes tada nebus
     }

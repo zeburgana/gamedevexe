@@ -124,6 +124,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1363721037401166
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4270326273579910}
+  m_Layer: 11
+  m_Name: WeaponTip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1415789719167382
 GameObject:
   m_ObjectHideFlags: 1
@@ -200,6 +215,8 @@ GameObject:
   - component: {fileID: 50159912920543454}
   - component: {fileID: 114229037453758400}
   - component: {fileID: 114478412467893380}
+  - component: {fileID: 114487975215813978}
+  - component: {fileID: 82243192222873988}
   m_Layer: 11
   m_Name: player
   m_TagString: Player
@@ -231,7 +248,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4649524552119098}
-  - component: {fileID: 114806583478432448}
   - component: {fileID: 212939378322429190}
   m_Layer: 11
   m_Name: hand_R_WeaponSlot
@@ -343,6 +359,19 @@ Transform:
   m_Father: {fileID: 4012096554539230}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4270326273579910
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1363721037401166}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4649524552119098}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!4 &4298993596162080
 Transform:
   m_ObjectHideFlags: 1
@@ -434,7 +463,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.044, y: 0.277, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4270326273579910}
   m_Father: {fileID: 4679052734903450}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -497,9 +527,89 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.21}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!82 &82243192222873988
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1629226856703174}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95522144049045962
 Animator:
   serializedVersion: 3
@@ -559,20 +669,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   howManySeeMe: 0
---- !u!114 &114806583478432448
+--- !u!114 &114487975215813978
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1838299241939870}
+  m_GameObject: {fileID: 1629226856703174}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7b54cf509ff4b043a9555299024d5d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosiveArray: []
+  rightHandSlot: {fileID: 1838299241939870}
+  leftHandSlot: {fileID: 0}
+  explosiveArray:
+  - {fileID: 1099810171760856, guid: b6e7af60750b7e04db1beb99cdebf8f0, type: 2}
   activeGrenade: {fileID: 0}
-  weaponArray: []
+  weaponArray:
+  - {fileID: 1164725371737510, guid: 20e1103fdde227d4fa389e993d13d0b4, type: 2}
+  - {fileID: 1974288062265692, guid: 2f4e0959a2df30144832cb4c0c744432, type: 2}
   activeWeaponTip: {fileID: 0}
   cooldownEnded: 1
   isReloading: 0

@@ -10,7 +10,7 @@ public class WeaponPickup : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		weaponManager = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>();     
+		weaponManager = GameObject.FindGameObjectWithTag("Player").GetComponent<WeaponManager>();     
 	}
 	
 	private void OnTriggerEnter2D(Collider2D other)
