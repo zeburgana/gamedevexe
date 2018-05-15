@@ -92,7 +92,7 @@ public class WeaponManager : MonoBehaviour
         mainCameraScript = GameObject.Find("Main Camera").GetComponent<CameraScript>();
         guiManager = GameObject.Find("GUI").GetComponent<GUIManager>();
         // static information about ofence weapons 
-        fireArmAmmo = new Ammo[2];
+        fireArmAmmo = new Ammo[4];
         explosiveAmmo = new Ammo[1];
         GetAmmoFromMemory();
         ///
@@ -176,6 +176,20 @@ public class WeaponManager : MonoBehaviour
             maxAmount = 10,
             name = "rocket"
         }; //rocket launcher ammo
+
+        fireArmAmmo[2] = new Ammo
+        {
+            amount = 120,
+            maxAmount = 180,
+            name = "assaultRifle"
+        }; //assault rifle ammo
+
+        fireArmAmmo[3] = new Ammo
+        {
+            amount = 24,
+            maxAmount = 80,
+            name = "shotgun"
+        }; // shotgun ammo
 
         explosiveAmmo[0] = new Ammo
         {
@@ -267,6 +281,12 @@ public class WeaponManager : MonoBehaviour
                         case 1:
                             ShootRocket();
                             break;
+                        case 2:
+                            ShootAssaultRifle();
+                            break;
+                        case 3:
+                            ShootShotgun();
+                            break;
                     }
 
                     if (aWeaponScript.currentClipAmmo == 0)
@@ -295,6 +315,18 @@ public class WeaponManager : MonoBehaviour
         GameObject newRocket = Instantiate(aWeaponScript.projectile, activeWeaponTip.transform.position, transform.rotation);
         RocketLauncher rocketLauncher = weaponArray[selectedFireArm].GetComponent<RocketLauncher>();
         newRocket.GetComponent<GuidedMisile>().Instantiate(rocketLauncher.projectileSpeed, rocketLauncher.rotationSpeed, rocketLauncher.radius, rocketLauncher.force);
+    }
+    
+    private void ShootAssaultRifle()
+    {
+        GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponTip.transform.position, transform.rotation);
+        newBullet.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
+    }
+
+    private void ShootShotgun()
+    {
+        GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponTip.transform.position, transform.rotation);
+        newBullet.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
     }
 
     //for explosives throwing
