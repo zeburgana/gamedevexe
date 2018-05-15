@@ -89,7 +89,7 @@ MonoBehaviour:
   timeUntilSelfDestrucion: 2
   cooldown: 0.2
   clipSize: 12
-  currentClipAmmo: 6
+  currentClipAmmo: 12
   reloadTime: 2
   accuracy: 50
   damage: 2
