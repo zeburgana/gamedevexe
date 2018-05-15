@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
@@ -93,7 +94,7 @@ public class WeaponManager : MonoBehaviour
         guiManager = GameObject.Find("GUI").GetComponent<GUIManager>();
         // static information about ofence weapons 
         fireArmAmmo = new Ammo[2];
-        explosiveAmmo = new Ammo[1];
+        explosiveAmmo = new Ammo[2];
         GetAmmoFromMemory();
         ///
 
@@ -103,13 +104,17 @@ public class WeaponManager : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         SwitchWeaponRight();
         SwitchExplosiveRight();
-        
+
         // fill weapons with bullets on start
         foreach (GameObject w in weaponArray)
         {
             Weapon wcs = w.GetComponent<Weapon>();
             wcs.currentClipAmmo = wcs.clipSize;
         }
+
+        UpdateWeaponGUI();
+        UpdateExplosiveGUI();
+        UpdateBulletGUI();
     }
 
     public void UpdateWeaponGUI() // update gui
@@ -181,8 +186,32 @@ public class WeaponManager : MonoBehaviour
         {
             amount = 5,
             maxAmount = 8,
-            name = "simplegranade"
+            name = "fragGrenade"
         }; // simple grande ammo
+
+        explosiveAmmo[1] = new Ammo
+        {
+            amount = 5,
+            maxAmount = 8,
+            name = "gravnade"
+        }; // simple grenade ammo
+        //checking if keys for ammo exist and then assigning new ammo values
+        for (int i = 0; i < fireArmAmmo.Length; i++)
+        {
+            if (PlayerPrefs.HasKey(fireArmAmmo[i].name + "Ammo"))
+            {
+                Debug.Log("loaded " + fireArmAmmo[i].name + PlayerPrefs.GetInt(fireArmAmmo[i].name + "Ammo"));
+                fireArmAmmo[i].amount = PlayerPrefs.GetInt(fireArmAmmo[i].name + "Ammo");
+            }
+        }
+
+        for (int i = 0; i < explosiveAmmo.Length; i++)
+        {
+            if (PlayerPrefs.HasKey(explosiveAmmo[i].name + "Ammo"))
+            {
+                explosiveAmmo[i].amount = PlayerPrefs.GetInt(explosiveAmmo[i].name + "Ammo");
+            }
+        }
     }
 
     private void UpdateWeapon()
@@ -298,15 +327,29 @@ public class WeaponManager : MonoBehaviour
     }
 
     //for explosives throwing
-    public void Throw()
+    public void UseExplosive()
     {
-        if (selectedExplosive == -1)
+        if (!isReloading)
         {
-            //no explosives left
-        }
-        else
-        {
-            //do explosives throwing and  UpdateExplosiveGUI();
+            if (selectedExplosive == -1)
+            {
+                //no explosives left
+            }
+            else
+            {
+                if(explosiveAmmo[selectedExplosive].amount > 0)
+                {
+                    TakeExplosivesByIndex(selectedExplosive, 1);
+                    Vector3 instantiatePos = transform.position;
+                    Debug.Log("throw");
+                    if (explosiveArray[selectedExplosive] != null)
+                    {
+                        //var nade = PrefabUtility.InstantiatePrefab(explosiveArray[selectedExplosive]) as GameObject;
+                        GameObject nade = Instantiate(activeGrenade, instantiatePos, transform.rotation);
+                        //nade.Throw(500);
+                    }
+                }
+            }
         }
     }
     
@@ -323,8 +366,6 @@ public class WeaponManager : MonoBehaviour
 
     public void SwitchExplosiveLeft()
     {
-        if (!isReloading)
-        {
             int i = 0;
             for (; i < explosiveArray.Length; i++) // find explosive with ammo
             {
@@ -338,13 +379,10 @@ public class WeaponManager : MonoBehaviour
             if (i == explosiveArray.Length)
                 selectedExplosive = -1;
             UpdateExplosive();
-        }
     }
 
     public void SwitchExplosiveRight()
     {
-        if (!isReloading)
-        {
             int i = 0;
             for (; i < explosiveArray.Length; i++) // find explosive with ammo
             {
@@ -358,19 +396,15 @@ public class WeaponManager : MonoBehaviour
             if (i == explosiveArray.Length)
                 selectedExplosive = -1;
             UpdateExplosive();
-        }
     }
 
     public void SelectExplosiveByIndex(int index)
     {
-        if (!isReloading)
-        {
             if (index >= 0 && index < explosiveArray.Length)
             {
-                selectedFireArm = index;
+                selectedExplosive = index;
                 UpdateExplosive();
             }
-        }
     }
 
     // API: Weapon manipulations

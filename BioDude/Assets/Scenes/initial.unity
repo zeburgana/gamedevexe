@@ -862,16 +862,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114610028058103794, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
-        type: 2}
-      propertyPath: weaponArray.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114610028058103794, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
-        type: 2}
-      propertyPath: explosiveArray.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4082924806394334, guid: daf86fe2f2bb1e14d97bff61bd885bd0, type: 2}
       propertyPath: m_LocalPosition.x
       value: -0.24571745
@@ -909,34 +899,6 @@ Prefab:
       propertyPath: PausemenuCanvas
       value: 
       objectReference: {fileID: 1755524269}
-    - target: {fileID: 114610028058103794, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
-        type: 2}
-      propertyPath: isReloading
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114610028058103794, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
-        type: 2}
-      propertyPath: weaponArray.Array.data[0]
-      value: 
-      objectReference: {fileID: 1164725371737510, guid: 20e1103fdde227d4fa389e993d13d0b4,
-        type: 2}
-    - target: {fileID: 114610028058103794, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
-        type: 2}
-      propertyPath: weaponArray.Array.data[1]
-      value: 
-      objectReference: {fileID: 1974288062265692, guid: 2f4e0959a2df30144832cb4c0c744432,
-        type: 2}
-    - target: {fileID: 114610028058103794, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
-        type: 2}
-      propertyPath: explosiveArray.Array.data[0]
-      value: 
-      objectReference: {fileID: 1099810171760856, guid: b6e7af60750b7e04db1beb99cdebf8f0,
-        type: 2}
-    - target: {fileID: 114248001651090366, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
-        type: 2}
-      propertyPath: layerMask.m_Bits
-      value: 4096
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: daf86fe2f2bb1e14d97bff61bd885bd0, type: 2}
   m_IsPrefabParent: 0
@@ -6424,86 +6386,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1023508624085162, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
     type: 2}
   m_PrefabInternal: {fileID: 143858359}
---- !u!82 &1353521476
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1353521475}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!114 &1353521477 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114292164419847014, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
