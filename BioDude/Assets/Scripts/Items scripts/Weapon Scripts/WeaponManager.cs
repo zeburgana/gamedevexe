@@ -81,6 +81,7 @@ public class WeaponManager : MonoBehaviour
     private Animator playerAnimator;
     private int selectedFireArm = -1;
     private int selectedExplosive = -1;
+    private Transform projectiles;
 
     private GUIManager guiManager;
     private CameraScript mainCameraScript;
@@ -90,6 +91,7 @@ public class WeaponManager : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        projectiles = GameObject.Find("Projectiles").transform;
         mainCameraScript = GameObject.Find("Main Camera").GetComponent<CameraScript>();
         guiManager = GameObject.Find("GUI").GetComponent<GUIManager>();
         // static information about ofence weapons 
@@ -169,46 +171,50 @@ public class WeaponManager : MonoBehaviour
 
     public void GetAmmoFromMemory() //placeholder - should be changed with call to data saving and aquiring script
     {
-        fireArmAmmo[0] = new Ammo
+        fireArmAmmo = new Ammo[]
         {
-            amount = 50,
-            maxAmount = 120,
-            name = "pistol"
-        }; //pistol ammo
-        fireArmAmmo[1] = new Ammo
-        {
-            amount = 5,
-            maxAmount = 10,
-            name = "rocket"
-        }; //rocket launcher ammo
+            new Ammo // pistol, double pistol ammo
+            {
+                amount = 50,
+                maxAmount = 120,
+                name = "pistol"
+            },
+            new Ammo // rocket launcher ammo
+            {
+                amount = 5,
+                maxAmount = 10,
+                name = "rocket"
+            },
+            new Ammo // assault rifle ammo
+            {
+                amount = 120,
+                maxAmount = 180,
+                name = "assaultRifle"
+            },
+            new Ammo // shotgun ammo
+            {
+                amount = 24,
+                maxAmount = 80,
+                name = "shotgun"
+            }
+        };
 
-        fireArmAmmo[2] = new Ammo
+        explosiveAmmo = new Ammo[]
         {
-            amount = 120,
-            maxAmount = 180,
-            name = "assaultRifle"
-        }; //assault rifle ammo
-
-        fireArmAmmo[3] = new Ammo
-        {
-            amount = 24,
-            maxAmount = 80,
-            name = "shotgun"
-        }; // shotgun ammo
-
-        explosiveAmmo[0] = new Ammo
-        {
-            amount = 5,
-            maxAmount = 8,
-            name = "fragGrenade"
-        }; // simple grande ammo
-
-        explosiveAmmo[1] = new Ammo
-        {
-            amount = 5,
-            maxAmount = 8,
-            name = "gravnade"
-        }; // simple grenade ammo
+            new Ammo // simple grande ammo
+            {
+                amount = 5,
+                maxAmount = 8,
+                name = "fragGrenade"
+            },
+            new Ammo // simple grande ammo
+            {
+                amount = 3,
+                maxAmount = 8,
+                name = "gravnade"
+            }
+        };
+        
         //checking if keys for ammo exist and then assigning new ammo values
         for (int i = 0; i < fireArmAmmo.Length; i++)
         {
@@ -354,8 +360,15 @@ public class WeaponManager : MonoBehaviour
 
     private void ShootShotgun()
     {
-        GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponTip.transform.position, transform.rotation);
-        newBullet.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
+        Shotgun shotgunscript = weaponArray[selectedFireArm].GetComponent<Shotgun>();
+        float bulletAngle;
+        GameObject newBullet;
+        for (int i = 0; i < 6; i++)
+        {
+            bulletAngle = Random.Range(-shotgunscript.spreadAngle, shotgunscript.spreadAngle);
+            newBullet = Instantiate(aWeaponScript.projectile, activeWeaponTip.transform.position, Quaternion.Euler(0f, 0f, transform.rotation.eulerAngles.z + bulletAngle), projectiles);
+            newBullet.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
+        }
     }
 
     //for explosives throwing
