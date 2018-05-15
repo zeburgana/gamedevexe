@@ -480,7 +480,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97e7792fe8e3404e9739a8f04a09c6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyObject: {fileID: 1666649340742718}
   HpSlider: {fileID: 114852074986164624}
 --- !u!114 &114423374533628658
 MonoBehaviour:
@@ -602,7 +601,7 @@ MonoBehaviour:
     m_Bits: 131072
   widthOfFirePathChecker: 0.1
   isAlerted: 0
-  Meleedamage: 1
+  Meleedamage: 10
 --- !u!114 &114769018228361748
 MonoBehaviour:
   m_ObjectHideFlags: 1

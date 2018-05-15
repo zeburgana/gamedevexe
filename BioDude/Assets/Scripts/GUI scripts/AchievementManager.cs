@@ -6,31 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class AchievementManager : MonoBehaviour
 {
-
-    public GameObject achievementPrefab;
-
-    public Sprite[] sprites;
-
-    private AchievementButton activeButon;
-
-    public ScrollRect scrollRect;
-
-    public GameObject achievementMenu;
-
-    public GameObject backButton;
-
-    public GameObject visualAchievement;
-
     public Dictionary<string, Achievement> achievements = new Dictionary<string, Achievement>();
 
+    public GameObject achievementPrefab;
+    public Sprite[] sprites;
+    private AchievementButton activeButon;
+    public ScrollRect scrollRect;
+    public GameObject achievementMenu;
+    public GameObject backButton;
+    public GameObject visualAchievement;
     public Sprite unlockedSprite;
-
     public Text textPoints;
-
     private static AchievementManager instance;
-
     private int fadeTime = 2;
-    
 
     public static AchievementManager Instance
     {
@@ -57,11 +45,8 @@ public class AchievementManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
         //REMEMBER to Delete or Comment after game release
         //PlayerPrefs.DeleteAll();
-
-
         activeButon = GameObject.Find("GeneralButton").GetComponent<AchievementButton>();
 
         //create achievements: category, title, description, points, sprite(can be added/dragged on scipt), (optional)script dependancies
@@ -71,13 +56,11 @@ public class AchievementManager : MonoBehaviour
         CreateAchievement("General", "Press D", "Press D to unlock", 5, 1, 0);
         CreateAchievement("Other", "Get Moving", "all the movement keys", 10, 1, 0, new string[] { "Press W", "Press A", "Press S", "Press D" });
         CreateAchievement("Other", "Press L", "Press L 3 times to unlock", 5, 1, 3);
-
-
+        
         foreach (GameObject achievementList in GameObject.FindGameObjectsWithTag("AchievementList"))
         {
             achievementList.SetActive(false);
         }
-
         activeButon.Click();
 
         achievementMenu.SetActive(false);
@@ -143,13 +126,9 @@ public class AchievementManager : MonoBehaviour
     public void CreateAchievement(string parent, string title, string description, int points, int spriteIndex, int progress, string[] dependencies = null)
     {
         GameObject achievement = (GameObject)Instantiate(achievementPrefab);
-
         Achievement newAchievement = new Achievement(title, description, points, spriteIndex, achievement, progress);
-
         achievements.Add(title, newAchievement);
-
         SetAchievementInfo(parent, achievement, title, progress);
-
         if (dependencies != null)
         {
             foreach (string achievementTitle in dependencies)
