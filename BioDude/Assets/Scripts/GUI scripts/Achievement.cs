@@ -18,7 +18,7 @@ public class Achievement : MonoBehaviour
     private int currentProgression;
     private int maxProgression;
 
-    public Achievement(string name, string description, int points, int spriteIndex, GameObject achievementRef, int maxProgression)
+    public Achievement(string name, string description, int points, GameObject achievementRef, int maxProgression)
     {
         this.name = name;
         this.description = description;
