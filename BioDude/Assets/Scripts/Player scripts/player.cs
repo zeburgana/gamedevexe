@@ -32,7 +32,20 @@ public class player : Character
     override protected void Initiate()
     {
         healthMax = 100;
-        base.Initiate();
+
+        if (PlayerPrefs.HasKey("PlayerHP"))
+        {
+            Debug.Log("FOUND PLAYER HP");
+            healthCurrent = PlayerPrefs.GetFloat("PlayerHP");
+        }
+        else
+        {
+            Debug.Log("PLAYER HP NOT FOUND");
+
+            base.Initiate();
+        }
+
+        //other weaponinfo loading coming soon
     }
 
     private void Update()
@@ -136,5 +149,35 @@ public class player : Character
             Explosive nade = Instantiate(selectedGrenade, instantiatePos, transform.rotation);
             nade.Throw(throwForce);
         }
+    }
+    public void SavePlayerStats()
+    {
+        PlayerPrefs.SetFloat("PlayerHP", healthCurrent);
+        /*if(weaponManager != null && weaponManager.weaponArray != null)
+        {
+            //Saving info
+            GameObject[] weapons = weaponManager.weaponArray;
+            string weaponInfo;
+            Weapon weapon = weapons[0].GetComponent<Weapon>();
+            if (weapon == null)
+                weaponInfo = "false,0";
+            else
+            {
+                weaponInfo = "true,";
+                //get weaponammo
+            }
+
+            string pistolInfo = weapon.currentAmmo.ToString();
+            PlayerPrefs.SetString("PlayerPistol", pistolInfo);
+
+            /*PlayerPrefs.SetString("PlayerShotgun", );
+            PlayerPrefs.SetString("PlayerRifle", );
+            PlayerPrefs.SetString("PlayerRocketLauncher", );
+            PlayerPrefs.SetString("PlayerFragGrenade", );
+            PlayerPrefs.SetString("PlayerGravnade", );
+
+        }*/
+        PlayerPrefs.Save();
+
     }
 }
