@@ -15,10 +15,12 @@ public class AchievementManager : MonoBehaviour
     public GameObject achievementMenu;
     public GameObject backButton;
     public GameObject visualAchievement;
+    public GameObject visualNotification;
+    public Transform notificationPanel;
     public Sprite unlockedSprite;
     public Text textPoints;
     private static AchievementManager instance;
-    private int fadeTime = 2;
+    private int fadeTime = 1;
 
     public static AchievementManager Instance
     {
@@ -45,6 +47,7 @@ public class AchievementManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        notificationPanel = GameObject.Find("NotificationPanel").transform;
         //REMEMBER to Delete or Comment after game release
         //PlayerPrefs.DeleteAll();
         activeButon = GameObject.Find("GeneralButton").GetComponent<AchievementButton>();
@@ -109,13 +112,18 @@ public class AchievementManager : MonoBehaviour
         if (achievements[title].EarnAchievement())
         {
             GameObject achievement = (GameObject)Instantiate(visualAchievement);
-            SetAchievementInfo("EarnAchievementCanvas", achievement, title);
+            SetAchievementInfo("NotificationPanel", achievement, title);
             textPoints.text = "Points: " + PlayerPrefs.GetInt("Points");
             StartCoroutine(FadeAchievement(achievement));
         }
     }
 
-
+    public void Notify(string text)
+    {
+        GameObject notification = (GameObject)Instantiate(visualNotification, notificationPanel);
+        notification.transform.GetChild(0).GetComponent<Text>().text = text;
+        StartCoroutine(FadeAchievement(notification));
+    }
 
     public IEnumerator HideAchievement(GameObject achievement)
     {
