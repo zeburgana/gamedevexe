@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Achievement : MonoBehaviour
 {
 
-    private string name;
+    private string achText;
     private string description;
     private bool unlocked;
     private int points;
@@ -18,9 +18,9 @@ public class Achievement : MonoBehaviour
     private int currentProgression;
     private int maxProgression;
 
-    public Achievement(string name, string description, int points, GameObject achievementRef, int maxProgression)
+    public Achievement(string name, string description, int points, int spriteIndex, GameObject achievementRef, int maxProgression)
     {
-        this.name = name;
+        this.achText = name;
         this.description = description;
         this.Unlocked = false;
         this.points = points;
@@ -41,12 +41,12 @@ public class Achievement : MonoBehaviour
     {
         get
         {
-            return name;
+            return achText;
         }
 
         set
         {
-            name = value;
+            achText = value;
         }
     }
 
@@ -154,11 +154,11 @@ public class Achievement : MonoBehaviour
             int tmpPoints = PlayerPrefs.GetInt("Points");
 
             PlayerPrefs.SetInt("Points", tmpPoints += points);
-            PlayerPrefs.SetInt(name, 1);
+            PlayerPrefs.SetInt(achText, 1);
         }
         else
         {
-            PlayerPrefs.SetInt(name, 0);
+            PlayerPrefs.SetInt(achText, 0);
         }
 
         PlayerPrefs.SetInt("Progression" + Name, currentProgression);
@@ -167,13 +167,13 @@ public class Achievement : MonoBehaviour
 
         PlayerPrefs.Save();
         //stores achievement's status
-        PlayerPrefs.SetInt(name, value ? 1 : 0);
+        PlayerPrefs.SetInt(achText, value ? 1 : 0);
 
     }
 
     public void LoadAchievement()
     {
-        unlocked = PlayerPrefs.GetInt(name) == 1 ? true : false;
+        unlocked = PlayerPrefs.GetInt(achText) == 1 ? true : false;
 
         if (unlocked)
         {

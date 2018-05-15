@@ -15,10 +15,12 @@ public class AchievementManager : MonoBehaviour
     public GameObject achievementMenu;
     public GameObject backButton;
     public GameObject visualAchievement;
+    public GameObject visualNotification;
+    public Transform notificationPanel;
     public Sprite unlockedSprite;
     public Text textPoints;
     private static AchievementManager instance;
-    private int fadeTime = 2;
+    private int fadeTime = 1;
 
     public static AchievementManager Instance
     {
@@ -45,17 +47,18 @@ public class AchievementManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        notificationPanel = GameObject.Find("NotificationPanel").transform;
         //REMEMBER to Delete or Comment after game release
         //PlayerPrefs.DeleteAll();
         activeButon = GameObject.Find("GeneralButton").GetComponent<AchievementButton>();
 
         //create achievements: category, title, description, points, sprite(can be added/dragged on scipt), (optional)script dependancies
-        CreateAchievement("General", "Press W", "Press W to unlock", 5, 0);
-        CreateAchievement("General", "Press A", "Press A to unlock", 5, 0);
-        CreateAchievement("General", "Press S", "Press S to unlock", 5, 0);
-        CreateAchievement("General", "Press D", "Press D to unlock", 5, 0);
-        CreateAchievement("Other", "Get Moving", "all the movement keys", 10, 0, new string[] { "Press W", "Press A", "Press S", "Press D" });
-        CreateAchievement("Other", "Press L", "Press L 3 times to unlock", 5, 3);
+        CreateAchievement("General", "Press W", "Press W to unlock", 5, 1, 0);
+        CreateAchievement("General", "Press A", "Press A to unlock", 5, 1, 0);
+        CreateAchievement("General", "Press S", "Press S to unlock", 5, 1, 0);
+        CreateAchievement("General", "Press D", "Press D to unlock", 5, 1, 0);
+        CreateAchievement("Other", "Get Moving", "all the movement keys", 10, 1, 0, new string[] { "Press W", "Press A", "Press S", "Press D" });
+        CreateAchievement("Other", "Press L", "Press L 3 times to unlock", 5, 1, 3);
         
         foreach (GameObject achievementList in GameObject.FindGameObjectsWithTag("AchievementList"))
         {
@@ -109,15 +112,17 @@ public class AchievementManager : MonoBehaviour
         if (achievements[title].EarnAchievement())
         {
             GameObject achievement = (GameObject)Instantiate(visualAchievement);
-            SetAchievementInfo("EarnAchievementCanvas", achievement, title);
+            SetAchievementInfo("NotificationPanel", achievement, title);
             textPoints.text = "Points: " + PlayerPrefs.GetInt("Points");
             StartCoroutine(FadeAchievement(achievement));
         }
     }
 
-    public void Notify()
+    public void Notify(string text)
     {
-
+        GameObject notification = (GameObject)Instantiate(visualNotification, notificationPanel);
+        notification.transform.GetChild(0).GetComponent<Text>().text = text;
+        StartCoroutine(FadeAchievement(notification));
     }
 
     public IEnumerator HideAchievement(GameObject achievement)
@@ -126,10 +131,10 @@ public class AchievementManager : MonoBehaviour
         Destroy(achievement);
     }
 
-    public void CreateAchievement(string parent, string title, string description, int points, int progress, string[] dependencies = null)
+    public void CreateAchievement(string parent, string title, string description, int points, int spriteIndex, int progress, string[] dependencies = null)
     {
         GameObject achievement = (GameObject)Instantiate(achievementPrefab);
-        Achievement newAchievement = new Achievement(title, description, points, achievement, progress);
+        Achievement newAchievement = new Achievement(title, description, points, spriteIndex, achievement, progress);
         achievements.Add(title, newAchievement);
         SetAchievementInfo(parent, achievement, title, progress);
         if (dependencies != null)
