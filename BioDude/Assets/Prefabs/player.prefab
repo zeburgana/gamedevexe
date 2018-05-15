@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114292164419847014}
   - component: {fileID: 58890726105175612}
   - component: {fileID: 114248001651090366}
+  - component: {fileID: 82662524316616296}
   m_Layer: 11
   m_Name: player
   m_TagString: Player
@@ -140,6 +141,86 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.78
+--- !u!82 &82662524316616296
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1023508624085162}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95370782647171980
 Animator:
   serializedVersion: 3
@@ -180,6 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41fc7c6e2e89b194e91fb5687113e02d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthMax: 0
   PausemenuCanvas: {fileID: 0}
   GrenadeList:
   - {fileID: 114999564766435556, guid: b6e7af60750b7e04db1beb99cdebf8f0, type: 2}
@@ -195,9 +277,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b54cf509ff4b043a9555299024d5d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponWielderType: 0
-  weaponArray: []
-  activeWeapon: {fileID: 0}
+  explosiveArray:
+  - {fileID: 1099810171760856, guid: b6e7af60750b7e04db1beb99cdebf8f0, type: 2}
+  - {fileID: 1605898272585064, guid: 739d46400fac7ad4fbe1053e95fb64a0, type: 2}
+  activeGrenade: {fileID: 0}
+  weaponArray:
+  - {fileID: 1164725371737510, guid: 20e1103fdde227d4fa389e993d13d0b4, type: 2}
+  - {fileID: 1974288062265692, guid: 2f4e0959a2df30144832cb4c0c744432, type: 2}
   activeWeaponTip: {fileID: 1883471874904520}
   cooldownEnded: 1
   isReloading: 0

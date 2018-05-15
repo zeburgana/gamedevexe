@@ -44,8 +44,6 @@ public class player : Character
 
             base.Initiate();
         }
-
-        //other weaponinfo loading coming soon
     }
 
     private void Update()
@@ -67,13 +65,17 @@ public class player : Character
         if (Input.GetButtonDown("Fire"))
             weaponManager.Shoot();
         if (Input.GetButtonDown("ThrowGranade"))
-            UseGrenade();
+            weaponManager.UseExplosive();
         if (Input.GetButtonDown("Reload"))
             Reload();
         if (Input.GetButtonDown("SwitchWeaponRight"))
             weaponManager.SwitchWeaponRight();
         if (Input.GetButtonDown("SwitchWeaponLeft"))
             weaponManager.SwitchWeaponLeft();
+        if (Input.GetButtonDown("SwitchGrenadeRight"))
+            weaponManager.SwitchExplosiveRight();
+        if (Input.GetButtonDown("SwitchGrenadeLeft"))
+            weaponManager.SwitchExplosiveLeft();
     }
 
     void Move(float h, float v)
@@ -140,44 +142,42 @@ public class player : Character
         weaponManager.cooldownEnded = true;
     }
 
-    private void UseGrenade()
-    {
-        Vector3 instantiatePos = transform.position;
-        Debug.Log("throw");
-        if (selectedGrenade != null)
-        {
-            Explosive nade = Instantiate(selectedGrenade, instantiatePos, transform.rotation);
-            nade.Throw(throwForce);
-        }
-    }
+
     public void SavePlayerStats()
     {
         PlayerPrefs.SetFloat("PlayerHP", healthCurrent);
-        /*if(weaponManager != null && weaponManager.weaponArray != null)
+        Debug.Log("saved player hp");
+        if (weaponManager != null && weaponManager.weaponArray != null)
         {
+            Debug.Log("saving ammo info");
             //Saving info
-            GameObject[] weapons = weaponManager.weaponArray;
-            string weaponInfo;
-            Weapon weapon = weapons[0].GetComponent<Weapon>();
-            if (weapon == null)
-                weaponInfo = "false,0";
-            else
+            string name;
+            int ammoCount;
+            for (int i = 0; i < weaponManager.fireArmAmmo.Length; i++)
             {
-                weaponInfo = "true,";
-                //get weaponammo
+                name = weaponManager.fireArmAmmo[i].name;
+                ammoCount = weaponManager.fireArmAmmo[i].amount;
+                if (name != "" && name != null && ammoCount >= 0)
+                {
+                    Debug.Log("saved " + ammoCount + name);
+
+                    PlayerPrefs.SetInt(name + "Ammo", ammoCount);
+                }
             }
+            for (int i = 0; i < weaponManager.explosiveAmmo.Length; i++)
+            {
+                name = weaponManager.explosiveAmmo[i].name;
+                ammoCount = weaponManager.explosiveAmmo[i].amount;
+                if (name != "" && name != null && ammoCount >= 0)
+                {
+                    Debug.Log("saved " + ammoCount + name);
+                    PlayerPrefs.SetInt(name + "Ammo", ammoCount);
+                }
+            }
+        }
+        else
+            Debug.Log("failed to save ammo info");
 
-            string pistolInfo = weapon.currentAmmo.ToString();
-            PlayerPrefs.SetString("PlayerPistol", pistolInfo);
-
-            /*PlayerPrefs.SetString("PlayerShotgun", );
-            PlayerPrefs.SetString("PlayerRifle", );
-            PlayerPrefs.SetString("PlayerRocketLauncher", );
-            PlayerPrefs.SetString("PlayerFragGrenade", );
-            PlayerPrefs.SetString("PlayerGravnade", );
-
-        }*/
         PlayerPrefs.Save();
-
     }
 }
