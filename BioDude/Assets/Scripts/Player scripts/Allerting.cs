@@ -5,6 +5,7 @@ using UnityEngine;
 public class Allerting : MonoBehaviour {
 
     public uint howManySeeMe = 0;
+    private Transform PLKP; //PlayerLastknownPosition
 
 
     // code for allerting enemies in area if shoot if walk near (if needed) can be a skill
@@ -15,6 +16,7 @@ public class Allerting : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        PLKP = GameObject.Find("PlayerLastKnownPosition").transform;
 	}
 	
 	// Update is called once per frame
@@ -24,6 +26,7 @@ public class Allerting : MonoBehaviour {
 
     public void AllertSurroundings(float radius)
     {
+        PLKP.position = transform.position;
         RaycastHit2D[] objects = Physics2D.CircleCastAll(transform.position, radius, Vector2.right, radius, LayerMask.GetMask("Enemy"));
         foreach (RaycastHit2D obj in objects)
         {

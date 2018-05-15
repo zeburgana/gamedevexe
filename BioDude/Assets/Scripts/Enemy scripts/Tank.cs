@@ -37,14 +37,14 @@ public abstract class Tank : Character
     protected Head headScript;
     protected bool isLooking = false;
     protected Vector2 directionToPlayer;
-    protected Transform lastPositionTargetSeen;
+    protected Transform PLKP; //PlayerLastKnownPosition
     protected EnemyHPBar HpBar;
 
     protected Animator animator;
 
     // Use this for initialization
     public void Instantiate () {
-        lastPositionTargetSeen = GameObject.Find("PlayerLastKnownPosition").transform;
+        PLKP = GameObject.Find("PlayerLastKnownPosition").transform;
         player = GameObject.Find("player");
         head = transform.Find("body");
         headScript = head.GetComponent<Head>();
@@ -87,7 +87,7 @@ public abstract class Tank : Character
         else
         {
             isTargetDestinationPlayer = false;
-            aiDestinationSetter.target = lastPositionTargetSeen;
+            aiDestinationSetter.target = PLKP;
             ai.canSearch = false;
             ai.SearchPath();
         }
@@ -116,10 +116,22 @@ public abstract class Tank : Character
         //Set head target direction:
         if (!isLooking)
         {
+            if (isAlerted)
+            {
+                if(targetInVision)
+                    headScript.SetTargetAngle(VectorToAngle(directionToPlayer));
+                else
+                    headScript.SetTargetAngle(VectorToAngle((PLKP.transform.position - transform.position).normalized));
+            }
+            else
+                headScript.SetTargetAngle(VectorToAngle(transform.up));
+            //////////////////////////// or
+            /*
             if (targetInVision)
                 headScript.SetTargetAngle(VectorToAngle(directionToPlayer));
             else
                 headScript.SetTargetAngle(VectorToAngle(transform.up)); // this should always set head rotation to zero. better solution required
+            */
         }
 
         if (prevTargetInVision != targetInVision)
@@ -183,25 +195,19 @@ public abstract class Tank : Character
         }
         else if (localSearchLocationsTried == localSearchTryLocation) // tried all loations return to patroling
         {
-            //Debug.Log("finished search");
             localSearchLocationsTried = 0;
             ReturnToPatrol();
             return;
         }
-        //Debug.Log("location trying now " + localSearchLocationsTried);
-        //Debug.Log("Center: " + searchAreaCenter.ToString());
         // continue searching
         Vector2 randomLocation = new Vector2(
             Random.Range(localSearchRadius / 2, localSearchRadius) * (Random.Range(0, 2) < 1 ? 1 : -1),
             Random.Range(localSearchRadius / 2, localSearchRadius) * (Random.Range(0, 2) < 1 ? 1 : -1));
-        //Debug.Log("Offset random: " + randomLocation);
         randomLocation += searchAreaCenter;
-        //Debug.Log("Point calc: " + randomLocation);
         localSearchLocationsTried++;
         ai.destination = randomLocation;
         ai.SearchPath();
-        // Debug.Log("remaining dist: " + ai.remainingDistance);
-        //Debug.Log("reached end" + ai.reachedEndOfPath.ToString());
+
         //if(ai.remainingDistance > 2 * localSearchRadius) // maybe make this into do while loop
         //search for new point beacause this map point is too far for local search
     }
@@ -239,7 +245,7 @@ public abstract class Tank : Character
 
     protected virtual void CantSeePlayerAnyMore()
     {
-        lastPositionTargetSeen.position = player.transform.position;
+        PLKP.position = player.transform.position;
         PursuePlayer();
     }
 
