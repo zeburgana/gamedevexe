@@ -885,6 +885,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114610028058103794, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
+        type: 2}
+      propertyPath: weaponArray.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4082924806394334, guid: daf86fe2f2bb1e14d97bff61bd885bd0, type: 2}
       propertyPath: m_LocalPosition.x
       value: -0.24571745
@@ -922,6 +927,23 @@ Prefab:
       propertyPath: PausemenuCanvas
       value: 
       objectReference: {fileID: 1755524269}
+    - target: {fileID: 114610028058103794, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
+        type: 2}
+      propertyPath: weaponArray.Array.data[2]
+      value: 
+      objectReference: {fileID: 1995316061485200, guid: c72f6a4e48ffefd43899f6fb74928673,
+        type: 2}
+    - target: {fileID: 114610028058103794, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
+        type: 2}
+      propertyPath: weaponArray.Array.data[3]
+      value: 
+      objectReference: {fileID: 1128119802197726, guid: 054915740a40d4949be36724f0b7d637,
+        type: 2}
+    - target: {fileID: 114292164419847014, guid: daf86fe2f2bb1e14d97bff61bd885bd0,
+        type: 2}
+      propertyPath: healthMax
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: daf86fe2f2bb1e14d97bff61bd885bd0, type: 2}
   m_IsPrefabParent: 0
