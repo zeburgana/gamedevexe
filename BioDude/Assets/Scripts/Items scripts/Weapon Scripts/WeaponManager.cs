@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
@@ -63,7 +62,10 @@ public class WeaponManager : MonoBehaviour
 
     public Ammo[] fireArmAmmo;
     public Ammo[] explosiveAmmo;
-    
+
+    public GameObject rightHandSlot;
+    public GameObject leftHandSlot;
+
     public GameObject[] explosiveArray; // add all types of grenades to array in inspector
     public GameObject activeGrenade;
 
@@ -73,10 +75,11 @@ public class WeaponManager : MonoBehaviour
     private int awAmmoType;
     private int aeAmmoType;
 
-    public GameObject activeWeaponTip;
+    public GameObject activeWeaponRTip;
+    public GameObject activeWeaponLTip;
     public bool cooldownEnded = true;
     public bool isReloading = false;
-    private SpriteRenderer spriteRenderer;
+    //private SpriteRenderer spriteRenderer;
     private Allerting playerAlerting;
     private Animator playerAnimator;
     private int selectedFireArm = -1;
@@ -91,6 +94,11 @@ public class WeaponManager : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        //rightHandSlot = transform.Find("hand_R").GetChild(0).gameObject;
+        activeWeaponRTip = rightHandSlot.transform.GetChild(0).gameObject;
+        //leftHandSlot = transform.Find("hand_L").GetChild(0).gameObject;
+        activeWeaponLTip = leftHandSlot.transform.GetChild(0).gameObject;
+
         projectiles = GameObject.Find("Projectiles").transform;
         mainCameraScript = GameObject.Find("Main Camera").GetComponent<CameraScript>();
         guiManager = GameObject.Find("GUI").GetComponent<GUIManager>();
@@ -99,11 +107,11 @@ public class WeaponManager : MonoBehaviour
         explosiveAmmo = new Ammo[2];
         GetAmmoFromMemory();
         ///
-
-        playerAnimator = transform.parent.GetComponent<Animator>();
-        playerAlerting = transform.parent.GetComponent<Allerting>();
-        audioSource = transform.parent.GetComponent<AudioSource>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        
+        playerAnimator = GetComponentInChildren<Animator>();
+        playerAlerting = GetComponent<Allerting>();
+        audioSource = GetComponent<AudioSource>();
+        //spriteRenderer = GetComponent<SpriteRenderer>();
         SwitchWeaponRight();
         SwitchExplosiveRight();
 
@@ -236,17 +244,24 @@ public class WeaponManager : MonoBehaviour
 
     private void UpdateWeapon()
     {
-        if(selectedFireArm == -1)
+        playerAnimator.SetInteger("Weapon", selectedFireArm);
+        if (selectedFireArm == -1)
         {
             //selected knife
         }
         else
         {
             aWeaponScript = weaponArray[selectedFireArm].GetComponent<Weapon>();
-            activeWeaponTip.transform.localPosition = aWeaponScript.tip.transform.localPosition;
-            aWeaponScript.Equip(gameObject);
+            activeWeaponRTip.transform.localPosition = aWeaponScript.tip.transform.localPosition;
+            aWeaponScript.Equip(rightHandSlot);
             awAmmoType = aWeaponScript.ammoType;
+            leftHandSlot.GetComponent<SpriteRenderer>().sprite = null;
             audioSource.clip = aWeaponScript.weaponSound;
+            if(selectedFireArm == 4) //dual vielded
+            {
+                aWeaponScript.Equip(leftHandSlot);
+                activeWeaponLTip.transform.localPosition = aWeaponScript.tip.transform.localPosition;
+            }
         }
         UpdateBulletGUI();
     }
@@ -322,6 +337,9 @@ public class WeaponManager : MonoBehaviour
                         case 3:
                             ShootShotgun();
                             break;
+                        case 4:
+                            ShootDualPistol();
+                            break;
                     }
 
                     if (aWeaponScript.currentClipAmmo == 0)
@@ -341,20 +359,20 @@ public class WeaponManager : MonoBehaviour
 
     private void ShootPistol()
     {
-        GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponTip.transform.position, transform.rotation);
+        GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponRTip.transform.position, rightHandSlot.transform.rotation);
         newBullet.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
     }
 
     private void ShootRocket()
     {
-        GameObject newRocket = Instantiate(aWeaponScript.projectile, activeWeaponTip.transform.position, transform.rotation);
+        GameObject newRocket = Instantiate(aWeaponScript.projectile, activeWeaponRTip.transform.position, rightHandSlot.transform.rotation);
         RocketLauncher rocketLauncher = weaponArray[selectedFireArm].GetComponent<RocketLauncher>();
         newRocket.GetComponent<GuidedMisile>().Instantiate(rocketLauncher.projectileSpeed, rocketLauncher.rotationSpeed, rocketLauncher.radius, rocketLauncher.force);
     }
     
     private void ShootAssaultRifle()
     {
-        GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponTip.transform.position, transform.rotation);
+        GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponRTip.transform.position, transform.rotation);
         newBullet.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
     }
 
@@ -366,9 +384,18 @@ public class WeaponManager : MonoBehaviour
         for (int i = 0; i < 6; i++)
         {
             bulletAngle = Random.Range(-shotgunscript.spreadAngle, shotgunscript.spreadAngle);
-            newBullet = Instantiate(aWeaponScript.projectile, activeWeaponTip.transform.position, Quaternion.Euler(0f, 0f, transform.rotation.eulerAngles.z + bulletAngle), projectiles);
+            newBullet = Instantiate(aWeaponScript.projectile, activeWeaponRTip.transform.position, Quaternion.Euler(0f, 0f, transform.rotation.eulerAngles.z + bulletAngle), projectiles);
             newBullet.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
         }
+    }
+
+    private void ShootDualPistol()
+    {
+        GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponRTip.transform.position, rightHandSlot.transform.rotation);
+        newBullet.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
+        GameObject newBullet2 = Instantiate(aWeaponScript.projectile, activeWeaponLTip.transform.position, rightHandSlot.transform.rotation);
+        newBullet2.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
+
     }
 
     //for explosives throwing

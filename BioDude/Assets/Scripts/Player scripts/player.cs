@@ -17,15 +17,15 @@ public class player : Character
     Explosive selectedGrenade;
     public float throwForce = 5000f;
 
-    void Awake()  //BULLSHIT kuo skiriasi nuo start?
+    void Awake()
     {
         Initiate();
         // Set up references.
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         playerRigidbody = GetComponent<Rigidbody2D>();
         if (GrenadeList.Count > 0)
             selectedGrenade = GrenadeList[0];
-        weaponManager = GameObject.FindGameObjectWithTag("PlayerWeaponSlot").GetComponent<WeaponManager>(); // BULLHIT  negalima naudot tag tokiam dalykui turbut, o kas kai bus daugiauweponslotu playerio?
+        weaponManager = transform.GetComponent<WeaponManager>();
         speed = 210;
     }
 
@@ -56,8 +56,9 @@ public class player : Character
     {
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
+
         Move(h, v);
-        //Animating(h, v); // Animate the player. //BULLSHIT kam nurodyti h ir v jei jau bus issaugota i omvement vectoriu tik atsargiai kad nepakelti auksciau nes tada nebus
+        Animating(h, v); // Animate the player. //BULLSHIT kam nurodyti h ir v jei jau bus issaugota i movement vectoriu tik atsargiai kad nepakelti auksciau nes tada nebus
     }
 
     void Controls() //BULLSHIT reikia susitvarkyti ir apgalvoti ar viskas bus ok jei vienu framu pasileistu visos komandos nes nenaudojami else if - galbut reikia debouncing arba kintamuju delayinti veiksma kitam framui  
@@ -98,17 +99,21 @@ public class player : Character
 
         rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
-
-        Debug.DrawLine(transform.position, transform.position + 10 * transform.up);
+        
+        //Debug.DrawLine(transform.position, transform.position + 10 * transform.up);
     }
 
-    void Animating(float h, float v)  // THIS WILL BE USED kai turesim playeri !!!!!!
+    void Animating(float h, float v)
     {
         // Create a boolean that is true if either of the input axes is non-zero.
         bool walking = h != 0f || v != 0f;
 
         // Tell the animator whether or not the player is walking.
-        anim.SetBool("IsWalking", walking);
+        anim.SetBool("IsMoving", walking);
+        //Vector2 rot = transform.rotation;
+        Vector3 relative = transform.InverseTransformVector(movement);
+        anim.SetFloat("XSpeed", relative.x);
+        anim.SetFloat("YSpeed", relative.y);
     }
 
     // OVERRIDEN METHODS:

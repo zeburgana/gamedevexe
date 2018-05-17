@@ -15,6 +15,7 @@ public class GUIManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        playerCharacter = GameObject.Find("player").GetComponent<player>();
         healthBar.maxValue = playerCharacter.healthMax;
         AmmoText = transform.Find("PlayerAmmoText").GetComponent<Text>();
     }

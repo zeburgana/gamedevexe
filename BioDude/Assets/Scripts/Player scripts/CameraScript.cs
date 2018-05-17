@@ -33,11 +33,15 @@ public class CameraScript : MonoBehaviour {
     /////////
 
     private Vector2 FollowingPos;
-    private Vector2 Offset; 
-    
-	
-	// Update is called once per frame
-	void FixedUpdate ()
+    private Vector2 Offset;
+
+    private void Start()
+    {
+        Player = GameObject.Find("player");
+    }
+
+    // Update is called once per frame
+    void FixedUpdate ()
     {
         //fot TESTING:
         //Imitate_actions();

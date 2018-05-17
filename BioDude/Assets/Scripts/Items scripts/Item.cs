@@ -7,9 +7,9 @@ public abstract class Item : MonoBehaviour
 	public Sprite sprite;
 	
 	public virtual void Equip (GameObject placeHolder)
-    {
-        SpriteRenderer spriteRend = placeHolder.GetComponent<SpriteRenderer>();
-        spriteRend.sortingOrder = 2;
-        spriteRend.sprite = sprite;
-    }
+	{
+		SpriteRenderer spriteRend = placeHolder.GetComponent<SpriteRenderer>();
+		spriteRend.sortingOrder = 5;
+		spriteRend.sprite = sprite;
+	}
 }
