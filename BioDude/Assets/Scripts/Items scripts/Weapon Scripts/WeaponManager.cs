@@ -193,6 +193,7 @@ public class WeaponManager : MonoBehaviour
 
     private void UpdateWeapon()
     {
+        playerAnimator.SetInteger("Weapon", selectedFireArm);
         if (selectedFireArm == -1)
         {
             //selected knife

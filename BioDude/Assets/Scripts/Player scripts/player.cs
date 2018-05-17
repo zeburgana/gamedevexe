@@ -25,7 +25,7 @@ public class player : Character
         playerRigidbody = GetComponent<Rigidbody2D>();
         if (GrenadeList.Count > 0)
             selectedGrenade = GrenadeList[0];
-        weaponManager = GameObject.FindGameObjectWithTag("Player").GetComponent<WeaponManager>(); // BULLHIT  negalima naudot tag tokiam dalykui turbut, o kas kai bus daugiauweponslotu playerio?
+        weaponManager = transform.GetComponent<WeaponManager>();
         speed = 210;
     }
 
@@ -95,11 +95,10 @@ public class player : Character
 
         // Tell the animator whether or not the player is walking.
         anim.SetBool("IsMoving", walking);
-        Vector2 rot = transform.up;
         //Vector2 rot = transform.rotation;
-        Debug.Log(rot.ToString());
-        anim.SetFloat("XSpeed", rot.x);
-        anim.SetFloat("YSpeed", rot.x);
+        Vector3 relative = transform.InverseTransformVector(movement);
+        anim.SetFloat("XSpeed", relative.x);
+        anim.SetFloat("YSpeed", relative.y);
     }
 
     // OVERRIDEN METHODS:
