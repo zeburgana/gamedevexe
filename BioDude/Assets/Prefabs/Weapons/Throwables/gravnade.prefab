@@ -102,7 +102,7 @@ MonoBehaviour:
   started: 0
   AmmoType: 0
   delay: 2
-  blackHoleEffect: {fileID: 1493644364249322, guid: f7fda9fbe12fa7443ab048890d1db126,
+  blackHoleEffect: {fileID: 1759955223216986, guid: 0c7d194e241fcd4458f67df2450e29b3,
     type: 2}
   radius: 3
   force: 500
