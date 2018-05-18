@@ -10,7 +10,7 @@ public class AchievementManager : MonoBehaviour
 
     public GameObject achievementPrefab;
     public Sprite[] sprites;
-    private AchievementButton activeButon;
+    public AchievementButton activeButon;
     public ScrollRect scrollRect;
     public GameObject achievementMenu;
     public GameObject backButton;
@@ -47,6 +47,7 @@ public class AchievementManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Debug.Log("started achievement manager");
         notificationPanel = GameObject.Find("NotificationPanel").transform;
         //REMEMBER to Delete or Comment after game release
         //PlayerPrefs.DeleteAll();
