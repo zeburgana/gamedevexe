@@ -75,11 +75,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1303187116780664}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56e883e16b4da5d4cb4d6a5be3361f3c, type: 3}
+  m_Script: {fileID: 11500000, guid: 28a1e164bee984d4da4f55ca066d89f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponID: 3
-  ammoAmount: 80
+  weaponID: 0
+  ammoAmount: 0
 --- !u!212 &212318854659248452
 SpriteRenderer:
   m_ObjectHideFlags: 1

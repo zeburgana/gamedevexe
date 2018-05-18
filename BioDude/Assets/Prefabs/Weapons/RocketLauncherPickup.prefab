@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212218528578296186}
   - component: {fileID: 61549265254039476}
   - component: {fileID: 114379509639975668}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: RocketLauncherPickup
   m_TagString: WeaponPickup
   m_Icon: {fileID: 0}
@@ -75,11 +75,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1155671136673172}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56e883e16b4da5d4cb4d6a5be3361f3c, type: 3}
+  m_Script: {fileID: 11500000, guid: 28a1e164bee984d4da4f55ca066d89f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponID: 1
-  ammoAmount: 5
+  weaponID: 0
+  ammoAmount: 0
 --- !u!212 &212218528578296186
 SpriteRenderer:
   m_ObjectHideFlags: 1

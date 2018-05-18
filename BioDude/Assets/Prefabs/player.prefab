@@ -494,7 +494,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1629226856703174}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.045240052, y: -0.9720362, z: 0}
+  m_LocalPosition: {x: -0.14576733, y: -1.0622951, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4159365159535846}
@@ -728,9 +728,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthMax: 100
   PausemenuCanvas: {fileID: 0}
-  GrenadeList:
-  - {fileID: 114999564766435556, guid: b6e7af60750b7e04db1beb99cdebf8f0, type: 2}
-  throwForce: 500
 --- !u!114 &114478412467893380
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -758,6 +755,7 @@ MonoBehaviour:
   leftHandSlot: {fileID: 1033363846878496}
   explosiveArray:
   - {fileID: 1099810171760856, guid: b6e7af60750b7e04db1beb99cdebf8f0, type: 2}
+  - {fileID: 1605898272585064, guid: 739d46400fac7ad4fbe1053e95fb64a0, type: 2}
   activeGrenade: {fileID: 0}
   weaponArray:
   - {fileID: 1164725371737510, guid: 20e1103fdde227d4fa389e993d13d0b4, type: 2}
@@ -1419,13 +1417,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 6
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 232dc9cb7bffadb44b0a97e1c056bdfd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.2, y: 0.51}
+  m_Size: {x: 0.25, y: 2.22}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0

@@ -13,9 +13,6 @@ public class player : Character
     public PauseMenu PausemenuCanvas;
     private float rot_z;
     private WeaponManager weaponManager; 
-    public List<Explosive> GrenadeList; // BULLSHIT  reikia karkur kitur deti
-    Explosive selectedGrenade;
-    public float throwForce = 5000f;
 
     void Awake()
     {
@@ -23,8 +20,6 @@ public class player : Character
         // Set up references.
         anim = GetComponentInChildren<Animator>();
         playerRigidbody = GetComponent<Rigidbody2D>();
-        if (GrenadeList.Count > 0)
-            selectedGrenade = GrenadeList[0];
         weaponManager = transform.GetComponent<WeaponManager>();
         speed = 210;
     }
