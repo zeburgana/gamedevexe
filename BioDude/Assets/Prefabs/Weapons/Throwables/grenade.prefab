@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4349027143037016}
   - component: {fileID: 212330421322112496}
+  - component: {fileID: 114999564766435556}
   - component: {fileID: 50001045859625392}
   - component: {fileID: 61381879939487952}
-  - component: {fileID: 114999564766435556}
   m_Layer: 15
   m_Name: grenade
   m_TagString: Untagged
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   started: 0
+  AmmoType: 0
   delay: 2
   explosionEffect: {fileID: 1175786858352720, guid: df7cbf2ffde1d3848ab52efe0d38fdfe,
     type: 2}

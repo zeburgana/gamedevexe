@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4309969044439346}
   - component: {fileID: 212947540293780252}
+  - component: {fileID: 114919918162069158}
   - component: {fileID: 50225881085821230}
   - component: {fileID: 61615992799944770}
-  - component: {fileID: 114919918162069158}
   m_Layer: 15
   m_Name: gravnade
   m_TagString: Untagged
