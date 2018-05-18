@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1661742638681246}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.232416, y: -1.487, z: 0}
+  m_LocalPosition: {x: -7.5, y: -5.41, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -61,7 +61,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &61990399879617454
 BoxCollider2D:
@@ -99,6 +99,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aefbf99cfc8e6c4c8a70ec482fa27b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  impactConcrete: {fileID: 198297326478612708, guid: 18951d2922ad3904981465f949da502f,
+    type: 2}
+  impactMetal: {fileID: 19800002, guid: 00fedc70b62a31e448e8ccc298257b56, type: 2}
+  impactFlesh: {fileID: 198618202314290210, guid: 7d7466c2bbef6b048ab60b9cda923ec8,
+    type: 2}
 --- !u!212 &212116651717751532
 SpriteRenderer:
   m_ObjectHideFlags: 1

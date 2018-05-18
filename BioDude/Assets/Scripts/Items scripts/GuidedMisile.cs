@@ -12,6 +12,8 @@ public class GuidedMisile : Explosive {
     public float radius = 0;
     [HideInInspector]
     public float force = 0;
+    [HideInInspector]
+    public ParticleSystem[] emitters;
 
     public GameObject explosionEffect;
     public float damage = 40f;
@@ -21,8 +23,9 @@ public class GuidedMisile : Explosive {
 	void Start () {
         body = GetComponent<Rigidbody2D>();
         Invoke("Explode", 4f);
-	}
-   
+        emitters = transform.GetComponentsInChildren<ParticleSystem>();
+    }
+
     public void Instantiate(float speed, float rotationSpeed, float radius, float force)
     {
         this.speed = speed;
@@ -48,19 +51,18 @@ public class GuidedMisile : Explosive {
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Explode();
-        //if (collision.collider.tag == "Enemy")
-        //{
-        //    Explode();
-        //    Destroy(collision.gameObject);
-        //}
-
-        //if (collision.collider.tag == "Wallmap")
-        //{
-        //    Explode();
-        //}
     }
     public override void Explode()
     {
+        for (int i = 0; i < emitters.Length; i++)
+        {
+            // This splits the particle off so it doesn't get deleted with the parent
+            emitters[i].transform.parent = null;
+            // this stops the particle from creating more bits
+            emitters[i].Stop();
+        }
+
+
         Instantiate(explosionEffect, transform.position, transform.rotation);
 
         Collider2D[] nearbyObjects = Physics2D.OverlapCircleAll(transform.position, radius);

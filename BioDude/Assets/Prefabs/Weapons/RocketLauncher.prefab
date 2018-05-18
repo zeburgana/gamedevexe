@@ -85,7 +85,7 @@ MonoBehaviour:
   weaponSound: {fileID: 8300000, guid: ae38328e75e3db248b3deb3662d10e25, type: 3}
   projectile: {fileID: 1433679252064700, guid: 8b32ac57595ad04498222161885280b5, type: 2}
   tip: {fileID: 1222882976599726}
-  projectileSpeed: 5
+  projectileSpeed: 8
   timeUntilSelfDestrucion: 2
   cooldown: 1
   clipSize: 1
@@ -97,7 +97,7 @@ MonoBehaviour:
   cameraRecoil: 1
   ammoType: 1
   isDiscovered: 0
-  rotationSpeed: 200
+  rotationSpeed: 300
   radius: 3
   force: 500
 --- !u!212 &212859599703880390
