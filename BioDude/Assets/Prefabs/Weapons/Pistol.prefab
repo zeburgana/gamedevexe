@@ -91,7 +91,7 @@ MonoBehaviour:
   clipSize: 12
   currentClipAmmo: 12
   reloadTime: 2
-  accuracy: 50
+  accuracy: 5
   damage: 2
   allertingRadius: 5
   cameraRecoil: 2

@@ -30,7 +30,7 @@ public class FragGrenade : Explosive
     {
         if(!started)
         {
-            Throw(500);
+            Throw(throwForce);
             started = true;
         }
         countdown -= Time.deltaTime;
