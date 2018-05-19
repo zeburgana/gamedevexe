@@ -10,9 +10,7 @@ public class CameraScript : MonoBehaviour {
         Object,
         Point
     }
-    [SerializeField]
     Following following;
-    [SerializeField]
     GameObject Player;
     [SerializeField]
     GameObject objectToFollow;
