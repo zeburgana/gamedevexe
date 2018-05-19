@@ -320,7 +320,6 @@ public class WeaponManager : MonoBehaviour
                 {
                     cooldownEnded = false;
                     aWeaponScript.currentClipAmmo--;
-                    UpdateBulletGUI();
                     StartCoroutine("Cooldown");
                     mainCameraScript.AddOffset(aWeaponScript.cameraRecoil);
                     playerAlerting.AllertSurroundings(aWeaponScript.allertingRadius);
@@ -351,6 +350,7 @@ public class WeaponManager : MonoBehaviour
                         if (fireArmAmmo[awAmmoType].amount == 0)
                             UpdateWeaponGUI();
                     }
+                    UpdateBulletGUI();
                 }
                 else
                 {
@@ -362,7 +362,9 @@ public class WeaponManager : MonoBehaviour
 
     private void ShootPistol()
     {
-        GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponRTip.transform.position, rightHandSlot.transform.rotation);
+        Weapon weaponScript = weaponArray[selectedFireArm].GetComponent<Weapon>();
+        float bulletAngle = Random.Range(-weaponScript.accuracy, weaponScript.accuracy);
+        GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponRTip.transform.position, Quaternion.Euler(0f, 0f, activeWeaponRTip.transform.rotation.eulerAngles.z + bulletAngle), projectiles);
         newBullet.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
     }
 
@@ -375,7 +377,9 @@ public class WeaponManager : MonoBehaviour
     
     private void ShootAssaultRifle()
     {
-        GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponRTip.transform.position, transform.rotation);
+        Weapon weaponScript = weaponArray[selectedFireArm].GetComponent<Weapon>();
+        float bulletAngle = Random.Range(-weaponScript.accuracy, weaponScript.accuracy);
+        GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponRTip.transform.position , Quaternion.Euler(0f, 0f, activeWeaponRTip.transform.rotation.eulerAngles.z + bulletAngle), projectiles);
         newBullet.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
     }
 
@@ -384,24 +388,28 @@ public class WeaponManager : MonoBehaviour
         Shotgun shotgunscript = weaponArray[selectedFireArm].GetComponent<Shotgun>();
         float bulletAngle;
         GameObject newBullet;
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < shotgunscript.bulletCount; i++)
         {
-            bulletAngle = Random.Range(-shotgunscript.spreadAngle, shotgunscript.spreadAngle);
-            newBullet = Instantiate(aWeaponScript.projectile, activeWeaponRTip.transform.position, Quaternion.Euler(0f, 0f, transform.rotation.eulerAngles.z + bulletAngle), projectiles);
+            bulletAngle = Random.Range(-shotgunscript.accuracy, shotgunscript.accuracy);
+            newBullet = Instantiate(aWeaponScript.projectile, activeWeaponRTip.transform.position, Quaternion.Euler(0f, 0f, activeWeaponRTip.transform.rotation.eulerAngles.z + bulletAngle), projectiles);
             newBullet.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
         }
     }
 
     private void ShootDualPistol()
     {
-        aWeaponScript.currentClipAmmo--;
-        GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponRTip.transform.position, rightHandSlot.transform.rotation);
+        Weapon weaponScript = weaponArray[selectedFireArm].GetComponent<Weapon>();
+        float bulletAngle = Random.Range(-weaponScript.accuracy, weaponScript.accuracy);
+        GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponRTip.transform.position, Quaternion.Euler(0f, 0f, activeWeaponRTip.transform.rotation.eulerAngles.z + bulletAngle), projectiles);
         newBullet.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
-        GameObject newBullet2 = Instantiate(aWeaponScript.projectile, activeWeaponLTip.transform.position, rightHandSlot.transform.rotation);
-        newBullet2.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
-
+        if (aWeaponScript.clipSize > 1) // if onliy one bullet left in clip so two guns can't fire
+        {
+            GameObject newBullet2 = Instantiate(aWeaponScript.projectile, activeWeaponLTip.transform.position, Quaternion.Euler(0f, 0f, activeWeaponLTip.transform.rotation.eulerAngles.z + bulletAngle), projectiles);
+            newBullet2.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
+            aWeaponScript.currentClipAmmo--;
+        }
     }
-
+    
     //for explosives throwing
     public void UseExplosive()
     {

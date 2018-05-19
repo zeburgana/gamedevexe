@@ -89,15 +89,15 @@ MonoBehaviour:
   timeUntilSelfDestrucion: 2
   cooldown: 2.2
   clipSize: 2
-  currentClipAmmo: 0
+  currentClipAmmo: 2
   reloadTime: 3.2
-  accuracy: 30
+  accuracy: 25
   damage: 12
   allertingRadius: 8
   cameraRecoil: 5
   ammoType: 3
   isDiscovered: 0
-  spreadAngle: 10
+  bulletCount: 6
 --- !u!212 &212659441049571144
 SpriteRenderer:
   m_ObjectHideFlags: 1

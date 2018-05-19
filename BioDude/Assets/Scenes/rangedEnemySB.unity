@@ -36962,6 +36962,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 82243192222873988, guid: f436293f5c9e455409d77d00eeb9350a,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114229037453758400, guid: f436293f5c9e455409d77d00eeb9350a,
+        type: 2}
+      propertyPath: PausemenuCanvas
+      value: 
+      objectReference: {fileID: 1755524269}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f436293f5c9e455409d77d00eeb9350a, type: 2}
   m_IsPrefabParent: 0

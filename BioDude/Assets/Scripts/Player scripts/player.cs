@@ -9,6 +9,7 @@ public class player : Character
     Vector2 movement;                   // The vector to store the direction of the player's movement.
     Animator anim;                      // Reference to the animator component.
     Rigidbody2D playerRigidbody;          // Reference to the player's rigidbody.
+    bool PlayerAlive = true;
 
     public PauseMenu PausemenuCanvas;
     private float rot_z;
@@ -42,17 +43,23 @@ public class player : Character
 
     private void Update()
     {
-        Controls();
-        Turning(); // Turn the player to face the mouse cursor.
+        if(PlayerAlive)
+        {
+            Controls();
+            Turning(); // Turn the player to face the mouse cursor.
+        }
     }
 
     void FixedUpdate()
     {
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
+        if (PlayerAlive)
+        {
+            float h = Input.GetAxisRaw("Horizontal");
+            float v = Input.GetAxisRaw("Vertical");
 
-        Move(h, v);
-        Animating(h, v); // Animate the player. //BULLSHIT kam nurodyti h ir v jei jau bus issaugota i movement vectoriu tik atsargiai kad nepakelti auksciau nes tada nebus
+            Move(h, v);
+            Animating(h, v); // Animate the player. //BULLSHIT kam nurodyti h ir v jei jau bus issaugota i movement vectoriu tik atsargiai kad nepakelti auksciau nes tada nebus
+        }
     }
 
     void Controls() //BULLSHIT reikia susitvarkyti ir apgalvoti ar viskas bus ok jei vienu framu pasileistu visos komandos nes nenaudojami else if - galbut reikia debouncing arba kintamuju delayinti veiksma kitam framui  
@@ -82,10 +89,6 @@ public class player : Character
 
     void Turning()
     {
-        //Vector2 playerPos = Camera.main.WorldToViewportPoint(transform.position);   //old rotation method
-        //Vector2 mousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-        //directionAngle = Mathf.Atan2(mousePos.y - playerPos.y, mousePos.x - playerPos.x);
-        //transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, directionAngle * Mathf.Rad2Deg - 90));
         Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         diff.Normalize();
 
@@ -93,8 +96,6 @@ public class player : Character
 
         rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
-        
-        //Debug.DrawLine(transform.position, transform.position + 10 * transform.up);
     }
 
     void Animating(float h, float v)
@@ -114,12 +115,11 @@ public class player : Character
 
     protected override void Die()
     {
+        PlayerAlive = false;
         Destroy(gameObject.GetComponent<Rigidbody2D>());
         Destroy(gameObject.GetComponent<CircleCollider2D>());
         //^^^ pakeist i player death animation
-        Debug.Log("death");
 
-        //PausemenuCanvas.killtest();
         StartCoroutine(PausemenuCanvas.PlayerDeath());
     }
 

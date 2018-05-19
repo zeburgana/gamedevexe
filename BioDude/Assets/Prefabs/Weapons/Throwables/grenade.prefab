@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   started: 0
+  throwForce: 200
   AmmoType: 0
   delay: 2
   explosionEffect: {fileID: 1175786858352720, guid: df7cbf2ffde1d3848ab52efe0d38fdfe,
