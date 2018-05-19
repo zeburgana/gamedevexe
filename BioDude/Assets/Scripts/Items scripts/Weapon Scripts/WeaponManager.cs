@@ -320,7 +320,6 @@ public class WeaponManager : MonoBehaviour
                 {
                     cooldownEnded = false;
                     aWeaponScript.currentClipAmmo--;
-                    UpdateBulletGUI();
                     StartCoroutine("Cooldown");
                     mainCameraScript.AddOffset(aWeaponScript.cameraRecoil);
                     playerAlerting.AllertSurroundings(aWeaponScript.allertingRadius);
@@ -351,6 +350,7 @@ public class WeaponManager : MonoBehaviour
                         if (fireArmAmmo[awAmmoType].amount == 0)
                             UpdateWeaponGUI();
                     }
+                    UpdateBulletGUI();
                 }
                 else
                 {
@@ -400,11 +400,14 @@ public class WeaponManager : MonoBehaviour
     {
         Weapon weaponScript = weaponArray[selectedFireArm].GetComponent<Weapon>();
         float bulletAngle = Random.Range(-weaponScript.accuracy, weaponScript.accuracy);
-        aWeaponScript.currentClipAmmo--;
         GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponRTip.transform.position, Quaternion.Euler(0f, 0f, activeWeaponRTip.transform.rotation.eulerAngles.z + bulletAngle), projectiles);
         newBullet.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
-        GameObject newBullet2 = Instantiate(aWeaponScript.projectile, activeWeaponLTip.transform.position, Quaternion.Euler(0f, 0f, activeWeaponLTip.transform.rotation.eulerAngles.z + bulletAngle), projectiles);
-        newBullet2.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
+        if (aWeaponScript.clipSize > 1) // if onliy one bullet left in clip so two guns can't fire
+        {
+            GameObject newBullet2 = Instantiate(aWeaponScript.projectile, activeWeaponLTip.transform.position, Quaternion.Euler(0f, 0f, activeWeaponLTip.transform.rotation.eulerAngles.z + bulletAngle), projectiles);
+            newBullet2.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
+            aWeaponScript.currentClipAmmo--;
+        }
     }
     
     //for explosives throwing
