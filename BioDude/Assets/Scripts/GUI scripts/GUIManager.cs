@@ -11,6 +11,7 @@ public class GUIManager : MonoBehaviour
     public player playerCharacter;
     public Text AmmoText;
     public WeaponManager weaponManager;
+    public Text ExplosiveText;
 
     // Use this for initialization
     void Start()
@@ -18,6 +19,7 @@ public class GUIManager : MonoBehaviour
         playerCharacter = GameObject.Find("player").GetComponent<player>();
         healthBar.maxValue = playerCharacter.healthMax;
         AmmoText = transform.Find("PlayerAmmoText").GetComponent<Text>();
+        ExplosiveText = transform.Find("PlayerExplosiveText").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -30,5 +32,10 @@ public class GUIManager : MonoBehaviour
     public void SetBulletGUI(int currentClipAmmo, int currentAmmo)
     {
         AmmoText.text = currentClipAmmo + "/" + currentAmmo;
+    }
+
+    public void SetExplosiveGUI(int currentExplosiveAmmo)
+    {
+        ExplosiveText.text = currentExplosiveAmmo.ToString();
     }
 }

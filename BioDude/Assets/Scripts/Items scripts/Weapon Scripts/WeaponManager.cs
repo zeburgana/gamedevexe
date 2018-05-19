@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponManager : MonoBehaviour
 {
@@ -75,6 +76,9 @@ public class WeaponManager : MonoBehaviour
     private int awAmmoType;
     private int aeAmmoType;
 
+    public GameObject lastSelectedFireArm;
+    public GameObject lastSelectedExplosive;
+
     public GameObject activeWeaponRTip;
     public GameObject activeWeaponLTip;
     public bool cooldownEnded = true;
@@ -89,6 +93,10 @@ public class WeaponManager : MonoBehaviour
     private GUIManager guiManager;
     private CameraScript mainCameraScript;
     private AudioSource audioSource;
+
+    private RawImage ammoImage;
+    private RawImage explosiveImage;
+    private RawImage weaponSlotImage;
 
 
     // Use this for initialization
@@ -111,6 +119,12 @@ public class WeaponManager : MonoBehaviour
         playerAnimator = GetComponentInChildren<Animator>();
         playerAlerting = GetComponent<Allerting>();
         audioSource = GetComponent<AudioSource>();
+        ammoImage = GameObject.Find("PlayerAmmoText").GetComponentInChildren<RawImage>();
+        explosiveImage = GameObject.Find("PlayerExplosiveText").GetComponentInChildren<RawImage>();
+        lastSelectedFireArm = GameObject.Find("WeaponSelectionSlot06");  // sets the last selected firearm as a knife (also, the selected weapon should be set as knife too, when the knife is implemented)
+        lastSelectedExplosive = GameObject.Find("ExplosiveSelectionSlot01"); // sets the last selected explosion as a standard grenade
+
+
         //spriteRenderer = GetComponent<SpriteRenderer>();
         SwitchWeaponRight();
         SwitchExplosiveRight();
@@ -135,14 +149,18 @@ public class WeaponManager : MonoBehaviour
             if (weaponData.isDiscovered)
             {
                 //we haven't gained this weapon yet
+                lastSelectedFireArm = GameObject.Find("WeaponSelectionSlot0" + (i + 1).ToString());
             }
             else if (weaponData.currentClipAmmo + fireArmAmmo[awAmmoType].amount > 0)
             {
                 //we have weapon which is in index i
+                GameObject.Find("PassiveStripes0" + (i + 1).ToString()).GetComponent<RawImage>().enabled = false;
             }
             else
             {
                 //we don't have weapon which is in index i
+                lastSelectedFireArm = GameObject.Find("WeaponSelectionSlot0" + (i + 1).ToString());
+                GameObject.Find("PassiveStripes0" + (i + 1).ToString()).GetComponent<RawImage>().enabled = true;
             }
         }
     }
@@ -160,6 +178,7 @@ public class WeaponManager : MonoBehaviour
             // weapon sprite to display next to bullets nums: weaponArray[selectedFireArm].GetComponent<SpriteRenderer>().sprite
             // bullets in gun: aWeaponScript.currentClipAmmo
             // bullets in inventory (pool): fireArmAmmo[awAmmoType].amount
+
         }
     }
 
@@ -174,6 +193,11 @@ public class WeaponManager : MonoBehaviour
             // show how many explosives left 
             // explosive sprite to display next to explosive nums: explosiveArray[selectedExplosive].GetComponent<SpriteRenderer>().sprite
             // explosives left: explosiveAmmo[aeAmmoType].amount
+            guiManager.SetExplosiveGUI(explosiveAmmo[aeAmmoType].amount);
+            if (explosiveAmmo[aeAmmoType].amount <= 0)
+                GameObject.Find("PassiveExplosiveStripes0" + (selectedExplosive + 1).ToString()).GetComponent<RawImage>().enabled = true;
+            else
+                GameObject.Find("PassiveExplosiveStripes0" + (selectedExplosive + 1).ToString()).GetComponent<RawImage>().enabled = false;
         }
     }
 
@@ -262,20 +286,80 @@ public class WeaponManager : MonoBehaviour
                 aWeaponScript.Equip(leftHandSlot);
                 activeWeaponLTip.transform.localPosition = aWeaponScript.tip.transform.localPosition;
             }
+            switch (awAmmoType)
+            {
+                case 0:
+                    ammoImage.texture = Resources.Load<Texture>("PistolAmmoClip");
+                    break;
+                case 1:
+                    ammoImage.texture = Resources.Load<Texture>("Misile");
+                    break;
+                case 2:
+                    ammoImage.texture = Resources.Load<Texture>("AssaultRifleAmmoClip");
+                    break;
+                case 3:
+                    ammoImage.texture = Resources.Load<Texture>("ShotgunAmmoClip");
+                    break;
+            }
+        }
+        switch(selectedFireArm)
+        {
+            case -1:
+                lastSelectedFireArm.GetComponent<RawImage>().texture = Resources.Load<Texture>("WeaponSlot");
+                lastSelectedFireArm = GameObject.Find("WeaponSelectionSlot06");
+                lastSelectedFireArm.GetComponent<RawImage>().texture = Resources.Load<Texture>("WeaponSlotActive");
+                break;
+            case 0:
+                lastSelectedFireArm.GetComponent<RawImage>().texture = Resources.Load<Texture>("WeaponSlot");
+                lastSelectedFireArm = GameObject.Find("WeaponSelectionSlot01");
+                lastSelectedFireArm.GetComponent<RawImage>().texture = Resources.Load<Texture>("WeaponSlotActive");
+                break;
+            case 1:
+                lastSelectedFireArm.GetComponent<RawImage>().texture = Resources.Load<Texture>("WeaponSlot");
+                lastSelectedFireArm = GameObject.Find("WeaponSelectionSlot02");
+                lastSelectedFireArm.GetComponent<RawImage>().texture = Resources.Load<Texture>("WeaponSlotActive");
+                break;
+            case 2:
+                lastSelectedFireArm.GetComponent<RawImage>().texture = Resources.Load<Texture>("WeaponSlot");
+                lastSelectedFireArm = GameObject.Find("WeaponSelectionSlot03");
+                lastSelectedFireArm.GetComponent<RawImage>().texture = Resources.Load<Texture>("WeaponSlotActive");
+                break;
+            case 3:
+                lastSelectedFireArm.GetComponent<RawImage>().texture = Resources.Load<Texture>("WeaponSlot");
+                lastSelectedFireArm = GameObject.Find("WeaponSelectionSlot04");
+                lastSelectedFireArm.GetComponent<RawImage>().texture = Resources.Load<Texture>("WeaponSlotActive");
+                break;
+            case 4:
+                lastSelectedFireArm.GetComponent<RawImage>().texture = Resources.Load<Texture>("WeaponSlot");
+                lastSelectedFireArm = GameObject.Find("WeaponSelectionSlot05");
+                lastSelectedFireArm.GetComponent<RawImage>().texture = Resources.Load<Texture>("WeaponSlotActive");
+                break;
         }
         UpdateBulletGUI();
     }
 
     private void UpdateExplosive()
     {
-        if (selectedFireArm == -1)
+        if (selectedExplosive == -1)
         {
             //None explosives left
         }
         else
         {
+            lastSelectedExplosive.GetComponent<RawImage>().texture = Resources.Load<Texture>("WeaponSlot");
+            lastSelectedExplosive = GameObject.Find("ExplosiveSelectionSlot0" + (selectedExplosive + 1).ToString());
+            lastSelectedExplosive.GetComponent<RawImage>().texture = Resources.Load<Texture>("WeaponSlotActive");
             activeGrenade = explosiveArray[selectedExplosive];
             aeAmmoType = activeGrenade.GetComponent<Explosive>().AmmoType;
+            switch(selectedExplosive)
+            {
+                case 0:
+                    explosiveImage.texture = Resources.Load<Texture>("GrenadeNew");
+                    break;
+                case 1:
+                    explosiveImage.texture = Resources.Load<Texture>("GravnadeNew");
+                    break;
+            }
         }
         UpdateExplosiveGUI();
     }
