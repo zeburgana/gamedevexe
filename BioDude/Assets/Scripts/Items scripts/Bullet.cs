@@ -45,7 +45,7 @@ public class Bullet : MonoBehaviour
                     ParticleSystem emitter = Instantiate(impactFlesh, contactPos, rot);
                     // This splits the particle off so it doesn't get deleted with the parent
                     emitter.transform.parent = null;
-                    Debug.Log("player blood");
+                    //Debug.Log("player blood");
 
                 }
                 else if (charObj.tag == "Enemy")
@@ -53,14 +53,13 @@ public class Bullet : MonoBehaviour
                     ParticleSystem emitter = Instantiate(impactMetal, contactPos, rot);
                     // This splits the particle off so it doesn't get deleted with the parent
                     emitter.transform.parent = null;
-                    Debug.Log("enemy metal");
+                    //Debug.Log("enemy metal");
                 }
 
             }
             else
             {
-                Debug.Log("not an enemy");
-
+               // Debug.Log("not an enemy");
                 ParticleSystem emitter = Instantiate(impactConcrete, contactPos, rot);
                 // This splits the particle off so it doesn't get deleted with the parent
                 emitter.transform.parent = null;

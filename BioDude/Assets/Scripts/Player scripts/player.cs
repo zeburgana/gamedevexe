@@ -30,13 +30,12 @@ public class player : Character
 
         if (PlayerPrefs.HasKey("PlayerHP"))
         {
-            Debug.Log("FOUND PLAYER HP");
+            //Debug.Log("FOUND PLAYER HP");
             healthCurrent = PlayerPrefs.GetFloat("PlayerHP");
         }
         else
         {
-            Debug.Log("PLAYER HP NOT FOUND");
-
+            //Debug.Log("PLAYER HP NOT FOUND");
             base.Initiate();
         }
     }

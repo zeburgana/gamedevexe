@@ -89,6 +89,7 @@ public class WeaponManager : MonoBehaviour
     private GUIManager guiManager;
     private CameraScript mainCameraScript;
     private AudioSource audioSource;
+    private AchievementManager notifications;
 
 
     // Use this for initialization
@@ -98,6 +99,8 @@ public class WeaponManager : MonoBehaviour
         activeWeaponRTip = rightHandSlot.transform.GetChild(0).gameObject;
         //leftHandSlot = transform.Find("hand_L").GetChild(0).gameObject;
         activeWeaponLTip = leftHandSlot.transform.GetChild(0).gameObject;
+
+
 
         projectiles = GameObject.Find("Projectiles").transform;
         mainCameraScript = GameObject.Find("Main Camera").GetComponent<CameraScript>();
@@ -391,6 +394,7 @@ public class WeaponManager : MonoBehaviour
 
     private void ShootDualPistol()
     {
+        aWeaponScript.currentClipAmmo--;
         GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponRTip.transform.position, rightHandSlot.transform.rotation);
         newBullet.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
         GameObject newBullet2 = Instantiate(aWeaponScript.projectile, activeWeaponLTip.transform.position, rightHandSlot.transform.rotation);
@@ -548,6 +552,7 @@ public class WeaponManager : MonoBehaviour
                 int added = ammo.AddAmmo(amount);
                 UpdateWeaponGUI();
                 UpdateBulletGUI();
+                ///##notifications.Notify(added.ToString() + " " + ammo.name.ToString() + " ammo added");
                 return added;
             }
         foreach (Ammo ammo in explosiveAmmo)
@@ -556,6 +561,7 @@ public class WeaponManager : MonoBehaviour
                 int added = ammo.AddAmmo(amount);
                 UpdateWeaponGUI();
                 UpdateBulletGUI();
+                ///##notifications.Notify(added.ToString() + " " + ammo.name.ToString() + " ammo added");
                 return added;
             }
         return -1;
@@ -601,6 +607,7 @@ public class WeaponManager : MonoBehaviour
             int added = fireArmAmmo[index].AddAmmo(amount);
             UpdateWeaponGUI();
             UpdateBulletGUI();
+            ///##notifications.Notify(added.ToString() + " " + fireArmAmmo[index].name.ToString() + " ammo added");
             return added;
         }
         return -1;
@@ -638,6 +645,7 @@ public class WeaponManager : MonoBehaviour
             UpdateWeaponGUI();
             if (index == selectedFireArm)
                 UpdateBulletGUI();
+            ///##notifications.Notify(added.ToString() + " " + fireArmAmmo[weaponArray[index].GetComponent<Weapon>().ammoType].name.ToString() + " ammo added");
             return added;
         }
         return -1;
@@ -674,6 +682,7 @@ public class WeaponManager : MonoBehaviour
         {
             int added = explosiveAmmo[index].AddAmmo(amount);
             UpdateExplosiveGUI();
+            ///##notifications.Notify(added.ToString() + " " + explosiveAmmo[index].name.ToString() + " added");
             return added;
         }
         return -1;
