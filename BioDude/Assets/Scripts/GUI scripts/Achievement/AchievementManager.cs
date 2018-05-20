@@ -69,38 +69,14 @@ public class AchievementManager : MonoBehaviour
     void Update()
     {
 
-        //this opens achievement menu when not in main menu and backspace is pressed
+        //this opens achievement menu when not in main menu and backspace is pressed. Comment if you don't want this to work
+        /*
         if (Input.GetKeyDown(KeyCode.Backspace) && SceneManager.GetActiveScene().buildIndex != 0)
         {
             achievementMenu.SetActive(!achievementMenu.activeSelf);
             backButton.SetActive(!backButton.activeSelf);
         }
-
-        //achievement earn conditions
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            EarnAchievement("Press W");
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            EarnAchievement("Press A");
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            EarnAchievement("Press S");
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            EarnAchievement("Press D");
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            EarnAchievement("Press L");
-        }
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            PlayerPrefs.DeleteAll();
-        }
+        */
     }
 
     public void EarnAchievement(string title)
