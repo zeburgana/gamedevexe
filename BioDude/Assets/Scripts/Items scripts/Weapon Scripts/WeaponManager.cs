@@ -645,7 +645,8 @@ public class WeaponManager : MonoBehaviour
                 if (selectedFireArm < 0)
                     selectedFireArm = weaponArray.Length - 1;
                 // if any ammo left:
-                if (fireArmAmmo[weaponArray[selectedFireArm].GetComponent<Weapon>().ammoType].amount > 0)
+                Weapon wscirpt = weaponArray[selectedFireArm].GetComponent<Weapon>();
+                if (fireArmAmmo[wscirpt.ammoType].amount + wscirpt.currentClipAmmo > 0)
                     break;
             }
             if (i == weaponArray.Length)
@@ -663,9 +664,10 @@ public class WeaponManager : MonoBehaviour
             {
                 selectedFireArm++;
                 if (selectedFireArm >= weaponArray.Length)
-                    selectedFireArm = 0; 
+                    selectedFireArm = 0;
                 // if any ammo left:
-                if (fireArmAmmo[weaponArray[selectedFireArm].GetComponent<Weapon>().ammoType].amount > 0)
+                Weapon wscirpt = weaponArray[selectedFireArm].GetComponent<Weapon>();
+                if (fireArmAmmo[wscirpt.ammoType].amount + wscirpt.currentClipAmmo > 0)
                     break;
             }
             if (i == weaponArray.Length)
