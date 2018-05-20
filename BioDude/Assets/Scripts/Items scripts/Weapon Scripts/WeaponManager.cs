@@ -474,6 +474,7 @@ public class WeaponManager : MonoBehaviour
     private void ShootPistol()
     {
         Weapon weaponScript = weaponArray[selectedFireArm].GetComponent<Weapon>();
+        EjectWeaponCartridgeCasing(weaponScript);
         float bulletAngle = Random.Range(-weaponScript.accuracy, weaponScript.accuracy);
         GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponRTip.transform.position, Quaternion.Euler(0f, 0f, activeWeaponRTip.transform.rotation.eulerAngles.z + bulletAngle), projectiles);
         newBullet.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
@@ -489,6 +490,7 @@ public class WeaponManager : MonoBehaviour
     private void ShootAssaultRifle()
     {
         Weapon weaponScript = weaponArray[selectedFireArm].GetComponent<Weapon>();
+        EjectWeaponCartridgeCasing(weaponScript);
         float bulletAngle = Random.Range(-weaponScript.accuracy, weaponScript.accuracy);
         GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponRTip.transform.position , Quaternion.Euler(0f, 0f, activeWeaponRTip.transform.rotation.eulerAngles.z + bulletAngle), projectiles);
         newBullet.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
@@ -497,6 +499,7 @@ public class WeaponManager : MonoBehaviour
     private void ShootShotgun()
     {
         Shotgun shotgunscript = weaponArray[selectedFireArm].GetComponent<Shotgun>();
+        EjectWeaponCartridgeCasing(shotgunscript);
         float bulletAngle;
         GameObject newBullet;
         for (int i = 0; i < shotgunscript.bulletCount; i++)
@@ -510,10 +513,12 @@ public class WeaponManager : MonoBehaviour
     private void ShootDualPistol()
     {
         Weapon weaponScript = weaponArray[selectedFireArm].GetComponent<Weapon>();
+        EjectWeaponCartridgeCasing(weaponScript);
+        EjectWeaponCartridgeCasing(weaponScript, "left");
         float bulletAngle = Random.Range(-weaponScript.accuracy, weaponScript.accuracy);
         GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponRTip.transform.position, Quaternion.Euler(0f, 0f, activeWeaponRTip.transform.rotation.eulerAngles.z + bulletAngle), projectiles);
         newBullet.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
-        if (aWeaponScript.currentClipAmmo > 1) // if only one bullet left in clip so two guns can't fire
+        if (aWeaponScript.currentClipAmmo >= 1) // if only one bullet left in clip so two guns can't fire
         {
             GameObject newBullet2 = Instantiate(aWeaponScript.projectile, activeWeaponLTip.transform.position, Quaternion.Euler(0f, 0f, activeWeaponLTip.transform.rotation.eulerAngles.z + bulletAngle), projectiles);
             newBullet2.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
@@ -521,6 +526,22 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
+    public void EjectWeaponCartridgeCasing(Weapon weapon, string direction = "right")
+    {
+        float ejectionForce = 500;
+        if (direction == "right")
+        {
+            GameObject cartridgeCasing = Instantiate(weapon.cartridgeCase, rightHandSlot.transform.position, rightHandSlot.transform.rotation);
+            Rigidbody2D rb = cartridgeCasing.GetComponent<Rigidbody2D>();
+            rb.AddForce(transform.right * ejectionForce);
+        }
+        else if (direction == "left")
+        {
+            GameObject cartridgeCasing = Instantiate(weapon.cartridgeCase, leftHandSlot.transform.position, leftHandSlot.transform.rotation);
+            Rigidbody2D rb = cartridgeCasing.GetComponent<Rigidbody2D>();
+            rb.AddForce(-transform.right * ejectionForce);
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision) // knife attack
     {
         Character charObj = collision.gameObject.GetComponent<Character>();
@@ -810,7 +831,7 @@ public class WeaponManager : MonoBehaviour
             UpdateWeaponGUI();
             if (index == selectedFireArm)
                 UpdateBulletGUI();
-            ///##notifications.Notify(added.ToString() + " " + fireArmAmmo[weaponArray[index].GetComponent<Weapon>().ammoType].name.ToString() + " ammo added");
+            ///##notifications.Notify(added.ToString() + " " + fireArmAmmo[weaponArray[index].GetComponent<Weapon>().ammoType].name.ToString() + " ammo added");z
             return added;
         }
         return -1;
