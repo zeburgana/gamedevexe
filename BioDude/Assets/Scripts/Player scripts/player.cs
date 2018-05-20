@@ -66,6 +66,9 @@ public class player : Character
     {
         if (Input.GetButtonDown("Fire"))
             weaponManager.Shoot();
+        else if (Input.GetButton("Fire"))
+            weaponManager.AutomaticShoot();
+
         if (Input.GetButtonDown("ThrowGranade"))
             weaponManager.UseExplosive();
         if (Input.GetButtonDown("Reload"))
