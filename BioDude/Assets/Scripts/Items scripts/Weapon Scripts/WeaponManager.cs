@@ -499,7 +499,7 @@ public class WeaponManager : MonoBehaviour
         float bulletAngle = Random.Range(-weaponScript.accuracy, weaponScript.accuracy);
         GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponRTip.transform.position, Quaternion.Euler(0f, 0f, activeWeaponRTip.transform.rotation.eulerAngles.z + bulletAngle), projectiles);
         newBullet.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
-        if (aWeaponScript.clipSize > 1) // if only one bullet left in clip so two guns can't fire
+        if (aWeaponScript.currentClipAmmo > 1) // if only one bullet left in clip so two guns can't fire
         {
             GameObject newBullet2 = Instantiate(aWeaponScript.projectile, activeWeaponLTip.transform.position, Quaternion.Euler(0f, 0f, activeWeaponLTip.transform.rotation.eulerAngles.z + bulletAngle), projectiles);
             newBullet2.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
@@ -645,7 +645,8 @@ public class WeaponManager : MonoBehaviour
                 if (selectedFireArm < 0)
                     selectedFireArm = weaponArray.Length - 1;
                 // if any ammo left:
-                if (fireArmAmmo[weaponArray[selectedFireArm].GetComponent<Weapon>().ammoType].amount > 0)
+                Weapon wscirpt = weaponArray[selectedFireArm].GetComponent<Weapon>();
+                if (fireArmAmmo[wscirpt.ammoType].amount + wscirpt.currentClipAmmo > 0)
                     break;
             }
             if (i == weaponArray.Length)
@@ -663,9 +664,10 @@ public class WeaponManager : MonoBehaviour
             {
                 selectedFireArm++;
                 if (selectedFireArm >= weaponArray.Length)
-                    selectedFireArm = 0; 
+                    selectedFireArm = 0;
                 // if any ammo left:
-                if (fireArmAmmo[weaponArray[selectedFireArm].GetComponent<Weapon>().ammoType].amount > 0)
+                Weapon wscirpt = weaponArray[selectedFireArm].GetComponent<Weapon>();
+                if (fireArmAmmo[wscirpt.ammoType].amount + wscirpt.currentClipAmmo > 0)
                     break;
             }
             if (i == weaponArray.Length)
