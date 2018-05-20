@@ -106,6 +106,8 @@ public class WeaponManager : MonoBehaviour
     private RawImage explosiveImage;
     private RawImage weaponSlotImage;
 
+    private int[] AutomaticWeapons = { 2 };
+
 
     // Use this for initialization
     void Start ()
@@ -394,6 +396,18 @@ public class WeaponManager : MonoBehaviour
         UpdateBulletGUI();
         UpdateWeaponGUI();
         isReloading = false;
+    }
+
+    public void AutomaticShoot()
+    {
+        for(int i = 0; i < AutomaticWeapons.Length; i++)
+        {
+            if (AutomaticWeapons[i] == selectedFireArm)
+            {
+                Shoot();
+                break;
+            }
+        }
     }
 
     public void Shoot()
