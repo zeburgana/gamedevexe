@@ -17,7 +17,7 @@ public class LevelManager : MonoBehaviour {
             SaveCurrentLevelIndex();
     }
 
-    public void LevelFinished()
+    public void LevelCleared()
     {
         //play level finished screen with option to load next level
         Debug.Log("Stage cleared");
@@ -51,5 +51,7 @@ public class LevelManager : MonoBehaviour {
     public void EnemyDefeated()
     {
         EnemiesOnMapLeft--;
+        if (EnemiesOnMapLeft == 0)
+            LevelCleared();
     }
 }
