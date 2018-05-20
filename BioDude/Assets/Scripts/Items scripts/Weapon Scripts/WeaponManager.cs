@@ -385,7 +385,7 @@ public class WeaponManager : MonoBehaviour
     private IEnumerator Reloadco()
     {
         isReloading = true;
-        playerAnimator.SetFloat("reloadTime", 1 / aWeaponScript.reloadTime);
+        playerAnimator.SetFloat("reloadSpeed", 1 / aWeaponScript.reloadTime);
         playerAnimator.SetTrigger("playerReload");
         
         yield return new WaitForSeconds(aWeaponScript.reloadTime);
