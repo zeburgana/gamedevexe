@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class EarnConditionsExample : MonoBehaviour {
-
-    public string achievementName;
+    
 
 
 
