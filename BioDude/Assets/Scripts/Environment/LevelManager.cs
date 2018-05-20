@@ -11,7 +11,8 @@ public class LevelManager : MonoBehaviour {
 	// Use this for initialization
     void Start()
     {
-        EnemiesOnMapLeft = GameObject.Find("Enemies").transform.childCount;
+        if(GameObject.Find("Enemies") != null)
+            EnemiesOnMapLeft = GameObject.Find("Enemies").transform.childCount;
         if (SceneManager.GetActiveScene().buildIndex > 0 &&
             SceneManager.GetActiveScene().name != "Menu")
             SaveCurrentLevelIndex();

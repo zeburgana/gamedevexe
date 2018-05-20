@@ -1445,7 +1445,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObjectToMove:
   - {fileID: 1213988789}
-  menu: {fileID: 493356114}
+  achievementManager: {fileID: 0}
+  achievementPanel: {fileID: 0}
 --- !u!114 &536623925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3229,7 +3230,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObjectToMove:
   - {fileID: 1213988789}
-  menu: {fileID: 493356114}
+  achievementManager: {fileID: 1042140495}
+  achievementPanel: {fileID: 2146075858}
 --- !u!1 &902544149
 GameObject:
   m_ObjectHideFlags: 0
@@ -6679,7 +6681,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 999835464}
   m_HandleRect: {fileID: 999835463}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -8660,3 +8662,8 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2105867385}
+--- !u!1 &2146075858 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1659076747563050, guid: d1f13ccf64c35e44c9effc5884369160,
+    type: 2}
+  m_PrefabInternal: {fileID: 321033904}
