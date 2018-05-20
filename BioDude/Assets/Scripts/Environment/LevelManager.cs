@@ -5,13 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
 
+    [SerializeField]
+    int EnemiesOnMapLeft = 0;
     string LastLevelKeyName = "LastLevelCheckpoint";
 	// Use this for initialization
     void Start()
     {
+        EnemiesOnMapLeft = GameObject.Find("Enemies").transform.childCount;
         if (SceneManager.GetActiveScene().buildIndex > 0 &&
             SceneManager.GetActiveScene().name != "Menu")
             SaveCurrentLevelIndex();
+    }
+
+    public void LevelFinished()
+    {
+        //play level finished screen with option to load next level
+        Debug.Log("Stage cleared");
     }
 
     public void LoadNextLevel()
@@ -37,5 +46,10 @@ public class LevelManager : MonoBehaviour {
     public bool DoesPlayerProgressExist()
     {
         return PlayerPrefs.HasKey(LastLevelKeyName);
+    }
+
+    public void EnemyDefeated()
+    {
+        EnemiesOnMapLeft--;
     }
 }
