@@ -1993,7 +1993,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.12541203, y: 0.000015311964}
+  m_AnchoredPosition: {x: -0.12541203, y: -0.000018388424}
   m_SizeDelta: {x: 0.25, y: 0}
   m_Pivot: {x: 0.00000010430813, y: 1}
 --- !u!114 &678707798
@@ -2437,7 +2437,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.10004422, y: -0.000024588133}
+  m_AnchoredPosition: {x: 0.10004423, y: 0.00001244322}
   m_SizeDelta: {x: -4.399994, y: 0}
   m_Pivot: {x: 0.000000044703484, y: 0.99999964}
 --- !u!114 &742021865
@@ -3228,10 +3228,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bfb990450dc2bd4e879d69e0341e964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectToMove:
-  - {fileID: 1213988789}
+  ObjectToMove: []
   achievementManager: {fileID: 1042140495}
-  achievementPanel: {fileID: 2146075858}
+  achievementPanel: {fileID: 1234013318}
 --- !u!1 &902544149
 GameObject:
   m_ObjectHideFlags: 0
@@ -5937,7 +5936,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.34500003, y: 0.7833334}
   m_AnchorMax: {x: 0.6562714, y: 0.9596669}
-  m_AnchoredPosition: {x: -0.82995605, y: 5}
+  m_AnchoredPosition: {x: -0.8300781, y: 5}
   m_SizeDelta: {x: 1.1000061, y: -3.199997}
   m_Pivot: {x: 0.000000024060036, y: 1}
 --- !u!114 &1433532046
@@ -8662,8 +8661,3 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2105867385}
---- !u!1 &2146075858 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1659076747563050, guid: d1f13ccf64c35e44c9effc5884369160,
-    type: 2}
-  m_PrefabInternal: {fileID: 321033904}

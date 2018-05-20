@@ -22,15 +22,37 @@ public class EarnConditionsExample : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
 
-    private void OnMouseDown()
-    {
-        //adds achievement when clicked
-        if (!EventSystem.current.IsPointerOverGameObject(-1))
+        //achievement earn conditions
+
+
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            AchievementManager.Instance.EarnAchievement(achievementName);
+            AchievementManager.Instance.EarnAchievement("Press W");
         }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            AchievementManager.Instance.EarnAchievement("Press A");
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            AchievementManager.Instance.EarnAchievement("Press S");
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            AchievementManager.Instance.EarnAchievement("Press D");
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            AchievementManager.Instance.EarnAchievement("Press L");
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            PlayerPrefs.DeleteAll();
+        }
+
+
     }
+
+
 }
