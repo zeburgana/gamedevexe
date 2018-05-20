@@ -78,6 +78,8 @@ public class player : Character
             weaponManager.SwitchExplosiveRight();
         if (Input.GetButtonDown("SwitchGrenadeLeft"))
             weaponManager.SwitchExplosiveLeft();
+        if (Input.GetButtonDown("SelectKnife"))
+            weaponManager.SelectWeaponByIndex(-1);
     }
 
     void Move(float h, float v)
@@ -135,11 +137,11 @@ public class player : Character
         weaponManager.Reload();
     }
 
-    IEnumerator Cooldown()
-    {
-        yield return new WaitForSeconds(2);
-        weaponManager.cooldownEnded = true;
-    }
+    //IEnumerator Cooldown()
+    //{
+    //    yield return new WaitForSeconds(2);
+    //    weaponManager.cooldownEnded = true;
+    //}
 
 
     public void SavePlayerStats()
