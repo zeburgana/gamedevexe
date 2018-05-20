@@ -39,11 +39,6 @@ public class AchievementManager : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(this);
-    }
-
     // Use this for initialization
     void Start()
     {
@@ -131,6 +126,17 @@ public class AchievementManager : MonoBehaviour
         yield return new WaitForSeconds(3);
         Destroy(achievement);
     }
+    public void DestroyAchievement(string title)
+    {
+        achievements[title].DestroyAchievement();
+    }
+    public void DestroyAllAchievements()
+    {
+        foreach (var item in achievements)
+        {
+            DestroyAchievement(item.Key);
+        }
+    }
 
     public void CreateAchievement(string parent, string title, string description, int points, int spriteIndex, int progress, string[] dependencies = null)
     {
@@ -151,6 +157,7 @@ public class AchievementManager : MonoBehaviour
             }
         }
     }
+
 
     public void SetAchievementInfo(string parent, GameObject achievement, string title, int progression = 0)
     {

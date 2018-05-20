@@ -779,14 +779,12 @@ MonoBehaviour:
   - {fileID: 1995316061485200, guid: c72f6a4e48ffefd43899f6fb74928673, type: 2}
   - {fileID: 1128119802197726, guid: 054915740a40d4949be36724f0b7d637, type: 2}
   - {fileID: 1164725371737510, guid: 49640031854b5ea41ae42401178bec04, type: 2}
-  knife: {fileID: 0}
-  knifeScript: {fileID: 0}
+  knife: {fileID: 1153504089118082, guid: 13da6ec938cea7248bee271651d8e573, type: 2}
   lastSelectedFireArm: {fileID: 0}
   lastSelectedExplosive: {fileID: 0}
-  activeWeaponRTip: {fileID: 0}
-  activeWeaponLTip: {fileID: 0}
-  cooldownEnded: 1
-  isReloading: 0
+  impactConcrete: {fileID: 0}
+  impactMetal: {fileID: 0}
+  impactFlesh: {fileID: 0}
 --- !u!212 &212019175598851104
 SpriteRenderer:
   m_ObjectHideFlags: 1
