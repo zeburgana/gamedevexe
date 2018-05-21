@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114974006457677796}
   - component: {fileID: 50606918283589374}
   - component: {fileID: 61990399879617454}
+  - component: {fileID: 114986077026004398}
   m_Layer: 10
   m_Name: PistolBullet
   m_TagString: Bullet
@@ -61,7 +62,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &61990399879617454
 BoxCollider2D:
@@ -97,6 +98,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8aefbf99cfc8e6c4c8a70ec482fa27b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114986077026004398
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1661742638681246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8144356e17304b445adae331135f2e6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212116651717751532
