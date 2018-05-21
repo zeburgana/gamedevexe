@@ -9,9 +9,9 @@ public class player : Character
     Vector2 movement;                   // The vector to store the direction of the player's movement.
     Animator anim;                      // Reference to the animator component.
     Rigidbody2D playerRigidbody;          // Reference to the player's rigidbody.
-    bool AbleToMove = true;
+    bool PlayerAlive = true;
 
-    PauseMenu PausemenuCanvas;
+    public PauseMenu PausemenuCanvas;
     private float rot_z;
     private WeaponManager weaponManager; 
 
@@ -19,7 +19,6 @@ public class player : Character
     {
         Initiate();
         // Set up references.
-        PausemenuCanvas = GameObject.Find("Pausemenu Canvas").GetComponent<PauseMenu>();
         anim = GetComponentInChildren<Animator>();
         playerRigidbody = GetComponent<Rigidbody2D>();
         weaponManager = transform.GetComponent<WeaponManager>();
@@ -44,7 +43,7 @@ public class player : Character
 
     private void Update()
     {
-        if(AbleToMove)
+        if(PlayerAlive)
         {
             Controls();
             Turning(); // Turn the player to face the mouse cursor.
@@ -53,7 +52,7 @@ public class player : Character
 
     void FixedUpdate()
     {
-        if (AbleToMove)
+        if (PlayerAlive)
         {
             float h = Input.GetAxisRaw("Horizontal");
             float v = Input.GetAxisRaw("Vertical");
@@ -69,6 +68,7 @@ public class player : Character
             weaponManager.Shoot();
         else if (Input.GetButton("Fire"))
             weaponManager.AutomaticShoot();
+
         if (Input.GetButtonDown("ThrowGranade"))
             weaponManager.UseExplosive();
         if (Input.GetButtonDown("Reload"))
@@ -120,7 +120,7 @@ public class player : Character
 
     protected override void Die()
     {
-        AbleToMove = false;
+        PlayerAlive = false;
         Destroy(gameObject.GetComponent<Rigidbody2D>());
         Destroy(gameObject.GetComponent<CircleCollider2D>());
         //^^^ pakeist i player death animation
@@ -140,10 +140,11 @@ public class player : Character
         weaponManager.Reload();
     }
 
-    public void SetAbleToMove(bool value)
-    {
-        AbleToMove = value;
-    }
+    //IEnumerator Cooldown()
+    //{
+    //    yield return new WaitForSeconds(2);
+    //    weaponManager.cooldownEnded = true;
+    //}
 
 
     public void SavePlayerStats()

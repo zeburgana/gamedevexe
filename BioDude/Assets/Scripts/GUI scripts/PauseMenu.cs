@@ -6,25 +6,20 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour {
 
     public static bool PausemenuOpen = false;
-    public static bool BlockPause = false;
+    public static bool IsPlayerDead = false;
     public GameObject PauseMenuUI;
     public GameObject PauseMenuPanel;
     public GameObject OptionsMenuPanel;
     public GameObject GameOverMenu;
+    public DialogueManager DialManager;
     public GameObject DeathSplashImage;
-    public GameObject LevelClearedMenu;
-    player _player;
-    DialogueManager DialManager;
-
 
     private float time;
     void Start()
     {
-        _player = GameObject.Find("player").GetComponent<player>();
         PauseMenuUI.SetActive(false);  //disabling pausemenu canvas because it should only be active when pausemenu is summoned
-        DialManager = GameObject.Find("Dialogue Manager").GetComponent<DialogueManager>();
         ResetPanels();
-        BlockPause = false;
+        IsPlayerDead = false;
 
     }
     public void ResetPanels()
@@ -33,12 +28,11 @@ public class PauseMenu : MonoBehaviour {
         OptionsMenuPanel.SetActive(false);
         GameOverMenu.SetActive(false);
         DeathSplashImage.SetActive(false);
-        LevelClearedMenu.SetActive(false);
     }
 
     // Update is called once per frame
     void Update () {
-        if(BlockPause)
+        if(IsPlayerDead)
         {
 
         }
@@ -47,7 +41,7 @@ public class PauseMenu : MonoBehaviour {
         {
             if (PausemenuOpen)
                 Resume();
-            else if(!DialManager.IsDialogueOpen() && !BlockPause)
+            else if(!DialManager.IsDialogueOpen() && !IsPlayerDead)
                 Pause();
         }
 	}
@@ -58,7 +52,6 @@ public class PauseMenu : MonoBehaviour {
     }
     public void Pause()
     {
-        _player.SetAbleToMove(false);
         DialManager.SetDialogueState(false);
         PauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
@@ -68,7 +61,6 @@ public class PauseMenu : MonoBehaviour {
 
     public void Resume()
     {
-        _player.SetAbleToMove(true);
         PauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         PausemenuOpen = false;
@@ -89,23 +81,9 @@ public class PauseMenu : MonoBehaviour {
         Application.Quit();
     }
 
-    public void LoadNextLevel()
-    {
-        LevelManager lvlManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
-        Time.timeScale = 1f;
-        lvlManager.LoadNextLevel();
-    }
-    public void ShowNextLevelScreen()
-    {
-        BlockPause = true;
-        Pause();
-        PauseMenuPanel.SetActive(false);
-        LevelClearedMenu.SetActive(true);
-    }
-
     public IEnumerator PlayerDeath()
     {
-        BlockPause = true;
+        IsPlayerDead = true;
         yield return new WaitForSeconds(1);
         PauseMenuUI.SetActive(true);
         ResetPanels();

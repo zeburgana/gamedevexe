@@ -13,7 +13,6 @@ public abstract class Weapon : Item
 
     public AudioClip weaponSound;
     public GameObject projectile;
-    public GameObject cartridgeCase;
     public GameObject tip;
     public float projectileSpeed;
     public float timeUntilSelfDestrucion;
