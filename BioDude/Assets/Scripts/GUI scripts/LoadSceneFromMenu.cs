@@ -8,9 +8,8 @@ public class LoadSceneFromMenu : MonoBehaviour
 {
 
     public GameObject[] ObjectToMove;
-    
-    public AchievementManager achievementManager;
-    public GameObject achievementPanel;
+
+    public GameObject menu;
 
     private void Awake()
     {
@@ -22,21 +21,26 @@ public class LoadSceneFromMenu : MonoBehaviour
     }
     public void NewGame()
     {
-        achievementManager.DestroyAllAchievements();
-        Destroy(GameObject.Find("MainMenuCanvas"));
-
         DeletePlayerProgress();
         LoadByIndex(1);
     }
     public void ContinueGame()
     {
         int indexToLoad = PlayerPrefs.GetInt("LastLevelCheckpoint");
-        Destroy(GameObject.Find("MainMenuCanvas"));
         LoadByIndex(indexToLoad);
     }
 
     void LoadByIndex(int sceneIndex)
     {
+        ObjectToMove[0].transform.GetChild(0).GetComponent<Text>().text = "";
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            menu.SetActive(false);
+        }
+        else
+        {
+            menu.SetActive(true);
+        }
         SceneManager.LoadScene(sceneIndex);
         Time.timeScale = 1f;
     }

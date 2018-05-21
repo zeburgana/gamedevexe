@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class EarnConditionsExample : MonoBehaviour {
-    
+
+    public string achievementName;
 
 
 
@@ -21,37 +22,15 @@ public class EarnConditionsExample : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		
+	}
 
-        //achievement earn conditions
-
-
-        if (Input.GetKeyDown(KeyCode.W))
+    private void OnMouseDown()
+    {
+        //adds achievement when clicked
+        if (!EventSystem.current.IsPointerOverGameObject(-1))
         {
-            AchievementManager.Instance.EarnAchievement("Press W");
+            AchievementManager.Instance.EarnAchievement(achievementName);
         }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            AchievementManager.Instance.EarnAchievement("Press A");
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            AchievementManager.Instance.EarnAchievement("Press S");
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            AchievementManager.Instance.EarnAchievement("Press D");
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            AchievementManager.Instance.EarnAchievement("Press L");
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            PlayerPrefs.DeleteAll();
-        }
-
-
     }
-
-
 }
