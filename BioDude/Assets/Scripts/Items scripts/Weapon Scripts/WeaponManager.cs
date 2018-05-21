@@ -571,7 +571,6 @@ public class WeaponManager : MonoBehaviour
                     ParticleSystem emitter = Instantiate(impactMetal, contactPos, rot);
                     // This splits the particle off so it doesn't get deleted with the parent
                     emitter.transform.parent = null;
-                    //Debug.Log("enemy metal");
                 }
                 
             }
