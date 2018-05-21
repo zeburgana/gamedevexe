@@ -738,7 +738,7 @@ public class WeaponManager : MonoBehaviour
                 int added = ammo.AddAmmo(amount);
                 UpdateWeaponGUI();
                 UpdateBulletGUI();
-                ///##notifications.Notify(added.ToString() + " " + ammo.name.ToString() + " ammo added");
+                notifications.Notify(added.ToString() + " " + ammo.name.ToString() + " ammo added");
                 return added;
             }
         foreach (Ammo ammo in explosiveAmmo)
@@ -747,7 +747,7 @@ public class WeaponManager : MonoBehaviour
                 int added = ammo.AddAmmo(amount);
                 UpdateWeaponGUI();
                 UpdateBulletGUI();
-                ///##notifications.Notify(added.ToString() + " " + ammo.name.ToString() + " ammo added");
+                notifications.Notify(added.ToString() + " " + ammo.name.ToString() + " ammo added");
                 return added;
             }
         return -1;
@@ -793,7 +793,7 @@ public class WeaponManager : MonoBehaviour
             int added = fireArmAmmo[index].AddAmmo(amount);
             UpdateWeaponGUI();
             UpdateBulletGUI();
-            ///##notifications.Notify(added.ToString() + " " + fireArmAmmo[index].name.ToString() + " ammo added");
+            notifications.Notify(added.ToString() + " " + fireArmAmmo[index].name.ToString() + " ammo added");
             return added;
         }
         return -1;
@@ -831,7 +831,7 @@ public class WeaponManager : MonoBehaviour
             UpdateWeaponGUI();
             if (index == selectedFireArm)
                 UpdateBulletGUI();
-            ///##notifications.Notify(added.ToString() + " " + fireArmAmmo[weaponArray[index].GetComponent<Weapon>().ammoType].name.ToString() + " ammo added");z
+            notifications.Notify(added.ToString() + " " + fireArmAmmo[weaponArray[index].GetComponent<Weapon>().ammoType].name.ToString() + " ammo added");
             return added;
         }
         return -1;
@@ -868,7 +868,7 @@ public class WeaponManager : MonoBehaviour
         {
             int added = explosiveAmmo[index].AddAmmo(amount);
             UpdateExplosiveGUI();
-            ///##notifications.Notify(added.ToString() + " " + explosiveAmmo[index].name.ToString() + " added");
+            notifications.Notify(added.ToString() + " " + explosiveAmmo[index].name.ToString() + " added");
             return added;
         }
         return -1;

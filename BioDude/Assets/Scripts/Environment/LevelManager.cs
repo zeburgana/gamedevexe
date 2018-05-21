@@ -17,7 +17,8 @@ public class LevelManager : MonoBehaviour {
         Pausemenu = obj.GetComponent<PauseMenu>();
         Debug.Log(Pausemenu);
 
-        EnemiesOnMapLeft = GameObject.Find("Enemies").transform.childCount;
+        if(GameObject.Find("Enemies") != null)
+            EnemiesOnMapLeft = GameObject.Find("Enemies").transform.childCount;
         if (SceneManager.GetActiveScene().buildIndex > 0 &&
             SceneManager.GetActiveScene().name != "Menu")
             SaveCurrentLevelIndex();
