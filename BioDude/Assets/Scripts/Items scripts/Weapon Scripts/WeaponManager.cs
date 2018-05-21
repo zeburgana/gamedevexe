@@ -810,7 +810,7 @@ public class WeaponManager : MonoBehaviour
             UpdateWeaponGUI();
             if (index == selectedFireArm)
                 UpdateBulletGUI();
-            notifications.Notify(added.ToString() + " " + fireArmAmmo[weaponArray[index].GetComponent<Weapon>().ammoType].name.ToString() + " ammo added");
+            //##notifications.Notify(added.ToString() + " " + fireArmAmmo[weaponArray[index].GetComponent<Weapon>().ammoType].name.ToString() + " ammo added");
             return added;
         }
         return -1;
