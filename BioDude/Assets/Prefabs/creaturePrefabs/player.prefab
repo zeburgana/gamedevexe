@@ -701,7 +701,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -782,9 +782,11 @@ MonoBehaviour:
   knife: {fileID: 1153504089118082, guid: 13da6ec938cea7248bee271651d8e573, type: 2}
   lastSelectedFireArm: {fileID: 0}
   lastSelectedExplosive: {fileID: 0}
-  impactConcrete: {fileID: 0}
-  impactMetal: {fileID: 0}
-  impactFlesh: {fileID: 0}
+  impactConcrete: {fileID: 198297326478612708, guid: 18951d2922ad3904981465f949da502f,
+    type: 2}
+  impactMetal: {fileID: 19800002, guid: 00fedc70b62a31e448e8ccc298257b56, type: 2}
+  impactFlesh: {fileID: 198618202314290210, guid: 7d7466c2bbef6b048ab60b9cda923ec8,
+    type: 2}
 --- !u!212 &212019175598851104
 SpriteRenderer:
   m_ObjectHideFlags: 1

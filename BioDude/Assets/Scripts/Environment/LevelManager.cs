@@ -7,10 +7,16 @@ public class LevelManager : MonoBehaviour {
 
     [SerializeField]
     int EnemiesOnMapLeft = 0;
+    PauseMenu Pausemenu;
     string LastLevelKeyName = "LastLevelCheckpoint";
 	// Use this for initialization
     void Start()
     {
+        GameObject obj = GameObject.Find("Pausemenu Canvas");
+        Debug.Log(obj);
+        Pausemenu = obj.GetComponent<PauseMenu>();
+        Debug.Log(Pausemenu);
+
         if(GameObject.Find("Enemies") != null)
             EnemiesOnMapLeft = GameObject.Find("Enemies").transform.childCount;
         if (SceneManager.GetActiveScene().buildIndex > 0 &&
@@ -21,6 +27,7 @@ public class LevelManager : MonoBehaviour {
     public void LevelCleared()
     {
         //play level finished screen with option to load next level
+        Pausemenu.ShowNextLevelScreen();
         Debug.Log("Stage cleared");
     }
 
@@ -28,7 +35,11 @@ public class LevelManager : MonoBehaviour {
     {
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex +1;
         PlayerPrefs.SetInt(LastLevelKeyName, nextSceneIndex);
-        SceneManager.LoadScene(nextSceneIndex);
+        Debug.Log("load");
+        if (nextSceneIndex > -1 && nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+            SceneManager.LoadScene(nextSceneIndex);
+        else
+            Debug.Log("cannot load scene: " + nextSceneIndex);
     }
     public int GetLastLevelIndex()
     {
