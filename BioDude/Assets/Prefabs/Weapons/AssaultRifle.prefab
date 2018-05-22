@@ -89,12 +89,12 @@ MonoBehaviour:
   timeUntilSelfDestrucion: 2
   cooldown: 0.05
   clipSize: 180
-  currentClipAmmo: 92
+  currentClipAmmo: 180
   reloadTime: 1.5
   accuracy: 7
   damage: 2
   allertingRadius: 7
-  cameraRecoil: 1
+  cameraRecoil: 0.5
   ammoType: 2
   isDiscovered: 0
 --- !u!212 &212589696396474110

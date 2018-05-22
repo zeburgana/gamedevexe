@@ -132,7 +132,6 @@ public class AchievementManager : MonoBehaviour
         }
     }
 
-
     public void SetAchievementInfo(string parent, GameObject achievement, string title, int progression = 0)
     {
         achievement.transform.SetParent(GameObject.Find(parent).transform);
