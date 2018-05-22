@@ -20,12 +20,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Hazard Tiles.unity
     guid: f660de68546502f4dba5917d77cd1446
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: ddc440573680c8a4e868e4b505cd9d4e
   - enabled: 1
     path: Assets/Scenes/Level2.unity
-    guid: 591ebcfcdc710a74aa202bd9fc262173
+    guid: cc60e97eb22adc0489c6a6ee4f992730

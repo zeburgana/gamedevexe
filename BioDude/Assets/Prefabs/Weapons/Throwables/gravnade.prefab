@@ -86,7 +86,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.15, y: 0.13}
+  m_Size: {x: 0.27, y: 0.38}
   m_EdgeRadius: 0
 --- !u!114 &114919918162069158
 MonoBehaviour:
@@ -100,8 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   started: 0
-  AmmoType: 1
   throwForce: 200
+  AmmoType: 1
   delay: 2
   blackHoleEffect: {fileID: 1759955223216986, guid: 0c7d194e241fcd4458f67df2450e29b3,
     type: 2}
