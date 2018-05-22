@@ -571,7 +571,7 @@ public class WeaponManager : MonoBehaviour
      }
 
     //for explosives throwing
-    public void UseExplosive()
+    public GameObject UseExplosive()
     {
         if (!isReloading)
         {
@@ -581,20 +581,19 @@ public class WeaponManager : MonoBehaviour
             }
             else
             {
-                if(explosiveAmmo[selectedExplosive].amount > 0)
+                if (explosiveAmmo[selectedExplosive].amount > 0)
                 {
                     TakeExplosivesByIndex(selectedExplosive, 1);
                     Vector3 instantiatePos = transform.position;
                     Debug.Log("throw");
                     if (explosiveArray[selectedExplosive] != null)
                     {
-                        //var nade = PrefabUtility.InstantiatePrefab(explosiveArray[selectedExplosive]) as GameObject;
-                        GameObject nade = Instantiate(activeGrenade, instantiatePos, transform.rotation);
-                        //nade.Throw(500);
+                        return UnityEngine.Object.Instantiate(activeGrenade, instantiatePos, transform.rotation) as GameObject;
                     }
                 }
             }
         }
+        return null;
     }
     
     IEnumerator Cooldown()
