@@ -2437,7 +2437,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.10004423, y: -0.00000075729247}
+  m_AnchoredPosition: {x: 0.10004422, y: 0.000031412805}
   m_SizeDelta: {x: -4.399994, y: 0}
   m_Pivot: {x: 0.000000044703484, y: 0.99999964}
 --- !u!114 &742021865
@@ -6680,8 +6680,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 999835464}
   m_HandleRect: {fileID: 999835463}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7860,12 +7860,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-    culpa qui officia deserunt mollit anim id est laborum."'
+  m_Text: "Made in associacion with SneakyBox.\r\nMade by GameDev.exe"
 --- !u!222 &1866630136
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8214,12 +8209,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-    culpa qui officia deserunt mollit anim id est laborum."'
+  m_Text: "WASD to move, \nMouse to aim, \nMouse Left Click to shoot, \nR to reload,
+    \nE next weapon, \nQ previous weapon, \n1 next grenade,\n2 previous grenade,\nKill
+    the AI and pop goes the weasel"
 --- !u!222 &1982513627
 CanvasRenderer:
   m_ObjectHideFlags: 0
