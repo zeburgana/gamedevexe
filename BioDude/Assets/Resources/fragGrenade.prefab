@@ -24,8 +24,8 @@ GameObject:
   - component: {fileID: 50001045859625392}
   - component: {fileID: 61381879939487952}
   m_Layer: 15
-  m_Name: grenade
-  m_TagString: Untagged
+  m_Name: fragGrenade
+  m_TagString: Explosive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
