@@ -210,19 +210,20 @@ public class HazardTiles : MonoBehaviour
     }
     private void Conveyor(Collider2D collision)
     {
+        if(collision.tag != "Untagged")
         switch (direction)
         {
             case 1:
-                collision.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(0,1 * damage * damageMultiplier));
+                collision.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,1 * damage * damageMultiplier));
                 break;
             case 2:
-                collision.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(0, -1 * damage * damageMultiplier));
+                collision.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, -1 * damage * damageMultiplier));
                 break;
             case 3:
-                collision.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(-1 * damage * damageMultiplier, 0));
+                collision.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1 * damage * damageMultiplier, 0));
                 break;
             case 4:
-                collision.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(1 * damage * damageMultiplier, 0));
+                collision.GetComponent<Rigidbody2D>().AddForce(new Vector2(1 * damage * damageMultiplier, 0));
                 break;
             default:
                 break;
