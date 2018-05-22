@@ -93,9 +93,9 @@ MonoBehaviour:
   currentClipAmmo: 12
   reloadTime: 2
   accuracy: 5
-  damage: 2
+  damage: 7
   allertingRadius: 5
-  cameraRecoil: 2
+  cameraRecoil: 0.8
   ammoType: 0
   isDiscovered: 0
 --- !u!212 &212249835247098000

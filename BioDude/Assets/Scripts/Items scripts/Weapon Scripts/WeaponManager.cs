@@ -124,6 +124,7 @@ public class WeaponManager : MonoBehaviour
         GetAmmoFromMemory();
         ///
 
+        notifications = GameObject.Find("AchievementManager").GetComponent<AchievementManager>();
         knifeScript = knife.GetComponent<Knife>();
         projectiles = GameObject.Find("Projectiles").transform;
         mainCameraScript = GameObject.Find("Main Camera").GetComponent<CameraScript>();
@@ -811,7 +812,7 @@ public class WeaponManager : MonoBehaviour
             UpdateWeaponGUI();
             if (index == selectedFireArm)
                 UpdateBulletGUI();
-            //##notifications.Notify(added.ToString() + " " + fireArmAmmo[weaponArray[index].GetComponent<Weapon>().ammoType].name.ToString() + " ammo added");
+            notifications.Notify(added.ToString() + " " + fireArmAmmo[weaponArray[index].GetComponent<Weapon>().ammoType].name.ToString() + " ammo added");
             return added;
         }
         return -1;

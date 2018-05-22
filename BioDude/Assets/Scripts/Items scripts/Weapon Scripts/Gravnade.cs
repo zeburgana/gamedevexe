@@ -45,9 +45,4 @@ public class Gravnade : Explosive
         Instantiate(blackHoleEffect, transform.position, transform.rotation);
         Destroy(gameObject);
     }
-    public override void Throw(float force)
-    {
-        rb.AddForce(transform.up * force);
-    }
-
 }

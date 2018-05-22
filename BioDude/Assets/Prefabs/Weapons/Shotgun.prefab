@@ -92,10 +92,10 @@ MonoBehaviour:
   clipSize: 3
   currentClipAmmo: 3
   reloadTime: 3
-  accuracy: 25
+  accuracy: 15
   damage: 12
   allertingRadius: 8
-  cameraRecoil: 5
+  cameraRecoil: 2
   ammoType: 3
   isDiscovered: 0
   bulletCount: 6

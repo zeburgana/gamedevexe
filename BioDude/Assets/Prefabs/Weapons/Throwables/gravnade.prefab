@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   started: 0
-  throwForce: 200
+  throwForce: 4000
   AmmoType: 1
   delay: 2
   blackHoleEffect: {fileID: 1759955223216986, guid: 0c7d194e241fcd4458f67df2450e29b3,

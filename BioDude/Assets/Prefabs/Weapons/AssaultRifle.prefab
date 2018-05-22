@@ -95,7 +95,7 @@ MonoBehaviour:
   accuracy: 7
   damage: 2
   allertingRadius: 7
-  cameraRecoil: 1
+  cameraRecoil: 0.5
   ammoType: 2
   isDiscovered: 0
 --- !u!212 &212589696396474110
