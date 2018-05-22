@@ -82,6 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 232dc9cb7bffadb44b0a97e1c056bdfd, type: 3}
+  orderInLayer: 5
   weaponSound: {fileID: 8300000, guid: 4ad6cd90a764008468d613af633c9ee9, type: 3}
   projectile: {fileID: 1962498360787404, guid: b5b00514c212b4c4fb8bfe52edb5cf7f, type: 2}
   tip: {fileID: 1635772868675404}
@@ -89,7 +90,7 @@ MonoBehaviour:
   timeUntilSelfDestrucion: 2
   cooldown: 1
   clipSize: 3
-  currentClipAmmo: 2
+  currentClipAmmo: 3
   reloadTime: 3
   accuracy: 25
   damage: 12

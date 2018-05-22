@@ -5,11 +5,12 @@ using UnityEngine;
 public abstract class Item : MonoBehaviour
 {
 	public Sprite sprite;
+    public int orderInLayer;
 	
 	public virtual void Equip (GameObject placeHolder)
 	{
 		SpriteRenderer spriteRend = placeHolder.GetComponent<SpriteRenderer>();
-		spriteRend.sortingOrder = 5;
+		spriteRend.sortingOrder = orderInLayer;
 		spriteRend.sprite = sprite;
 	}
 }
