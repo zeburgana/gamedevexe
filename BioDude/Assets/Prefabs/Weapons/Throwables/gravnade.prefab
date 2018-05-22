@@ -55,7 +55,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 10
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   started: 0
-  throwForce: 200
+  throwForce: 100
   AmmoType: 1
   delay: 2
   blackHoleEffect: {fileID: 1759955223216986, guid: 0c7d194e241fcd4458f67df2450e29b3,

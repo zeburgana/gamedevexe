@@ -34,12 +34,12 @@ public class Explosive : MonoBehaviour {
             Debug.Log("base grenade");
             Vector3 mousePos = Input.mousePosition;
             float dirForce = Vector3.Distance(transform.position, mousePos);
-            dirForce *= 0.03f;
+            dirForce *= 0.07f;
             dirForce *= dirForce;
 
             Debug.Log("dir: " + dirForce);
-            Debug.Log("force: " + transform.up * force * dirForce * 0.01f);
-            rb.AddForce(transform.up * force * dirForce * 0.01f);
+            Debug.Log("force: " + transform.up * force * dirForce * 0.005f);
+            rb.AddForce(transform.up * force * dirForce * 0.005f);
         }
     }
 }

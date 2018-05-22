@@ -45,7 +45,7 @@ public class EarnConditionsExample : MonoBehaviour {
         {
             AchievementManager.Instance.EarnAchievement("Press L");
         }
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.Delete))
         {
             PlayerPrefs.DeleteAll();
         }
