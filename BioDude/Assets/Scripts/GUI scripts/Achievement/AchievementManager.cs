@@ -39,11 +39,6 @@ public class AchievementManager : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(this);
-    }
-
     // Use this for initialization
     void Start()
     {
@@ -74,38 +69,14 @@ public class AchievementManager : MonoBehaviour
     void Update()
     {
 
-        //this opens achievement menu when not in main menu and backspace is pressed
+        //this opens achievement menu when not in main menu and backspace is pressed. Comment if you don't want this to work
+        /*
         if (Input.GetKeyDown(KeyCode.Backspace) && SceneManager.GetActiveScene().buildIndex != 0)
         {
             achievementMenu.SetActive(!achievementMenu.activeSelf);
             backButton.SetActive(!backButton.activeSelf);
         }
-
-        //achievement earn conditions
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            EarnAchievement("Press W");
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            EarnAchievement("Press A");
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            EarnAchievement("Press S");
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            EarnAchievement("Press D");
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            EarnAchievement("Press L");
-        }
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            PlayerPrefs.DeleteAll();
-        }
+        */
     }
 
     public void EarnAchievement(string title)
@@ -131,6 +102,17 @@ public class AchievementManager : MonoBehaviour
         yield return new WaitForSeconds(3);
         Destroy(achievement);
     }
+    public void DestroyAchievement(string title)
+    {
+        achievements[title].DestroyAchievement();
+    }
+    public void DestroyAllAchievements()
+    {
+        foreach (var item in achievements)
+        {
+            DestroyAchievement(item.Key);
+        }
+    }
 
     public void CreateAchievement(string parent, string title, string description, int points, int spriteIndex, int progress, string[] dependencies = null)
     {
@@ -151,6 +133,7 @@ public class AchievementManager : MonoBehaviour
             }
         }
     }
+
 
     public void SetAchievementInfo(string parent, GameObject achievement, string title, int progression = 0)
     {

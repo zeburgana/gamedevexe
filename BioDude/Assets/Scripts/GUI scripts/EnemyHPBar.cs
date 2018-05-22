@@ -14,13 +14,13 @@ public class EnemyHPBar : MonoBehaviour {
     Quaternion rotation;
     void Start()
     {
-        EnemyObject = transform.parent.gameObject;
+        EnemyObject = gameObject.transform.parent.gameObject;
         height = gameObject.transform.position.y - EnemyObject.transform.position.y;
         rotation = transform.rotation;
     }
     public void Initiate()
     {
-        EnemyCharacter = EnemyObject.GetComponent<Character>();
+        EnemyCharacter = gameObject.transform.parent.gameObject.GetComponent<Character>(); //somewhy nullreference when using EnemyObject
         HpSlider.maxValue = EnemyCharacter.healthMax;
         HpSlider.value = EnemyCharacter.healthCurrent;
         HpSlider.gameObject.SetActive(false);

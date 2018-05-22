@@ -53,6 +53,7 @@ public class MeleeTank : Tank
 
     protected override void Die()
     {
+        base.Die();
         // enemy death: smokes and stoped movement
         Destroy(gameObject);    //changed to gameobject because "this" destroys only MeleeTank script and the tank still chases player
     }
