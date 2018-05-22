@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class LevelManagerTrigger : MonoBehaviour {
     public LevelManager lvlManager;
+    void Start()
+    {
+        transform.GetComponent<SpriteRenderer>().sprite = null;
+    }
+
 	// Use this for initialization
     public void OnTriggerEnter2D(Collider2D other)
     {
