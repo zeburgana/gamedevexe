@@ -45,12 +45,7 @@ public class PauseMenu : MonoBehaviour {
                 Pause();
         }
 	}
-
-    public void OnEnable()
-    {
-        ResetPanels();
-    }
-    public void Pause()
+    void Pause()
     {
         DialManager.SetDialogueState(false);
         PauseMenuUI.SetActive(true);

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public abstract class Weapon : Item
 {
-    /*public enum WeaponType //deprecated or not used yet
+    public enum WeaponType
     {
         Melee,
         Pistol,
         RocketLauncher
-    }*/
+    }
 
     public AudioClip weaponSound;
     public GameObject projectile;
@@ -17,14 +17,13 @@ public abstract class Weapon : Item
     public float projectileSpeed;
     public float timeUntilSelfDestrucion;
     public float cooldown;
-    //public WeaponType weaponType;
-    public int clipSize; // how many shots weapon can hold inside
-    public int currentClipAmmo; // how many shots are left in weapon
+    public WeaponType weaponType;
+    public int maxAmmo;
+    public int currentAmmo;
+    public int clipSize;
+    public int currentClipAmmo;
     public float reloadTime;
-    public float accuracy = 0;
-    public float damage;
-    public float allertingRadius;
-    public float cameraRecoil;
-    public int ammoType; // index of ammo array in player weaponManager
-    public bool isDiscovered = false;
+    
+
+
 }
