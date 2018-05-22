@@ -7,6 +7,10 @@ public class LevelManager : MonoBehaviour {
 
     [SerializeField]
     int EnemiesOnMapLeft = 0;
+    [SerializeField]
+    public bool NextLevelOnNoEnemies = false;
+    [SerializeField]
+    public bool LastLevel = false;
     PauseMenu Pausemenu;
     string LastLevelKeyName = "LastLevelCheckpoint";
 	// Use this for initialization
@@ -56,7 +60,7 @@ public class LevelManager : MonoBehaviour {
     public void EnemyDefeated()
     {
         EnemiesOnMapLeft--;
-        if (EnemiesOnMapLeft == 0)
+        if (EnemiesOnMapLeft == 0 && NextLevelOnNoEnemies)
             LevelCleared();
     }
 }
