@@ -138,8 +138,7 @@ public class WeaponManager : MonoBehaviour
         lastSelectedExplosive = GameObject.Find("ExplosiveSelectionSlot01"); // sets the last selected explosion as a standard grenade
 
         //spriteRenderer = GetComponent<SpriteRenderer>();
-        SwitchWeaponRight();
-        SwitchExplosiveRight();
+        
 
         // fill weapons with bullets on start
         foreach (GameObject w in weaponArray)
@@ -147,6 +146,9 @@ public class WeaponManager : MonoBehaviour
             Weapon wcs = w.GetComponent<Weapon>();
             wcs.currentClipAmmo = 0;
         }
+
+        SwitchWeaponRight();
+        SwitchExplosiveRight();
 
         UpdateWeaponGUI();
         UpdateExplosiveGUI();
@@ -163,7 +165,7 @@ public class WeaponManager : MonoBehaviour
                 //we haven't gained this weapon yet
                 lastSelectedFireArm = GameObject.Find("WeaponSelectionSlot0" + (i + 1).ToString());
             }
-            else if (weaponData.currentClipAmmo + fireArmAmmo[awAmmoType].amount > 0)
+            else if (weaponData.currentClipAmmo + fireArmAmmo[weaponData.ammoType].amount > 0)
             {
                 //we have weapon which is in index i
                 GameObject.Find("PassiveStripes0" + (i + 1).ToString()).GetComponent<RawImage>().enabled = false;
@@ -277,8 +279,14 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        UpdateWeaponGUI();
+    }
+
     private void UpdateWeapon()
     {
+        UpdateWeaponGUI(); // hotfix
         playerAnimator.SetInteger("Weapon", selectedFireArm);
         if (selectedFireArm == -1) // selected knife
         {
