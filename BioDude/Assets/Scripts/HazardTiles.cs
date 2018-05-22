@@ -107,6 +107,7 @@ public class HazardTiles : MonoBehaviour
         switch (hazardId)
         {
             case 6:
+                if(collision.tag!="Bullet")
                 Conveyor(collision);
                 break;
             default:

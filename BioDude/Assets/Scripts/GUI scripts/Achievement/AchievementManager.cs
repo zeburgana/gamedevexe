@@ -71,13 +71,13 @@ public class AchievementManager : MonoBehaviour
     {
 
         //this opens achievement menu when not in main menu and backspace is pressed. Comment if you don't want this to work
-        /*
-        if (Input.GetKeyDown(KeyCode.Backspace) && SceneManager.GetActiveScene().buildIndex != 0)
+        
+        if (Input.GetKeyDown(KeyCode.P) && SceneManager.GetActiveScene().buildIndex != 0)
         {
             achievementMenu.SetActive(!achievementMenu.activeSelf);
             backButton.SetActive(!backButton.activeSelf);
         }
-        */
+        
     }
 
     public void EarnAchievement(string title)
