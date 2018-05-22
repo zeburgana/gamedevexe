@@ -45,8 +45,8 @@ public class LoadSceneFromMenu : MonoBehaviour
         PlayerPrefs.DeleteKey("LastLevelCheckpoint");
         PlayerPrefs.DeleteKey("PlayerHP");
         PlayerPrefs.DeleteKey("pistolAmmo");
-        //PlayerPrefs.DeleteKey("PlayerShotgun");
-        //PlayerPrefs.DeleteKey("PlayerRifle");
+        PlayerPrefs.DeleteKey("shotgunAmmo");
+        PlayerPrefs.DeleteKey("assaultRifleAmmo");
         PlayerPrefs.DeleteKey("rocketAmmo");
         PlayerPrefs.DeleteKey("fragGrenadeAmmo");
         PlayerPrefs.DeleteKey("gravnadeAmmo");
