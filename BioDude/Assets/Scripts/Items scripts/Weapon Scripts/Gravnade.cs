@@ -26,11 +26,6 @@ public class Gravnade : Explosive
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(!started)
-        {
-            Throw(throwForce);
-            started = true;
-        }
         countdown -= Time.deltaTime;
         if (countdown <= 0f && !exploded)
         {

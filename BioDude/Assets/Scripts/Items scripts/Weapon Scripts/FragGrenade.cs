@@ -21,18 +21,13 @@ public class FragGrenade : Explosive
     {
         countdown = delay;
         rb = GetComponent<Rigidbody2D>();
-        //started = true;
+        started = true;
     }
 
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(!started)
-        {
-            Throw(throwForce);
-            started = true;
-        }
         countdown -= Time.deltaTime;
         if (countdown <= 0f && !exploded)
         {
