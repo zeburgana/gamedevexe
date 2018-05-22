@@ -57,16 +57,15 @@ public class Bullet : MonoBehaviour
                 }
 
             }
-            else if (collision.transform.tag != "Bouncy")
+            else
             {
-                Debug.Log("not bouncy");
+               // Debug.Log("not an enemy");
                 ParticleSystem emitter = Instantiate(impactConcrete, contactPos, rot);
                 // This splits the particle off so it doesn't get deleted with the parent
                 emitter.transform.parent = null;
             }
         }
-        if (collision.transform.tag != "Bouncy")
-            Destroy(gameObject);
+        Destroy(gameObject);
     }
 /*
     IEnumerator Fire()

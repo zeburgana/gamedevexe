@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 114753799306626856}
   - component: {fileID: 50547958527250760}
   - component: {fileID: 61022735554706408}
-  - component: {fileID: 114873819096808554}
   m_Layer: 10
   m_Name: AssaultRifleBullet
   m_TagString: Bullet
@@ -105,17 +104,6 @@ MonoBehaviour:
   impactMetal: {fileID: 19800002, guid: 00fedc70b62a31e448e8ccc298257b56, type: 2}
   impactFlesh: {fileID: 198618202314290210, guid: 7d7466c2bbef6b048ab60b9cda923ec8,
     type: 2}
---- !u!114 &114873819096808554
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1962498360787404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 699fc58b33a9be540bfccb1e75845e6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &212699498722850002
 SpriteRenderer:
   m_ObjectHideFlags: 1

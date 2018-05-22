@@ -58,7 +58,6 @@ public class RangedTank : Tank
     
     protected override void Die()
     {
-        base.Die();
         // enemy death: smokes and stoped movement
         Destroy(gameObject);
     }

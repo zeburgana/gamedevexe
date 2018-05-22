@@ -19,8 +19,8 @@ public class GUIManager : MonoBehaviour
         playerCharacter = GameObject.Find("player").GetComponent<player>();
         weaponManager = playerCharacter.GetComponent<WeaponManager>();
         healthBar.maxValue = playerCharacter.healthMax;
-        //AmmoText = transform.Find("PlayerAmmoText").GetComponent<Text>();
-        //ExplosiveText = transform.Find("PlayerExplosiveText").GetComponent<Text>();
+        AmmoText = transform.Find("PlayerAmmoText").GetComponent<Text>();
+        ExplosiveText = transform.Find("PlayerExplosiveText").GetComponent<Text>();
     }
 
     // Update is called once per frame

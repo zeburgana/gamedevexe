@@ -12,8 +12,6 @@ TagManager:
   - PlayerWeaponSlot
   - AchievementList
   - WeaponPickup
-  - FxTemporaire
-  - Bouncy
   layers:
   - Default
   - TransparentFX
@@ -34,8 +32,6 @@ TagManager:
   - Grenade
   - Nonwalkable
   - Rocket
-  - 
-  - 
   - 
   - 
   - 

@@ -144,16 +144,6 @@ public class Achievement : MonoBehaviour
         return false;
     }
 
-    public void DestroyAchievement()
-    {
-        int tmpPoints = PlayerPrefs.GetInt("Points");
-
-        PlayerPrefs.SetInt("Points", tmpPoints -= points);
-        PlayerPrefs.SetInt(achText, 0);
-        PlayerPrefs.SetInt("Progression" + Name, 0);
-        PlayerPrefs.Save();
-    }
-
     public void SaveAchievement(bool value)
     {
         unlocked = value;

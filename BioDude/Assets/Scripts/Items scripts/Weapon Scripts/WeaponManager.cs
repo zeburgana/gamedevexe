@@ -72,9 +72,6 @@ public class WeaponManager : MonoBehaviour
 
     public GameObject[] weaponArray; // add all types of weapons to array in inspector
     private Weapon aWeaponScript;
-
-    public GameObject knife;
-    private Knife knifeScript;
     
     private int awAmmoType;
     private int aeAmmoType;
@@ -82,14 +79,10 @@ public class WeaponManager : MonoBehaviour
     public GameObject lastSelectedFireArm;
     public GameObject lastSelectedExplosive;
 
-    public ParticleSystem impactConcrete;
-    public ParticleSystem impactMetal;
-    public ParticleSystem impactFlesh;
-
-    private GameObject activeWeaponRTip;
-    private GameObject activeWeaponLTip;
-    private bool cooldownEnded = true;
-    private bool isReloading = false;
+    public GameObject activeWeaponRTip;
+    public GameObject activeWeaponLTip;
+    public bool cooldownEnded = true;
+    public bool isReloading = false;
     //private SpriteRenderer spriteRenderer;
     private Allerting playerAlerting;
     private Animator playerAnimator;
@@ -106,8 +99,6 @@ public class WeaponManager : MonoBehaviour
     private RawImage explosiveImage;
     private RawImage weaponSlotImage;
 
-    private int[] AutomaticWeapons = { 2 };
-
 
     // Use this for initialization
     void Start ()
@@ -118,16 +109,16 @@ public class WeaponManager : MonoBehaviour
         activeWeaponLTip = leftHandSlot.transform.GetChild(0).gameObject;
 
 
+
+        projectiles = GameObject.Find("Projectiles").transform;
+        mainCameraScript = GameObject.Find("Main Camera").GetComponent<CameraScript>();
+        guiManager = GameObject.Find("GUI").GetComponent<GUIManager>();
         // static information about ofence weapons 
         fireArmAmmo = new Ammo[4];
         explosiveAmmo = new Ammo[2];
         GetAmmoFromMemory();
         ///
-
-        knifeScript = knife.GetComponent<Knife>();
-        projectiles = GameObject.Find("Projectiles").transform;
-        mainCameraScript = GameObject.Find("Main Camera").GetComponent<CameraScript>();
-        guiManager = GameObject.Find("GUI").GetComponent<GUIManager>();
+        
         playerAnimator = GetComponentInChildren<Animator>();
         playerAlerting = GetComponent<Allerting>();
         audioSource = GetComponent<AudioSource>();
@@ -135,6 +126,7 @@ public class WeaponManager : MonoBehaviour
         explosiveImage = GameObject.Find("PlayerExplosiveText").GetComponentInChildren<RawImage>();
         lastSelectedFireArm = GameObject.Find("WeaponSelectionSlot06");  // sets the last selected firearm as a knife (also, the selected weapon should be set as knife too, when the knife is implemented)
         lastSelectedExplosive = GameObject.Find("ExplosiveSelectionSlot01"); // sets the last selected explosion as a standard grenade
+
 
         //spriteRenderer = GetComponent<SpriteRenderer>();
         SwitchWeaponRight();
@@ -183,12 +175,13 @@ public class WeaponManager : MonoBehaviour
             //display no ammo - infinity or whatevs when knife should be selected
         }
         else
-        { 
+        {
             guiManager.SetBulletGUI(aWeaponScript.currentClipAmmo, fireArmAmmo[awAmmoType].amount);
             // show how many bullets left 
             // weapon sprite to display next to bullets nums: weaponArray[selectedFireArm].GetComponent<SpriteRenderer>().sprite
             // bullets in gun: aWeaponScript.currentClipAmmo
             // bullets in inventory (pool): fireArmAmmo[awAmmoType].amount
+
         }
     }
 
@@ -279,10 +272,9 @@ public class WeaponManager : MonoBehaviour
     private void UpdateWeapon()
     {
         playerAnimator.SetInteger("Weapon", selectedFireArm);
-        if (selectedFireArm == -1) // selected knife
+        if (selectedFireArm == -1)
         {
-            knifeScript.Equip(leftHandSlot);
-            rightHandSlot.GetComponent<SpriteRenderer>().sprite = null;
+            //selected knife
         }
         else
         {
@@ -377,7 +369,7 @@ public class WeaponManager : MonoBehaviour
 
     public void Reload()
     {
-        if (!isReloading && selectedFireArm != -1)
+        if (!isReloading)
         {
             if (aWeaponScript.currentClipAmmo != aWeaponScript.clipSize && fireArmAmmo[awAmmoType].amount > 0)
                 StartCoroutine(Reloadco());
@@ -398,29 +390,11 @@ public class WeaponManager : MonoBehaviour
         isReloading = false;
     }
 
-    public void AutomaticShoot()
-    {
-        for(int i = 0; i < AutomaticWeapons.Length; i++)
-        {
-            if (AutomaticWeapons[i] == selectedFireArm)
-            {
-                Shoot();
-                break;
-            }
-        }
-    }
-
     public void Shoot()
     {
-        if(selectedFireArm == -1) // knife attack
+        if(selectedFireArm == -1)
         {
-            if (cooldownEnded)
-            {
-                playerAnimator.SetTrigger("Shoot");
-                cooldownEnded = false;
-                StartCoroutine("Cooldown");
-                //mainCameraScript.AddOffset(knifeScript.cameraRecoil);
-            }
+            //knife attack
         }
         else
         {
@@ -447,7 +421,6 @@ public class WeaponManager : MonoBehaviour
                             ShootAssaultRifle();
                             break;
                         case 3:
-                            playerAnimator.SetTrigger("Shoot");
                             ShootShotgun();
                             break;
                         case 4:
@@ -513,59 +486,14 @@ public class WeaponManager : MonoBehaviour
         float bulletAngle = Random.Range(-weaponScript.accuracy, weaponScript.accuracy);
         GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponRTip.transform.position, Quaternion.Euler(0f, 0f, activeWeaponRTip.transform.rotation.eulerAngles.z + bulletAngle), projectiles);
         newBullet.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
-        if (aWeaponScript.currentClipAmmo > 1) // if only one bullet left in clip so two guns can't fire
+        if (aWeaponScript.clipSize > 1) // if onliy one bullet left in clip so two guns can't fire
         {
             GameObject newBullet2 = Instantiate(aWeaponScript.projectile, activeWeaponLTip.transform.position, Quaternion.Euler(0f, 0f, activeWeaponLTip.transform.rotation.eulerAngles.z + bulletAngle), projectiles);
             newBullet2.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
             aWeaponScript.currentClipAmmo--;
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D collision) // knife attack
-    {
-        Character charObj = collision.gameObject.GetComponent<Character>();
-        /*
-        if (charObj != null && collision.tag != "Player")
-        {
-            mainCameraScript.AddOffset(knifeScript.cameraRecoil);
-            charObj.Damage(knifeScript.damage);
-        }
-        */
-        
-        //getting contact points and setting rotation to the contact normal
-        ContactPoint2D[] contacts = new ContactPoint2D[2];
-        int contactCount = collision.GetContacts(contacts);
-
-        if (contactCount > 0)
-        {
-            Vector3 contactPos = contacts[0].point;
-            Quaternion rot = Quaternion.FromToRotation(transform.forward, contacts[0].normal);
-
-            //mainCameraScript.AddOffset(knifeScript.cameraRecoil);
-            if (charObj != null && collision.tag != "Player")
-            {
-                charObj.Damage(knifeScript.damage);
-                if (charObj.tag == "Enemy")
-                {
-                    ParticleSystem emitter = Instantiate(impactMetal, contactPos, rot);
-                    // This splits the particle off so it doesn't get deleted with the parent
-                    emitter.transform.parent = null;
-                    //Debug.Log("enemy metal");
-                }
-                
-            }
-            else
-            {
-                // Debug.Log("not an enemy");
-                ParticleSystem emitter = Instantiate(impactConcrete, contactPos, rot);
-                // This splits the particle off so it doesn't get deleted with the parent
-                emitter.transform.parent = null;
-            }
-
-        }
-        
-     }
-
+    
     //for explosives throwing
     public void UseExplosive()
     {
@@ -595,10 +523,11 @@ public class WeaponManager : MonoBehaviour
     
     IEnumerator Cooldown()
     {
-        yield return new WaitForSeconds(selectedFireArm == -1? knifeScript.cooldown : aWeaponScript.cooldown);
+        yield return new WaitForSeconds(aWeaponScript.cooldown);
         cooldownEnded = true;
     }
-    
+
+
     // API:
 
         // API: Explosives manipulation
@@ -659,8 +588,7 @@ public class WeaponManager : MonoBehaviour
                 if (selectedFireArm < 0)
                     selectedFireArm = weaponArray.Length - 1;
                 // if any ammo left:
-                Weapon wscirpt = weaponArray[selectedFireArm].GetComponent<Weapon>();
-                if (fireArmAmmo[wscirpt.ammoType].amount + wscirpt.currentClipAmmo > 0)
+                if (fireArmAmmo[weaponArray[selectedFireArm].GetComponent<Weapon>().ammoType].amount > 0)
                     break;
             }
             if (i == weaponArray.Length)
@@ -678,10 +606,9 @@ public class WeaponManager : MonoBehaviour
             {
                 selectedFireArm++;
                 if (selectedFireArm >= weaponArray.Length)
-                    selectedFireArm = 0;
+                    selectedFireArm = 0; 
                 // if any ammo left:
-                Weapon wscirpt = weaponArray[selectedFireArm].GetComponent<Weapon>();
-                if (fireArmAmmo[wscirpt.ammoType].amount + wscirpt.currentClipAmmo > 0)
+                if (fireArmAmmo[weaponArray[selectedFireArm].GetComponent<Weapon>().ammoType].amount > 0)
                     break;
             }
             if (i == weaponArray.Length)
@@ -694,7 +621,7 @@ public class WeaponManager : MonoBehaviour
     {
         if (!isReloading)
         {
-            if(index >= -1 && index < weaponArray.Length)
+            if(index >= 0 && index < weaponArray.Length)
             {
                 selectedFireArm = index;
                 UpdateWeapon();
@@ -717,7 +644,7 @@ public class WeaponManager : MonoBehaviour
                 int added = ammo.AddAmmo(amount);
                 UpdateWeaponGUI();
                 UpdateBulletGUI();
-                notifications.Notify(added.ToString() + " " + ammo.name.ToString() + " ammo added");
+                ///##notifications.Notify(added.ToString() + " " + ammo.name.ToString() + " ammo added");
                 return added;
             }
         foreach (Ammo ammo in explosiveAmmo)
@@ -726,7 +653,7 @@ public class WeaponManager : MonoBehaviour
                 int added = ammo.AddAmmo(amount);
                 UpdateWeaponGUI();
                 UpdateBulletGUI();
-                notifications.Notify(added.ToString() + " " + ammo.name.ToString() + " ammo added");
+                ///##notifications.Notify(added.ToString() + " " + ammo.name.ToString() + " ammo added");
                 return added;
             }
         return -1;
@@ -772,7 +699,7 @@ public class WeaponManager : MonoBehaviour
             int added = fireArmAmmo[index].AddAmmo(amount);
             UpdateWeaponGUI();
             UpdateBulletGUI();
-            notifications.Notify(added.ToString() + " " + fireArmAmmo[index].name.ToString() + " ammo added");
+            ///##notifications.Notify(added.ToString() + " " + fireArmAmmo[index].name.ToString() + " ammo added");
             return added;
         }
         return -1;
@@ -810,7 +737,7 @@ public class WeaponManager : MonoBehaviour
             UpdateWeaponGUI();
             if (index == selectedFireArm)
                 UpdateBulletGUI();
-            //##notifications.Notify(added.ToString() + " " + fireArmAmmo[weaponArray[index].GetComponent<Weapon>().ammoType].name.ToString() + " ammo added");
+            ///##notifications.Notify(added.ToString() + " " + fireArmAmmo[weaponArray[index].GetComponent<Weapon>().ammoType].name.ToString() + " ammo added");
             return added;
         }
         return -1;
@@ -847,7 +774,7 @@ public class WeaponManager : MonoBehaviour
         {
             int added = explosiveAmmo[index].AddAmmo(amount);
             UpdateExplosiveGUI();
-            notifications.Notify(added.ToString() + " " + explosiveAmmo[index].name.ToString() + " added");
+            ///##notifications.Notify(added.ToString() + " " + explosiveAmmo[index].name.ToString() + " added");
             return added;
         }
         return -1;

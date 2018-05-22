@@ -41,7 +41,6 @@ GameObject:
   - component: {fileID: 114752037745624992}
   - component: {fileID: 50830407983835972}
   - component: {fileID: 61548115687115258}
-  - component: {fileID: 114889425373026884}
   m_Layer: 18
   m_Name: Misile
   m_TagString: Untagged
@@ -207,7 +206,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   started: 0
-  throwForce: 100
   AmmoType: 0
   speed: 5
   rotSpeed: 200
@@ -217,17 +215,6 @@ MonoBehaviour:
   explosionEffect: {fileID: 1175786858352720, guid: df7cbf2ffde1d3848ab52efe0d38fdfe,
     type: 2}
   damage: 40
---- !u!114 &114889425373026884
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1433679252064700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 699fc58b33a9be540bfccb1e75845e6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!198 &198368852873627816
 ParticleSystem:
   m_ObjectHideFlags: 1
