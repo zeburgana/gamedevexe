@@ -89,17 +89,17 @@ MonoBehaviour:
   timeUntilSelfDestrucion: 2
   cooldown: 1
   clipSize: 1
-  currentClipAmmo: 1
+  currentClipAmmo: 0
   reloadTime: 3
   accuracy: 0
-  damage: 2
+  damage: 40
   allertingRadius: 10
   cameraRecoil: 1
   ammoType: 1
   isDiscovered: 0
   rotationSpeed: 300
-  radius: 3
-  force: 500
+  radius: 5
+  force: 2000
 --- !u!212 &212859599703880390
 SpriteRenderer:
   m_ObjectHideFlags: 1

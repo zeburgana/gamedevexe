@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour {
 
@@ -13,6 +14,7 @@ public class PauseMenu : MonoBehaviour {
     public GameObject GameOverMenu;
     public GameObject DeathSplashImage;
     public GameObject LevelClearedMenu;
+    public LevelManager lvlManager;
     player _player;
     public DialogueManager DialManager;
 
@@ -21,6 +23,7 @@ public class PauseMenu : MonoBehaviour {
     void Start()
     {
         _player = GameObject.Find("player").GetComponent<player>();
+        lvlManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         PauseMenuUI.SetActive(false);  //disabling pausemenu canvas because it should only be active when pausemenu is summoned
         DialManager = GameObject.Find("Dialogue Manager").GetComponent<DialogueManager>();
         ResetPanels();
@@ -101,6 +104,12 @@ public class PauseMenu : MonoBehaviour {
         Pause();
         PauseMenuPanel.SetActive(false);
         LevelClearedMenu.SetActive(true);
+        //if(SceneManager.GetActiveScene().buildIndex == SceneManager.GetAllScenes().Length - 1)
+        if(lvlManager.LastLevel)
+        {
+            LevelClearedMenu.transform.Find("NextLevelButton").GetComponent<Button>().interactable = false;
+            LevelClearedMenu.transform.Find("LevelClearedText").GetComponent<Text>().text += "\n End of the Game";
+        }
     }
 
     public IEnumerator PlayerDeath()

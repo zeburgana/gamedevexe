@@ -12,6 +12,7 @@ public class DialogueManager : MonoBehaviour {
     private Queue<string> names;
     private Queue<Sprite> avatars;
     private bool DialogueOpen = false;
+    player _player;
 
 
     public Animator animator;
@@ -21,6 +22,7 @@ public class DialogueManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        _player = GameObject.Find("player").GetComponent<player>();
         sentences = new Queue<string>();
         names = new Queue<string>();
         avatars = new Queue<Sprite>();
@@ -35,7 +37,7 @@ public class DialogueManager : MonoBehaviour {
         {
             time = Time.timeScale;
             Time.timeScale = 0;
-
+            _player.SetAbleToMove(false);
 
             animator.SetBool("IsOpen", true);
             DialogueOpen = true;
@@ -79,6 +81,7 @@ public class DialogueManager : MonoBehaviour {
         animator.SetBool("WasOpen", true);
         Time.timeScale = time;
         DialogueOpen = false;
+        _player.SetAbleToMove(true);
     }
     public void SetDialogueState(bool state)
     {
