@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Explosive : MonoBehaviour {
     public bool started = false;
+    public float throwForce = 100f;
+    public int AmmoType;
     public virtual void Explode()
     {
     }
@@ -21,17 +23,23 @@ public class Explosive : MonoBehaviour {
         Character charObj = body.gameObject.GetComponent<Character>();
         if (charObj != null)
         {
-            Debug.Log("damaged");
             body.gameObject.GetComponent<Character>().Damage(damage * calc);
         }
     }
     public virtual void Throw(float force)
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        if (rb != null) {
+        if (rb != null)
+        {
             Debug.Log("base grenade");
-            rb.AddForce(transform.up * force);
+            Vector3 mousePos = Input.mousePosition;
+            float dirForce = Vector3.Distance(transform.position, mousePos);
+            dirForce *= 0.03f;
+            dirForce *= dirForce;
+
+            Debug.Log("dir: " + dirForce);
+            Debug.Log("force: " + transform.up * force * dirForce * 0.01f);
+            rb.AddForce(transform.up * force * dirForce * 0.01f);
         }
     }
-
 }

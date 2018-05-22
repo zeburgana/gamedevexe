@@ -6,6 +6,10 @@ public abstract class Item : MonoBehaviour
 {
 	public Sprite sprite;
 	
-	public abstract void Equip (GameObject placeHolder);
-	public abstract void Unequip ();
+	public virtual void Equip (GameObject placeHolder)
+	{
+		SpriteRenderer spriteRend = placeHolder.GetComponent<SpriteRenderer>();
+		spriteRend.sortingOrder = 5;
+		spriteRend.sprite = sprite;
+	}
 }
