@@ -87,9 +87,9 @@ MonoBehaviour:
   tip: {fileID: 1692139853485866}
   projectileSpeed: 1200
   timeUntilSelfDestrucion: 2
-  cooldown: 0
+  cooldown: 0.05
   clipSize: 180
-  currentClipAmmo: 180
+  currentClipAmmo: 92
   reloadTime: 1.5
   accuracy: 7
   damage: 2
