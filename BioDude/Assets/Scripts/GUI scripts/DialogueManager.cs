@@ -11,7 +11,6 @@ public class DialogueManager : MonoBehaviour {
     private Queue<string> sentences;
     private Queue<string> names;
     private Queue<Sprite> avatars;
-    private bool DialogueOpen = false;
     player _player;
 
 
@@ -31,19 +30,19 @@ public class DialogueManager : MonoBehaviour {
         DialogueCanvas.SetActive(true);
     }
 
-    public void StartDialogue(Dialogue[] DialogueData)
+    public void StartDialogue(DialogueColliderTrigger DialogueData)
     {
-        if (!animator.GetBool("WasOpen"))
+        if (DialogueData.active)
         {
             time = Time.timeScale;
             Time.timeScale = 0;
             _player.SetAbleToMove(false);
 
             animator.SetBool("IsOpen", true);
-            DialogueOpen = true;
             sentences.Clear();
+            DialogueData.active = false;
 
-            foreach (Dialogue DialogueUnit in DialogueData)
+            foreach (Dialogue DialogueUnit in DialogueData.dialogue)
             {
                 sentences.Enqueue(DialogueUnit.sentence);
                 names.Enqueue(DialogueUnit.name);
@@ -80,15 +79,14 @@ public class DialogueManager : MonoBehaviour {
         animator.SetBool("IsOpen", false);
         animator.SetBool("WasOpen", true);
         Time.timeScale = time;
-        DialogueOpen = false;
         _player.SetAbleToMove(true);
     }
     public void SetDialogueState(bool state)
     {
-        DialogueOpen = state;
+        ;
     }
     public bool IsDialogueOpen()
     {
-        return DialogueOpen;
+        return false;
     }
 }

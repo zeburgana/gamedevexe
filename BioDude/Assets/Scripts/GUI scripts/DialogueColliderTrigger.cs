@@ -5,12 +5,12 @@ using UnityEngine;
 public class DialogueColliderTrigger : MonoBehaviour {
 
     public Dialogue[] dialogue;
-
+    public bool active = true;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         //Debug.Log("enter");
         if(collision.gameObject.tag=="Player")
-        FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+        FindObjectOfType<DialogueManager>().StartDialogue(this);
     }
 }
