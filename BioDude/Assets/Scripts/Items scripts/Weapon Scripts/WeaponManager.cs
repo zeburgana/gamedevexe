@@ -278,15 +278,9 @@ public class WeaponManager : MonoBehaviour
             }
         }
     }
-
-    private void Update()
-    {
-        UpdateWeaponGUI();
-    }
-
+    
     private void UpdateWeapon()
     {
-        UpdateWeaponGUI(); // hotfix
         playerAnimator.SetInteger("Weapon", selectedFireArm);
         if (selectedFireArm == -1) // selected knife
         {
