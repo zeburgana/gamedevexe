@@ -145,7 +145,7 @@ public class WeaponManager : MonoBehaviour
         foreach (GameObject w in weaponArray)
         {
             Weapon wcs = w.GetComponent<Weapon>();
-            wcs.currentClipAmmo = wcs.clipSize;
+            wcs.currentClipAmmo = 0;
         }
 
         UpdateWeaponGUI();
@@ -218,25 +218,25 @@ public class WeaponManager : MonoBehaviour
         {
             new Ammo // pistol, double pistol ammo
             {
-                amount = 50,
+                amount = 0,
                 maxAmount = 120,
                 name = "pistol"
             },
             new Ammo // rocket launcher ammo
             {
-                amount = 5,
+                amount = 0,
                 maxAmount = 10,
                 name = "rocket"
             },
             new Ammo // assault rifle ammo
             {
-                amount = 120,
+                amount = 0,
                 maxAmount = 180,
                 name = "assaultRifle"
             },
             new Ammo // shotgun ammo
             {
-                amount = 24,
+                amount = 0,
                 maxAmount = 80,
                 name = "shotgun"
             }
