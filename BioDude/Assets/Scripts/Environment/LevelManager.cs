@@ -17,7 +17,8 @@ public class LevelManager : MonoBehaviour {
     void Start()
     {
         GameObject obj = GameObject.Find("Pausemenu Canvas");
-        Pausemenu = obj.GetComponent<PauseMenu>();
+        if(obj != null)
+            Pausemenu = obj.GetComponent<PauseMenu>();
         if (GameObject.Find("Enemies") != null)
             EnemiesOnMapLeft = GameObject.Find("Enemies").transform.childCount;
         if (SceneManager.GetActiveScene().buildIndex > 0 &&

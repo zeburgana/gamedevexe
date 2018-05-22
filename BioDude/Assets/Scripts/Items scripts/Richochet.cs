@@ -4,27 +4,17 @@ using UnityEngine;
 
 public class Richochet : MonoBehaviour {
 
-
     private LayerMask wallMask;
     private Rigidbody2D rigidbody;
-
 
     public void Awake()
     {
         wallMask = LayerMask.GetMask("Collider");
         rigidbody = transform.GetComponent<Rigidbody2D>();
     }
-
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+   
     private Vector3 oldVelocity;
+
     void FixedUpdate()
     {
         // because we want the velocity after physics, we put this in fixed update
@@ -33,10 +23,8 @@ public class Richochet : MonoBehaviour {
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.transform.tag);
         if (collision.transform.tag == "Bouncy")
         {
-            Debug.Log("hit");
             // get the point of contact
             ContactPoint2D contact = collision.contacts[0];
 

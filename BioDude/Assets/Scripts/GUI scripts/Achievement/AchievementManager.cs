@@ -28,6 +28,7 @@ public class AchievementManager : MonoBehaviour
         {
             if (instance == null)
             {
+                Debug.Log("shit");
                 instance = GameObject.FindObjectOfType<AchievementManager>();
             }
             return instance;
@@ -102,15 +103,12 @@ public class AchievementManager : MonoBehaviour
         yield return new WaitForSeconds(3);
         Destroy(achievement);
     }
-    public void DestroyAchievement(string title)
-    {
-        achievements[title].DestroyAchievement();
-    }
+
     public void DestroyAllAchievements()
     {
         foreach (var item in achievements)
         {
-            DestroyAchievement(item.Key);
+            item.Value.DestroyAchievement();
         }
     }
 
