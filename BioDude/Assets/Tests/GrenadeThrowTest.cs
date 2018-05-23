@@ -17,14 +17,17 @@ public class GrenadeThrowTest {
 	public IEnumerator GrenadeThrowTestWithEnumeratorPasses() {
         // Use the Assert class to test conditions.
         // yield to skip a frame
-        GameObject ToBeThrownObject = Resources.Load<GameObject>("Tests/grenade");
+        GameObject ToBeThrownObject = Resources.Load<GameObject>("fragGrenade");
+        Assert.NotNull(ToBeThrownObject);
         var objectlauncher = new GameObject().AddComponent<WeaponManager>();
         objectlauncher.activeGrenade = ToBeThrownObject;
-        objectlauncher.UseExplosive();
-        var spawnedObject = GameObject.FindWithTag("Explosive");
-        Debug.Log(spawnedObject);
-        var ThrownObject = PrefabUtility.GetPrefabParent(spawnedObject);
-        Debug.Log(ThrownObject);
+        var obj = objectlauncher.UseActiveGrenade();
+        //var spawnedObject = GameObject.FindWithTag("Explosive");
+        //var ThrownObject = PrefabUtility.GetPrefabParent(spawnedObject);
+        var ThrownObject = PrefabUtility.GetPrefabParent(obj);
+
+        Assert.NotNull(ThrownObject);
+        Debug.Log(ToBeThrownObject + "==" + ThrownObject);
         Assert.AreEqual(ToBeThrownObject, ThrownObject);
         yield return new WaitForSeconds(1);
     }

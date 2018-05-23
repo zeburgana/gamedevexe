@@ -110,6 +110,7 @@ public class AchievementManager : MonoBehaviour
         {
             item.Value.DestroyAchievement();
         }
+        PlayerPrefs.DeleteKey("Points");
     }
 
     public void CreateAchievement(string parent, string title, string description, int points, int spriteIndex, int progress, string[] dependencies = null)
@@ -151,7 +152,6 @@ public class AchievementManager : MonoBehaviour
         AchievementButton achievementButton = button.GetComponent<AchievementButton>();
 
         scrollRect.content = achievementButton.achievementList.GetComponent<RectTransform>();
-
         achievementButton.Click();
         activeButon.Click();
         activeButon = achievementButton;

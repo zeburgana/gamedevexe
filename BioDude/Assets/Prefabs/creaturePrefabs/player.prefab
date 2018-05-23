@@ -482,7 +482,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1629226856703174}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -23.49, y: -29.47, z: 0}
+  m_LocalPosition: {x: -11.41, y: -0.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4159365159535846}
@@ -770,7 +770,7 @@ MonoBehaviour:
   rightHandSlot: {fileID: 1838299241939870}
   leftHandSlot: {fileID: 1406371027723680}
   explosiveArray:
-  - {fileID: 1099810171760856, guid: b6e7af60750b7e04db1beb99cdebf8f0, type: 2}
+  - {fileID: 1099810171760856, guid: f7dcefef468ba6245a3e9df4ff4efcc8, type: 2}
   - {fileID: 1605898272585064, guid: 739d46400fac7ad4fbe1053e95fb64a0, type: 2}
   activeGrenade: {fileID: 0}
   weaponArray:

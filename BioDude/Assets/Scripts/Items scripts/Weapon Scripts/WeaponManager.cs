@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -86,14 +87,14 @@ public class WeaponManager : MonoBehaviour
     public ParticleSystem impactMetal;
     public ParticleSystem impactFlesh;
 
-    private GameObject activeWeaponRTip;
+    public GameObject activeWeaponRTip;
     private GameObject activeWeaponLTip;
     private bool cooldownEnded = true;
     private bool isReloading = false;
     //private SpriteRenderer spriteRenderer;
     private Allerting playerAlerting;
     private Animator playerAnimator;
-    private int selectedFireArm = -1;
+    public int selectedFireArm = -1;
     private int selectedExplosive = -1;
     private Transform projectiles;
 
@@ -113,9 +114,11 @@ public class WeaponManager : MonoBehaviour
     void Start ()
     {
         //rightHandSlot = transform.Find("hand_R").GetChild(0).gameObject;
-        activeWeaponRTip = rightHandSlot.transform.GetChild(0).gameObject;
+        if(rightHandSlot != null)
+            activeWeaponRTip = rightHandSlot.transform.GetChild(0).gameObject;
         //leftHandSlot = transform.Find("hand_L").GetChild(0).gameObject;
-        activeWeaponLTip = leftHandSlot.transform.GetChild(0).gameObject;
+        if (leftHandSlot != null)
+            activeWeaponLTip = leftHandSlot.transform.GetChild(0).gameObject;
 
 
         // static information about ofence weapons 
@@ -123,36 +126,50 @@ public class WeaponManager : MonoBehaviour
         explosiveAmmo = new Ammo[2];
         GetAmmoFromMemory();
         ///
-
-        notifications = GameObject.Find("AchievementManager").GetComponent<AchievementManager>();
-        knifeScript = knife.GetComponent<Knife>();
-        projectiles = GameObject.Find("Projectiles").transform;
-        mainCameraScript = GameObject.Find("Main Camera").GetComponent<CameraScript>();
-        guiManager = GameObject.Find("GUI").GetComponent<GUIManager>();
-        playerAnimator = GetComponentInChildren<Animator>();
-        playerAlerting = GetComponent<Allerting>();
-        audioSource = GetComponent<AudioSource>();
-        ammoImage = GameObject.Find("PlayerAmmoText").GetComponentInChildren<RawImage>();
-        explosiveImage = GameObject.Find("PlayerExplosiveText").GetComponentInChildren<RawImage>();
-        lastSelectedFireArm = GameObject.Find("WeaponSelectionSlot06");  // sets the last selected firearm as a knife (also, the selected weapon should be set as knife too, when the knife is implemented)
-        lastSelectedExplosive = GameObject.Find("ExplosiveSelectionSlot01"); // sets the last selected explosion as a standard grenade
+        if(GameObject.Find("AchievementManager") != null)
+            notifications = GameObject.Find("AchievementManager").GetComponent<AchievementManager>();
+        if(knife != null)
+            knifeScript = knife.GetComponent<Knife>();
+        if(GameObject.Find("Projectiles") != null)
+            projectiles = GameObject.Find("Projectiles").transform;
+        if(GameObject.Find("Main Camera") != null)
+            mainCameraScript = GameObject.Find("Main Camera").GetComponent<CameraScript>();
+        if(GameObject.Find("GUI") != null)
+            guiManager = GameObject.Find("GUI").GetComponent<GUIManager>();
+        if(GetComponentInChildren<Animator>() != null)
+            playerAnimator = GetComponentInChildren<Animator>();
+        if(GetComponent<Allerting>() != null)
+            playerAlerting = GetComponent<Allerting>();
+        if(GetComponent<AudioSource>() != null)
+            audioSource = GetComponent<AudioSource>();
+        if(GameObject.Find("PlayerAmmoText") != null)
+            ammoImage = GameObject.Find("PlayerAmmoText").GetComponentInChildren<RawImage>();
+        if(GameObject.Find("PlayerExplosiveText") != null)
+            explosiveImage = GameObject.Find("PlayerExplosiveText").GetComponentInChildren<RawImage>();
+        if(GameObject.Find("WeaponSelectionSlot06") != null)
+            lastSelectedFireArm = GameObject.Find("WeaponSelectionSlot06");  // sets the last selected firearm as a knife (also, the selected weapon should be set as knife too, when the knife is implemented)
+        if(GameObject.Find("ExplosiveSelectionSlot01") != null)
+            lastSelectedExplosive = GameObject.Find("ExplosiveSelectionSlot01"); // sets the last selected explosion as a standard grenade
 
         //spriteRenderer = GetComponent<SpriteRenderer>();
         
 
         // fill weapons with bullets on start
-        foreach (GameObject w in weaponArray)
+        if(weaponArray != null)
         {
-            Weapon wcs = w.GetComponent<Weapon>();
-            wcs.currentClipAmmo = 0;
+            foreach (GameObject w in weaponArray)
+            {
+                Weapon wcs = w.GetComponent<Weapon>();
+                wcs.currentClipAmmo = 0;
+            }
+
+            SwitchWeaponRight();
+            SwitchExplosiveRight();
+
+            UpdateWeaponGUI();
+            UpdateExplosiveGUI();
+            UpdateBulletGUI();
         }
-
-        SwitchWeaponRight();
-        SwitchExplosiveRight();
-
-        UpdateWeaponGUI();
-        UpdateExplosiveGUI();
-        UpdateBulletGUI();
     }
 
     public void UpdateWeaponGUI() // update gui
@@ -475,12 +492,12 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-    private void ShootPistol()
+    public void ShootPistol()
     {
         Weapon weaponScript = weaponArray[selectedFireArm].GetComponent<Weapon>();
         float bulletAngle = Random.Range(-weaponScript.accuracy, weaponScript.accuracy);
-        GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponRTip.transform.position, Quaternion.Euler(0f, 0f, activeWeaponRTip.transform.rotation.eulerAngles.z + bulletAngle), projectiles);
-        newBullet.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
+        GameObject newBullet = Instantiate(weaponScript.projectile, activeWeaponRTip.transform.position, Quaternion.Euler(0f, 0f, activeWeaponRTip.transform.rotation.eulerAngles.z + bulletAngle));
+        newBullet.GetComponent<Bullet>().Instantiate(weaponScript.timeUntilSelfDestrucion, weaponScript.projectileSpeed, weaponScript.damage);
     }
 
     private void ShootRocket()
@@ -578,6 +595,7 @@ public class WeaponManager : MonoBehaviour
             if (selectedExplosive == -1)
             {
                 //no explosives left
+                Debug.Log("no grenade");
             }
             else
             {
@@ -588,14 +606,21 @@ public class WeaponManager : MonoBehaviour
                     Debug.Log("throw");
                     if (explosiveArray[selectedExplosive] != null)
                     {
-                        return UnityEngine.Object.Instantiate(activeGrenade, instantiatePos, transform.rotation) as GameObject;
+                        return UseActiveGrenade();
                     }
                 }
+                else
+                    Debug.Log("amount: <= 0");
             }
         }
         return null;
     }
-    
+    public GameObject UseActiveGrenade()
+    {
+        GameObject nade = PrefabUtility.InstantiatePrefab(activeGrenade) as GameObject;
+        return nade;
+    }
+
     IEnumerator Cooldown()
     {
         yield return new WaitForSeconds(selectedFireArm == -1? knifeScript.cooldown : aWeaponScript.cooldown);

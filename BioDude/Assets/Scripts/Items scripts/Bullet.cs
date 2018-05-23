@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private float damage = 0;
+    public float damage = 0;
     public ParticleSystem impactConcrete;
     public ParticleSystem impactMetal;
     public ParticleSystem impactFlesh;
