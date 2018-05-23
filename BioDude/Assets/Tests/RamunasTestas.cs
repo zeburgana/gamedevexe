@@ -75,24 +75,3 @@ public class RamunasTestas {
     }
     
 }
-
-
-//[UnityTest]
-//public IEnumerator BulletFlyDistance()
-//{
-//    Debug.Log("before");
-//    int time = 1;
-//    float expdist = WeaponManager.weaponArray[0].GetComponent<Weapon>().projectileSpeed * time;
-//    Vector2 startingpos = bullet.transform.position;
-//    Debug.Log(expdist);
-//    yield return new WaitForSecondsRealtime(time);
-//    Debug.Log("after");
-//    Vector2 endingpos = bullet.transform.position;
-//    Assert.AreEqual(expdist, Vector2.Distance(startingpos, endingpos), "Wrong distance");
-//}
-//[UnityTest]
-//public IEnumerator BulletDestroyed()
-//{
-//    yield return new WaitForSecondsRealtime(WeaponManager.weaponArray[0].GetComponent<Weapon>().timeUntilSelfDestrucion);
-//    Assert.AreEqual(< null >, bullet, "Bullet not destroyed");
-//}
