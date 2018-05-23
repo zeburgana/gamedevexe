@@ -5,30 +5,40 @@ using System.Collections;
 using UnityEditor;
 
 public class GrenadeThrowTest {
-
+    
 	[Test]
-	public void GrenadeThrowTestSimplePasses() {
-		// Use the Assert class to test conditions.
-	}
-
-	// A UnityTest behaves like a coroutine in PlayMode
-	// and allows you to yield null to skip a frame in EditMode
-	[UnityTest]
-	public IEnumerator GrenadeThrowTestWithEnumeratorPasses() {
-        // Use the Assert class to test conditions.
-        // yield to skip a frame
-        GameObject ToBeThrownObject = Resources.Load<GameObject>("fragGrenade");
+    public void GrenadeTests()
+    {
+        GameObject ToBeThrownObject = null;
+        //test1
+        ToBeThrownObject = Resources.Load<GameObject>("fragGrenade");
         Assert.NotNull(ToBeThrownObject);
+        SpawnGrenade(ToBeThrownObject);
+        //test2
+        ToBeThrownObject = Resources.Load<GameObject>("gravnade");
+        Assert.NotNull(ToBeThrownObject);
+        SpawnGrenade(ToBeThrownObject);
+    }
+    public void SpawnGrenade(GameObject grenade) {
+        Assert.NotNull(grenade);
         var objectlauncher = new GameObject().AddComponent<WeaponManager>();
-        objectlauncher.activeGrenade = ToBeThrownObject;
+        objectlauncher.activeGrenade = grenade;
         var obj = objectlauncher.UseActiveGrenade();
         //var spawnedObject = GameObject.FindWithTag("Explosive");
         //var ThrownObject = PrefabUtility.GetPrefabParent(spawnedObject);
         var ThrownObject = PrefabUtility.GetPrefabParent(obj);
 
         Assert.NotNull(ThrownObject);
-        Debug.Log(ToBeThrownObject + "==" + ThrownObject);
-        Assert.AreEqual(ToBeThrownObject, ThrownObject);
+        Debug.Log(grenade + "==" + ThrownObject);
+        Assert.AreEqual(grenade, ThrownObject);
+    }
+
+    // A UnityTest behaves like a coroutine in PlayMode
+    // and allows you to yield null to skip a frame in EditMode
+    [UnityTest]
+	public IEnumerator GrenadeThrowTestWithEnumeratorPasses() {
+        // Use the Assert class to test conditions.
+        // yield to skip a frame
         yield return new WaitForSeconds(1);
     }
     [TearDown]
