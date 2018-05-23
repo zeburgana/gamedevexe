@@ -79,8 +79,11 @@ public class WeaponManager : MonoBehaviour
     private int awAmmoType;
     private int aeAmmoType;
 
-    public GameObject lastSelectedFireArm;
-    public GameObject lastSelectedExplosive;
+    private GameObject[] weaponSlots;
+    private GameObject[] explosiveSlots; 
+
+    public int lastSelectedFireArm;
+    public int lastSelectedExplosive;
 
     public ParticleSystem impactConcrete;
     public ParticleSystem impactMetal;
@@ -134,7 +137,7 @@ public class WeaponManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         ammoImage = GameObject.Find("PlayerAmmoText").GetComponentInChildren<RawImage>();
         explosiveImage = GameObject.Find("PlayerExplosiveText").GetComponentInChildren<RawImage>();
-        lastSelectedFireArm = GameObject.Find("WeaponSelectionSlot06");  // sets the last selected firearm as a knife (also, the selected weapon should be set as knife too, when the knife is implemented)
+        lastSelectedFireArm = GameObject.Find("WeaponSelectionSlot00");  // sets the last selected firearm as a knife (also, the selected weapon should be set as knife too, when the knife is implemented)
         lastSelectedExplosive = GameObject.Find("ExplosiveSelectionSlot01"); // sets the last selected explosion as a standard grenade
 
         //spriteRenderer = GetComponent<SpriteRenderer>();
@@ -157,7 +160,7 @@ public class WeaponManager : MonoBehaviour
 
     public void UpdateWeaponGUI() // update gui
     {
-        for(int i = 0; i < weaponArray.Length; i++)
+        for (int i = 0; i < weaponArray.Length; i++)
         {
             Weapon weaponData = weaponArray[i].GetComponent<Weapon>();
             if (weaponData.isDiscovered)
@@ -316,39 +319,7 @@ public class WeaponManager : MonoBehaviour
                     break;
             }
         }
-        switch(selectedFireArm)
-        {
-            case -1:
-                lastSelectedFireArm.GetComponent<RawImage>().texture = Resources.Load<Texture>("WeaponSlot");
-                lastSelectedFireArm = GameObject.Find("WeaponSelectionSlot06");
-                lastSelectedFireArm.GetComponent<RawImage>().texture = Resources.Load<Texture>("WeaponSlotActive");
-                break;
-            case 0:
-                lastSelectedFireArm.GetComponent<RawImage>().texture = Resources.Load<Texture>("WeaponSlot");
-                lastSelectedFireArm = GameObject.Find("WeaponSelectionSlot01");
-                lastSelectedFireArm.GetComponent<RawImage>().texture = Resources.Load<Texture>("WeaponSlotActive");
-                break;
-            case 1:
-                lastSelectedFireArm.GetComponent<RawImage>().texture = Resources.Load<Texture>("WeaponSlot");
-                lastSelectedFireArm = GameObject.Find("WeaponSelectionSlot02");
-                lastSelectedFireArm.GetComponent<RawImage>().texture = Resources.Load<Texture>("WeaponSlotActive");
-                break;
-            case 2:
-                lastSelectedFireArm.GetComponent<RawImage>().texture = Resources.Load<Texture>("WeaponSlot");
-                lastSelectedFireArm = GameObject.Find("WeaponSelectionSlot03");
-                lastSelectedFireArm.GetComponent<RawImage>().texture = Resources.Load<Texture>("WeaponSlotActive");
-                break;
-            case 3:
-                lastSelectedFireArm.GetComponent<RawImage>().texture = Resources.Load<Texture>("WeaponSlot");
-                lastSelectedFireArm = GameObject.Find("WeaponSelectionSlot04");
-                lastSelectedFireArm.GetComponent<RawImage>().texture = Resources.Load<Texture>("WeaponSlotActive");
-                break;
-            case 4:
-                lastSelectedFireArm.GetComponent<RawImage>().texture = Resources.Load<Texture>("WeaponSlot");
-                lastSelectedFireArm = GameObject.Find("WeaponSelectionSlot05");
-                lastSelectedFireArm.GetComponent<RawImage>().texture = Resources.Load<Texture>("WeaponSlotActive");
-                break;
-        }
+        
         UpdateBulletGUI();
     }
 

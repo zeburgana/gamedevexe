@@ -33,7 +33,7 @@ abstract public class Character : MonoBehaviour
 
 	public void Heal(float amount)
 	{
-		healthCurrent += Mathf.Min(amount, healthMax);
+		healthCurrent = Mathf.Min(amount + healthCurrent, healthMax);
     }
 
 	public void SetMaxHealth()
