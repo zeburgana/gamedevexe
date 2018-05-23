@@ -86,14 +86,14 @@ public class WeaponManager : MonoBehaviour
     public ParticleSystem impactMetal;
     public ParticleSystem impactFlesh;
 
-    private GameObject activeWeaponRTip;
+    public GameObject activeWeaponRTip;
     private GameObject activeWeaponLTip;
     private bool cooldownEnded = true;
     private bool isReloading = false;
     //private SpriteRenderer spriteRenderer;
     private Allerting playerAlerting;
     private Animator playerAnimator;
-    private int selectedFireArm = -1;
+    public int selectedFireArm = -1;
     private int selectedExplosive = -1;
     private Transform projectiles;
 
@@ -475,12 +475,12 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-    private void ShootPistol()
+    public void ShootPistol()
     {
         Weapon weaponScript = weaponArray[selectedFireArm].GetComponent<Weapon>();
         float bulletAngle = Random.Range(-weaponScript.accuracy, weaponScript.accuracy);
-        GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponRTip.transform.position, Quaternion.Euler(0f, 0f, activeWeaponRTip.transform.rotation.eulerAngles.z + bulletAngle), projectiles);
-        newBullet.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
+        GameObject newBullet = Instantiate(weaponScript.projectile, activeWeaponRTip.transform.position, Quaternion.Euler(0f, 0f, activeWeaponRTip.transform.rotation.eulerAngles.z + bulletAngle));
+        newBullet.GetComponent<Bullet>().Instantiate(weaponScript.timeUntilSelfDestrucion, weaponScript.projectileSpeed, weaponScript.damage);
     }
 
     private void ShootRocket()
