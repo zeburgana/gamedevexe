@@ -117,14 +117,14 @@ public class player : Character
 
     // OVERRIDEN METHODS:
 
-    protected override void Die()
+    public override void Die()
     {
         ableToMove = false;
-        Destroy(gameObject.GetComponent<Rigidbody2D>());
-        Destroy(gameObject.GetComponent<CircleCollider2D>());
+        DestroyImmediate(gameObject.GetComponent<Rigidbody2D>(), true);
+        DestroyImmediate(gameObject.GetComponent<CircleCollider2D>(), true);
         //^^^ pakeist i player death animation
 
-        StartCoroutine(PausemenuCanvas.PlayerDeath());
+        //StartCoroutine(PausemenuCanvas.PlayerDeath());
     }
 
     // OTHER METHODS:
