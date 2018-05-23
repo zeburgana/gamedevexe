@@ -51,7 +51,7 @@ public class MeleeTank : Tank
         }
     }
 
-    protected override void Die()
+    public override void Die()
     {
         base.Die();
         // enemy death: smokes and stoped movement

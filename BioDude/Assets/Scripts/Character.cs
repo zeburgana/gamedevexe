@@ -8,7 +8,7 @@ abstract public class Character : MonoBehaviour
     [SerializeField]
     public float healthCurrent { get; protected set; } 
 
-    protected abstract void Die(); // override
+    public abstract void Die(); // override
 
     // Use this for initialization
     protected virtual void Initiate ()
@@ -33,7 +33,7 @@ abstract public class Character : MonoBehaviour
 
 	public void Heal(float amount)
 	{
-		healthCurrent += Mathf.Min(amount, healthMax);
+        Mathf.Min(amount + healthCurrent, healthMax);
     }
 
 	public void SetMaxHealth()

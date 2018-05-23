@@ -265,7 +265,7 @@ public abstract class Tank : Character
         HpBar.SetHealth(GetHealth());
     }
 
-    protected override void Die()
+    public override void Die()
     {
         GameObject.Find("LevelManager").GetComponent<LevelManager>().EnemyDefeated();
     }
