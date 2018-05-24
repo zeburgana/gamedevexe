@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4726239055556938}
   - component: {fileID: 198849452501921746}
   - component: {fileID: 199193408283667110}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: _Waves_Horizontal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4478413058821886}
   - component: {fileID: 198543705232715466}
   - component: {fileID: 199752119985559984}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: _Rim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4469324218830400}
   - component: {fileID: 198178983121694164}
   - component: {fileID: 199800579775931906}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: _DarkOrb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 58522672400769336}
   - component: {fileID: 58394885219018528}
   - component: {fileID: 250800500123282384}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: PhysicsEffectors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 4676316377275096}
   - component: {fileID: 198649964035523050}
   - component: {fileID: 199406857728893392}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: _Particle_Emitter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 198754317498541904}
   - component: {fileID: 199669690493688472}
   - component: {fileID: 114104709051549436}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: _MAIN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4005284408027888}
   - component: {fileID: 182317998664335024}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: WindZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 4861576078495038}
   - component: {fileID: 198055634933940916}
   - component: {fileID: 199555698366123630}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: _Waves_Billboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21165,7 +21165,7 @@ PointEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294637567
   m_ForceMagnitude: -600
   m_ForceVariation: 0
   m_DistanceScale: 0.5
