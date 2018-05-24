@@ -28,7 +28,6 @@ public class AchievementManager : MonoBehaviour
         {
             if (instance == null)
             {
-                Debug.Log("shit");
                 instance = GameObject.FindObjectOfType<AchievementManager>();
             }
             return instance;
@@ -43,11 +42,11 @@ public class AchievementManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Debug.Log("started achievement manager");
+        //Debug.Log("started achievement manager");
         notificationPanel = GameObject.Find("NotificationPanel").transform;
         //REMEMBER to Delete or Comment after game release
         //PlayerPrefs.DeleteAll();
-        activeButon = GameObject.Find("GeneralButton").GetComponent<AchievementButton>();
+        //activeButon = GameObject.Find("GeneralButton").GetComponent<AchievementButton>();
 
         //create achievements: category, title, description, points, sprite(can be added/dragged on scipt), (optional)script dependancies
         CreateAchievement("General", "Press W", "Press W to unlock", 5, 1, 0);
