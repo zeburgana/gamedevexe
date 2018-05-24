@@ -357,6 +357,9 @@ public class WeaponManager : MonoBehaviour
         if (selectedExplosive == -1)
         {
             //None explosives left
+
+            if (lastSelectedExplosive != -1)
+                explosiveSlots[lastSelectedExplosive].GetComponent<RawImage>().texture = Resources.Load<Texture>("WeaponSlot");
         }
         else
         {

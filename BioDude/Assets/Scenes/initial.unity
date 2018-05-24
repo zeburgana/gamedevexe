@@ -918,16 +918,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114213723143465410, guid: f46a9ca293dfb90468a672194345f398,
-        type: 2}
-      propertyPath: playerCharacter
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 223627542633337614, guid: f46a9ca293dfb90468a672194345f398,
-        type: 2}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 224241924927785958, guid: f46a9ca293dfb90468a672194345f398,
         type: 2}
       propertyPath: m_AnchorMax.x
@@ -938,27 +928,7 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 223627542633337614, guid: f46a9ca293dfb90468a672194345f398,
-        type: 2}
-      propertyPath: m_RenderMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114438677644562330, guid: f46a9ca293dfb90468a672194345f398,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114131966121669512, guid: f46a9ca293dfb90468a672194345f398,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1146416765203322, guid: f46a9ca293dfb90468a672194345f398, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114910458142133492, guid: f46a9ca293dfb90468a672194345f398, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f46a9ca293dfb90468a672194345f398, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &464579127

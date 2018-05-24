@@ -14,7 +14,7 @@ public class PauseMenu : MonoBehaviour {
     public GameObject GameOverMenu;
     public GameObject DeathSplashImage;
     public GameObject LevelClearedMenu;
-    public LevelManager lvlManager;
+    private LevelManager lvlManager;
     player _player;
     DialogueManager DialManager;
 
