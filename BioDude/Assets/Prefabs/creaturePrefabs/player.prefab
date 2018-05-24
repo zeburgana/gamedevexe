@@ -482,7 +482,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1629226856703174}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -23.49, y: -29.47, z: 0}
+  m_LocalPosition: {x: 0.045240052, y: -0.9720362, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4159365159535846}
@@ -780,11 +780,13 @@ MonoBehaviour:
   - {fileID: 1128119802197726, guid: 054915740a40d4949be36724f0b7d637, type: 2}
   - {fileID: 1164725371737510, guid: 49640031854b5ea41ae42401178bec04, type: 2}
   knife: {fileID: 1153504089118082, guid: 13da6ec938cea7248bee271651d8e573, type: 2}
-  lastSelectedFireArm: {fileID: 0}
-  lastSelectedExplosive: {fileID: 0}
-  impactConcrete: {fileID: 0}
-  impactMetal: {fileID: 0}
-  impactFlesh: {fileID: 0}
+  lastSelectedFireArm: 0
+  lastSelectedExplosive: 0
+  impactConcrete: {fileID: 198297326478612708, guid: 18951d2922ad3904981465f949da502f,
+    type: 2}
+  impactMetal: {fileID: 19800002, guid: 00fedc70b62a31e448e8ccc298257b56, type: 2}
+  impactFlesh: {fileID: 198618202314290210, guid: 7d7466c2bbef6b048ab60b9cda923ec8,
+    type: 2}
 --- !u!212 &212019175598851104
 SpriteRenderer:
   m_ObjectHideFlags: 1

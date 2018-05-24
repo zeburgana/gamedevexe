@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: c2505349e54df284e8a7450c860c3ed4, type: 3}
   orderInLayer: 3
-  cooldown: 0.4
+  cooldown: 0.2
   damage: 30
   cameraRecoil: 1
 --- !u!212 &212745431369411030

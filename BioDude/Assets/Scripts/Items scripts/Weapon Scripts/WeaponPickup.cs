@@ -20,6 +20,5 @@ public class WeaponPickup : MonoBehaviour {
 			weaponManager.AddAmmoByWeaponIndex(weaponID, ammoAmount);
 			Destroy(gameObject);
 		}
-
 	}
 }
