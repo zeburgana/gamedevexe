@@ -63,7 +63,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -102,6 +102,9 @@ MonoBehaviour:
   InMovmentSpeed: 0.09
   OutMovmentSpeed: 0.15
   DoCameraRecoil: 1
+  MinCamZoom: 4
+  MaxCamZoom: 10
+  DoDynamicCameraZoom: 1
   MaxOffset: 10
   TestingForce: 10
 --- !u!124 &124860819244492846

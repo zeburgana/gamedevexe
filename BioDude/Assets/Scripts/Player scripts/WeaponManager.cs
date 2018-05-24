@@ -359,8 +359,8 @@ public class WeaponManager : MonoBehaviour
 
     private void SetWeaponDiscovered(int idx)
     {
-        weaponSlots[idx].transform.GetChild(idx).GetComponent<RawImage>().enabled = false; // missing hide
-        weaponSlots[idx].transform.GetChild(idx).GetComponent<RawImage>().enabled = true; // show weapon sprite
+        weaponSlots[idx].transform.GetChild(1).GetComponent<RawImage>().enabled = false; // missing hide
+        weaponSlots[idx].transform.GetChild(0).GetComponent<RawImage>().enabled = true; // show weapon sprite
     }
 
     private void UpdateExplosive()
