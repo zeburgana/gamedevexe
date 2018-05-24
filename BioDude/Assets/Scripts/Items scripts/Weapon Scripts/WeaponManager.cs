@@ -79,11 +79,11 @@ public class WeaponManager : MonoBehaviour
     private int awAmmoType;
     private int aeAmmoType;
 
-    private GameObject[] weaponSlots;
-    private GameObject[] explosiveSlots; 
+    //private GameObject[] weaponSlots;
+    //private GameObject[] explosiveSlots; 
 
-    public int lastSelectedFireArm;
-    public int lastSelectedExplosive;
+    public GameObject lastSelectedFireArm;
+    public GameObject lastSelectedExplosive;
 
     public ParticleSystem impactConcrete;
     public ParticleSystem impactMetal;
