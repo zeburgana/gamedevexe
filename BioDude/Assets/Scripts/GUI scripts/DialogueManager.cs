@@ -23,10 +23,11 @@ public class DialogueManager : MonoBehaviour {
     void Start () {
         _player = GameObject.Find("player").GetComponent<player>();
         DialogueCanvas = GameObject.Find("Dialogue canvas");
-        DialogueText = DialogueCanvas.transform.Find("DialogueText").GetComponent<Text>();
-        NameText = DialogueCanvas.transform.Find("NameText").GetComponent<Text>();
-        Avatar = DialogueCanvas.transform.Find("Avatar").GetComponent<Image>();
-        animator = DialogueCanvas.transform.Find("DialoguePanel").GetComponent<Animator>();
+        GameObject pannel = DialogueCanvas.transform.Find("DialoguePanel").gameObject;
+        DialogueText = pannel.transform.Find("DialogueText").GetComponent<Text>();
+        NameText = pannel.transform.Find("Name").Find("NameText").GetComponent<Text>();
+        Avatar = pannel.transform.Find("Avatar").GetComponent<Image>();
+        animator = pannel.GetComponent<Animator>();
 
         sentences = new Queue<string>();
         names = new Queue<string>();
