@@ -157,13 +157,16 @@ public class WeaponManager : MonoBehaviour
             explosiveSlots[i] = GameObject.Find("ExplosiveSelectionSlot0" + (i + 1).ToString());  // sets the last selected explosion as a standard grenade
             explosiveSlotReds[i] = explosiveSlots[i].transform.GetChild(0).GetChild(0).GetComponent<RawImage>();
         }
-        //spriteRenderer = GetComponent<SpriteRenderer>();
 
-        // fill weapons with bullets on start
-        foreach (GameObject w in weaponArray)
+        // fill weapons with bullets and display discovered on start
+        for(int i = 0; i < weaponArray.Length; i++)
         {
-            Weapon wcs = w.GetComponent<Weapon>();
-            wcs.currentClipAmmo = 0;
+            Weapon weapon = weaponArray[i].GetComponent<Weapon>();
+            if (weapon.isDiscovered)
+            {
+                weapon.currentClipAmmo = fireArmAmmo[weapon.ammoType].TakeAmmo(weapon.clipSize); // load with bullets from pool
+                SetWeaponDiscovered(i);
+            }
         }
 
         SwitchWeaponRight();
@@ -201,10 +204,11 @@ public class WeaponManager : MonoBehaviour
         if(selectedFireArm == -1)
         {
             //display no ammo - infinity or whatevs when knife should be selected
+            guiManager.SetBulletGUI("∞", "∞");
         }
         else
         { 
-            guiManager.SetBulletGUI(aWeaponScript.currentClipAmmo, fireArmAmmo[awAmmoType].amount);
+            guiManager.SetBulletGUI(aWeaponScript.currentClipAmmo.ToString(), fireArmAmmo[awAmmoType].amount.ToString());
             // show how many bullets left 
             // weapon sprite to display next to bullets nums: weaponArray[selectedFireArm].GetComponent<SpriteRenderer>().sprite
             // bullets in gun: aWeaponScript.currentClipAmmo
@@ -226,7 +230,7 @@ public class WeaponManager : MonoBehaviour
             guiManager.SetExplosiveGUI(explosiveAmmo[aeAmmoType].amount);
             for(int i = 0; i < explosiveArray.Length; i++)
             {
-                explosiveSlots[i].GetComponent<RawImage>().enabled = explosiveAmmo[i].amount <= 0;
+                explosiveSlotReds[i].GetComponent<RawImage>().enabled = explosiveAmmo[i].amount <= 0;
             }
         }
     }
@@ -303,6 +307,7 @@ public class WeaponManager : MonoBehaviour
         {
             knifeScript.Equip(leftHandSlot);
             rightHandSlot.GetComponent<SpriteRenderer>().sprite = null;
+            ammoImage.texture = Resources.Load<Texture>("Knife");
         }
         else
         {
@@ -335,8 +340,8 @@ public class WeaponManager : MonoBehaviour
             }
         }
         // highligting selected weapon slot
-        SetWeaponSlot(lastSelectedFireArm, false);
-        SetWeaponSlot(selectedFireArm, true);
+        SetWeaponSlotHighlight(lastSelectedFireArm, false);
+        SetWeaponSlotHighlight(selectedFireArm, true);
         UpdateBulletGUI();
     }
 
@@ -345,11 +350,17 @@ public class WeaponManager : MonoBehaviour
     /// </summary>
     /// <param name="idx">index of weapon</param>
     /// <param name="isActive">set wepon as highligted or not</param>
-    private void SetWeaponSlot(int idx, bool isActive)
+    private void SetWeaponSlotHighlight(int idx, bool isActive)
     {
         if (idx == -1)
             idx = weaponArray.Length;
         weaponSlots[idx].GetComponent<RawImage>().texture = Resources.Load<Texture>((isActive ? "WeaponSlotActive" : "WeaponSlot"));
+    }
+
+    private void SetWeaponDiscovered(int idx)
+    {
+        weaponSlots[idx].transform.GetChild(idx).GetComponent<RawImage>().enabled = false; // missing hide
+        weaponSlots[idx].transform.GetChild(idx).GetComponent<RawImage>().enabled = true; // show weapon sprite
     }
 
     private void UpdateExplosive()
@@ -668,14 +679,14 @@ public class WeaponManager : MonoBehaviour
         {
             lastSelectedFireArm = selectedFireArm;
             int i = 0;
-            for (; i < weaponArray.Length; i++) // find explosive with ammo
+            for (; i < weaponArray.Length; i++) // find weapon with ammo
             {
                 selectedFireArm--;
                 if (selectedFireArm < 0)
                     selectedFireArm = weaponArray.Length - 1;
                 // if any ammo left:
-                Weapon wscirpt = weaponArray[selectedFireArm].GetComponent<Weapon>();
-                if (fireArmAmmo[wscirpt.ammoType].amount + wscirpt.currentClipAmmo > 0)
+                Weapon weapon = weaponArray[selectedFireArm].GetComponent<Weapon>();
+                if (fireArmAmmo[weapon.ammoType].amount + weapon.currentClipAmmo > 0 && weapon.isDiscovered)
                     break;
             }
             if (i == weaponArray.Length)
@@ -690,14 +701,14 @@ public class WeaponManager : MonoBehaviour
         {
             lastSelectedFireArm = selectedFireArm;
             int i = 0;
-            for (; i < weaponArray.Length; i++) // find explosive with ammo
+            for (; i < weaponArray.Length; i++) // find weapon with ammo
             {
                 selectedFireArm++;
                 if (selectedFireArm >= weaponArray.Length)
                     selectedFireArm = 0;
                 // if any ammo left:
-                Weapon wscirpt = weaponArray[selectedFireArm].GetComponent<Weapon>();
-                if (fireArmAmmo[wscirpt.ammoType].amount + wscirpt.currentClipAmmo > 0)
+                Weapon weapon = weaponArray[selectedFireArm].GetComponent<Weapon>();
+                if (fireArmAmmo[weapon.ammoType].amount + weapon.currentClipAmmo > 0 && weapon.isDiscovered)
                     break;
             }
             if (i == weaponArray.Length)
@@ -713,8 +724,12 @@ public class WeaponManager : MonoBehaviour
             lastSelectedFireArm = selectedFireArm;
             if (index >= -1 && index < weaponArray.Length)
             {
-                selectedFireArm = index;
-                UpdateWeapon();
+                Weapon weapon = weaponArray[index].GetComponent<Weapon>();
+                if (fireArmAmmo[weapon.ammoType].amount + weapon.currentClipAmmo > 0 && weapon.isDiscovered)
+                {
+                    selectedFireArm = index;
+                    UpdateWeapon();
+                }
             }
         }
     }
@@ -722,9 +737,21 @@ public class WeaponManager : MonoBehaviour
     public void DiscoverWeaponByindex(int idx)
     {
         Weapon weapon = weaponArray[idx].GetComponent<Weapon>();
-        weapon.isDiscovered = true;
-        notifications.Notify(weapon.name + " discovered!");
-        AddAmmoByWeaponIndex(idx, weapon.clipSize * 2);
+        if(!weapon.isDiscovered) // not yet
+        {
+            weapon.isDiscovered = true;
+            notifications.Notify(weapon.name + " discovered!");
+            AddAmmoByWeaponIndex(idx, weapon.clipSize * 2);
+            SetWeaponDiscovered(idx);
+        }
+    }
+
+    public void UndiscoverAllWeapons()
+    {
+        foreach(GameObject gun in weaponArray)
+        {
+            gun.GetComponent<Weapon>().isDiscovered = false;
+        }
     }
 
     // API: Ammo manipulations

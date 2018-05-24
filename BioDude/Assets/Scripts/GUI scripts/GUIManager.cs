@@ -30,7 +30,7 @@ public class GUIManager : MonoBehaviour
         HPText.text = "HP: " + playerCharacter.GetHealth() + "/" + playerCharacter.healthMax;
     }
 
-    public void SetBulletGUI(int currentClipAmmo, int currentAmmo)
+    public void SetBulletGUI(string currentClipAmmo, string currentAmmo)
     {
         AmmoText.text = currentClipAmmo + "/" + currentAmmo;
     }

@@ -190,6 +190,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4816807189181768, guid: e6c8d5de71ac16543b076b31e0d654fc,
     type: 2}
   m_PrefabInternal: {fileID: 43330196}
+--- !u!114 &43330198 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114739604841279374, guid: e6c8d5de71ac16543b076b31e0d654fc,
+    type: 2}
+  m_PrefabInternal: {fileID: 43330196}
+  m_Script: {fileID: 11500000, guid: 4884566149660fe4ba77adedae0f396a, type: 3}
 --- !u!4 &82333458 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4238033073343806, guid: 3185dae749cb1dd4dbca8f90792ffa9b,
@@ -777,7 +783,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.12541203, y: 0.000010714869}
+  m_AnchoredPosition: {x: -0.12541203, y: 0.000014164929}
   m_SizeDelta: {x: 0.25, y: 0}
   m_Pivot: {x: 0.00000010430813, y: 1}
 --- !u!114 &369625794
@@ -1319,7 +1325,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.100044236, y: -0.000009775564}
+  m_AnchoredPosition: {x: 0.100044236, y: -0.000002340909}
   m_SizeDelta: {x: -4.399994, y: 0}
   m_Pivot: {x: 0.000000044703484, y: 0.99999964}
 --- !u!114 &684512936
@@ -5006,7 +5012,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2146230102}
   m_HandleRect: {fileID: 2146230100}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5162,6 +5168,16 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114577777547742720, guid: bd0c4e5fe858cc444bf949425df97889,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 43330198}
+    - target: {fileID: 114577777547742720, guid: bd0c4e5fe858cc444bf949425df97889,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DisplayNextSentence
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bd0c4e5fe858cc444bf949425df97889, type: 2}
