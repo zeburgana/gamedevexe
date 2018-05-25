@@ -126,7 +126,7 @@ public class WeaponManager : MonoBehaviour
         // static information about ofence weapons 
         fireArmAmmo = new Ammo[4];
         explosiveAmmo = new Ammo[2];
-        GetAmmoFromMemory();
+        LoadFromPrefs();
         ///
 
         notifications = GameObject.Find("AchievementManager").GetComponent<AchievementManager>();
@@ -235,7 +235,7 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-    public void GetAmmoFromMemory()
+    public void LoadFromPrefs()
     {
         fireArmAmmo = new Ammo[]
         {
@@ -286,7 +286,7 @@ public class WeaponManager : MonoBehaviour
         {
             if (PlayerPrefs.HasKey(fireArmAmmo[i].name + "Ammo"))
             {
-                Debug.Log("loaded " + fireArmAmmo[i].name + PlayerPrefs.GetInt(fireArmAmmo[i].name + "Ammo"));
+                //Debug.Log("loaded " + fireArmAmmo[i].name + PlayerPrefs.GetInt(fireArmAmmo[i].name + "Ammo"));
                 fireArmAmmo[i].amount = PlayerPrefs.GetInt(fireArmAmmo[i].name + "Ammo");
             }
         }
@@ -297,6 +297,16 @@ public class WeaponManager : MonoBehaviour
             {
                 explosiveAmmo[i].amount = PlayerPrefs.GetInt(explosiveAmmo[i].name + "Ammo");
             }
+        }
+
+        for (int i = 0; i < weaponArray.Length; i++)
+        {
+            if(PlayerPrefs.HasKey(weaponArray[i].name + "Discovered"))
+            {
+                weaponArray[i].GetComponent<Weapon>().isDiscovered = PlayerPrefs.GetInt(weaponArray[i].GetComponent<Weapon>() + "Discovered") == 1 ? true : false;
+            }
+            else
+                weaponArray[i].GetComponent<Weapon>().isDiscovered = false;
         }
     }
     
@@ -743,6 +753,17 @@ public class WeaponManager : MonoBehaviour
             notifications.Notify(weapon.name + " discovered!");
             AddAmmoByWeaponIndex(idx, weapon.clipSize * 2);
             SetWeaponDiscovered(idx);
+        }
+    }
+    public void DiscoverWeaponByName(string name)
+    {
+        for (int i = 0; i < weaponArray.Length; i++)
+        {
+            if(weaponArray[i].name == name)
+            {
+                DiscoverWeaponByindex(i);
+                break;
+            }
         }
     }
 

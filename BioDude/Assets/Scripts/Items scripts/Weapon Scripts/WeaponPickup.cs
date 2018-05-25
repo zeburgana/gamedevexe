@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponPickup : MonoBehaviour {
 
-    public int weaponID;
+    public Weapon weapon;
     private WeaponManager weaponManager;
 
     // Use this for initialization
@@ -17,7 +17,7 @@ public class WeaponPickup : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
-            weaponManager.DiscoverWeaponByindex(weaponID);
+            weaponManager.DiscoverWeaponByName(weapon.name);
             Destroy(gameObject);
         }
     }
