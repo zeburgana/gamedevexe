@@ -91,7 +91,7 @@ MonoBehaviour:
   cooldown: 0.05
   clipSize: 180
   currentClipAmmo: 180
-  reloadTime: 1.5
+  reloadTime: 1
   accuracy: 7
   damage: 2
   allertingRadius: 7

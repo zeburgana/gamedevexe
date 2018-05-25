@@ -22,6 +22,10 @@ public class CameraScript : MonoBehaviour {
     float OutMovmentSpeed = 0.15f;
     [SerializeField]
     bool DoCameraRecoil = true;
+    
+    public float MinCamZoom = 7;
+    public float MaxCamZoom = 10;
+    public bool DoDynamicCameraZoom = true;
     [SerializeField]
     float MaxOffset = 10;
 
@@ -52,7 +56,13 @@ public class CameraScript : MonoBehaviour {
         Vector2 LerpPos = new Vector2(0, 0);
         if(following == Following.Player)
         {
-            if ((cameraPos - (Vector2)Player.transform.position).magnitude > Offset.magnitude)
+            float distance = (cameraPos - (Vector2)Player.transform.position).magnitude;
+            if (DoDynamicCameraZoom)
+            {
+                gameObject.GetComponent<Camera>().orthographicSize = (1 - distance / MaxOffset) * (MaxCamZoom - MinCamZoom) + MinCamZoom;
+            }
+
+            if (distance > Offset.magnitude)
                 LerpPos = Vector2.Lerp(cameraPos, FollowingPos, InMovmentSpeed);
             else
                 LerpPos = Vector2.Lerp(cameraPos, FollowingPos, OutMovmentSpeed);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AmmoPickup : MonoBehaviour {
 
-	public int weaponID;
+	public string weaponName;
 	public int ammoAmount;
 	private WeaponManager weaponManager;
 
@@ -17,8 +17,9 @@ public class AmmoPickup : MonoBehaviour {
 	{
 		if(other.tag == "Player")
 		{
-			weaponManager.AddAmmoByWeaponIndex(weaponID, ammoAmount);
-			Destroy(gameObject);
+			weaponManager.AddAmmoByName(weaponName, ammoAmount);
+
+            Destroy(gameObject);
 		}
 	}
 }

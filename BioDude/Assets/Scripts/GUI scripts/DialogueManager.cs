@@ -4,17 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour {
-    public Text DialogueText;
-    public Text NameText;
-    public Image Avatar;
-    public GameObject DialogueCanvas;
+    private Text DialogueText;
+    private Text NameText;
+    private Image Avatar;
+    private GameObject DialogueCanvas;
     private Queue<string> sentences;
     private Queue<string> names;
     private Queue<Sprite> avatars;
     player _player;
 
 
-    public Animator animator;
+    private Animator animator;
 
     float time;
 
@@ -22,6 +22,13 @@ public class DialogueManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         _player = GameObject.Find("player").GetComponent<player>();
+        DialogueCanvas = GameObject.Find("Dialogue canvas");
+        GameObject pannel = DialogueCanvas.transform.Find("DialoguePanel").gameObject;
+        DialogueText = pannel.transform.Find("DialogueText").GetComponent<Text>();
+        NameText = pannel.transform.Find("Name").Find("NameText").GetComponent<Text>();
+        Avatar = pannel.transform.Find("Avatar").GetComponent<Image>();
+        animator = pannel.GetComponent<Animator>();
+
         sentences = new Queue<string>();
         names = new Queue<string>();
         avatars = new Queue<Sprite>();

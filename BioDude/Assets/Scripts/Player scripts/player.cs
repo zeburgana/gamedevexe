@@ -11,7 +11,7 @@ public class player : Character
     Rigidbody2D playerRigidbody;          // Reference to the player's rigidbody.
     bool ableToMove = true;
 
-    public PauseMenu PausemenuCanvas;
+    private PauseMenu PausemenuCanvas;
     private float rot_z;
     private WeaponManager weaponManager; 
 

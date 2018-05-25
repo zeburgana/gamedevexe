@@ -20,10 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4238033073343806}
   - component: {fileID: 212805165413951666}
-  - component: {fileID: 114707044254398946}
+  - component: {fileID: 114434362132011556}
   - component: {fileID: 61272307961094656}
   m_Layer: 14
-  m_Name: ShotgunPickup
+  m_Name: WeaponPickup-Shotgun
   m_TagString: WeaponPickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,7 +67,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7215872, y: 0.49772382}
   m_EdgeRadius: 0
---- !u!114 &114707044254398946
+--- !u!114 &114434362132011556
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -75,11 +75,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1454304534998486}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28a1e164bee984d4da4f55ca066d89f0, type: 3}
+  m_Script: {fileID: 11500000, guid: 81972e3c287402b458bed9ec26d72c98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponID: 0
-  ammoAmount: 0
+  weaponID: 3
 --- !u!212 &212805165413951666
 SpriteRenderer:
   m_ObjectHideFlags: 1

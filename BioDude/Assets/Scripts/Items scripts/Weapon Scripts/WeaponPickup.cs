@@ -17,7 +17,7 @@ public class WeaponPickup : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
-            weaponManager.DiscoverWeaponByIndex(weaponID);
+            weaponManager.DiscoverWeaponByindex(weaponID);
             Destroy(gameObject);
         }
     }

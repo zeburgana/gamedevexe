@@ -90,14 +90,14 @@ MonoBehaviour:
   timeUntilSelfDestrucion: 2
   cooldown: 1
   clipSize: 3
-  currentClipAmmo: 3
-  reloadTime: 3
+  currentClipAmmo: 1
+  reloadTime: 2
   accuracy: 15
   damage: 12
   allertingRadius: 8
   cameraRecoil: 2
   ammoType: 3
-  isDiscovered: 0
+  isDiscovered: 1
   bulletCount: 6
 --- !u!212 &212659441049571144
 SpriteRenderer:
