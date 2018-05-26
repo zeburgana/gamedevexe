@@ -9,101 +9,104 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1995316061485200}
+  m_RootGameObject: {fileID: 1974288062265692}
   m_IsPrefabParent: 1
---- !u!1 &1692139853485866
+--- !u!1 &1222882976599726
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4752174474340180}
+  - component: {fileID: 4456690401613672}
   m_Layer: 0
-  m_Name: ShotgunTip
+  m_Name: RocketLauncherTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1995316061485200
+--- !u!1 &1974288062265692
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4426838950978580}
-  - component: {fileID: 212589696396474110}
-  - component: {fileID: 114254085174617306}
+  - component: {fileID: 4399542992245506}
+  - component: {fileID: 212859599703880390}
+  - component: {fileID: 114327619377581928}
   m_Layer: 0
-  m_Name: AssaultRifle
+  m_Name: RocketLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4426838950978580
+--- !u!4 &4399542992245506
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1995316061485200}
+  m_GameObject: {fileID: 1974288062265692}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.222932, y: 0.9729912, z: 0}
+  m_LocalPosition: {x: -5.4801307, y: -2.8469148, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4752174474340180}
+  - {fileID: 4456690401613672}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4752174474340180
+--- !u!4 &4456690401613672
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1692139853485866}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.005, y: 0.981, z: 0}
+  m_GameObject: {fileID: 1222882976599726}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.035, y: 1.406, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4426838950978580}
+  m_Father: {fileID: 4399542992245506}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114254085174617306
+--- !u!114 &114327619377581928
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1995316061485200}
+  m_GameObject: {fileID: 1974288062265692}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ad2a969d2c374741a3e98a18699e6d2, type: 3}
+  m_Script: {fileID: 11500000, guid: 0401e64378fe19242bfd51231bbd3d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: dd6132bf1cf8fae4c8f3de3fda1a5e4e, type: 3}
+  sprite: {fileID: 21300000, guid: f10af3e2ca0e619449d5a0ecffe097e9, type: 3}
   orderInLayer: 5
-  weaponSound: {fileID: 8300000, guid: 4ad6cd90a764008468d613af633c9ee9, type: 3}
-  projectile: {fileID: 1962498360787404, guid: b5b00514c212b4c4fb8bfe52edb5cf7f, type: 2}
-  tip: {fileID: 1692139853485866}
-  projectileSpeed: 1200
+  weaponSound: {fileID: 8300000, guid: ae38328e75e3db248b3deb3662d10e25, type: 3}
+  projectile: {fileID: 1433679252064700, guid: 8b32ac57595ad04498222161885280b5, type: 2}
+  tip: {fileID: 1222882976599726}
+  projectileSpeed: 8
   timeUntilSelfDestrucion: 2
-  cooldown: 0.05
-  clipSize: 180
-  currentClipAmmo: 0
-  reloadTime: 1
-  accuracy: 7
-  damage: 2
-  allertingRadius: 7
-  cameraRecoil: 0.5
-  ammoType: 2
-  isDiscovered: 0
---- !u!212 &212589696396474110
+  cooldown: 1
+  clipSize: 1
+  currentClipAmmo: 1
+  reloadTime: 3
+  accuracy: 0
+  damage: 40
+  allertingRadius: 10
+  cameraRecoil: 1
+  ammoType: 1
+  isDiscovered: 1
+  rotationSpeed: 300
+  radius: 5
+  force: 2000
+--- !u!212 &212859599703880390
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1995316061485200}
+  m_GameObject: {fileID: 1974288062265692}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -132,12 +135,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 232dc9cb7bffadb44b0a97e1c056bdfd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f10af3e2ca0e619449d5a0ecffe097e9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.2, y: 0.51}
+  m_Size: {x: 5, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
