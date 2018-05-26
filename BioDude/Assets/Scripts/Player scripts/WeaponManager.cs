@@ -38,7 +38,7 @@ public class WeaponManager : MonoBehaviour
                 }
             }
             else
-                Debug.Log("You can't add negative amount of ammo. Use TakeAmmo instead");
+                Debug.Log("You can't add negative amount of ammo or add 0. Use TakeAmmo instead");
             return 0;
         }
 
@@ -56,7 +56,7 @@ public class WeaponManager : MonoBehaviour
                 return ammoTaken;
             }
             else
-                Debug.Log("You can't take negative amount of ammo. Use AddAmmo instead");
+                Debug.Log("You can't take negative amount of ammo or take 0. Use AddAmmo instead");
             return 0;
         }
     }
@@ -176,6 +176,42 @@ public class WeaponManager : MonoBehaviour
         UpdateExplosiveGUI();
         UpdateBulletGUI();
     }
+
+    // Automatic Reloading
+
+    private void ReloadOnPickup(string ammoName)
+    {
+        for(int i = 0; i < fireArmAmmo.Length; i++)
+            if(fireArmAmmo[i].name == ammoName)
+            {
+                ReloadOnPickup(i);
+                return;
+            }
+    }
+
+    private void ReloadOnPickup(int ammoidx)
+    {
+        if(selectedFireArm != -1 && weaponArray[selectedFireArm].GetComponent<Weapon>().ammoType == ammoidx)
+        {
+            AutoReload(selectedFireArm);
+        }
+        for (int i = 0; i < weaponArray.Length; i++)
+        {
+            if (weaponArray[i].GetComponent<Weapon>().ammoType == ammoidx)
+                AutoReload(i);
+        }
+    }
+
+    private void AutoReload(int weaponidx)
+    {
+        Weapon weapon = weaponArray[weaponidx].GetComponent<Weapon>();
+        if (weapon.isDiscovered)
+        {
+            weapon.currentClipAmmo = fireArmAmmo[weapon.ammoType].TakeAmmo(weapon.clipSize - weapon.currentClipAmmo);
+        }
+    }
+
+    //
 
     public void UpdateWeaponGUI() // update gui
     {
@@ -770,6 +806,7 @@ public class WeaponManager : MonoBehaviour
                 UpdateWeaponGUI();
                 UpdateBulletGUI();
                 notifications.Notify(added.ToString() + " " + ammo.name.ToString() + " ammo added");
+                ReloadOnPickup(ammo.name);
                 return added;
             }
         foreach (Ammo ammo in explosiveAmmo)
@@ -825,6 +862,7 @@ public class WeaponManager : MonoBehaviour
             UpdateWeaponGUI();
             UpdateBulletGUI();
             notifications.Notify(added.ToString() + " " + fireArmAmmo[index].name.ToString() + " ammo added");
+            ReloadOnPickup(index);
             return added;
         }
         return -1;
@@ -858,11 +896,13 @@ public class WeaponManager : MonoBehaviour
     {
         if (index >= 0 && index < weaponArray.Length)
         {
-            int added = fireArmAmmo[weaponArray[index].GetComponent<Weapon>().ammoType].AddAmmo(amount);
+            int ammoType = weaponArray[index].GetComponent<Weapon>().ammoType;
+            int added = fireArmAmmo[ammoType].AddAmmo(amount);
             UpdateWeaponGUI();
             if (index == selectedFireArm)
                 UpdateBulletGUI();
-            notifications.Notify(added.ToString() + " " + fireArmAmmo[weaponArray[index].GetComponent<Weapon>().ammoType].name.ToString() + " ammo added");
+            notifications.Notify(added.ToString() + " " + fireArmAmmo[ammoType].name.ToString() + " ammo added");
+            ReloadOnPickup(ammoType);
             return added;
         }
         return -1;
