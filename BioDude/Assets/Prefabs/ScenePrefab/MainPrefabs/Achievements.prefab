@@ -193,12 +193,12 @@ MonoBehaviour:
   scrollRect: {fileID: 0}
   achievementMenu: {fileID: 0}
   backButton: {fileID: 0}
-  visualAchievement: {fileID: 1299645642347434, guid: e09f3d7da2f8f004a9eafe0c2607ac78,
+  visualAchievement: {fileID: 1749301677939962, guid: 24ed3df7ad804d94c8a600e7475363af,
     type: 2}
   visualNotification: {fileID: 1299645642347434, guid: db57e45ad2f30ba4c864bfe2e8408cf8,
     type: 2}
   notificationPanel: {fileID: 224813741843326926}
-  unlockedSprite: {fileID: 21300000, guid: 6a1159fcb37a53d42beca0a588f878cf, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: 4e8f6b341b473154ca1861927cc372de, type: 3}
   textPoints: {fileID: 0}
 --- !u!223 &223964154220299270
 Canvas:
