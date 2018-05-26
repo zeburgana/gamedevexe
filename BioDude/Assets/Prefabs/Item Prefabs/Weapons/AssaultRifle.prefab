@@ -81,6 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ad2a969d2c374741a3e98a18699e6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemName: AssaultRifle
   sprite: {fileID: 21300000, guid: dd6132bf1cf8fae4c8f3de3fda1a5e4e, type: 3}
   orderInLayer: 5
   weaponSound: {fileID: 8300000, guid: 4ad6cd90a764008468d613af633c9ee9, type: 3}

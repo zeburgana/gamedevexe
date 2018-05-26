@@ -165,7 +165,11 @@ public class WeaponManager : MonoBehaviour
             if (weapon.isDiscovered)
             {
                 weapon.currentClipAmmo = fireArmAmmo[weapon.ammoType].TakeAmmo(weapon.clipSize); // load with bullets from pool
-                SetWeaponDiscovered(i);
+                DisplayDiscoveredWeapon(i);
+            }
+            else
+            {
+                weapon.currentClipAmmo = 0;
             }
         }
 
@@ -353,7 +357,7 @@ public class WeaponManager : MonoBehaviour
         {
             knifeScript.Equip(leftHandSlot);
             rightHandSlot.GetComponent<SpriteRenderer>().sprite = null;
-            ammoImage.texture = Resources.Load<Texture>("Knife");
+            ammoImage.texture = Resources.Load<Texture>("KnifeImage");
         }
         else
         {
@@ -403,10 +407,9 @@ public class WeaponManager : MonoBehaviour
         weaponSlots[idx].GetComponent<RawImage>().texture = Resources.Load<Texture>((isActive ? "WeaponSlotActive" : "WeaponSlot"));
     }
 
-    private void SetWeaponDiscovered(int idx)
+    private void DisplayDiscoveredWeapon(int idx)
     {
-        weaponSlots[idx].transform.GetChild(1).GetComponent<RawImage>().enabled = false; // missing hide
-        weaponSlots[idx].transform.GetChild(0).GetComponent<RawImage>().enabled = true; // show weapon sprite
+        weaponSlots[idx].transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(weaponArray[idx].GetComponent<Weapon>().ItemName + "Image");
     }
 
     private void UpdateExplosive()
@@ -768,7 +771,12 @@ public class WeaponManager : MonoBehaviour
         if (!isReloading)
         {
             lastSelectedFireArm = selectedFireArm;
-            if (index >= -1 && index < weaponArray.Length)
+            if(index == -1)
+            {
+                selectedFireArm = -1;
+                UpdateWeapon();
+            }
+            else if (index >= 0 && index < weaponArray.Length)
             {
                 Weapon weapon = weaponArray[index].GetComponent<Weapon>();
                 if (fireArmAmmo[weapon.ammoType].amount + weapon.currentClipAmmo > 0 && weapon.isDiscovered)
@@ -788,9 +796,10 @@ public class WeaponManager : MonoBehaviour
             weapon.isDiscovered = true;
             notifications.Notify(weapon.name + " discovered!");
             AddAmmoByWeaponIndex(idx, weapon.clipSize * 2);
-            SetWeaponDiscovered(idx);
+            DisplayDiscoveredWeapon(idx);
         }
     }
+
     public void DiscoverWeaponByName(string name)
     {
         for (int i = 0; i < weaponArray.Length; i++)
@@ -824,10 +833,10 @@ public class WeaponManager : MonoBehaviour
             if (ammo.name == name)
             {
                 int added = ammo.AddAmmo(amount);
+                ReloadOnPickup(ammo.name);
                 UpdateWeaponGUI();
                 UpdateBulletGUI();
                 notifications.Notify(added.ToString() + " " + ammo.name.ToString() + " ammo added");
-                ReloadOnPickup(ammo.name);
                 return added;
             }
         foreach (Ammo ammo in explosiveAmmo)
@@ -880,10 +889,10 @@ public class WeaponManager : MonoBehaviour
         if (index >= 0 && index < fireArmAmmo.Length)
         {
             int added = fireArmAmmo[index].AddAmmo(amount);
+            ReloadOnPickup(index);
             UpdateWeaponGUI();
             UpdateBulletGUI();
             notifications.Notify(added.ToString() + " " + fireArmAmmo[index].name.ToString() + " ammo added");
-            ReloadOnPickup(index);
             return added;
         }
         return -1;
@@ -919,11 +928,11 @@ public class WeaponManager : MonoBehaviour
         {
             int ammoType = weaponArray[index].GetComponent<Weapon>().ammoType;
             int added = fireArmAmmo[ammoType].AddAmmo(amount);
+            ReloadOnPickup(ammoType);
             UpdateWeaponGUI();
             if (index == selectedFireArm)
                 UpdateBulletGUI();
             notifications.Notify(added.ToString() + " " + fireArmAmmo[ammoType].name.ToString() + " ammo added");
-            ReloadOnPickup(ammoType);
             return added;
         }
         return -1;

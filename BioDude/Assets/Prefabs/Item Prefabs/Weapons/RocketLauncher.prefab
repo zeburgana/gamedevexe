@@ -81,6 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0401e64378fe19242bfd51231bbd3d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemName: RocketLauncher
   sprite: {fileID: 21300000, guid: f10af3e2ca0e619449d5a0ecffe097e9, type: 3}
   orderInLayer: 5
   weaponSound: {fileID: 8300000, guid: ae38328e75e3db248b3deb3662d10e25, type: 3}
@@ -97,7 +98,7 @@ MonoBehaviour:
   allertingRadius: 10
   cameraRecoil: 1
   ammoType: 1
-  isDiscovered: 1
+  isDiscovered: 0
   rotationSpeed: 300
   radius: 5
   force: 2000

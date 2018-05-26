@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Item : MonoBehaviour
 {
+    public string ItemName;
 	public Sprite sprite;
     public int orderInLayer;
 	
