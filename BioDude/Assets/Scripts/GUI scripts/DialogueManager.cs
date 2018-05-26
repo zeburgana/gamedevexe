@@ -47,7 +47,8 @@ public class DialogueManager : MonoBehaviour {
 
             animator.SetBool("IsOpen", true);
             sentences.Clear();
-            DialogueData.active = false;
+            if(!DialogueData.multi_use)
+                DialogueData.active = false;
 
             foreach (Dialogue DialogueUnit in DialogueData.dialogue)
             {

@@ -304,6 +304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue: []
   active: 1
+  multi_use: 0
 --- !u!4 &339051762
 Transform:
   m_ObjectHideFlags: 0
@@ -694,12 +695,12 @@ Prefab:
     - target: {fileID: 224140661755280934, guid: 3d22570301c4bac42bf365764274297e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000008199696
+      value: -0.000012906495
       objectReference: {fileID: 0}
     - target: {fileID: 224805227880956134, guid: 3d22570301c4bac42bf365764274297e,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0.00000011920929
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224140661755280934, guid: 3d22570301c4bac42bf365764274297e,
         type: 2}
@@ -709,7 +710,7 @@ Prefab:
     - target: {fileID: 224131607006460360, guid: 3d22570301c4bac42bf365764274297e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000010987288
+      value: -0.00002603622
       objectReference: {fileID: 0}
     - target: {fileID: 224866099915234140, guid: 3d22570301c4bac42bf365764274297e,
         type: 2}
@@ -1159,6 +1160,11 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: ff16fc614cab59443ae8b86dad183c65,
         type: 3}
+    - target: {fileID: 114574024811635360, guid: 29796c31194e9424aa5acbdcc801ab70,
+        type: 2}
+      propertyPath: multi_use
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29796c31194e9424aa5acbdcc801ab70, type: 2}
   m_IsPrefabParent: 0
