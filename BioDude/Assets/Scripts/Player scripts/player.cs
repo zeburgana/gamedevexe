@@ -149,37 +149,52 @@ public class player : Character
     {
         PlayerPrefs.SetFloat("PlayerHP", healthCurrent);
         Debug.Log("saved player hp");
-        if (weaponManager != null && weaponManager.weaponArray != null)
+        if (weaponManager != null)
         {
             Debug.Log("saving ammo info");
             //Saving info
             string name;
             int ammoCount;
-            for (int i = 0; i < weaponManager.fireArmAmmo.Length; i++)
-            {
-                name = weaponManager.fireArmAmmo[i].name;
-                ammoCount = weaponManager.fireArmAmmo[i].amount;
-                if (name != "" && name != null && ammoCount >= 0)
+            if(weaponManager.fireArmAmmo != null)
+                for (int i = 0; i < weaponManager.fireArmAmmo.Length; i++)
                 {
-                    Debug.Log("saved " + ammoCount + name);
-
-                    PlayerPrefs.SetInt(name + "Ammo", ammoCount);
+                    name = weaponManager.fireArmAmmo[i].name;
+                    ammoCount = weaponManager.fireArmAmmo[i].amount;
+                    if (name != "" && name != null && ammoCount >= 0)
+                    {
+                        //Debug.Log("saved " + ammoCount + name);
+                        PlayerPrefs.SetInt(name + "Ammo", ammoCount);
+                    }
                 }
-            }
-            for (int i = 0; i < weaponManager.explosiveAmmo.Length; i++)
-            {
-                name = weaponManager.explosiveAmmo[i].name;
-                ammoCount = weaponManager.explosiveAmmo[i].amount;
-                if (name != "" && name != null && ammoCount >= 0)
+            else
+                Debug.Log("failed to save weapon ammo info");
+
+            if (weaponManager.explosiveAmmo != null)
+                for (int i = 0; i < weaponManager.explosiveAmmo.Length; i++)
                 {
-                    Debug.Log("saved " + ammoCount + name);
-                    PlayerPrefs.SetInt(name + "Ammo", ammoCount);
+                    name = weaponManager.explosiveAmmo[i].name;
+                    ammoCount = weaponManager.explosiveAmmo[i].amount;
+                    if (name != "" && name != null && ammoCount >= 0)
+                    {
+                        //Debug.Log("saved " + ammoCount + name);
+                        PlayerPrefs.SetInt(name + "Ammo", ammoCount);
+                    }
                 }
-            }
-        }
-        else
-            Debug.Log("failed to save ammo info");
+            else
+                Debug.Log("failed to save grenade ammo info");
 
-        PlayerPrefs.Save();
+            if (weaponManager.weaponArray != null)
+                for (int i = 0; i < weaponManager.weaponArray.Length; i++)
+                {
+                    Weapon weapon = weaponManager.weaponArray[i].GetComponent<Weapon>();
+                    name = weapon.name;
+                    PlayerPrefs.SetInt(name + "Discovered", weapon.isDiscovered ? 1 : 0);
+                }
+            else
+                Debug.Log("failed to save weapon discovery info");
+
+    }
+
+    PlayerPrefs.Save();
     }
 }

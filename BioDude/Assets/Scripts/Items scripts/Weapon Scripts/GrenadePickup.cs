@@ -5,10 +5,9 @@ using UnityEngine;
 public class GrenadePickup : MonoBehaviour {
 
 
-    public int grenadeID;
+    public int explosiveID;
     public int count = 2;
     private WeaponManager weaponManager;
-    bool pickedUp;
 
     // Use this for initialization
     void Start()
@@ -20,8 +19,8 @@ public class GrenadePickup : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
-            weaponManager.AddExplosivesByIndex(grenadeID, count);
+            weaponManager.AddExplosivesByIndex(explosiveID, count);
+            Destroy(gameObject);
         }
-
     }
 }

@@ -25,7 +25,7 @@ public class LoadSceneFromMenu : MonoBehaviour
         achievementManager.DestroyAllAchievements();
         Destroy(GameObject.Find("MainMenuCanvas"));
 
-        DeletePlayerProgress();
+        GamePrefs.DeletePlayerProgress();
         LoadByIndex(1);
     }
     public void ContinueGame()
@@ -39,17 +39,5 @@ public class LoadSceneFromMenu : MonoBehaviour
     {
         SceneManager.LoadScene(sceneIndex);
         Time.timeScale = 1f;
-    }
-    public void DeletePlayerProgress()
-    {
-        PlayerPrefs.DeleteKey("LastLevelCheckpoint");
-        PlayerPrefs.DeleteKey("PlayerHP");
-        PlayerPrefs.DeleteKey("pistolAmmo");
-        PlayerPrefs.DeleteKey("shotgunAmmo");
-        PlayerPrefs.DeleteKey("assaultRifleAmmo");
-        PlayerPrefs.DeleteKey("rocketAmmo");
-        PlayerPrefs.DeleteKey("fragGrenadeAmmo");
-        PlayerPrefs.DeleteKey("gravnadeAmmo");
-
     }
 }
