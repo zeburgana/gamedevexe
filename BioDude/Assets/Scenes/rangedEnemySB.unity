@@ -148,16 +148,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1781386980}
     m_Modifications:
-    - target: {fileID: 224241924927785958, guid: f46a9ca293dfb90468a672194345f398,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0.52
-      objectReference: {fileID: 0}
-    - target: {fileID: 224241924927785958, guid: f46a9ca293dfb90468a672194345f398,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224151995437701910, guid: f46a9ca293dfb90468a672194345f398,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -247,6 +237,16 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224241924927785958, guid: f46a9ca293dfb90468a672194345f398,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 224241924927785958, guid: f46a9ca293dfb90468a672194345f398,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f46a9ca293dfb90468a672194345f398, type: 2}
@@ -790,11 +790,6 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114312451984111774, guid: 991b931b16a75d84598bf8642797997c,
-        type: 2}
-      propertyPath: DialManager
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 991b931b16a75d84598bf8642797997c, type: 2}

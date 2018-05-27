@@ -69,7 +69,7 @@ public class AchievementManager : MonoBehaviour
     void Update()
     {
 
-        //this opens achievement menu when not in main menu and backspace is pressed. Comment if you don't want this to work
+        //this opens achievement menu when not in main menu and P is pressed. Comment if you don't want this to work
         
         if (Input.GetKeyDown(KeyCode.P) && SceneManager.GetActiveScene().buildIndex != 0)
         {

@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a393837e11d63f4b9b0c0506dda3239, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  achievementPrefab: {fileID: 1749301677939962, guid: 24ed3df7ad804d94c8a600e7475363af,
+  achievementPrefab: {fileID: 1676487094799370, guid: 0c02da56f45ee824ca522dfa90071664,
     type: 2}
   sprites:
   - {fileID: 21300000, guid: c46145b42237fdb44a575dd1f5ac87e1, type: 3}
@@ -198,7 +198,7 @@ MonoBehaviour:
   visualNotification: {fileID: 1299645642347434, guid: db57e45ad2f30ba4c864bfe2e8408cf8,
     type: 2}
   notificationPanel: {fileID: 224813741843326926}
-  unlockedSprite: {fileID: 21300000, guid: 6a1159fcb37a53d42beca0a588f878cf, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: 6643285f41a82094aae54e5c4f862a16, type: 3}
   textPoints: {fileID: 0}
 --- !u!223 &223964154220299270
 Canvas:
