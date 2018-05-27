@@ -7,8 +7,7 @@ public class LevelManager : MonoBehaviour {
 
     [SerializeField]
     int EnemiesOnMapLeft = 0;
-    [SerializeField]
-    public bool NextLevelOnNoEnemies = false;
+    public bool clear = false;
     [SerializeField]
     public bool LastLevel = false;
     PauseMenu Pausemenu;
@@ -61,7 +60,7 @@ public class LevelManager : MonoBehaviour {
     public void EnemyDefeated()
     {
         EnemiesOnMapLeft--;
-        if (EnemiesOnMapLeft == 0 && NextLevelOnNoEnemies)
-            LevelCleared();
+        if (EnemiesOnMapLeft <= 0)
+            clear = true;
     }
 }
