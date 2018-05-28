@@ -11,18 +11,12 @@ public class IntroSceneLoadMenu : MonoBehaviour
         StartCoroutine(WaitForVideoEnd());
     }
 
-    private static IEnumerator WaitForVideoEnd()
+    private IEnumerator WaitForVideoEnd()
     {
-        double length = GameObject.FindGameObjectWithTag("GameController").GetComponent<VideoPlayer>().clip.length;
+        double length = gameObject.GetComponent<VideoPlayer>().clip.length;
         
         yield return new WaitForSeconds((float) length);
 
-        LoadNextLevel();
-    }
-
-    private static void LoadNextLevel()
-    {
-        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-        SceneManager.LoadScene(nextSceneIndex);
+        GameObject.Destroy(GameObject.FindGameObjectWithTag("VideoSurface"));
     }
 }
