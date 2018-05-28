@@ -10,6 +10,9 @@ public class player : Character
     Animator anim;                      // Reference to the animator component.
     Rigidbody2D playerRigidbody;          // Reference to the player's rigidbody.
     bool ableToMove = true;
+    private AudioSource audioSource;
+    public AudioClip[] painSounds;
+    public AudioClip deathSound;
 
     private PauseMenu PausemenuCanvas;
     private float rot_z;
@@ -19,6 +22,7 @@ public class player : Character
     {
         Initiate();
         // Set up references.
+        audioSource = gameObject.GetComponents<AudioSource>()[1];
         PausemenuCanvas = GameObject.Find("Pausemenu Canvas").GetComponent<PauseMenu>();
         anim = GetComponentInChildren<Animator>();
         playerRigidbody = GetComponent<Rigidbody2D>();
@@ -122,10 +126,30 @@ public class player : Character
         ableToMove = false;
         Destroy(gameObject.GetComponent<Rigidbody2D>());
         Destroy(gameObject.GetComponent<CircleCollider2D>());
+        audioSource.clip = deathSound;
+        audioSource.Play();
         //^^^ pakeist i player death animation
 
         StartCoroutine(PausemenuCanvas.PlayerDeath());
     }
+
+    public override void Damage(float amount)
+    {
+		healthCurrent -= amount;
+        if (healthCurrent <= 0)
+        {
+            healthCurrent = 0;
+            Die();
+        }
+        else
+        {
+            int indexSound = Random.Range(0, painSounds.Length);
+            audioSource.clip = painSounds[indexSound];
+            audioSource.Play();
+        }
+
+    }
+
 
     // OTHER METHODS:
 
