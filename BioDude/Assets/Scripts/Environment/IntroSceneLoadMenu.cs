@@ -18,5 +18,6 @@ public class IntroSceneLoadMenu : MonoBehaviour
         yield return new WaitForSeconds((float) length);
 
         GameObject.Destroy(GameObject.FindGameObjectWithTag("VideoSurface"));
+        SceneManager.LoadScene(1);
     }
 }
