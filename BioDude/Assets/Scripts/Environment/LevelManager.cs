@@ -61,6 +61,9 @@ public class LevelManager : MonoBehaviour {
     {
         EnemiesOnMapLeft--;
         if (EnemiesOnMapLeft <= 0)
+        {
             clear = true;
+            GameObject.Find("Exit").GetComponent<LevelManagerTrigger>().OpenExit();
+        }
     }
 }
