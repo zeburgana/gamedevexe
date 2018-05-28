@@ -18,6 +18,7 @@ public class RangedTank : Tank
 	void Update ()
     {
         CheckVision();
+        SetAlertionIndicator();
 
         if(targetInVision) // if enemy can see target
         {

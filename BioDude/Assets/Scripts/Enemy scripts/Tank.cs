@@ -42,6 +42,11 @@ public abstract class Tank : Character
 
     protected Animator animator;
 
+    protected Animator alertionIndicatorAnimator;
+    protected SpriteRenderer alertionIndicatorSpriteRenderer;
+    protected Sprite targetInVisionSprite;
+    protected Sprite isAlertedSprite;
+
     // Use this for initialization
     public void Instantiate () {
         PLKP = GameObject.Find("PlayerLastKnownPosition").transform;
@@ -49,6 +54,12 @@ public abstract class Tank : Character
         head = transform.Find("body");
         headScript = head.GetComponent<Head>();
         animator = GetComponent<Animator>();
+        
+        alertionIndicatorAnimator = transform.Find("EnemyCanvas/AlertionIndicator").GetComponent<Animator>();
+        alertionIndicatorSpriteRenderer = transform.Find("EnemyCanvas/AlertionIndicator").GetComponent<SpriteRenderer>();
+        targetInVisionSprite = Resources.Load<Sprite>("e");
+        isAlertedSprite = Resources.Load<Sprite>("q");
+        
         aiDestinationSetter = GetComponent<AIDestinationSetter>();
         aiPatrol = GetComponent<Patrol>();
         ai = GetComponent<IAstarAI>();
@@ -268,5 +279,27 @@ public abstract class Tank : Character
     protected override void Die()
     {
         GameObject.Find("LevelManager").GetComponent<LevelManager>().EnemyDefeated();
+    }
+    
+    protected void SetAlertionIndicator()
+    {
+        if (isAlerted)
+        {
+            if (targetInVision)
+            {
+                alertionIndicatorSpriteRenderer.sprite = targetInVisionSprite;
+                alertionIndicatorAnimator.SetFloat("Speed", 2);
+            }
+            else
+            {
+                alertionIndicatorSpriteRenderer.sprite = isAlertedSprite;
+                alertionIndicatorAnimator.SetFloat("Speed", 1);
+            }
+        }
+        else
+        {
+            alertionIndicatorSpriteRenderer.sprite = new Sprite();
+            alertionIndicatorAnimator.SetFloat("Speed", 0);
+        }
     }
 }
