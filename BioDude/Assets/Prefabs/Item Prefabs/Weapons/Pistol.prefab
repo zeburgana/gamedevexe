@@ -86,19 +86,21 @@ MonoBehaviour:
   orderInLayer: 5
   weaponSound: {fileID: 8300000, guid: 4ad6cd90a764008468d613af633c9ee9, type: 3}
   projectile: {fileID: 1661742638681246, guid: 6d05574080e4b714a937d5098ba9eb02, type: 2}
+  cartridgeCase: {fileID: 1366027595919398, guid: 444f512654d3c7a4a9ad1c4c87d8a378,
+    type: 2}
   tip: {fileID: 1461646437702750}
   projectileSpeed: 1000
   timeUntilSelfDestrucion: 2
   cooldown: 0.2
   clipSize: 12
-  currentClipAmmo: 0
+  currentClipAmmo: 12
   reloadTime: 1
   accuracy: 5
   damage: 7
   allertingRadius: 5
   cameraRecoil: 0.8
   ammoType: 0
-  isDiscovered: 0
+  isDiscovered: 1
 --- !u!212 &212249835247098000
 SpriteRenderer:
   m_ObjectHideFlags: 1

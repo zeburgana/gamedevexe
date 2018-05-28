@@ -86,6 +86,8 @@ MonoBehaviour:
   orderInLayer: 5
   weaponSound: {fileID: 8300000, guid: 4ad6cd90a764008468d613af633c9ee9, type: 3}
   projectile: {fileID: 1962498360787404, guid: b5b00514c212b4c4fb8bfe52edb5cf7f, type: 2}
+  cartridgeCase: {fileID: 1172454524303790, guid: 17d9f7db9aac9da49b92c3fe5e5b1227,
+    type: 2}
   tip: {fileID: 1635772868675404}
   projectileSpeed: 800
   timeUntilSelfDestrucion: 2
@@ -98,7 +100,7 @@ MonoBehaviour:
   allertingRadius: 8
   cameraRecoil: 2
   ammoType: 3
-  isDiscovered: 0
+  isDiscovered: 1
   bulletCount: 6
 --- !u!212 &212659441049571144
 SpriteRenderer:

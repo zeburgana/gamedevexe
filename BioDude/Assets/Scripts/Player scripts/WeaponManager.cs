@@ -545,6 +545,7 @@ public class WeaponManager : MonoBehaviour
     private void ShootPistol()
     {
         Weapon weaponScript = weaponArray[selectedFireArm].GetComponent<Weapon>();
+        EjectWeaponCartridgeCasing(weaponScript);
         float bulletAngle = Random.Range(-weaponScript.accuracy, weaponScript.accuracy);
         GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponRTip.transform.position, Quaternion.Euler(0f, 0f, activeWeaponRTip.transform.rotation.eulerAngles.z + bulletAngle), projectiles);
         newBullet.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
@@ -560,6 +561,7 @@ public class WeaponManager : MonoBehaviour
     private void ShootAssaultRifle()
     {
         Weapon weaponScript = weaponArray[selectedFireArm].GetComponent<Weapon>();
+        EjectWeaponCartridgeCasing(weaponScript);
         float bulletAngle = Random.Range(-weaponScript.accuracy, weaponScript.accuracy);
         GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponRTip.transform.position , Quaternion.Euler(0f, 0f, activeWeaponRTip.transform.rotation.eulerAngles.z + bulletAngle), projectiles);
         newBullet.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
@@ -568,6 +570,7 @@ public class WeaponManager : MonoBehaviour
     private void ShootShotgun()
     {
         Shotgun shotgunscript = weaponArray[selectedFireArm].GetComponent<Shotgun>();
+        EjectWeaponCartridgeCasing(shotgunscript);
         float bulletAngle;
         GameObject newBullet;
         for (int i = 0; i < shotgunscript.bulletCount; i++)
@@ -581,6 +584,8 @@ public class WeaponManager : MonoBehaviour
     private void ShootDualPistol()
     {
         Weapon weaponScript = weaponArray[selectedFireArm].GetComponent<Weapon>();
+        EjectWeaponCartridgeCasing(weaponScript);
+        EjectWeaponCartridgeCasing(weaponScript, "l");
         float bulletAngle = Random.Range(-weaponScript.accuracy, weaponScript.accuracy);
         GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponRTip.transform.position, Quaternion.Euler(0f, 0f, activeWeaponRTip.transform.rotation.eulerAngles.z + bulletAngle), projectiles);
         newBullet.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
@@ -591,6 +596,29 @@ public class WeaponManager : MonoBehaviour
             aWeaponScript.currentClipAmmo--;
         }
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="weapon"></param>
+    /// <param name="direction">r - right, l - left</param>
+    public void EjectWeaponCartridgeCasing(Weapon weapon, string direction = "r")
+    {
+        float ejectionForce = 500;
+        if (direction == "r")
+        {
+            GameObject cartridgeCasing = Instantiate(weapon.cartridgeCase, rightHandSlot.transform.position, rightHandSlot.transform.rotation);
+            Rigidbody2D rb = cartridgeCasing.GetComponent<Rigidbody2D>();
+            rb.AddForce(transform.right * ejectionForce);
+        }
+        else if (direction == "l")
+        {
+            GameObject cartridgeCasing = Instantiate(weapon.cartridgeCase, leftHandSlot.transform.position, leftHandSlot.transform.rotation);
+            Rigidbody2D rb = cartridgeCasing.GetComponent<Rigidbody2D>();
+            rb.AddForce(-transform.right * ejectionForce);
+        }
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision) // knife attack
     {

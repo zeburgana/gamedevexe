@@ -86,12 +86,14 @@ MonoBehaviour:
   orderInLayer: 5
   weaponSound: {fileID: 8300000, guid: 4ad6cd90a764008468d613af633c9ee9, type: 3}
   projectile: {fileID: 1962498360787404, guid: b5b00514c212b4c4fb8bfe52edb5cf7f, type: 2}
+  cartridgeCase: {fileID: 1338519686396556, guid: 6ad58246df282934aaaaba187cf7b883,
+    type: 2}
   tip: {fileID: 1692139853485866}
   projectileSpeed: 1200
   timeUntilSelfDestrucion: 2
   cooldown: 0.05
   clipSize: 180
-  currentClipAmmo: 180
+  currentClipAmmo: 0
   reloadTime: 1
   accuracy: 7
   damage: 2
