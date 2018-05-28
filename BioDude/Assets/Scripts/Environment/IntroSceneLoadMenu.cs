@@ -1,20 +1,28 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class IntroSceneLoadMenu : MonoBehaviour
 {
-	private bool isPlaying;
+    // Use this for initialization
+    private void Start()
+    {
+        StartCoroutine(WaitForVideoEnd());
+    }
 
-	// Use this for initialization
-	void Start ()
-	{
-		isPlaying = true;
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-		
-	}
+    private static IEnumerator WaitForVideoEnd()
+    {
+        double length = GameObject.FindGameObjectWithTag("GameController").GetComponent<VideoPlayer>().clip.length;
+        
+        yield return new WaitForSeconds((float) length);
+
+        LoadNextLevel();
+    }
+
+    private static void LoadNextLevel()
+    {
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        SceneManager.LoadScene(nextSceneIndex);
+    }
 }
