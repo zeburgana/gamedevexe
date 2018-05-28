@@ -22,6 +22,7 @@ public class MeleeTank : Tank
     void Update()
     {
         CheckVision();
+        SetAlertionIndicator();
         BechaviourIfCantSeePlayer();
     }
 
@@ -57,4 +58,6 @@ public class MeleeTank : Tank
         // enemy death: smokes and stoped movement
         Destroy(gameObject);    //changed to gameobject because "this" destroys only MeleeTank script and the tank still chases player
     }
+    
+    
 }
