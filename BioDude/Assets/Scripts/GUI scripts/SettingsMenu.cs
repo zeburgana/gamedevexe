@@ -102,8 +102,8 @@ public class SettingsMenu : MonoBehaviour {
 
         for (int i = 0; i < resolutions.Length; i++)
         {
-            if (resolutions[i].width / resolutions[i].height == 16 / 9)
-            {
+            //if (resolutions[i].width / resolutions[i].height == 16 / 9)
+            //{
                 string resOption =
                     resolutions[i].width + "x" + resolutions[i].height /* + " " +  resolutions[i].refreshRate + "Hz"*/;
                 
@@ -122,10 +122,10 @@ public class SettingsMenu : MonoBehaviour {
                     //resolutions[i].height +"=="+ height + "index: " + currentRes);
                     //Debug.Log("found res index:" + currentRes);
                 }
-            }
+            //}
         }
         
-        resOptions.Distinct();
+        //resOptions.Distinct();
         
         if(currentRes<0)
         {
