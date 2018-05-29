@@ -180,6 +180,11 @@ public class player : Character
             string name;
             int ammoCount;
             if(weaponManager.fireArmAmmo != null)
+            {
+                for (int j = 0; j < weaponManager.weaponArray.Length; j++)
+                {
+                    weaponManager.fireArmAmmo[weaponManager.weaponArray[j].GetComponent<Weapon>().ammoType].amount += weaponManager.weaponArray[j].GetComponent<Weapon>().currentClipAmmo;
+                }
                 for (int i = 0; i < weaponManager.fireArmAmmo.Length; i++)
                 {
                     name = weaponManager.fireArmAmmo[i].name;
@@ -190,6 +195,7 @@ public class player : Character
                         PlayerPrefs.SetInt(name + "Ammo", ammoCount);
                     }
                 }
+            }
             else
                 Debug.Log("failed to save weapon ammo info");
 
