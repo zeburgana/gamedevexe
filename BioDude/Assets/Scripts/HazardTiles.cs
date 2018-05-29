@@ -165,7 +165,7 @@ public class HazardTiles : MonoBehaviour
     
     private void Slow()
     {
-        var speedSub = damage * damageMultiplier;
+        var speedSub = (damage * damageMultiplier) * 0.5f;
         if (speedSub < defaultSpeed)
             playerCharacter.speed = defaultSpeed - speedSub;
         else

@@ -14,6 +14,7 @@ public abstract class Tank : Character
     public int fromAngleToTurnHead = 15;
     public int toAngleToTurnHead = 90; // max value should be 90 for realistic reaction
     public LayerMask obstacleMask;
+    public float speedMultiplier = 0.8f;
 
     protected Transform head;
     protected GameObject player;
@@ -70,7 +71,7 @@ public abstract class Tank : Character
         HpBar.Initiate();
         healthCurrent = healthMax;
         normalSpeed = ai.maxSpeed;
-        alertedSpeed = 2 * normalSpeed;
+        alertedSpeed = normalSpeed;
     }
 
     //PUBLIC METHODS:

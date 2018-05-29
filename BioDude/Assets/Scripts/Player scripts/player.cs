@@ -27,7 +27,7 @@ public class player : Character
         anim = GetComponentInChildren<Animator>();
         playerRigidbody = GetComponent<Rigidbody2D>();
         weaponManager = transform.GetComponent<WeaponManager>();
-        speed = 210;
+        speed = 150;
     }
 
     override protected void Initiate()
