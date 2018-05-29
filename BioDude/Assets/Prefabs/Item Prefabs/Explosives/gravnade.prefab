@@ -106,7 +106,7 @@ MonoBehaviour:
   blackHoleEffect: {fileID: 1759955223216986, guid: 0c7d194e241fcd4458f67df2450e29b3,
     type: 2}
   radius: 3
-  force: 500
+  force: 1000000
 --- !u!212 &212947540293780252
 SpriteRenderer:
   m_ObjectHideFlags: 1
