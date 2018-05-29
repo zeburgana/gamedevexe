@@ -89,7 +89,7 @@ MonoBehaviour:
   cartridgeCase: {fileID: 1172454524303790, guid: 17d9f7db9aac9da49b92c3fe5e5b1227,
     type: 2}
   tip: {fileID: 1635772868675404}
-  projectileSpeed: 800
+  projectileSpeed: 1200
   timeUntilSelfDestrucion: 2
   cooldown: 1
   clipSize: 3

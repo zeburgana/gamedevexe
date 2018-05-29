@@ -22,6 +22,8 @@ public abstract class Tank : Character
     public bool isAlerted = false;
 
     //private variables:
+    protected float normalSpeed;
+    protected float alertedSpeed;
     protected IAstarAI ai;
     protected bool targetInVision = false;
     protected float distanceToPlayer;
@@ -67,6 +69,8 @@ public abstract class Tank : Character
         HpBar = transform.Find("EnemyCanvas").GetComponent<EnemyHPBar>();
         HpBar.Initiate();
         healthCurrent = healthMax;
+        normalSpeed = ai.maxSpeed;
+        alertedSpeed = 2 * normalSpeed;
     }
 
     //PUBLIC METHODS:
@@ -285,6 +289,7 @@ public abstract class Tank : Character
     {
         if (isAlerted)
         {
+            ai.maxSpeed = alertedSpeed;
             if (targetInVision)
             {
                 alertionIndicatorSpriteRenderer.sprite = targetInVisionSprite;
@@ -298,6 +303,7 @@ public abstract class Tank : Character
         }
         else
         {
+            ai.maxSpeed = normalSpeed;
             alertionIndicatorSpriteRenderer.sprite = new Sprite();
             alertionIndicatorAnimator.SetFloat("Speed", 0);
         }
