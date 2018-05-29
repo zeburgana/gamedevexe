@@ -85,6 +85,9 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: dd6132bf1cf8fae4c8f3de3fda1a5e4e, type: 3}
   orderInLayer: 5
   weaponSound: {fileID: 8300000, guid: 4ad6cd90a764008468d613af633c9ee9, type: 3}
+  shellSound: {fileID: 0}
+  emptySound: {fileID: 8300000, guid: 6d6be065a0cb0ab40baf0e4cf428483e, type: 3}
+  reloadSound: {fileID: 8300000, guid: fe35ad2a5df683540a76a16f6c114ef8, type: 3}
   projectile: {fileID: 1962498360787404, guid: b5b00514c212b4c4fb8bfe52edb5cf7f, type: 2}
   cartridgeCase: {fileID: 1338519686396556, guid: 6ad58246df282934aaaaba187cf7b883,
     type: 2}

@@ -84,7 +84,10 @@ MonoBehaviour:
   ItemName: Shotgun
   sprite: {fileID: 21300000, guid: 232dc9cb7bffadb44b0a97e1c056bdfd, type: 3}
   orderInLayer: 5
-  weaponSound: {fileID: 8300000, guid: 4ad6cd90a764008468d613af633c9ee9, type: 3}
+  weaponSound: {fileID: 8300000, guid: 0307565092def1e4880fb960931c1943, type: 3}
+  shellSound: {fileID: 0}
+  emptySound: {fileID: 8300000, guid: 6d6be065a0cb0ab40baf0e4cf428483e, type: 3}
+  reloadSound: {fileID: 8300000, guid: 83c8a56aa7a87034cae2d629554baf06, type: 3}
   projectile: {fileID: 1962498360787404, guid: b5b00514c212b4c4fb8bfe52edb5cf7f, type: 2}
   cartridgeCase: {fileID: 1172454524303790, guid: 17d9f7db9aac9da49b92c3fe5e5b1227,
     type: 2}
@@ -93,7 +96,7 @@ MonoBehaviour:
   timeUntilSelfDestrucion: 2
   cooldown: 1
   clipSize: 3
-  currentClipAmmo: 3
+  currentClipAmmo: 0
   reloadTime: 2
   accuracy: 15
   damage: 12
