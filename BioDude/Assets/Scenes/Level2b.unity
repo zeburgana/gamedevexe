@@ -351,12 +351,12 @@ Prefab:
     - target: {fileID: 224290923510469980, guid: cd8f73bc627c165408f94a8af6acdaf8,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.74
       objectReference: {fileID: 0}
     - target: {fileID: 224290923510469980, guid: cd8f73bc627c165408f94a8af6acdaf8,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1666649340742718, guid: cd8f73bc627c165408f94a8af6acdaf8, type: 2}
       propertyPath: m_IsActive
@@ -693,12 +693,12 @@ Prefab:
     - target: {fileID: 224131607006460360, guid: 3d22570301c4bac42bf365764274297e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000012053239
+      value: 0.0000028730065
       objectReference: {fileID: 0}
     - target: {fileID: 224140661755280934, guid: 3d22570301c4bac42bf365764274297e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.0000035898095
+      value: 0.000021911927
       objectReference: {fileID: 0}
     - target: {fileID: 224140661755280934, guid: 3d22570301c4bac42bf365764274297e,
         type: 2}
@@ -708,7 +708,7 @@ Prefab:
     - target: {fileID: 224144233139370288, guid: 3d22570301c4bac42bf365764274297e,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: -443.63422
+      value: -424.52444
       objectReference: {fileID: 0}
     - target: {fileID: 224974892369463500, guid: 3d22570301c4bac42bf365764274297e,
         type: 2}
@@ -733,7 +733,7 @@ Prefab:
     - target: {fileID: 224974892369463500, guid: 3d22570301c4bac42bf365764274297e,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 136.42822
+      value: 185.53413
       objectReference: {fileID: 0}
     - target: {fileID: 224974892369463500, guid: 3d22570301c4bac42bf365764274297e,
         type: 2}
@@ -763,7 +763,7 @@ Prefab:
     - target: {fileID: 224896103690367348, guid: 3d22570301c4bac42bf365764274297e,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 136.42822
+      value: 185.53413
       objectReference: {fileID: 0}
     - target: {fileID: 224896103690367348, guid: 3d22570301c4bac42bf365764274297e,
         type: 2}
@@ -938,12 +938,12 @@ Prefab:
     - target: {fileID: 224850299152256224, guid: 736ba48b5e2c07d4b968ebf627a41825,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.74
       objectReference: {fileID: 0}
     - target: {fileID: 224850299152256224, guid: 736ba48b5e2c07d4b968ebf627a41825,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 736ba48b5e2c07d4b968ebf627a41825, type: 2}
@@ -1095,7 +1095,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4906442713179518, guid: 29796c31194e9424aa5acbdcc801ab70, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 61379516637976564, guid: 29796c31194e9424aa5acbdcc801ab70,
         type: 2}
@@ -1116,7 +1116,8 @@ Prefab:
     - target: {fileID: 114574024811635360, guid: 29796c31194e9424aa5acbdcc801ab70,
         type: 2}
       propertyPath: dialogue.Array.data[0].sentence
-      value: It is time to face ranged enemy. Be carefull and use all your knowledge.
+      value: It is time to face your first ranged enemy. Be carefull and use all your
+        knowledge.
       objectReference: {fileID: 0}
     - target: {fileID: 114574024811635360, guid: 29796c31194e9424aa5acbdcc801ab70,
         type: 2}
@@ -45126,7 +45127,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4906442713179518, guid: 29796c31194e9424aa5acbdcc801ab70, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 61379516637976564, guid: 29796c31194e9424aa5acbdcc801ab70,
         type: 2}
@@ -45147,7 +45148,7 @@ Prefab:
     - target: {fileID: 114574024811635360, guid: 29796c31194e9424aa5acbdcc801ab70,
         type: 2}
       propertyPath: dialogue.Array.data[0].sentence
-      value: Have you noticed explanation and question marks appearing on enemies?
+      value: Have you noticed exclamation and question marks appearing on enemies?
       objectReference: {fileID: 0}
     - target: {fileID: 114574024811635360, guid: 29796c31194e9424aa5acbdcc801ab70,
         type: 2}
@@ -45174,9 +45175,9 @@ Prefab:
     - target: {fileID: 114574024811635360, guid: 29796c31194e9424aa5acbdcc801ab70,
         type: 2}
       propertyPath: dialogue.Array.data[2].sentence
-      value: 'Explanation mark indicates that enemy can se you.
+      value: 'Exclamation mark indicates that enemy can see you.
 
-        And Question mark indicates that enemy is searching for you.'
+        Question mark indicates that enemy is searching for you.'
       objectReference: {fileID: 0}
     - target: {fileID: 114574024811635360, guid: 29796c31194e9424aa5acbdcc801ab70,
         type: 2}
@@ -45192,7 +45193,7 @@ Prefab:
     - target: {fileID: 114574024811635360, guid: 29796c31194e9424aa5acbdcc801ab70,
         type: 2}
       propertyPath: dialogue.Array.data[3].sentence
-      value: If enemy cannot find you dor some time they return to patroll patterns.
+      value: If enemy cannot find you for some time they will return to patroll patterns.
       objectReference: {fileID: 0}
     - target: {fileID: 114574024811635360, guid: 29796c31194e9424aa5acbdcc801ab70,
         type: 2}
@@ -45519,9 +45520,9 @@ Prefab:
     - target: {fileID: 114574024811635360, guid: 29796c31194e9424aa5acbdcc801ab70,
         type: 2}
       propertyPath: dialogue.Array.data[0].sentence
-      value: 'Now you will face your first enemy
+      value: 'You will now face your first enemy.
 
-        Be carefull it can melee damage you'
+        Be carefull - it can melee damage you!'
       objectReference: {fileID: 0}
     - target: {fileID: 114574024811635360, guid: 29796c31194e9424aa5acbdcc801ab70,
         type: 2}
@@ -45752,7 +45753,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4372357376207144, guid: d8517bcc47f23754695335a85faa2c76, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1044113496588230, guid: d8517bcc47f23754695335a85faa2c76, type: 2}
       propertyPath: m_Name
@@ -45829,8 +45830,8 @@ Prefab:
     - target: {fileID: 114574024811635360, guid: 29796c31194e9424aa5acbdcc801ab70,
         type: 2}
       propertyPath: dialogue.Array.data[0].sentence
-      value: Enemies can here you, try shooting now. Enemy will come to the location
-        sound came from if it is close enough.
+      value: Enemies can hear you, try shooting now. Enemy will come to the location
+        the sound came from if it is close enough.
       objectReference: {fileID: 0}
     - target: {fileID: 114574024811635360, guid: 29796c31194e9424aa5acbdcc801ab70,
         type: 2}
@@ -45887,7 +45888,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4990028087187746, guid: bc4de02212b2db84994de37ffad3d163, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc4de02212b2db84994de37ffad3d163, type: 2}
@@ -94234,12 +94235,12 @@ Prefab:
     - target: {fileID: 224850299152256224, guid: 736ba48b5e2c07d4b968ebf627a41825,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.74
       objectReference: {fileID: 0}
     - target: {fileID: 224850299152256224, guid: 736ba48b5e2c07d4b968ebf627a41825,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 736ba48b5e2c07d4b968ebf627a41825, type: 2}
