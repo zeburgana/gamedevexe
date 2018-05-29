@@ -23,6 +23,8 @@ public class LevelManager : MonoBehaviour {
         if (SceneManager.GetActiveScene().buildIndex > 0 &&
             SceneManager.GetActiveScene().name != "Menu")
             SaveCurrentLevelIndex();
+        if (SceneManager.GetActiveScene().buildIndex >= SceneManager.sceneCount)
+            LastLevel = true;
     }
 
     public void LevelCleared()

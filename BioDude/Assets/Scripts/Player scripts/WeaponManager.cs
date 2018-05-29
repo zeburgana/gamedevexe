@@ -267,6 +267,11 @@ public class WeaponManager : MonoBehaviour
     {
         if (selectedExplosive == -1)
         {
+            guiManager.SetExplosiveGUI(0);
+            for (int i = 0; i < explosiveArray.Length; i++)
+            {
+                explosiveSlotReds[i].GetComponent<RawImage>().enabled = explosiveAmmo[i].amount <= 0;
+            }
             //display no explosives no image or whatevs
         }
         else
@@ -888,13 +893,13 @@ public class WeaponManager : MonoBehaviour
                 return added;
             }
         }
-        for (int i = 0; i < fireArmAmmo.Length; i++)
-            if (fireArmAmmo[i].name == name)
+        for (int i = 0; i < explosiveAmmo.Length; i++)
+            if (explosiveAmmo[i].name == name)
             {
-                int added = fireArmAmmo[i].AddAmmo(amount);
+                int added = explosiveAmmo[i].AddAmmo(amount);
                 UpdateWeaponGUI();
-                UpdateBulletGUI();
-                notifications.Notify(added.ToString() + " " + fireArmAmmo[i].name.ToString() + " ammo added");
+                UpdateExplosiveGUI();
+                notifications.Notify(added.ToString() + " " + explosiveAmmo[i].name.ToString() + " added");
                 return added;
             }
         return -1;
@@ -916,10 +921,10 @@ public class WeaponManager : MonoBehaviour
                 UpdateBulletGUI();
                 return taken;
             }
-        for (int i = 0; i < fireArmAmmo.Length; i++)
-            if (fireArmAmmo[i].name == name)
+        for (int i = 0; i < explosiveAmmo.Length; i++)
+            if (explosiveAmmo[i].name == name)
             {
-                int taken = fireArmAmmo[i].TakeAmmo(amount);
+                int taken = explosiveAmmo[i].TakeAmmo(amount);
                 UpdateWeaponGUI();
                 UpdateBulletGUI();
                 return taken;

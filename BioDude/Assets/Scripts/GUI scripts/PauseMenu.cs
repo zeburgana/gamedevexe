@@ -105,7 +105,9 @@ public class PauseMenu : MonoBehaviour {
         PauseMenuPanel.SetActive(false);
         LevelClearedMenu.SetActive(true);
         //if(SceneManager.GetActiveScene().buildIndex == SceneManager.GetAllScenes().Length - 1)
-        if(lvlManager.LastLevel)
+
+        //if (nextSceneIndex >= SceneManager.sceneCount)
+        if (lvlManager.LastLevel)
         {
             LevelClearedMenu.transform.Find("NextLevelButton").GetComponent<Button>().interactable = false;
             LevelClearedMenu.transform.Find("LevelClearedText").GetComponent<Text>().text += "\n End of the Game";
