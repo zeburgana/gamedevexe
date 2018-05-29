@@ -106,6 +106,7 @@ public class WeaponManager : MonoBehaviour
     private CameraScript mainCameraScript;
     private AudioSource weaponAudioSource;
     private AudioSource reloadAudioSource;
+    private AudioSource emptyAudioSource;
     private AchievementManager notifications;
 
     private RawImage ammoImage;
@@ -139,6 +140,7 @@ public class WeaponManager : MonoBehaviour
         playerAlerting = GetComponent<Allerting>();
         weaponAudioSource = GetComponent<AudioSource>();
         reloadAudioSource = GetComponents<AudioSource>()[2];
+        emptyAudioSource = GetComponents<AudioSource>()[3];
         ammoImage = GameObject.Find("PlayerAmmoText").GetComponentInChildren<RawImage>();
         explosiveImage = GameObject.Find("PlayerExplosiveText").GetComponentInChildren<RawImage>();
 
@@ -374,8 +376,10 @@ public class WeaponManager : MonoBehaviour
             awAmmoType = aWeaponScript.ammoType;
             leftHandSlot.GetComponent<SpriteRenderer>().sprite = null;
             weaponAudioSource.clip = aWeaponScript.weaponSound;
-            if(aWeaponScript.shellSound != null)
+            if(aWeaponScript.reloadSound != null)
                 reloadAudioSource.clip = aWeaponScript.reloadSound;
+            if (aWeaponScript.emptySound != null)
+                emptyAudioSource.clip = aWeaponScript.emptySound;
 
             if (selectedFireArm == 4) //dual vielded
             {
@@ -547,6 +551,7 @@ public class WeaponManager : MonoBehaviour
                 }
                 else
                 {
+                    emptyAudioSource.Play();
                     Reload();
                 }
             }

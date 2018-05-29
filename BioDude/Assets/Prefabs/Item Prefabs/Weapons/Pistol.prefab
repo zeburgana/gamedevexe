@@ -85,15 +85,18 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 6b1fd2f17f083e24e8b04ee411cbbda9, type: 3}
   orderInLayer: 5
   weaponSound: {fileID: 8300000, guid: 4ad6cd90a764008468d613af633c9ee9, type: 3}
+  shellSound: {fileID: 0}
+  emptySound: {fileID: 8300000, guid: 6d6be065a0cb0ab40baf0e4cf428483e, type: 3}
+  reloadSound: {fileID: 8300000, guid: fe35ad2a5df683540a76a16f6c114ef8, type: 3}
   projectile: {fileID: 1661742638681246, guid: 6d05574080e4b714a937d5098ba9eb02, type: 2}
   cartridgeCase: {fileID: 1366027595919398, guid: 444f512654d3c7a4a9ad1c4c87d8a378,
     type: 2}
   tip: {fileID: 1461646437702750}
-  projectileSpeed: 1000
+  projectileSpeed: 3000
   timeUntilSelfDestrucion: 2
   cooldown: 0.2
   clipSize: 12
-  currentClipAmmo: 12
+  currentClipAmmo: 0
   reloadTime: 1
   accuracy: 5
   damage: 7
