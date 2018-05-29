@@ -343,7 +343,9 @@ public class WeaponManager : MonoBehaviour
         {
             if(PlayerPrefs.HasKey(weaponArray[i].name + "Discovered"))
             {
-                weaponArray[i].GetComponent<Weapon>().isDiscovered = PlayerPrefs.GetInt(weaponArray[i].GetComponent<Weapon>() + "Discovered") == 1 ? true : false;
+                Debug.Log(weaponArray[i].name + "had a key");
+                weaponArray[i].GetComponent<Weapon>().isDiscovered = PlayerPrefs.GetInt(weaponArray[i].GetComponent<Weapon>().name + "Discovered") == 1 ? true : false;
+                Debug.Log(weaponArray[i].GetComponent<Weapon>().isDiscovered);
             }
             else
                 weaponArray[i].GetComponent<Weapon>().isDiscovered = false;
