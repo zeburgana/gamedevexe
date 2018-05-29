@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class SettingsMenu : MonoBehaviour {
     public Dropdown qualityDropdown;
     public Toggle fullscreenToggle;
     public Slider volumeSlider;
+    public const double supportedAspectRatio = (double) 16 / (double) 9;
 
     void Start()
     {
@@ -102,7 +104,10 @@ public class SettingsMenu : MonoBehaviour {
 
         for (int i = 0; i < resolutions.Length; i++)
         {
-            if (resolutions[i].width / resolutions[i].height == 16 / 9)
+            double currentWidth = resolutions[i].width;
+            double currentHeight = resolutions[i].height;
+            
+            if (Math.Abs((currentWidth / currentHeight) - supportedAspectRatio) < 0.0001)
             {
                 string resOption =
                     resolutions[i].width + "x" + resolutions[i].height /* + " " +  resolutions[i].refreshRate + "Hz"*/;
@@ -125,7 +130,7 @@ public class SettingsMenu : MonoBehaviour {
             }
         }
         
-        resOptions.Distinct();
+        //resOptions.Distinct();
         
         if(currentRes<0)
         {
