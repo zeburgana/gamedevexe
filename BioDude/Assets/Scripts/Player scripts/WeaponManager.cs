@@ -875,15 +875,8 @@ public class WeaponManager : MonoBehaviour
         {
             if (fireArmAmmo[i].name == name)
             {
-<<<<<<< HEAD
-                int added = ammo.AddAmmo(amount);
-                Debug.Log(name + " = " + ammo.name + " " + amount);
-                Debug.Log(ammo.name + " " + ammo.amount);
-                ReloadOnPickup(ammo.name);
-=======
                 int added = fireArmAmmo[i].AddAmmo(amount);
                 ReloadOnPickup(fireArmAmmo[i].name);
->>>>>>> 858c2e83177f412616284df29a8c1d69a050b642
                 UpdateWeaponGUI();
                 UpdateBulletGUI();
                 notifications.Notify(added.ToString() + " " + fireArmAmmo[i].name.ToString() + " ammo added");
