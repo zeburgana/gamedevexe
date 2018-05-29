@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="aea92ec8-67b9-451d-abcd-600e7b0253b3" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GUI scripts/SettingsMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GUI scripts/SettingsMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -95,37 +94,37 @@
       <file leaf-file-name="SettingsMenu.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/GUI scripts/SettingsMenu.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="780">
-              <caret line="132" column="10" selection-start-line="132" selection-start-column="10" selection-end-line="132" selection-end-column="10" />
+            <state relative-caret-position="689">
+              <caret line="126" column="8" selection-start-line="126" selection-start-column="8" selection-end-line="126" selection-end-column="8" />
               <folding>
-                <marker date="1527590034681" expanded="true" signature="6:158" ph="..." />
-                <marker date="1527590034681" expanded="true" signature="202:5975" ph="{...}" />
-                <marker date="1527590034681" expanded="true" signature="506:4511" ph="{...}" />
-                <marker date="1527590034681" expanded="true" signature="884:1042" ph="{...}" />
-                <marker date="1527590034681" expanded="true" signature="1055:1187" ph="{...}" />
-                <marker date="1527590034681" expanded="true" signature="1240:1374" ph="{...}" />
-                <marker date="1527590034681" expanded="true" signature="1387:1503" ph="{...}" />
-                <marker date="1527590034681" expanded="true" signature="1555:1684" ph="{...}" />
-                <marker date="1527590034681" expanded="true" signature="1697:1809" ph="{...}" />
-                <marker date="1527590034681" expanded="true" signature="1858:2000" ph="{...}" />
-                <marker date="1527590034681" expanded="true" signature="2013:2157" ph="{...}" />
-                <marker date="1527590034681" expanded="true" signature="2206:2337" ph="{...}" />
-                <marker date="1527590034681" expanded="true" signature="2350:2489" ph="{...}" />
-                <marker date="1527590034681" expanded="true" signature="2771:4060" ph="{...}" />
-                <marker date="1527590034681" expanded="true" signature="2998:4050" ph="{...}" />
-                <marker date="1527590034681" expanded="true" signature="3244:3383" ph="/* Debug.Log(resolutions[i].width + &quot;!=&quot; + width + &quot;&amp;&amp;&quot; + ... */" />
-                <marker date="1527590034681" expanded="true" signature="3401:3634" ph="/* if (resolutions[i].width == Screen.currentResolution.width &amp;&amp; ... */" />
-                <marker date="1527590034681" expanded="true" signature="3740:4036" ph="{...}" />
-                <marker date="1527590034681" expanded="true" signature="3815:4018" ph="/* Debug.Log(resolutions[i].width +&quot;==&quot;+ width +&quot;&amp;&amp;&quot;+ ... */" />
-                <marker date="1527590034681" expanded="true" signature="4136:4250" ph="{...}" />
-                <marker date="1527590034681" expanded="true" signature="4561:4615" ph="{...}" />
-                <marker date="1527590034681" expanded="true" signature="4660:5049" ph="{...}" />
-                <marker date="1527590034681" expanded="true" signature="4812:5042" ph="/* PlayerPrefs.SetInt(&quot;ResolutionHeight&quot;, res.height); ... */" />
-                <marker date="1527590034681" expanded="true" signature="5097:5212" ph="{...}" />
-                <marker date="1527590034681" expanded="true" signature="5253:5481" ph="{...}" />
-                <marker date="1527590034681" expanded="true" signature="5321:5475" ph="/* PlayerPrefs.SetFloat(&quot;MasterVolume&quot;, volume); ... */" />
-                <marker date="1527590034681" expanded="true" signature="5502:5537" ph="{...}" />
-                <marker date="1527590034681" expanded="true" signature="5568:5973" ph="{...}" />
+                <marker date="1527588913202" expanded="true" signature="6:144" ph="..." />
+                <marker date="1527588913202" expanded="true" signature="188:5741" ph="{...}" />
+                <marker date="1527588913202" expanded="true" signature="419:4277" ph="{...}" />
+                <marker date="1527588913202" expanded="true" signature="797:955" ph="{...}" />
+                <marker date="1527588913202" expanded="true" signature="968:1100" ph="{...}" />
+                <marker date="1527588913202" expanded="true" signature="1153:1287" ph="{...}" />
+                <marker date="1527588913202" expanded="true" signature="1300:1416" ph="{...}" />
+                <marker date="1527588913202" expanded="true" signature="1468:1597" ph="{...}" />
+                <marker date="1527588913202" expanded="true" signature="1610:1722" ph="{...}" />
+                <marker date="1527588913202" expanded="true" signature="1771:1913" ph="{...}" />
+                <marker date="1527588913202" expanded="true" signature="1926:2070" ph="{...}" />
+                <marker date="1527588913202" expanded="true" signature="2119:2250" ph="{...}" />
+                <marker date="1527588913202" expanded="true" signature="2263:2402" ph="{...}" />
+                <marker date="1527588913202" expanded="true" signature="2684:3828" ph="{...}" />
+                <marker date="1527588913202" expanded="true" signature="2766:3818" ph="{...}" />
+                <marker date="1527588913202" expanded="true" signature="3012:3151" ph="/* Debug.Log(resolutions[i].width + &quot;!=&quot; + width + &quot;&amp;&amp;&quot; + ... */" />
+                <marker date="1527588913202" expanded="true" signature="3169:3402" ph="/* if (resolutions[i].width == Screen.currentResolution.width &amp;&amp; ... */" />
+                <marker date="1527588913202" expanded="true" signature="3508:3804" ph="{...}" />
+                <marker date="1527588913202" expanded="true" signature="3583:3786" ph="/* Debug.Log(resolutions[i].width +&quot;==&quot;+ width +&quot;&amp;&amp;&quot;+ ... */" />
+                <marker date="1527588913202" expanded="true" signature="3902:4016" ph="{...}" />
+                <marker date="1527588913202" expanded="true" signature="4327:4381" ph="{...}" />
+                <marker date="1527588913202" expanded="true" signature="4426:4815" ph="{...}" />
+                <marker date="1527588913202" expanded="true" signature="4578:4808" ph="/* PlayerPrefs.SetInt(&quot;ResolutionHeight&quot;, res.height); ... */" />
+                <marker date="1527588913202" expanded="true" signature="4863:4978" ph="{...}" />
+                <marker date="1527588913202" expanded="true" signature="5019:5247" ph="{...}" />
+                <marker date="1527588913202" expanded="true" signature="5087:5241" ph="/* PlayerPrefs.SetFloat(&quot;MasterVolume&quot;, volume); ... */" />
+                <marker date="1527588913202" expanded="true" signature="5268:5303" ph="{...}" />
+                <marker date="1527588913202" expanded="true" signature="5334:5739" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -197,7 +196,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="232" />
     <option name="y" value="135" />
     <option name="width" value="1392" />
@@ -275,12 +274,12 @@
       <updated>1527495570035</updated>
       <workItem from="1527495574404" duration="1239000" />
       <workItem from="1527496931335" duration="2644000" />
-      <workItem from="1527588275195" duration="1748000" />
+      <workItem from="1527588275195" duration="627000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5631000" />
+    <option name="totallyTimeSpent" value="4510000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -519,37 +518,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/GUI scripts/SettingsMenu.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="132" column="10" selection-start-line="132" selection-start-column="10" selection-end-line="132" selection-end-column="10" />
+        <state relative-caret-position="689">
+          <caret line="126" column="8" selection-start-line="126" selection-start-column="8" selection-end-line="126" selection-end-column="8" />
           <folding>
-            <marker date="1527590034681" expanded="true" signature="6:158" ph="..." />
-            <marker date="1527590034681" expanded="true" signature="202:5975" ph="{...}" />
-            <marker date="1527590034681" expanded="true" signature="506:4511" ph="{...}" />
-            <marker date="1527590034681" expanded="true" signature="884:1042" ph="{...}" />
-            <marker date="1527590034681" expanded="true" signature="1055:1187" ph="{...}" />
-            <marker date="1527590034681" expanded="true" signature="1240:1374" ph="{...}" />
-            <marker date="1527590034681" expanded="true" signature="1387:1503" ph="{...}" />
-            <marker date="1527590034681" expanded="true" signature="1555:1684" ph="{...}" />
-            <marker date="1527590034681" expanded="true" signature="1697:1809" ph="{...}" />
-            <marker date="1527590034681" expanded="true" signature="1858:2000" ph="{...}" />
-            <marker date="1527590034681" expanded="true" signature="2013:2157" ph="{...}" />
-            <marker date="1527590034681" expanded="true" signature="2206:2337" ph="{...}" />
-            <marker date="1527590034681" expanded="true" signature="2350:2489" ph="{...}" />
-            <marker date="1527590034681" expanded="true" signature="2771:4060" ph="{...}" />
-            <marker date="1527590034681" expanded="true" signature="2998:4050" ph="{...}" />
-            <marker date="1527590034681" expanded="true" signature="3244:3383" ph="/* Debug.Log(resolutions[i].width + &quot;!=&quot; + width + &quot;&amp;&amp;&quot; + ... */" />
-            <marker date="1527590034681" expanded="true" signature="3401:3634" ph="/* if (resolutions[i].width == Screen.currentResolution.width &amp;&amp; ... */" />
-            <marker date="1527590034681" expanded="true" signature="3740:4036" ph="{...}" />
-            <marker date="1527590034681" expanded="true" signature="3815:4018" ph="/* Debug.Log(resolutions[i].width +&quot;==&quot;+ width +&quot;&amp;&amp;&quot;+ ... */" />
-            <marker date="1527590034681" expanded="true" signature="4136:4250" ph="{...}" />
-            <marker date="1527590034681" expanded="true" signature="4561:4615" ph="{...}" />
-            <marker date="1527590034681" expanded="true" signature="4660:5049" ph="{...}" />
-            <marker date="1527590034681" expanded="true" signature="4812:5042" ph="/* PlayerPrefs.SetInt(&quot;ResolutionHeight&quot;, res.height); ... */" />
-            <marker date="1527590034681" expanded="true" signature="5097:5212" ph="{...}" />
-            <marker date="1527590034681" expanded="true" signature="5253:5481" ph="{...}" />
-            <marker date="1527590034681" expanded="true" signature="5321:5475" ph="/* PlayerPrefs.SetFloat(&quot;MasterVolume&quot;, volume); ... */" />
-            <marker date="1527590034681" expanded="true" signature="5502:5537" ph="{...}" />
-            <marker date="1527590034681" expanded="true" signature="5568:5973" ph="{...}" />
+            <marker date="1527588913202" expanded="true" signature="6:144" ph="..." />
+            <marker date="1527588913202" expanded="true" signature="188:5741" ph="{...}" />
+            <marker date="1527588913202" expanded="true" signature="419:4277" ph="{...}" />
+            <marker date="1527588913202" expanded="true" signature="797:955" ph="{...}" />
+            <marker date="1527588913202" expanded="true" signature="968:1100" ph="{...}" />
+            <marker date="1527588913202" expanded="true" signature="1153:1287" ph="{...}" />
+            <marker date="1527588913202" expanded="true" signature="1300:1416" ph="{...}" />
+            <marker date="1527588913202" expanded="true" signature="1468:1597" ph="{...}" />
+            <marker date="1527588913202" expanded="true" signature="1610:1722" ph="{...}" />
+            <marker date="1527588913202" expanded="true" signature="1771:1913" ph="{...}" />
+            <marker date="1527588913202" expanded="true" signature="1926:2070" ph="{...}" />
+            <marker date="1527588913202" expanded="true" signature="2119:2250" ph="{...}" />
+            <marker date="1527588913202" expanded="true" signature="2263:2402" ph="{...}" />
+            <marker date="1527588913202" expanded="true" signature="2684:3828" ph="{...}" />
+            <marker date="1527588913202" expanded="true" signature="2766:3818" ph="{...}" />
+            <marker date="1527588913202" expanded="true" signature="3012:3151" ph="/* Debug.Log(resolutions[i].width + &quot;!=&quot; + width + &quot;&amp;&amp;&quot; + ... */" />
+            <marker date="1527588913202" expanded="true" signature="3169:3402" ph="/* if (resolutions[i].width == Screen.currentResolution.width &amp;&amp; ... */" />
+            <marker date="1527588913202" expanded="true" signature="3508:3804" ph="{...}" />
+            <marker date="1527588913202" expanded="true" signature="3583:3786" ph="/* Debug.Log(resolutions[i].width +&quot;==&quot;+ width +&quot;&amp;&amp;&quot;+ ... */" />
+            <marker date="1527588913202" expanded="true" signature="3902:4016" ph="{...}" />
+            <marker date="1527588913202" expanded="true" signature="4327:4381" ph="{...}" />
+            <marker date="1527588913202" expanded="true" signature="4426:4815" ph="{...}" />
+            <marker date="1527588913202" expanded="true" signature="4578:4808" ph="/* PlayerPrefs.SetInt(&quot;ResolutionHeight&quot;, res.height); ... */" />
+            <marker date="1527588913202" expanded="true" signature="4863:4978" ph="{...}" />
+            <marker date="1527588913202" expanded="true" signature="5019:5247" ph="{...}" />
+            <marker date="1527588913202" expanded="true" signature="5087:5241" ph="/* PlayerPrefs.SetFloat(&quot;MasterVolume&quot;, volume); ... */" />
+            <marker date="1527588913202" expanded="true" signature="5268:5303" ph="{...}" />
+            <marker date="1527588913202" expanded="true" signature="5334:5739" ph="{...}" />
           </folding>
         </state>
       </provider>
