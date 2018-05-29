@@ -15,11 +15,11 @@ public static class GamePrefs {
         PlayerPrefs.DeleteKey("rocketAmmo");
         PlayerPrefs.DeleteKey("fragGrenadeAmmo");
         PlayerPrefs.DeleteKey("gravnadeAmmo");
-        PlayerPrefs.DeleteKey("pistolDiscovered");
-        PlayerPrefs.DeleteKey("rocketLauncherDiscovered");
-        PlayerPrefs.DeleteKey("assaultRifleDiscovered");
-        PlayerPrefs.DeleteKey("shotgunDiscovered");
-        PlayerPrefs.DeleteKey("dualPistolDiscovered");
+        PlayerPrefs.DeleteKey("PistolDiscovered");
+        PlayerPrefs.DeleteKey("RocketLauncherDiscovered");
+        PlayerPrefs.DeleteKey("AssaultRifleDiscovered");
+        PlayerPrefs.DeleteKey("ShotgunDiscovered");
+        PlayerPrefs.DeleteKey("DualPistolDiscovered");
     }
 
 
