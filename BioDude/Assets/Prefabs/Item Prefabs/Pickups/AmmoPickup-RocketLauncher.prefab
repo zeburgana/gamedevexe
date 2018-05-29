@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28a1e164bee984d4da4f55ca066d89f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoName: rocket
+  ammoName: Rocket
   ammoAmount: 4
 --- !u!212 &212883192939326906
 SpriteRenderer:
