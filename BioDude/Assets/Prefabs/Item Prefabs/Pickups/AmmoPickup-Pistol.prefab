@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28a1e164bee984d4da4f55ca066d89f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 114749290517680290, guid: 20e1103fdde227d4fa389e993d13d0b4, type: 2}
+  ammoName: pistol
   ammoAmount: 40
 --- !u!212 &212291396691419558
 SpriteRenderer:
