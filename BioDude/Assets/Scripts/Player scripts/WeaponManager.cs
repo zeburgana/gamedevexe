@@ -285,25 +285,25 @@ public class WeaponManager : MonoBehaviour
             {
                 amount = 0,
                 maxAmount = 120,
-                name = "pistol"
+                name = "Pistol"
             },
             new Ammo // rocket launcher ammo
             {
                 amount = 0,
                 maxAmount = 10,
-                name = "rocket"
+                name = "RocketLauncher"
             },
             new Ammo // assault rifle ammo
             {
                 amount = 0,
                 maxAmount = 180,
-                name = "assaultRifle"
+                name = "AssaultRifle"
             },
             new Ammo // shotgun ammo
             {
                 amount = 0,
                 maxAmount = 80,
-                name = "shotgun"
+                name = "Shotgun"
             }
         };
 
@@ -841,11 +841,13 @@ public class WeaponManager : MonoBehaviour
     {
         for (int i = 0; i < weaponArray.Length; i++)
         {
-            if(weaponArray[i].name == name)
+            if (weaponArray[i].name == name)
             {
                 DiscoverWeaponByindex(i);
                 break;
             }
+            else
+                Debug.Log(name + " !=" + weaponArray[i].name);
         }
     }
 
@@ -867,6 +869,7 @@ public class WeaponManager : MonoBehaviour
     public int AddAmmoByName(string name, int amount)
     {
         foreach (Ammo ammo in fireArmAmmo)
+        {
             if (ammo.name == name)
             {
                 int added = ammo.AddAmmo(amount);
@@ -876,6 +879,9 @@ public class WeaponManager : MonoBehaviour
                 notifications.Notify(added.ToString() + " " + ammo.name.ToString() + " ammo added");
                 return added;
             }
+            else
+                Debug.Log(name + " != " + ammo.name);
+        }
         foreach (Ammo ammo in explosiveAmmo)
             if (ammo.name == name)
             {
