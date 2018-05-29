@@ -30,7 +30,8 @@ public class Allerting : MonoBehaviour {
         RaycastHit2D[] objects = Physics2D.CircleCastAll(transform.position, radius, Vector2.right, radius, LayerMask.GetMask("Enemy"));
         foreach (RaycastHit2D obj in objects)
         {
-            obj.transform.GetComponent<Tank>().PursuePlayer();
+            if(obj.transform.GetComponent<Tank>() != null)
+                obj.transform.GetComponent<Tank>().PursuePlayer();
         }
     }
 
