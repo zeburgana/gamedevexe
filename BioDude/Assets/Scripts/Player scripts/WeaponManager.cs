@@ -828,11 +828,11 @@ public class WeaponManager : MonoBehaviour
     public void DiscoverWeaponByindex(int idx)
     {
         Weapon weapon = weaponArray[idx].GetComponent<Weapon>();
-        if(!weapon.isDiscovered) // not yet
+        AddAmmoByWeaponIndex(idx, weapon.clipSize * 2);
+        if (!weapon.isDiscovered) // not yet
         {
             weapon.isDiscovered = true;
             notifications.Notify(weapon.name + " discovered!");
-            AddAmmoByWeaponIndex(idx, weapon.clipSize * 2);
             DisplayDiscoveredWeapon(idx);
         }
     }
