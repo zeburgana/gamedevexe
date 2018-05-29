@@ -247,6 +247,7 @@
           <e p="GuidedMisile.cs" t="Include" />
           <e p="Item.cs" t="Include" />
           <e p="Richochet.cs" t="Include" />
+          <e p="SelfDestruct.cs" t="Include" />
           <e p="Weapon Scripts" t="Include">
             <e p="AmmoPickup.cs" t="Include" />
             <e p="AssaultRifle.cs" t="Include" />
@@ -276,6 +277,7 @@
           <e p="WeaponManager.cs" t="Include" />
         </e>
         <e p="RandomTile.cs" t="Include" />
+        <e p="Scarecrow.cs" t="Include" />
       </e>
       <e p="Assets\VFX" t="Include">
         <e p="1_BlackHole" t="Include">
