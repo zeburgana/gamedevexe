@@ -13,6 +13,7 @@ public class Firearm : MonoBehaviour {
     public float damage;
     public float bulletSpeed;
     public float bulletDestroyAfter;
+    public float accuracy = 0;
     public Animator animator;
 
     Transform projectileParent;
@@ -40,7 +41,10 @@ public class Firearm : MonoBehaviour {
             if(animator != null)
                 animator.SetTrigger("Fire");
             timeTillNextShoot = shootingRate;
-            GameObject newBullet = Instantiate(bulletPrefab, shootingFrom.position, transform.rotation, projectileParent);
+            float bulletAngle = Random.Range(-accuracy, accuracy);
+            GameObject newBullet = Instantiate(bulletPrefab, shootingFrom.transform.position, Quaternion.Euler(0f, 0f, transform.rotation.eulerAngles.z + bulletAngle), projectileParent);
+            newBullet.gameObject.layer = 18;
+            //GameObject newBullet = Instantiate(bulletPrefab, shootingFrom.position, transform.rotation, projectileParent);
             newBullet.GetComponent<Bullet>().Instantiate(bulletDestroyAfter, bulletSpeed, damage);
         }
     }

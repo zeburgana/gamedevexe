@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4808947697261640}
   - component: {fileID: 212658379580992276}
   - component: {fileID: 114726697253835458}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: firearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4832072554830596}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1497292333568562}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 26.93, y: -10.34, z: 0}
+  m_LocalPosition: {x: 6.61, y: -0.07, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 4883126301803576}
@@ -609,7 +609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab7739e20b9ee654a99df62698893c82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 2
+  rotationSpeed: 3
   isRotated: 0
   targetAngle: 0
 --- !u!114 &114598256911163036
@@ -627,7 +627,7 @@ MonoBehaviour:
   repathRate: 0.5
   canSearch: 1
   canMove: 1
-  maxSpeed: 3
+  maxSpeed: 2
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
@@ -667,12 +667,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d10c21bb4fd55641b1b31d139172e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootingRate: 2
+  shootingRate: 0.4
   bulletPrefab: {fileID: 1661742638681246, guid: 6d05574080e4b714a937d5098ba9eb02,
     type: 2}
   damage: 2
   bulletSpeed: 1000
   bulletDestroyAfter: 10
+  accuracy: 10
   animator: {fileID: 95413752135366982}
 --- !u!114 &114855760236252340
 MonoBehaviour:
