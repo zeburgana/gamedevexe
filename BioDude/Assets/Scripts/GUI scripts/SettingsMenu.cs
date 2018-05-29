@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -101,23 +102,31 @@ public class SettingsMenu : MonoBehaviour {
 
         for (int i = 0; i < resolutions.Length; i++)
         {
-            string resOption = resolutions[i].width + "x" + resolutions[i].height /* + " " +  resolutions[i].refreshRate + "Hz"*/;
-            resOptions.Add(resOption);
-            //Debug.Log(resolutions[i].width + "!=" + width + "&&" +
-            //resolutions[i].height + "!=" + height + "index: " + currentRes);
-
-            /*if (resolutions[i].width == Screen.currentResolution.width &&
-                resolutions[i].height == Screen.currentResolution.height &&
-                resolutions[i].refreshRate == Screen.currentResolution.refreshRate)*/
-            if (resolutions[i].width == width &&
-                resolutions[i].height == height)
+            if (resolutions[i].width / resolutions[i].height == 16 / 9)
             {
-                currentRes = i;
-                //Debug.Log(resolutions[i].width +"=="+ width +"&&"+
-                //resolutions[i].height +"=="+ height + "index: " + currentRes);
-                //Debug.Log("found res index:" + currentRes);
+                string resOption =
+                    resolutions[i].width + "x" + resolutions[i].height /* + " " +  resolutions[i].refreshRate + "Hz"*/;
+                
+                resOptions.Add(resOption);
+                //Debug.Log(resolutions[i].width + "!=" + width + "&&" +
+                //resolutions[i].height + "!=" + height + "index: " + currentRes);
+
+                /*if (resolutions[i].width == Screen.currentResolution.width &&
+                    resolutions[i].height == Screen.currentResolution.height &&
+                    resolutions[i].refreshRate == Screen.currentResolution.refreshRate)*/
+                if (resolutions[i].width == width &&
+                    resolutions[i].height == height)
+                {
+                    currentRes = i;
+                    //Debug.Log(resolutions[i].width +"=="+ width +"&&"+
+                    //resolutions[i].height +"=="+ height + "index: " + currentRes);
+                    //Debug.Log("found res index:" + currentRes);
+                }
             }
         }
+        
+        resOptions.Distinct();
+        
         if(currentRes<0)
         {
             currentRes = resOptions.Count - 1;
