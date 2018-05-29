@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28a1e164bee984d4da4f55ca066d89f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 114829269820094138, guid: 054915740a40d4949be36724f0b7d637, type: 2}
+  ammoName: Shotgun
   ammoAmount: 20
 --- !u!212 &212842821683552584
 SpriteRenderer:

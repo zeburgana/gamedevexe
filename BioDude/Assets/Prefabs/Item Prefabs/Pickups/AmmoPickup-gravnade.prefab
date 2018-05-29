@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114884083231048818}
   - component: {fileID: 61522348598220452}
   m_Layer: 14
-  m_Name: AmmoPickup-Pistol
+  m_Name: AmmoPickup-gravnade
   m_TagString: WeaponPickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.35, y: 0.26}
+    oldSize: {x: 0.27, y: 0.38}
     newSize: {x: 0.4, y: 0.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -78,8 +78,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28a1e164bee984d4da4f55ca066d89f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoName: Pistol
-  ammoAmount: 40
+  ammoName: gravnade
+  ammoAmount: 2
 --- !u!212 &212291396691419558
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -114,7 +114,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: fc8c7a3e51a1a254eadd45111eefec82, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2ee296e3d62bef4439d7b6d5248e1139, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

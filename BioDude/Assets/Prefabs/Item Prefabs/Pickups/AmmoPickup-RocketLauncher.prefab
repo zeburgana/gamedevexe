@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28a1e164bee984d4da4f55ca066d89f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 114327619377581928, guid: 2f4e0959a2df30144832cb4c0c744432, type: 2}
+  ammoName: Rocket
   ammoAmount: 4
 --- !u!212 &212883192939326906
 SpriteRenderer:
