@@ -12,6 +12,9 @@ public abstract class Weapon : Item
     }*/
 
     public AudioClip weaponSound;
+    public AudioClip shellSound;
+    public AudioClip emptySound;
+    public AudioClip reloadSound;
     public GameObject projectile;
     public GameObject cartridgeCase;
     public GameObject tip;

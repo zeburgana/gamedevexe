@@ -104,7 +104,8 @@ public class WeaponManager : MonoBehaviour
 
     private GUIManager guiManager;
     private CameraScript mainCameraScript;
-    private AudioSource audioSource;
+    private AudioSource weaponAudioSource;
+    private AudioSource reloadAudioSource;
     private AchievementManager notifications;
 
     private RawImage ammoImage;
@@ -136,7 +137,8 @@ public class WeaponManager : MonoBehaviour
         guiManager = GameObject.Find("GUI").GetComponent<GUIManager>();
         playerAnimator = GetComponentInChildren<Animator>();
         playerAlerting = GetComponent<Allerting>();
-        audioSource = GetComponent<AudioSource>();
+        weaponAudioSource = GetComponent<AudioSource>();
+        reloadAudioSource = GetComponents<AudioSource>()[2];
         ammoImage = GameObject.Find("PlayerAmmoText").GetComponentInChildren<RawImage>();
         explosiveImage = GameObject.Find("PlayerExplosiveText").GetComponentInChildren<RawImage>();
 
@@ -368,9 +370,11 @@ public class WeaponManager : MonoBehaviour
             aWeaponScript.Equip(rightHandSlot);
             awAmmoType = aWeaponScript.ammoType;
             leftHandSlot.GetComponent<SpriteRenderer>().sprite = null;
-            audioSource.clip = aWeaponScript.weaponSound;
+            weaponAudioSource.clip = aWeaponScript.weaponSound;
+            if(aWeaponScript.shellSound != null)
+                reloadAudioSource.clip = aWeaponScript.reloadSound;
 
-            if(selectedFireArm == 4) //dual vielded
+            if (selectedFireArm == 4) //dual vielded
             {
                 aWeaponScript.Equip(leftHandSlot);
                 activeWeaponLTip.transform.localPosition = aWeaponScript.tip.transform.localPosition;
@@ -458,6 +462,8 @@ public class WeaponManager : MonoBehaviour
 
     private IEnumerator Reloadco()
     {
+        reloadAudioSource.Play();
+
         isReloading = true;
         playerAnimator.SetFloat("reloadSpeed", 1 / aWeaponScript.reloadTime);
         playerAnimator.SetTrigger("playerReload");
@@ -506,7 +512,7 @@ public class WeaponManager : MonoBehaviour
                     StartCoroutine("Cooldown");
                     mainCameraScript.AddOffset(aWeaponScript.cameraRecoil);
                     playerAlerting.AllertSurroundings(aWeaponScript.allertingRadius);
-                    audioSource.Play();
+                    weaponAudioSource.Play();
 
                     switch (selectedFireArm) ////////////requires optimisation - maybe code firing in weapon prefabs, or leave like this
                     {
@@ -548,6 +554,7 @@ public class WeaponManager : MonoBehaviour
     {
         Weapon weaponScript = weaponArray[selectedFireArm].GetComponent<Weapon>();
         EjectWeaponCartridgeCasing(weaponScript);
+        
         float bulletAngle = Random.Range(-weaponScript.accuracy, weaponScript.accuracy);
         GameObject newBullet = Instantiate(aWeaponScript.projectile, activeWeaponRTip.transform.position, Quaternion.Euler(0f, 0f, activeWeaponRTip.transform.rotation.eulerAngles.z + bulletAngle), projectiles);
         newBullet.GetComponent<Bullet>().Instantiate(aWeaponScript.timeUntilSelfDestrucion, aWeaponScript.projectileSpeed, aWeaponScript.damage);
