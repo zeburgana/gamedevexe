@@ -205,7 +205,7 @@ public class WeaponManager : MonoBehaviour
         }
         for (int i = 0; i < weaponArray.Length; i++)
         {
-            if (weaponArray[i].GetComponent<Weapon>().ammoType == ammoidx)
+            if (weaponArray[i].GetComponent<Weapon>().ammoType == ammoidx && i != selectedFireArm)
                 AutoReload(i);
         }
     }
@@ -215,7 +215,7 @@ public class WeaponManager : MonoBehaviour
         Weapon weapon = weaponArray[weaponidx].GetComponent<Weapon>();
         if (weapon.isDiscovered)
         {
-            weapon.currentClipAmmo = fireArmAmmo[weapon.ammoType].TakeAmmo(weapon.clipSize - weapon.currentClipAmmo);
+            weapon.currentClipAmmo += fireArmAmmo[weapon.ammoType].TakeAmmo(weapon.clipSize - weapon.currentClipAmmo);
         }
     }
 
@@ -251,7 +251,10 @@ public class WeaponManager : MonoBehaviour
             guiManager.SetBulletGUI("∞", "∞");
         }
         else
-        { 
+        {
+            Debug.Log(awAmmoType);
+
+            Debug.Log(fireArmAmmo[awAmmoType].amount.ToString());
             guiManager.SetBulletGUI(aWeaponScript.currentClipAmmo.ToString(), fireArmAmmo[awAmmoType].amount.ToString());
             // show how many bullets left 
             // weapon sprite to display next to bullets nums: weaponArray[selectedFireArm].GetComponent<SpriteRenderer>().sprite
@@ -873,27 +876,25 @@ public class WeaponManager : MonoBehaviour
     /// <returns>return amount added or -1 if such ammo type doesn't exist</returns>
     public int AddAmmoByName(string name, int amount)
     {
-        foreach (Ammo ammo in fireArmAmmo)
+        for (int i = 0; i < fireArmAmmo.Length; i++)
         {
-            if (ammo.name == name)
+            if (fireArmAmmo[i].name == name)
             {
-                int added = ammo.AddAmmo(amount);
-                ReloadOnPickup(ammo.name);
+                int added = fireArmAmmo[i].AddAmmo(amount);
+                ReloadOnPickup(fireArmAmmo[i].name);
                 UpdateWeaponGUI();
                 UpdateBulletGUI();
-                notifications.Notify(added.ToString() + " " + ammo.name.ToString() + " ammo added");
+                notifications.Notify(added.ToString() + " " + fireArmAmmo[i].name.ToString() + " ammo added");
                 return added;
             }
-            else
-                Debug.Log(name + " != " + ammo.name);
         }
-        foreach (Ammo ammo in explosiveAmmo)
-            if (ammo.name == name)
+        for (int i = 0; i < fireArmAmmo.Length; i++)
+            if (fireArmAmmo[i].name == name)
             {
-                int added = ammo.AddAmmo(amount);
+                int added = fireArmAmmo[i].AddAmmo(amount);
                 UpdateWeaponGUI();
                 UpdateBulletGUI();
-                notifications.Notify(added.ToString() + " " + ammo.name.ToString() + " ammo added");
+                notifications.Notify(added.ToString() + " " + fireArmAmmo[i].name.ToString() + " ammo added");
                 return added;
             }
         return -1;
@@ -907,18 +908,18 @@ public class WeaponManager : MonoBehaviour
     /// <returns>return amount taken or -1 if such ammo type doesn't exist</returns>
     public int TakeAmmoByName(string name, int amount)
     {
-        foreach (Ammo ammo in fireArmAmmo)
-            if (ammo.name == name)
+        for (int i = 0; i < fireArmAmmo.Length; i++)
+            if (fireArmAmmo[i].name == name)
             {
-                int taken = ammo.TakeAmmo(amount);
+                int taken = fireArmAmmo[i].TakeAmmo(amount);
                 UpdateWeaponGUI();
                 UpdateBulletGUI();
                 return taken;
             }
-        foreach (Ammo ammo in explosiveAmmo)
-            if (ammo.name == name)
+        for (int i = 0; i < fireArmAmmo.Length; i++)
+            if (fireArmAmmo[i].name == name)
             {
-                int taken = ammo.TakeAmmo(amount);
+                int taken = fireArmAmmo[i].TakeAmmo(amount);
                 UpdateWeaponGUI();
                 UpdateBulletGUI();
                 return taken;
