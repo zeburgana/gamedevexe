@@ -51,6 +51,45 @@ public class player : Character
             Controls();
             Turning(); // Turn the player to face the mouse cursor.
         }
+        
+        RaycastAround(16);
+    }
+
+    private void RaycastAround(int raycount)
+    {
+        float x;
+        float y;
+
+        float angle = 0f;
+
+        for (int i = 0; i < (raycount + 1); i++)
+        {
+            x = Mathf.Sin(Mathf.Deg2Rad * angle);
+            y = Mathf.Cos(Mathf.Deg2Rad * angle);
+
+            Vector2 dir = new Vector2(x, y);
+            DrawRay(dir);
+            angle += (360f / raycount);
+        }
+    }
+
+    private void DrawRay(Vector2 dir)
+    {
+        int layerMask = 1 << 17; // wallmap layer
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(dir), 100f, layerMask);
+        
+        // if it hits something (wallmap = layer 17)
+        if (hit.collider != null)
+        {
+            Debug.DrawRay(transform.position, transform.TransformDirection(dir) * hit.distance, Color.red);
+            //Debug.Log("did hit");
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, transform.TransformDirection(dir) * 100, Color.green);
+            //Debug.Log("did not hit");
+        }
     }
 
     void FixedUpdate()
